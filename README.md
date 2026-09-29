@@ -35,7 +35,7 @@
 
 ## 本地运行
 
-需要 Node.js 22+，没有第三方 npm 依赖。
+需要 Node.js 22+。网站运行无第三方依赖；开发依赖仅用于 Playwright 浏览器验证。
 
 ```sh
 npm ci
@@ -44,11 +44,18 @@ npm run build
 npm run dev
 ```
 
+运行桌面与移动视口的浏览器用例：
+
+```sh
+npx playwright install chromium
+npx playwright test
+```
+
 打开 http://localhost:4173 。构建结果为 `dist/`。静态路径全部相对引用，支持 GitHub Pages `/stock/` 子路径。
 
 ## GitHub Pages
 
-工作流 `.github/workflows/pages.yml` 在推送 `main` 后测试、构建并部署。仓库 **Settings → Pages → Source** 设为 **GitHub Actions**。工作流尝试自动启用 Pages；若 GitHub 的令牌权限不允许首次启用，需仓库管理员在该设置页完成一次配置，然后重跑失败的工作流。
+工作流 `.github/workflows/pages.yml` 在推送 `main` 后测试、构建并部署。仓库 **Settings → Pages → Source** 设为 **GitHub Actions**。GitHub 的工作流令牌不支持首次启用 Pages，需仓库管理员在该设置页完成一次配置，然后重跑失败的工作流。测试与构建单独运行，构建产物在 Pages 未启用时也会上传。
 
 ## 结构与验证
 
@@ -57,5 +64,6 @@ npm run dev
 - `src/engine.js`：随机组卷、判分、恢复校验、截止时间和进度更新。
 - `src/app.js`、`src/style.css`：界面、交互及本地保存。
 - `tests/engine.test.js`：章节配比、综合卷分项门槛、计时恢复、损坏记录拒绝、错题重练与计算样例。
+- `tests/browser/flow.spec.js`：桌面 / 手机完整作答、刷新恢复、提前交卷、错题重练、到时交卷、存储损坏及页面宽度检查。CI 保留 HTML 报告与截图。
 
 作答存储键为 `zhiquan.practice.v1`。新版本题库变更应同步更新 `BANK_VERSION`，避免旧答卷对应错误答案。存储不可用时显示提示且允许内存作答；清理浏览器数据会删除本机记录。纯静态应用的答案可从源代码查看，因此仅适用于自主学习，不能作为正式监考系统。
