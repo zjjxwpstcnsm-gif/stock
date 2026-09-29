@@ -1,3 +1,7 @@
+import { createHash } from 'node:crypto';
+import { FUND_OUTLINE } from '../src/fund-outline-data.js';
+import { FUND_UNITS, outlineCoverage } from '../src/fund-curriculum.js';
+import { RECALL_SOURCES } from '../src/fund-recall-data.js';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { FUND_CONFIGS, FUND_SOURCES } from '../src/fund-config.js';
@@ -5,25 +9,25 @@ import { FUND_QUESTIONS } from '../src/fund-questions.js';
 import { FUND_LESSONS } from '../src/fund-course-data.js';
 import { createExamEngine, remainingSeconds } from '../src/engine.js';
 
-test('three isolated 100-question banks have valid options, chapter links and honest source labels', () => {
+test('three expanded isolated banks have valid options, chapter links and honest source labels', () => {
  const ids=new Set();
  for(const [subject, bank] of Object.entries(FUND_QUESTIONS)) {
-  assert.equal(bank.length,100); assert.equal(new Set(bank.map(q=>q.stem)).size,100);
+  assert.equal(bank.length,{fund1:201,fund2:263,fund3:206}[subject]); assert.equal(new Set(bank.map(q=>q.stem)).size,bank.length);
   assert.deepEqual([1,2,3,4,5].map(c=>bank.filter(q=>q.chapter===c).length),[20,20,20,20,20]);
   for(const q of bank){
    assert.ok(!ids.has(q.id));ids.add(q.id);
    assert.equal(q.options.length,4);assert.equal(new Set(q.options).size,4,q.id);
    assert.ok(Number.isInteger(q.answer)&&q.answer>=0&&q.answer<4);
-   assert.ok(q.explanation.length>20&&FUND_SOURCES[q.source]);assert.match(q.origin,/原创模拟.*非真题/);
+   assert.ok(q.explanation.length>20&&FUND_SOURCES[q.source]);assert.match(q.origin,q.sourceKind==='recall'?/回忆题.*非官方原卷/:/原创模拟.*非真题/);
   }
-  const lessons=FUND_LESSONS[subject];assert.equal(lessons.length,5);
+  const lessons=FUND_LESSONS[subject];assert.equal(lessons.length,5+FUND_UNITS[subject].length);
   for(const [i,l] of lessons.entries()){
-   assert.equal(l.practice,i+1);assert.ok(l.sections.length>=3);
+   assert.equal(l.practice,i+1);assert.ok(l.sections.length>=2);
    assert.ok(l.sections.every(section=>section.title && section.html),l.id);
    assert.ok(l.sources.every(id=>FUND_SOURCES[id]));assert.ok(l.check.options[l.check.answer]);
   }
  }
- assert.equal(ids.size,300);
+ assert.equal(ids.size,670);
  assert.equal(Object.values(FUND_QUESTIONS).flat().filter(q=>q.calculation).length,120);
 });
 
@@ -66,4 +70,50 @@ test('all 120 numerical cases recompute with correct units and exactly one valid
   assert.equal(q.options.filter(v=>v===formatted).length,1,q.id);
  }
  assert.equal(kinds.size,27);
+});
+
+
+test('all 413 official objectives map to a lesson section and practice scope, without dropped or duplicate codes',()=>{
+ for(const [subject,outline] of Object.entries(FUND_OUTLINE)){
+  assert.equal(outline.length,{fund1:108,fund2:153,fund3:152}[subject]);
+  assert.equal(new Set(outline.map(o=>o.code)).size,outline.length);
+  for(const row of outlineCoverage(subject)){
+   assert.ok(row.lessonId&&row.section&&row.questionCount>0,`${subject}:${row.code}`);
+   assert.ok(row.page>0);assert.match(row.text,/^(掌握|理解|了解)/);
+  }
+ }
+});
+test('recall items have auditable per-question provenance and valid scope',()=>{
+ const all=Object.values(FUND_QUESTIONS).flat().filter(q=>q.sourceKind==='recall');
+ assert.equal(all.length,18);
+ for(const q of all){
+  const source=RECALL_SOURCES[q.source];assert.ok(source);
+  assert.equal(q.year,source.year);assert.equal(q.examSession,source.session);
+  assert.ok(q.sourceQuestion>0&&q.reviewNote&&q.reviewedAt);
+  assert.ok(source.url.startsWith('https://'));
+  const lesson=FUND_LESSONS[source.subject].find(l=>l.id===q.lessonId);
+  assert.ok(lesson.sections.some(s=>s.scope===q.scope));
+ }
+ // Recompute historical numeric items independently, including the disclosed intermediate rounding.
+ const bySource=(s,n)=>all.find(q=>q.source===s&&q.sourceQuestion===n);
+ const check=(q,value)=>assert.equal(q.options[q.answer],value);
+ check(bySource('recall1_2023',4),(Math.round(10000/1.015*100)/100/1.5).toFixed(2)+'份');
+ check(bySource('recall2_2025',4),(30000*50*.12)+'元');
+ check(bySource('recall2_2024',5),(200/5)+'股');
+ check(bySource('recall2_2024',3),`7500万元、${(7500/5000-.15/10).toFixed(3)}元`);
+ check(bySource('recall3_2024',2),(10+1-3)+'亿元');
+});
+test('original 300 question identities and answers stay intact; old full papers restore',()=>{
+ const original=Object.values(FUND_QUESTIONS).flatMap(b=>b.slice(0,100));
+ const data=original.map(({id,chapter,stem,options,answer,explanation})=>({id,chapter,stem,options,answer,explanation}));
+ assert.equal(createHash('sha256').update(JSON.stringify(data)).digest('hex'),'44103f6e5fead88040da7e26122ed02a3360c159e3804e1cd3c7087fb22875ea');
+ for(const [id,c] of Object.entries(FUND_CONFIGS)){
+  const engine=createExamEngine(c),bank=FUND_QUESTIONS[id];
+  const old=engine.makeSession(bank.slice(0,100).map(q=>q.id),'exam','standard',1000);
+  old.version=c.COMPATIBLE_BANK_VERSIONS[0];old.answers[old.ids[0]]=bank[0].answer;
+  assert.ok(engine.validSession(old,bank));assert.equal(engine.grade(old,bank).score,1);
+  assert.equal(engine.validSession({...old,version:c.BANK_VERSION},bank),false);
+  const a=engine.makePaper(bank,'standard',()=>0),b=engine.makePaper(bank,'standard',()=>.99);
+  assert.ok(a.some(id=>!b.includes(id)),'expanded pool must actually change sampled membership');
+ }
 });

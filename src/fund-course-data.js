@@ -1,3 +1,4 @@
+import { FUND_EXTRA_LESSONS } from './fund-curriculum.js';
 const p = text => `<p>${text}</p>`;
 const table = (headers, rows) => `<div class="table-scroll"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 function lesson(id, title, intro, takeaway, sections, pitfall, check, diagram) {
@@ -93,3 +94,5 @@ for (const lessons of Object.values(FUND_LESSONS)) lessons.forEach((lesson,index
   for(let i=0;i<shift;i++)lesson.check.options.unshift(lesson.check.options.pop());
   lesson.check.answer=shift;
 });
+
+for (const [subject,lessons] of Object.entries(FUND_EXTRA_LESSONS)) FUND_LESSONS[subject].push(...lessons);

@@ -1,3 +1,5 @@
+import { FUND_EXTRA_QUESTIONS } from './fund-curriculum.js';
+import { FUND_RECALL_QUESTIONS } from './fund-recall-data.js';
 // Original questions. The syllabus links identify topic scope, not the provenance of an official question.
 const banks = { fund1:[], fund2:[], fund3:[] };
 function add(subject, chapter, rows) {
@@ -250,4 +252,8 @@ numeric('fund3',5,'rvpi',cases.map(i=>[1000,300+100*i]),([paid,residual])=>({ste
 numeric('fund3',5,'tvpi',cases.map(i=>[1000,600+100*i,500]),([paid,distributed,residual])=>({stem:`实缴${paid}万元，累计分配${distributed}万元，剩余净价值${residual}万元，三者同口径，TVPI是多少？`,value:(distributed+residual)/paid,unit:'倍',explanation:`TVPI＝(已分配＋剩余净价值)÷实缴＝(${distributed}＋${residual})÷${paid}，等于DPI＋RVPI。`}));
 numeric('fund3',5,'irrOneYear',cases.map(i=>[100,110+10*i]),([paid,received])=>({stem:`期初唯一投入${paid}万元，恰好一年后唯一回款${received}万元，无其他现金流和剩余价值，年IRR是多少？`,value:(received/paid-1)*100,unit:'%',explanation:`由−${paid}＋${received}/(1＋r)＝0，得r＝${received}÷${paid}−1。只有本题的一期现金流可这样简化。`}));
 numeric('fund3',5,'carry',cases.map(i=>[1000,1200+100*i,.2]),([capital,proceeds,rate])=>({stem:`题设可分配现金${proceeds}万元，先返还LP全部实缴本金${capital}万元，剩余利润按20%给管理人，无门槛、追赶、税费或其他条款。管理人业绩报酬多少？`,value:(proceeds-capital)*rate,unit:'万元',explanation:`业绩报酬＝(可分配现金−返还本金)×20%＝(${proceeds}−${capital})×20%。真实分配应依合同，不能将该简化公式普遍套用。`}));
+for(const [subject,bank] of Object.entries(banks)){
+ bank.forEach(q=>q.sourceKind='original');
+ bank.push(...FUND_EXTRA_QUESTIONS[subject],...FUND_RECALL_QUESTIONS[subject]);
+}
 export const FUND_QUESTIONS = banks;

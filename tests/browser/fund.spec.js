@@ -37,7 +37,8 @@ test('fund exam is isolated from options, restores timer and grades 100 question
  expect(errors).toEqual([]);
 });
 
-test('all 15 lessons, self-checks, diagrams, source resources and chapter practice work on each viewport',async({page},info)=>{
+test('all 50 lessons, self-checks, diagrams, source resources and chapter practice work on each viewport',async({page},info)=>{
+ test.setTimeout(120000);
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  for(const subject of ['fund1','fund2','fund3']){
   await page.goto(`/?subject=${subject}#course`);
@@ -45,7 +46,7 @@ test('all 15 lessons, self-checks, diagrams, source resources and chapter practi
    if(info.project.name==='mobile')await page.selectOption('#course-chapter',l.id);
    else await page.locator('.course-toc').getByRole('link').nth(index).click();
    await expect(page.locator('#lesson-title')).toHaveText(l.title);
-   await expect(page.locator('.lesson-section')).toHaveCount(3);
+   await expect(page.locator('.lesson-section')).toHaveCount(l.sections.length);
    await page.locator(`[data-action="course-answer"][data-choice="${l.check.answer}"]`).click();
    await expect(page.locator('.check-feedback')).toContainText('回答正确');
    if(l.diagram){
@@ -59,10 +60,10 @@ test('all 15 lessons, self-checks, diagrams, source resources and chapter practi
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
   }
   await page.locator('[data-action="course-complete"]').click();await page.reload();
-  await expect(page.locator('.course-progress')).toContainText('1 / 5');
+  await expect(page.locator('.course-progress')).toContainText(`1 / ${FUND_LESSONS[subject].length}`);
   await page.screenshot({path:info.outputPath(`${subject}-course.png`),fullPage:true});
   await page.locator('[data-action="course-practice"]').click();
-  await expect(page.locator('.practice-settings h2')).toHaveText(subject==='fund1'?'净值与费用入门':subject==='fund2'?'基金交易计算':'业绩与分配计算');
+  await expect(page.locator('.practice-settings h2')).toHaveText(FUND_LESSONS[subject].at(-1).title);
   await page.getByRole('button',{name:'开始练习',exact:true}).click();
   const stem=await page.locator('#question-title').textContent(),q=FUND_QUESTIONS[subject].find(q=>q.stem===stem);
   await page.getByRole('radio').nth((q.answer+1)%4).click();await page.getByRole('button',{name:'确认答案',exact:true}).click();
@@ -93,4 +94,40 @@ test('expired fund exam submits on return and corrupted storage is recoverable',
  await page.evaluate(()=>localStorage.setItem('zhiquan.fund3.practice.v1','{bad'));
  await page.reload();await expect(page.locator('.warning')).toBeVisible();
  await expect(page.getByRole('heading',{name:'中国大陆基金从业资格'})).toBeVisible();
+});
+
+
+test('recall filters, provenance, no-match state and outline deep links work',async({page},info)=>{
+ await page.goto('/?subject=fund1#resources');
+ await expect(page.locator('.recall-question')).toHaveCount(6);
+ await page.selectOption('#recall-year','2026');
+ await expect(page.locator('.recall-question')).toHaveCount(2);
+ await expect(page.locator('.recall-question .source').first()).toContainText('来源页面第 1 题');
+ await page.getByRole('button',{name:'练习这 2 道回忆题'}).click();
+ await expect(page.locator('#practice-source')).toHaveValue('recall');
+ await expect(page.locator('#practice-year')).toHaveValue('2026');
+ await expect(page.locator('.practice-match')).toContainText('本次 2 题');
+ await page.locator('[data-action="pick-chapter"][data-chapter="1"]').click();
+ await expect(page.getByRole('button',{name:'开始练习',exact:true})).toBeDisabled();
+ await expect(page.locator('.practice-match')).toContainText('暂无匹配');
+ await page.locator('[data-action="pick-chapter"][data-chapter="0"]').click();
+ await page.getByRole('button',{name:'开始练习',exact:true}).click();
+ await expect(page.locator('.question-origin')).toContainText('2026年5月');
+ await expect(page.locator('.explanation')).toHaveCount(0);
+ const stem=await page.locator('#question-title').textContent(),q=FUND_QUESTIONS.fund1.find(q=>q.stem===stem);
+ await page.getByRole('radio').nth(q.answer).click();await page.getByRole('button',{name:'确认答案',exact:true}).click();
+ await expect(page.locator('.explanation')).toContainText(q.reviewNote);
+ await page.getByRole('button',{name:'大纲清单',exact:true}).click();await page.reload();
+ await expect(page.locator('.coverage-objective')).toHaveCount(108);
+ await page.selectOption('#coverage-chapter','8');
+ await expect(page.locator('.coverage-chapter')).toHaveCount(1);
+ await expect(page.locator('.coverage-chapter')).toContainText('中国特色金融文化');
+ await page.screenshot({path:info.outputPath('fund-coverage.png'),fullPage:true});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+ await page.getByRole('link',{name:'读本节',exact:true}).first().click();
+ await expect(page.locator('#lesson-title')).toHaveText(FUND_LESSONS.fund1.at(-1).title);
+ await page.reload();await expect(page.locator('#lesson-title')).toHaveText(FUND_LESSONS.fund1.at(-1).title);
+ await page.locator('[data-action="course-practice"]').click();
+ await expect(page.locator('#practice-source')).toHaveValue('all');
+ await expect(page.locator('#practice-year')).toHaveValue('0');
 });

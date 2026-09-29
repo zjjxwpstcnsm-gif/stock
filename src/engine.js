@@ -57,7 +57,7 @@ export function validSession(value, bank, config = defaultConfig) {
   if (Object.entries(value.answers).some(([id, answer]) => !value.ids.includes(id) || !Number.isInteger(answer) || answer < 0 || answer > 3)) return false;
   if (!['checked', 'marked'].every(k => Array.isArray(value[k]) && value[k].every(id => value.ids.includes(id)))) return false;
   if (value.mode === 'exam') {
-    const p = PROFILES[value.profile];
+    const p = (config.LEGACY_PROFILES?.[value.version] || PROFILES)[value.profile];
     if (!p || !Number.isFinite(value.deadline) || value.deadline !== value.startedAt + p.minutes * 60000) return false;
     if (value.ids.length !== Object.values(p.quotas).reduce((a, b) => a + b, 0)) return false;
     for (const [ch, count] of Object.entries(p.quotas)) if (value.ids.filter(id => bank.find(q => q.id === id).chapter === Number(ch)).length !== count) return false;
