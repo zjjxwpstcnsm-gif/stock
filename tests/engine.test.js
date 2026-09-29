@@ -1,20 +1,44 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { QUESTIONS } from '../src/questions.js';
 import { BANK_VERSION, PROFILES, SOURCES } from '../src/config.js';
 import { makePaper, makeSession, grade, remainingSeconds, validSession, updateProgress, shuffle } from '../src/engine.js';
 
-test('100 unique questions have four distinct options, valid keys, explanations and references', () => {
-  assert.equal(QUESTIONS.length, 100);
-  assert.equal(new Set(QUESTIONS.map(q => q.id)).size, 100);
-  assert.equal(new Set(QUESTIONS.map(q => q.stem)).size, 100);
+test('500 unique questions have four distinct options, valid keys, explanations and references', () => {
+  assert.equal(QUESTIONS.length, 500);
+  assert.equal(new Set(QUESTIONS.map(q => q.id)).size, 500);
+  assert.equal(new Set(QUESTIONS.map(q => q.stem)).size, 500);
   for (const q of QUESTIONS) {
     assert.equal(q.options.length, 4);
     assert.equal(new Set(q.options).size, 4, q.id);
     assert.ok(Number.isInteger(q.answer) && q.answer >= 0 && q.answer <= 3, q.id);
     assert.ok(q.explanation.length > 15 && q.topic && SOURCES[q.source], q.id);
   }
-  assert.deepEqual([1, 2, 3, 4].map(c => QUESTIONS.filter(q => q.chapter === c).length), [30, 20, 25, 25]);
+  assert.deepEqual([1, 2, 3, 4].map(c => QUESTIONS.filter(q => q.chapter === c).length), [150, 100, 125, 125]);
+});
+
+test('the original 100 question IDs, texts, options and answers remain unchanged', () => {
+  const counts = {1:30, 2:20, 3:25, 4:25};
+  const original = QUESTIONS.filter(q => Number(q.id.split('-')[1]) <= counts[q.chapter]);
+  assert.equal(original.length, 100);
+  assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'e3ade52b35956fd74ea3fae052611ddece13f421b662ad7cb0444a80eb82fc34');
+});
+
+test('additive bank update keeps prior-version practice and exam sessions gradeable', () => {
+  const counts = {1:30, 2:20, 3:25, 4:25};
+  const original = QUESTIONS.filter(q => Number(q.id.split('-')[1]) <= counts[q.chapter]);
+  for (const profile of Object.keys(PROFILES)) {
+    const session = makeSession(makePaper(original, profile), 'exam', profile);
+    session.version = '2026-09-29.1';
+    for (const id of session.ids) session.answers[id] = original.find(q => q.id === id).answer;
+    assert.ok(validSession(session, QUESTIONS));
+    assert.equal(grade(session, QUESTIONS).score, 100);
+    assert.deepEqual(grade(session, QUESTIONS), grade(session, original));
+  }
+  const practice = {...makeSession(['c1-001'], 'practice'), version:'2026-09-29.1'};
+  assert.ok(validSession(practice, QUESTIONS));
+  assert.equal(validSession({...practice, version:'unknown-future'}, QUESTIONS), false);
 });
 
 for (const [key, p] of Object.entries(PROFILES)) {

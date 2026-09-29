@@ -1,5 +1,7 @@
 // 原创学习题：每行依次为考点、题干、正确选项、三个干扰项、解析、参考资料键。
 // 参考资料用于知识核验，不表示这些题目摘录自该资料或正式试卷。
+import { EXTRA_ROWS } from './questions-extra.js';
+import { CALCULATION_ROWS } from './questions-calculations.js';
 const chapters = {
   1: [
     ['权利与义务', '认购期权的买方取得的是哪一种权利？', '按约定价格买入标的的权利', '按约定价格卖出标的的权利', '要求卖方退还权利金的权利', '分享标的公司股息的股东权利', '认购对应买入标的；认沽对应卖出标的。持有期权本身不等于持有标的证券。', 'rules'],
@@ -111,9 +113,10 @@ const chapters = {
   ],
 };
 
-export const QUESTIONS = Object.entries(chapters).flatMap(([chapter, rows]) => rows.map((row, i) => {
-  const [topic, stem, correct, b, c, d, explanation, source] = row;
+// 追加在各章原有题目之后，保持旧题 ID、选项顺序及答案不变。
+export const QUESTIONS = Object.entries(chapters).flatMap(([chapter, originalRows]) => [...originalRows, ...EXTRA_ROWS[chapter], ...CALCULATION_ROWS[chapter]].map((row, i) => {
+  const [topic, stem, correct, b, c, d, explanation, source, calculation] = row;
   const options = [correct, b, c, d];
   const offset = (i + Number(chapter)) % 4;
-  return { id: `c${chapter}-${String(i + 1).padStart(3, '0')}`, chapter: Number(chapter), topic, stem, options: [...options.slice(offset), ...options.slice(0, offset)], answer: (4 - offset) % 4, explanation, source, origin: '原创练习' };
+  return { id: `c${chapter}-${String(i + 1).padStart(3, '0')}`, chapter: Number(chapter), topic, stem, options: [...options.slice(offset), ...options.slice(0, offset)], answer: (4 - offset) % 4, explanation, source, origin: '原创练习', ...(calculation ? { calculation } : {}) };
 }));

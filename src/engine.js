@@ -1,4 +1,4 @@
-import { BANK_VERSION, CHAPTERS, PROFILES } from './config.js';
+import { BANK_VERSION, COMPATIBLE_BANK_VERSIONS, CHAPTERS, PROFILES } from './config.js';
 
 export function shuffle(items, random = Math.random) {
   const a = [...items];
@@ -45,7 +45,7 @@ export function makeSession(ids, mode, profile = null, now = Date.now()) {
 }
 
 export function validSession(value, bank) {
-  if (!value || value.version !== BANK_VERSION || !Array.isArray(value.ids) || !value.ids.length || !['exam', 'practice'].includes(value.mode)) return false;
+  if (!value || !COMPATIBLE_BANK_VERSIONS.includes(value.version) || !Array.isArray(value.ids) || !value.ids.length || !['exam', 'practice'].includes(value.mode)) return false;
   const ids = new Set(bank.map(q => q.id));
   if (new Set(value.ids).size !== value.ids.length || value.ids.some(id => !ids.has(id))) return false;
   if (!Number.isInteger(value.index) || value.index < 0 || value.index >= value.ids.length || !Number.isFinite(value.startedAt)) return false;

@@ -86,3 +86,59 @@ test('all main views fit viewport without horizontal overflow', async ({page}) =
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBeTruthy();
   }
 });
+
+test('expanded bank counts, 500-question navigation and new calculation review work', async ({page}, info) => {
+  await page.goto('/');
+  await expect(page.locator('.progress-ring')).toContainText('/ 500 题');
+  await page.getByRole('button',{name:'专项练习',exact:true}).click();
+  await expect(page.locator('.chapter-option b')).toHaveText(['500 题','150 题','100 题','125 题','125 题']);
+  await page.selectOption('#practice-count','0');
+  await page.getByRole('button',{name:'开始练习',exact:true}).click();
+  await expect(page.locator('.answer-cell')).toHaveCount(500);
+  await page.getByRole('button',{name:'第 500 题，未答',exact:true}).click();
+  const q = QUESTIONS.at(-1);
+  await expect(page.locator('#question-title')).toHaveText(q.stem);
+  await page.getByRole('radio').nth(q.answer).click();
+  await page.getByRole('button',{name:'确认答案',exact:true}).click();
+  await expect(page.locator('.explanation')).toContainText(q.explanation);
+  await expect(page.locator('.explanation a')).toHaveAttribute('href', /sse\.com\.cn/);
+  expect(await page.locator('.answer-grid').evaluate(grid => {
+    const current = grid.querySelector('[aria-current="step"]').getBoundingClientRect();
+    const bounds = grid.getBoundingClientRect();
+    return current.top >= bounds.top && current.bottom <= bounds.bottom+1;
+  })).toBeTruthy();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth+1)).toBeTruthy();
+  await page.screenshot({path:info.outputPath('question-500.png'),fullPage:true});
+  await page.reload();
+  await page.getByRole('button',{name:'继续作答',exact:true}).click();
+  await expect(page.locator('#question-title')).toHaveText(q.stem);
+  await expect(page.locator('.explanation')).toContainText('回答正确');
+  await page.getByRole('button',{name:'考试说明',exact:true}).click();
+  await expect(page.locator('#main')).toContainText('基础知识 150 道');
+  await expect(page.locator('#main')).toContainText('HTTP 567');
+});
+
+test('original-bank active session, history and wrong-book survive expansion', async ({page}) => {
+  await page.goto('/');
+  const q = QUESTIONS.find(q => q.id==='c1-001');
+  const session = {
+    id:'old-session',version:'2026-09-29.1',ids:[q.id],mode:'practice',profile:null,
+    answers:{[q.id]:(q.answer+1)%4},checked:[q.id],marked:[],index:0,
+    startedAt:Date.now()-60000,deadline:null,title:'专项练习',
+  };
+  await page.evaluate(({session,id}) => {
+    localStorage.setItem('zhiquan.practice.v1',JSON.stringify({
+      active:session, progress:{[id]:{attempts:1,correct:0,wrong:true}},
+      history:[{...session,id:'old-history',endedAt:Date.now()-30000}],
+    }));
+  },{session,id:q.id});
+  await page.reload();
+  await expect(page.locator('.progress-ring strong')).toHaveText('1');
+  await page.getByRole('button',{name:'继续作答',exact:true}).click();
+  await expect(page.locator('#question-title')).toHaveText(q.stem);
+  await expect(page.locator('.explanation')).toContainText(q.explanation);
+  await page.getByRole('button',{name:'学习记录',exact:true}).click();
+  await expect(page.locator('.history-row')).toHaveCount(1);
+  await page.getByRole('button',{name:/错题本/}).click();
+  await expect(page.locator('.list-question')).toHaveCount(1);
+});
