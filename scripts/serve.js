@@ -11,4 +11,4 @@ http.createServer(async (req, res) => {
     res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
     res.end(await readFile(file));
   } catch { res.writeHead(404); res.end('Not found'); }
-}).listen(4173, '0.0.0.0', () => console.log('Preview: http://localhost:4173'));
+}).listen(Number(process.env.PORT || 4173), '0.0.0.0', () => console.log(`Preview: http://localhost:${process.env.PORT || 4173}`));

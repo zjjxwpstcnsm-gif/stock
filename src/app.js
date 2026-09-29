@@ -1,13 +1,14 @@
 import { BANK_VERSION, CHAPTERS, PROFILES, SOURCES } from './config.js';
 import { QUESTIONS } from './questions.js';
 import { makePaper, makeSession, grade, remainingSeconds, shuffle, updateProgress, validSession } from './engine.js';
+import { courseView, courseHash, syncCourseHash, handleCourseAction, handleCourseChange, handleLabInput } from './course.js';
 
 const app = document.querySelector('#app');
 const KEY = 'zhiquan.practice.v1';
 const qmap = new Map(QUESTIONS.map(q => [q.id, q]));
 let storageWarning = '';
 let state = load();
-let view = 'home';
+let view = syncCourseHash() ? 'course' : 'home';
 let result = null;
 let reviewFilter = 'all';
 let practiceChapter = 0;
@@ -62,7 +63,8 @@ function sourceLink(q) { const source = SOURCES[q.source]; return `<a href="${so
 function render() {
   const focused = document.activeElement?.id;
   const current = view === 'quiz' ? 'home' : view === 'result' ? 'history' : view;
-  const links = [['home', 'exam', '模拟考试'], ['practice', 'book', '专项练习'], ['wrong', 'wrong', '错题本'], ['history', 'chart', '学习记录'], ['guide', 'info', '考试说明']];
+  const links = [['home', 'exam', '模拟考试'], ['course', 'book', '系统教程'], ['practice', 'book', '专项练习'], ['wrong', 'wrong', '错题本'], ['history', 'chart', '学习记录'], ['guide', 'info', '考试说明']];
+  document.title = view === 'course' ? '期权系统教程 · 知权' : '知权 · 证券考试练习';
   app.innerHTML = `<div class="shell">
     <aside class="sidebar">
       <a href="#" class="brand" data-action="nav" data-view="home"><span class="brand-icon">知</span><span>知权<span class="brand-en">STOCK ACADEMY</span></span></a>
@@ -74,7 +76,7 @@ function render() {
     <div class="workspace">
       <header class="topbar"><div><span class="breadcrumb">证券考试练习</span><span class="separator">/</span><strong>期权开户</strong></div><span class="version">规则核对 2026.09.29</span></header>
       ${storageWarning ? `<div role="status" class="warning">${esc(storageWarning)}</div>` : ''}
-      <main id="main" tabindex="-1">${view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'guide' ? guideView() : view === 'result' ? resultView() : homeView()}</main>
+      <main id="main" tabindex="-1">${view === 'course' ? courseView() : view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'guide' ? guideView() : view === 'result' ? resultView() : homeView()}</main>
       <footer>独立学习项目 · 原创练习题 · 模拟成绩不作为开户凭证<span>记录仅保存在当前浏览器</span></footer>
     </div>
   </div><dialog id="confirm-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><p id="dialog-text"></p><div class="dialog-actions">${btn('返回', 'cancel-dialog', '', 'secondary')}${btn('确认', 'confirm-dialog', 'id="confirm-button"', 'primary')}</div></dialog>`;
@@ -107,7 +109,7 @@ function homeView() {
       <div class="rule-note">${icon('info')}<p>综合卷按 <strong>6＋4＋5＋5</strong> 抽题。总分达标之外，三个部分至少答对 <strong>6 / 10、3 / 5、3 / 5</strong> 题。${btn('查看规则依据', 'nav', 'data-view="guide"', 'text-button')}</p></div>
     </section><aside class="right-column"><section class="panel progress-panel"><div class="section-title"><h2>学习进度</h2><span>本机记录</span></div><div class="progress-overview"><div class="progress-ring" style="--progress:${attempted / QUESTIONS.length * 100}%"><div><strong>${attempted}</strong><span>/ ${QUESTIONS.length} 题</span></div></div><p>已练习题目<br><span>一步一步，补齐知识点</span></p></div>${Object.entries(CHAPTERS).map(([ch, c]) => {const qs = QUESTIONS.filter(q => q.chapter === Number(ch)); const done = qs.filter(q => state.progress[q.id]).length; return `<div class="chapter-progress"><div><span>${c.short}</span><small>${done} / ${qs.length}</small></div><div class="bar"><span style="width:${done / qs.length * 100}%"></span></div></div>`;}).join('')}${btn('开始专项练习', 'nav', 'data-view="practice"', 'secondary full')}</section>
     <section class="panel compact"><div class="section-title"><h2>最近模拟</h2>${icon('chart')}</div>${recent ? `<strong class="recent-score">${grade(recent, QUESTIONS).score}<small> 分</small></strong><p>${esc(recent.title)} · ${date(recent.endedAt)}</p>${btn('查看成绩与解析', 'open-result', `data-id="${recent.id}"`, 'text-button')}` : '<div class="empty-small">还没有模拟成绩<p>完成第一份模拟卷，找到需要巩固的部分。</p></div>'}</section>
-    <div class="mini-note"><strong>先理解，再记忆</strong><p>每题附解析与参考依据。做错的题目会进入错题本，答对后自动移出。</p></div></aside></div>`;
+    <div class="course-entry"><span class="eyebrow">从知识到练习</span><h2>先把期权系统学一遍</h2><p>12 章原创教程，从权利与义务，到损益、Greeks 和组合风险。</p><div class="entry-tags"><span>互动曲线</span><span>计算示例</span><span>章末自测</span></div>${btn('进入系统教程 →', 'nav', 'data-view="course"', 'secondary full')}</div></aside></div>`;
 }
 
 function practiceView() {
@@ -158,7 +160,13 @@ function guideView() {
     <section class="panel prose"><h2>题库与作答说明</h2><ul><li>当前 ${QUESTIONS.length} 道独立编写的练习题，逐题提供解析和知识参考。不是历年真题、泄露题库或交易所官方原卷。</li><li>章节题量：${Object.entries(CHAPTERS).map(([ch, c]) => `${c.short} ${QUESTIONS.filter(q => q.chapter === Number(ch)).length} 道`).join('、')}。每套模拟卷内部不重复抽题。</li><li>本次在原 100 题上新增 250 道知识与情景题、150 道计算案例；含 Greeks 与组合风险拓展内容，不承诺与正式题库逐题对应。原有题号和答案保持兼容。</li><li>模拟卷交卷前不显示答案。倒计时按截止时间计算，刷新、切换页面或退出浏览器后仍继续；再次打开过期答卷会自动交卷。</li><li>章节练习确认答案后计入记录。提前结束时，只统计已确认的题目；模拟卷未作答的题目按错误计。</li><li>最近答错的题进入错题本；重新答对自动移出。仅查看解析不会移除错题。记录仅存于当前浏览器，清除浏览器数据会丢失。</li><li>计算题以题干假设为准；到期理论损益不等同于实际成交或行权后的标的收益。涉及实时参数的规则，应以交易所与经营机构公告为准。</li></ul></section><section class="panel prose"><h2>资料来源</h2><div class="sources">${Object.values(SOURCES).map(s => `<article><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title}</a><p>${s.note}</p></article>`).join('')}</div><p class="muted">规则核验日期：2026-09-29 · 题库版本：${BANK_VERSION}</p></section>`;
 }
 
-function navigate(next) { view = next; render(); window.scrollTo({ top: 0, behavior: 'instant' }); document.querySelector('#main')?.focus({ preventScroll: true }); }
+function navigate(next) {
+  view = next;
+  const hash = next === 'course' ? courseHash() : '';
+  if (location.hash !== hash) history.pushState(null, '', location.pathname + location.search + hash);
+  render(); window.scrollTo({ top: 0, behavior: 'instant' }); document.querySelector('#main')?.focus({ preventScroll: true });
+}
+const courseCallbacks = { render, navigate, practice: chapter => { practiceChapter = chapter; navigate('practice'); } };
 function dialog(title, text, action, label = '确认') {
   modalAction = action;
   document.querySelector('#dialog-title').textContent = title;
@@ -210,6 +218,7 @@ app.addEventListener('click', e => {
   const { action } = target.dataset;
   if (state.active?.mode === 'exam' && remainingSeconds(state.active) <= 0) { tick(); return; }
   const s = state.active;
+  if (handleCourseAction(target, courseCallbacks)) return;
   if (action === 'nav') navigate(target.dataset.view);
   else if (action === 'resume') navigate('quiz');
   else if (action === 'start-exam') { const profile = target.dataset.profile; startSession(makeSession(makePaper(QUESTIONS, profile), 'exam', profile)); }
@@ -248,9 +257,11 @@ app.addEventListener('click', e => {
   else if (action === 'review-filter') { reviewFilter = target.dataset.filter; render(); }
 });
 app.addEventListener('change', e => {
+  if (handleCourseChange(e.target, courseCallbacks)) return;
   if (e.target.id === 'practice-count') practiceCount = Number(e.target.value);
   if (e.target.id === 'wrong-chapter') { wrongChapter = Number(e.target.value); render(); }
 });
+app.addEventListener('input', e => { if (e.target.type === 'range') handleLabInput(e.target); });
 document.addEventListener('keydown', e => {
   if (view !== 'quiz' || document.querySelector('dialog[open]') || e.ctrlKey || e.metaKey || e.altKey || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
   if (/^[1-4]$/.test(e.key)) { e.preventDefault(); document.querySelector(`#option-${Number(e.key) - 1}`)?.click(); }
@@ -258,6 +269,10 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') { e.preventDefault(); const s = state.active; if (s && s.index > 0) document.querySelector(`[data-action="jump"][data-index="${s.index - 1}"]`)?.click(); }
 });
 window.addEventListener('storage', e => { if (e.key === KEY) { state = load(); render(); tick(); } });
+window.addEventListener('hashchange', () => {
+  view = syncCourseHash() ? 'course' : 'home'; render(); window.scrollTo(0, 0);
+  document.querySelector('#main')?.focus({ preventScroll: true });
+});
 document.addEventListener('visibilitychange', tick);
 render();
 tick();
