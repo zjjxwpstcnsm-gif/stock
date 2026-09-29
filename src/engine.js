@@ -1,4 +1,4 @@
-import { BANK_VERSION, COMPATIBLE_BANK_VERSIONS, CHAPTERS, PROFILES } from './config.js';
+import * as defaultConfig from './config.js';
 
 export function shuffle(items, random = Math.random) {
   const a = [...items];
@@ -9,7 +9,8 @@ export function shuffle(items, random = Math.random) {
   return a;
 }
 
-export function makePaper(bank, profileId, random = Math.random) {
+export function makePaper(bank, profileId, random = Math.random, config = defaultConfig) {
+  const { PROFILES } = config;
   const profile = PROFILES[profileId];
   if (!profile) throw new Error('未知考试类型');
   return Object.entries(profile.quotas).flatMap(([chapter, count]) => {
@@ -19,7 +20,8 @@ export function makePaper(bank, profileId, random = Math.random) {
   });
 }
 
-export function grade(session, bank) {
+export function grade(session, bank, config = defaultConfig) {
+  const { CHAPTERS, PROFILES } = config;
   const byId = new Map(bank.map(q => [q.id, q]));
   const rows = session.ids.map(id => {
     const q = byId.get(id);
@@ -40,11 +42,13 @@ export function remainingSeconds(session, now = Date.now()) {
   return session.deadline ? Math.max(0, Math.ceil((session.deadline - now) / 1000)) : null;
 }
 
-export function makeSession(ids, mode, profile = null, now = Date.now()) {
+export function makeSession(ids, mode, profile = null, now = Date.now(), config = defaultConfig) {
+  const { BANK_VERSION, PROFILES } = config;
   return { id: `${now}-${Math.random().toString(36).slice(2, 10)}`, version: BANK_VERSION, ids, mode, profile, answers: {}, checked: [], marked: [], index: 0, startedAt: now, deadline: mode === 'exam' ? now + PROFILES[profile].minutes * 60000 : null, title: mode === 'exam' ? PROFILES[profile].name : '专项练习' };
 }
 
-export function validSession(value, bank) {
+export function validSession(value, bank, config = defaultConfig) {
+  const { COMPATIBLE_BANK_VERSIONS, PROFILES } = config;
   if (!value || !COMPATIBLE_BANK_VERSIONS.includes(value.version) || !Array.isArray(value.ids) || !value.ids.length || !['exam', 'practice'].includes(value.mode)) return false;
   const ids = new Set(bank.map(q => q.id));
   if (new Set(value.ids).size !== value.ids.length || value.ids.some(id => !ids.has(id))) return false;
@@ -68,4 +72,14 @@ export function updateProgress(previous, rows) {
     next[row.id] = { attempts: old.attempts + 1, correct: old.correct + Number(row.correct), wrong: !row.correct };
   }
   return next;
+}
+
+// Bind only the subject configuration; all scoring and restoration rules stay shared.
+export function createExamEngine(config) {
+  return {
+    makePaper: (bank, profile, random) => makePaper(bank, profile, random, config),
+    makeSession: (ids, mode, profile, now) => makeSession(ids, mode, profile, now, config),
+    grade: (session, bank) => grade(session, bank, config),
+    validSession: (session, bank) => validSession(session, bank, config),
+  };
 }
