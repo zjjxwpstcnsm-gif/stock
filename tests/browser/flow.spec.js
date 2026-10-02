@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { QUESTIONS } from '../../src/questions.js';
+import { SUBJECTS } from '../../src/subjects.js';
+const {QUESTIONS,CHAPTERS}=SUBJECTS.options;
 
 test('exam: no answer leakage, save/reload, change answer, grade and review', async ({page}, info) => {
   const errors = [];
@@ -57,7 +58,7 @@ test('practice: confirm, explanation, wrong-book, correct retry and persisted pr
   await page.screenshot({path:info.outputPath('explanation.png'),fullPage:true});
   await page.getByRole('button',{name:/错题本/}).click();
   await expect(page.getByRole('heading',{name:'错题本还是空的'})).toBeVisible();
-  await page.reload();
+  await page.goto('/');
   await expect(page.locator('.progress-ring strong')).toHaveText('1');
 });
 
@@ -75,6 +76,7 @@ test('expired restored exam automatically submits; malformed storage does not br
   await expect(page.locator('.result-message')).toContainText('答对 0 / 20');
   await page.evaluate(() => localStorage.setItem('zhiquan.practice.v1', '{broken'));
   await page.reload();
+  await page.getByRole('button',{name:'模拟考试',exact:true}).click();
   await expect(page.getByRole('heading',{name:'把知识练熟，再从容开考。'})).toBeVisible();
   await expect(page.locator('.warning')).toBeVisible();
 });
@@ -87,21 +89,21 @@ test('all main views fit viewport without horizontal overflow', async ({page}) =
   }
 });
 
-test('expanded bank counts, 500-question navigation and new calculation review work', async ({page}, info) => {
+test('expanded bank counts, long question navigation and sourced review work', async ({page}, info) => {
   await page.goto('/');
-  await expect(page.locator('.progress-ring')).toContainText('/ 500 题');
+  await expect(page.locator('.progress-ring')).toContainText(`/ ${QUESTIONS.length} 题`);
   await page.getByRole('button',{name:'专项练习',exact:true}).click();
-  await expect(page.locator('.chapter-option b')).toHaveText(['500 题','150 题','100 题','125 题','125 题']);
+  await expect(page.locator('.chapter-option b')).toHaveText([`${QUESTIONS.length} 题`,...Object.keys(CHAPTERS).map(ch=>`${QUESTIONS.filter(q=>q.chapter===Number(ch)).length} 题`)]);
   await page.selectOption('#practice-count','0');
   await page.getByRole('button',{name:'开始练习',exact:true}).click();
-  await expect(page.locator('.answer-cell')).toHaveCount(500);
-  await page.getByRole('button',{name:'第 500 题，未答',exact:true}).click();
+  await expect(page.locator('.answer-cell')).toHaveCount(QUESTIONS.length);
+  await page.getByRole('button',{name:`第 ${QUESTIONS.length} 题，未答`,exact:true}).click();
   const q = QUESTIONS.at(-1);
   await expect(page.locator('#question-title')).toHaveText(q.stem);
   await page.getByRole('radio').nth(q.answer).click();
   await page.getByRole('button',{name:'确认答案',exact:true}).click();
   await expect(page.locator('.explanation')).toContainText(q.explanation);
-  await expect(page.locator('.explanation a')).toHaveAttribute('href', /sse\.com\.cn/);
+  await expect(page.locator('.explanation a')).toHaveAttribute('href', /crsec\.com\.cn/);
   expect(await page.locator('.answer-grid').evaluate(grid => {
     const current = grid.querySelector('[aria-current="step"]').getBoundingClientRect();
     const bounds = grid.getBoundingClientRect();
@@ -114,7 +116,7 @@ test('expanded bank counts, 500-question navigation and new calculation review w
   await expect(page.locator('#question-title')).toHaveText(q.stem);
   await expect(page.locator('.explanation')).toContainText('回答正确');
   await page.getByRole('button',{name:'考试说明',exact:true}).click();
-  await expect(page.locator('#main')).toContainText('基础知识 150 道');
+  await expect(page.locator('#main')).toContainText(`基础知识 ${QUESTIONS.filter(q=>q.chapter===1).length} 道`);
   await expect(page.locator('#main')).toContainText('HTTP 567');
 });
 
@@ -132,7 +134,7 @@ test('original-bank active session, history and wrong-book survive expansion', a
       history:[{...session,id:'old-history',endedAt:Date.now()-30000}],
     }));
   },{session,id:q.id});
-  await page.reload();
+  await page.goto('/');
   await expect(page.locator('.progress-ring strong')).toHaveText('1');
   await page.getByRole('button',{name:'继续作答',exact:true}).click();
   await expect(page.locator('#question-title')).toHaveText(q.stem);

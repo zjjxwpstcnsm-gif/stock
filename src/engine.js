@@ -1,5 +1,12 @@
 import * as defaultConfig from './config.js';
 
+export const questionType = q => q.type || 'single';
+export function isCorrect(answer, question) {
+  if (Array.isArray(question.answer)) return Array.isArray(answer) && answer.length === question.answer.length && question.answer.every(a => answer.includes(a));
+  return answer === question.answer;
+}
+export const paperSize = profile => Object.values(profile.typeQuotas || profile.quotas).reduce((a,b)=>a+b,0);
+
 export function shuffle(items, random = Math.random) {
   const a = [...items];
   for (let i = a.length - 1; i > 0; i--) {
@@ -13,6 +20,11 @@ export function makePaper(bank, profileId, random = Math.random, config = defaul
   const { PROFILES } = config;
   const profile = PROFILES[profileId];
   if (!profile) throw new Error('未知考试类型');
+  if (profile.typeQuotas) return Object.entries(profile.typeQuotas).flatMap(([type,count])=>{
+    const pool=bank.filter(q=>questionType(q)===type);
+    if(pool.length<count)throw new Error(`${type}题量不足`);
+    return shuffle(pool,random).slice(0,count).map(q=>q.id);
+  });
   return Object.entries(profile.quotas).flatMap(([chapter, count]) => {
     const candidates = bank.filter(q => q.chapter === Number(chapter));
     if (candidates.length < count) throw new Error(`第 ${chapter} 章题量不足`);
@@ -25,11 +37,11 @@ export function grade(session, bank, config = defaultConfig) {
   const byId = new Map(bank.map(q => [q.id, q]));
   const rows = session.ids.map(id => {
     const q = byId.get(id);
-    return { id, chapter: q.chapter, level: CHAPTERS[q.chapter].level, answer: session.answers[id] ?? null, correct: session.answers[id] === q.answer };
+    return { id, chapter: q.chapter, type:questionType(q), level: CHAPTERS[q.chapter].level, answer: session.answers[id] ?? null, correct: isCorrect(session.answers[id],q) };
   });
   const correct = rows.filter(r => r.correct).length;
   const profile = session.mode === 'exam' ? PROFILES[session.profile] : null;
-  const score = profile ? correct * profile.points : Math.round(correct / rows.length * 100);
+  const score = profile ? Math.round(rows.reduce((sum,r)=>sum+(r.correct?(profile.typePoints?.[r.type]??profile.points):0),0)*100)/100 : Math.round(correct / rows.length * 100);
   const sections = [1, 2, 3].map(level => {
     const subset = rows.filter(r => r.level === level);
     return { level, total: subset.length, correct: subset.filter(r => r.correct).length };
@@ -50,17 +62,24 @@ export function makeSession(ids, mode, profile = null, now = Date.now(), config 
 export function validSession(value, bank, config = defaultConfig) {
   const { COMPATIBLE_BANK_VERSIONS, PROFILES } = config;
   if (!value || !COMPATIBLE_BANK_VERSIONS.includes(value.version) || !Array.isArray(value.ids) || !value.ids.length || !['exam', 'practice'].includes(value.mode)) return false;
+  if(typeof value.id!=='string'||value.id.length>100||!/^[a-zA-Z0-9_-]+$/.test(value.id)||typeof value.title!=='string'||value.title.length>300)return false;
   const ids = new Set(bank.map(q => q.id));
   if (new Set(value.ids).size !== value.ids.length || value.ids.some(id => !ids.has(id))) return false;
   if (!Number.isInteger(value.index) || value.index < 0 || value.index >= value.ids.length || !Number.isFinite(value.startedAt)) return false;
   if (!value.answers || typeof value.answers !== 'object' || Array.isArray(value.answers)) return false;
-  if (Object.entries(value.answers).some(([id, answer]) => !value.ids.includes(id) || !Number.isInteger(answer) || answer < 0 || answer > 3)) return false;
+  const byId=new Map(bank.map(q=>[q.id,q]));
+  if (Object.entries(value.answers).some(([id, answer]) => {
+    const q=byId.get(id);if(!value.ids.includes(id)||!q)return true;
+    if(Array.isArray(q.answer))return !Array.isArray(answer)||!answer.length||new Set(answer).size!==answer.length||answer.some(a=>!Number.isInteger(a)||a<0||a>=q.options.length);
+    return !Number.isInteger(answer)||answer<0||answer>=q.options.length;
+  })) return false;
   if (!['checked', 'marked'].every(k => Array.isArray(value[k]) && value[k].every(id => value.ids.includes(id)))) return false;
   if (value.mode === 'exam') {
     const p = (config.LEGACY_PROFILES?.[value.version] || PROFILES)[value.profile];
     if (!p || !Number.isFinite(value.deadline) || value.deadline !== value.startedAt + p.minutes * 60000) return false;
-    if (value.ids.length !== Object.values(p.quotas).reduce((a, b) => a + b, 0)) return false;
-    for (const [ch, count] of Object.entries(p.quotas)) if (value.ids.filter(id => bank.find(q => q.id === id).chapter === Number(ch)).length !== count) return false;
+    if (value.ids.length !== paperSize(p)) return false;
+    if(p.typeQuotas){for(const [type,count] of Object.entries(p.typeQuotas))if(value.ids.filter(id=>questionType(byId.get(id))===type).length!==count)return false;}
+    else for (const [ch, count] of Object.entries(p.quotas)) if (value.ids.filter(id => byId.get(id).chapter === Number(ch)).length !== count) return false;
   }
   return true;
 }

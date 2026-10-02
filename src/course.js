@@ -1,9 +1,11 @@
 import { SUBJECT } from './subjects.js';
+import { CONTENT_DATE } from './academy-sources.js';
+import { academyVisual, handleAcademyInput } from './academy-visuals.js';
 import { fundDiagramView, handleFundLabInput } from './fund-visuals.js';
 const { LESSONS, COURSE_SOURCES, SOURCES, CHAPTERS } = SUBJECT;
 import { labView, diagramView as optionsDiagramView, handleLabInput as handleOptionsLabInput } from './course-charts.js';
 const diagramView = id => SUBJECT.isFund ? fundDiagramView(id) : optionsDiagramView(id);
-const handleLabInput = target => handleFundLabInput(target) || handleOptionsLabInput(target);
+const handleLabInput = target => handleAcademyInput(target) || handleFundLabInput(target) || handleOptionsLabInput(target);
 
 const KEY = SUBJECT.courseKey;
 const validId = id => LESSONS.some(l => l.id === id);
@@ -11,7 +13,16 @@ let warning = '';
 let progress = loadProgress();
 let selected = progress.last || LESSONS[0].id;
 const answers = new Map();
+let readerSize='normal',readingFocus=false;
+export function applyReaderPreferences() {
+  document.querySelector('.shell')?.classList.toggle('reading-focus',readingFocus&&!!document.querySelector('.course-reader'));
+  document.querySelector('.course-reader')?.classList.toggle('large-reading',readerSize==='large');
+  const size=document.getElementById('reader-size');if(size)size.value=readerSize;
+  const focus=document.querySelector('[data-action="course-focus"]');
+  if(focus){focus.setAttribute('aria-pressed',String(readingFocus));focus.textContent=readingFocus?'退出专注':'专注阅读';}
+}
 function loadProgress() {
+  warning='';
   try {
     const data = JSON.parse(localStorage.getItem(KEY) || '{}');
     return { last: validId(data?.last) ? data.last : LESSONS[0].id, done: Array.isArray(data?.done) ? [...new Set(data.done.filter(validId))] : [] };
@@ -22,6 +33,8 @@ function saveProgress() {
   catch { warning = '阅读进度暂时无法保存，仍可阅读教程和使用图解。'; }
 }
 export function courseHash() { return `#course/${selected}`; }
+export const courseProgress = () => ({...progress,done:[...progress.done]});
+export function refreshCourseProgress() { progress=loadProgress(); }
 export function syncCourseHash() {
   const match = /^#course\/([a-z0-9-]+)$/.exec(location.hash);
   if (match && validId(match[1])) selected = match[1];
@@ -33,16 +46,19 @@ export function courseView() {
   const done = progress.done.includes(selected);
   const choice = answers.get(selected);
   const sourceList = lesson.sources.map(id => COURSE_SOURCES[id] || SOURCES[id]);
-  return `<div class="page-heading"><div><span class="eyebrow">${SUBJECT.isFund ? 'FUND QUALIFICATION · CORE CONCEPTS' : 'OPTIONS · FROM FIRST PRINCIPLES'}</span><h1>${SUBJECT.isFund ? SUBJECT.short + '系统教程' : '期权系统教程'}</h1><p>${LESSONS.length} 章循序学习 · 互动图解 · ${SUBJECT.isFund ? SUBJECT.name + '（入门＋大纲逐章）' : '从概念走到计算与风险'}</p></div><span class="course-progress">已读 <strong>${progress.done.length}</strong> / ${LESSONS.length} 章</span></div>
+  return `<div class="page-heading"><div><span class="eyebrow">SYSTEMATIC THEORY · APPLIED CASES</span><h1>${SUBJECT.id==='options' ? '期权系统教程' : SUBJECT.short + '系统教程'}</h1><p>${LESSONS.length} 章循序学习 · 从概念走到计算与风险${SUBJECT.isFund?' · 入门＋大纲逐章':''}</p></div><span class="course-progress">已读 <strong>${progress.done.length}</strong> / ${LESSONS.length} 章</span></div>
   ${warning ? `<p class="warning" role="status">${warning}</p>` : ''}
-  <div class="course-layout"><aside class="course-toc"><div class="toc-heading"><strong>学习目录</strong><span>约 ${LESSONS.reduce((sum, l) => sum + l.minutes, 0)} 分钟</span></div><nav aria-label="教程章节">${LESSONS.map((l, i) => `<a href="#course/${l.id}" data-action="course-open" data-lesson="${l.id}" class="toc-link ${l.id === selected ? 'selected' : ''}" ${l.id === selected ? 'aria-current="page"' : ''}><span>${num(i)}</span><div>${l.short}<small>${l.stage} · ${l.minutes} 分钟</small></div>${progress.done.includes(l.id) ? '<b aria-label="已读">✓</b>' : ''}</a>`).join('')}</nav><p>${SUBJECT.isFund ? '先学5章入门，再按官方章节进阶。用大纲清单逐条查漏，规则细表与教材一并核对。' : '基础入门 → 价格与 Greeks<br>→ 组合策略 → 风险与复习'}</p></aside>
+  <div class="course-layout"><aside class="course-toc"><div class="toc-heading"><strong>学习目录</strong><span>约 ${LESSONS.reduce((sum, l) => sum + l.minutes, 0)} 分钟</span></div><nav aria-label="教程章节">${LESSONS.map((l, i) => `<a href="#course/${l.id}" data-action="course-open" data-lesson="${l.id}" class="toc-link ${l.id === selected ? 'selected' : ''}" ${l.id === selected ? 'aria-current="page"' : ''}><span>${num(i)}</span><div>${l.short}<small>${l.stage} · ${l.minutes} 分钟</small></div>${progress.done.includes(l.id) ? '<b aria-label="已读">✓</b>' : ''}</a>`).join('')}</nav><p>${SUBJECT.isFund ? '先学5章入门，再按官方章节进阶。用大纲清单逐条查漏，规则细表与教材一并核对。' : SUBJECT.isAcademy?'从原理与结构，到场景与辨析。按主题学习，再结合当次大纲核对细则。':'基础入门 → 价格与 Greeks<br>→ 组合策略 → 风险与复习'}</p></aside>
   <div class="course-reader"><label class="mobile-chapter" for="course-chapter">跳转章节<select id="course-chapter">${LESSONS.map((l, i) => `<option value="${l.id}" ${l.id === selected ? 'selected' : ''}>${num(i)} · ${l.short}${progress.done.includes(l.id) ? ' ✓' : ''}</option>`).join('')}</select></label>
+    <div class="reader-tools"><span>第 ${index+1} / ${LESSONS.length} 章</span><label for="reader-size">阅读字号<select id="reader-size"><option value="normal">标准</option><option value="large">大字</option></select></label><button class="text-button" data-action="course-focus" aria-pressed="false">专注阅读</button></div>
     <article class="lesson-article"><header class="lesson-header"><span class="eyebrow">CHAPTER ${num(index)} <span> / ${LESSONS.length} · ${lesson.stage} · ${lesson.minutes} 分钟</span></span><h2 id="lesson-title" tabindex="-1">${lesson.title}</h2><p>${lesson.intro}</p></header><div class="lesson-takeaway"><span>本章抓住一句话</span><strong>${lesson.takeaway}</strong></div>
-    ${lesson.sections.map((s, i) => `<section class="lesson-section" ${s.scope ? `id="scope-${s.scope}"` : ''}><h3><span>${i + 1}</span>${s.title}</h3>${s.html}</section>${i === 0 && lesson.diagram ? diagramView(lesson.diagram) : ''}${i === 1 && lesson.lab ? labView(lesson.lab) : ''}`).join('')}
+    <nav class="section-outline" aria-label="本章内容">${lesson.sections.map((s,i)=>`<button data-action="course-section" data-section="${s.scope?'scope-'+s.scope:'section-'+i}">${i+1}. ${s.title}</button>`).join('')}</nav>
+    ${lesson.sections.map((s, i) => `<section class="lesson-section" id="${s.scope ? `scope-${s.scope}` : `section-${i}`}" tabindex="-1"><h3><span>${i + 1}</span>${s.title}</h3>${s.html}</section>${i === 0 && lesson.diagram ? diagramView(lesson.diagram) : ''}${i === 1 && lesson.lab ? labView(lesson.lab) : ''}`).join('')}
+    ${academyVisual(lesson.id)}
     ${lesson.objectives ? `<details class="lesson-objectives"><summary>本章官方大纲要求 · ${lesson.objectives.length} 项</summary><p>以下是官方考试要求与本站章节的对应索引；章节有讲解不表示每个法条细目已经展开。数字、期限、例外及新规细表请结合有效原文与教材。</p><ul>${lesson.objectives.map(o=>`<li><a href="${SOURCES[`outline${SUBJECT.number}`].url}#page=${o.page}" target="_blank" rel="noopener noreferrer">${o.code}</a> ${o.text}</li>`).join('')}</ul><button class="text-button" data-action="nav" data-view="coverage">查看本科全部大纲要求 →</button></details>` : ''}
     <aside class="lesson-pitfall"><strong>容易混淆</strong><p>${lesson.pitfall}</p></aside>
     <section class="lesson-check" aria-labelledby="check-title"><span class="eyebrow">读完，确认一下</span><h3 id="check-title">${lesson.check.question}</h3><div class="check-options">${lesson.check.options.map((o, i) => `<button data-action="course-answer" data-choice="${i}" aria-pressed="${choice === i}" class="${choice === i ? 'chosen' : ''}"><span>${'ABCD'[i]}</span>${o}</button>`).join('')}</div>${choice !== undefined ? `<div class="check-feedback" role="status"><strong>${choice === lesson.check.answer ? '回答正确' : `再想一步 · 正确选项 ${'ABCD'[lesson.check.answer]}`}</strong><p>${lesson.check.explanation}</p></div>` : '<p class="check-hint">选择后显示解析；自测不计入模拟考试成绩。</p>'}</section>
-    <section class="lesson-sources"><h3>继续查阅</h3><p>原创讲解与数值示例；${SUBJECT.isFund ? '官方大纲用于定位考点范围，不代表协会提供或认可本站讲解。' : '以下资料用于核对概念与业务边界。'}核对日期：2026-09-29。</p><ul>${sourceList.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title} ↗</a></li>`).join('')}</ul>${lesson.sources.some(s => ['delta', 'gamma', 'theta', 'vega', 'rho', 'model', 'pricing'].includes(s)) ? '<p>OIC 资料用于一般估值理论；不将美股的交易、行权或交收制度套用于 A 股 ETF 期权。</p>' : ''}</section>
+    <section class="lesson-sources"><h3>继续查阅</h3><p>原创讲解与数值示例；${SUBJECT.isFund || SUBJECT.isAcademy ? '官方大纲用于定位考点范围，不代表协会提供或认可本站讲解。' : '以下资料用于核对概念与业务边界。'}核对日期：${CONTENT_DATE}。</p><ul>${sourceList.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title} ↗</a></li>`).join('')}</ul>${lesson.sources.some(s => ['delta', 'gamma', 'theta', 'vega', 'rho', 'model', 'pricing'].includes(s)) ? '<p>OIC 资料用于一般估值理论；不将美股的交易、行权或交收制度套用于 A 股 ETF 期权。</p>' : ''}</section>
     <div class="lesson-complete"><button class="${done ? 'secondary' : 'primary'}" data-action="course-complete" aria-pressed="${done}">${done ? '✓ 已读完本章' : '标记本章已读'}</button><button class="secondary" data-action="course-practice" data-chapter="${lesson.practice}">练习：${lesson.practice ? CHAPTERS[lesson.practice].short : '全部章节'} →</button></div>
     <nav class="lesson-pagination" aria-label="章节翻页">${index > 0 ? `<a href="#course/${LESSONS[index - 1].id}" data-action="course-open" data-lesson="${LESSONS[index - 1].id}"><small>← 上一章</small><strong>${LESSONS[index - 1].short}</strong></a>` : '<span></span>'}${index < LESSONS.length - 1 ? `<a href="#course/${LESSONS[index + 1].id}" data-action="course-open" data-lesson="${LESSONS[index + 1].id}"><small>下一章 →</small><strong>${LESSONS[index + 1].short}</strong></a>` : '<button class="text-button" data-action="nav" data-view="home">去模拟考试 →</button>'}</nav></article>
   </div></div>`;
@@ -65,11 +81,17 @@ export function handleCourseAction(target, { render, navigate, practice }) {
     answers.set(selected, answer);
     const top = window.scrollY; render(); window.scrollTo(0, top);
     document.querySelector(`[data-action="course-answer"][data-choice="${answer}"]`)?.focus({ preventScroll: true });
+  } else if (action === 'course-section') {
+    document.getElementById(target.dataset.section)?.scrollIntoView({block:'start',behavior:'smooth'});
+    document.getElementById(target.dataset.section)?.focus({preventScroll:true});
+  } else if (action === 'course-focus') {
+    readingFocus=!readingFocus;applyReaderPreferences();
   } else if (action === 'course-practice') practice(Number(target.dataset.chapter));
   return true;
 }
 export function handleCourseChange(target, callbacks) {
   if (target.id === 'course-chapter') return handleCourseAction({ dataset: { action: 'course-open', lesson: target.value } }, callbacks);
+  if (target.id === 'reader-size') { readerSize=target.value;applyReaderPreferences();return true; }
   return handleLabInput(target);
 }
 export { handleLabInput };

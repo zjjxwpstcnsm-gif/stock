@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { FUND_QUESTIONS } from '../../src/fund-questions.js';
+import { SUBJECTS } from '../../src/subjects.js';
+const FUND_QUESTIONS=Object.fromEntries(['fund1','fund2','fund3'].map(id=>[id,SUBJECTS[id].QUESTIONS]));
 import { FUND_LESSONS } from '../../src/fund-course-data.js';
 
 test('fund exam is isolated from options, restores timer and grades 100 questions at one point each',async({page},info)=>{
@@ -93,13 +94,14 @@ test('expired fund exam submits on return and corrupted storage is recoverable',
  await expect(page.locator('.result-message')).toContainText('答对 0 / 100');
  await page.evaluate(()=>localStorage.setItem('zhiquan.fund3.practice.v1','{bad'));
  await page.reload();await expect(page.locator('.warning')).toBeVisible();
+ await page.getByRole('button',{name:'模拟考试',exact:true}).click();
  await expect(page.getByRole('heading',{name:'中国大陆基金从业资格'})).toBeVisible();
 });
 
 
 test('recall filters, provenance, no-match state and outline deep links work',async({page},info)=>{
  await page.goto('/?subject=fund1#resources');
- await expect(page.locator('.recall-question')).toHaveCount(6);
+ await expect(page.locator('.recall-question')).toHaveCount(9);
  await page.selectOption('#recall-year','2026');
  await expect(page.locator('.recall-question')).toHaveCount(2);
  await expect(page.locator('.recall-question .source').first()).toContainText('来源页面第 1 题');
