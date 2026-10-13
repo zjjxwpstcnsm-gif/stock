@@ -124,7 +124,7 @@ test('record export, previewed merge and malformed imports work without losing c
  await expect(page.locator('.record-status')).toContainText('已合并');
  await page.locator('#import-records').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{bad')});
  await expect(page.locator('.record-status')).toContainText('文件不是有效JSON');
- await page.getByRole('button',{name:'模拟考试',exact:true}).click();await page.getByRole('button',{name:'继续作答',exact:true}).click();
+ await page.getByRole('button',{name:'学习空间',exact:true}).click();await page.getByRole('button',{name:'继续作答',exact:true}).click();
  await expect(page.locator('.options [data-action="answer"]').first()).toHaveAttribute('aria-checked','true');
 });
 
@@ -142,6 +142,6 @@ test('all new subject views fit mobile and desktop, with genuine-source zero-mat
  await page.selectOption('#practice-source','sample');await page.selectOption('#practice-year','2015');
  await expect(page.locator('.practice-match')).toContainText('匹配 10 题');
  await page.goto('/#guide');await expect(page.locator('#main')).not.toContainText('undefined');
- await page.goto('/?subject=__proto__');await expect(page.getByRole('heading',{name:'把知识练熟，再从容开考。'})).toBeVisible();
+ await page.goto('/?subject=__proto__');await expect(page.getByRole('heading',{name:'把每一次选择，变成理解。'})).toBeVisible();
  expect(errors).toEqual([]);
 });
