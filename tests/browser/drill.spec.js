@@ -10,7 +10,12 @@ async function seed(page,s,question=s.QUESTIONS[0],batchSize=20) {
  const active={...createExamEngine(s).makeSession(plan.ids,'practice'),drill:plan.drill,title:'随机刷题'};
  await page.goto(url(s));
  await page.evaluate(({key,active})=>localStorage.setItem(key,JSON.stringify({active,progress:{},history:[],saved:[]})),{key:s.practiceKey,active});
- await page.goto(url(s)+'#drill');await page.reload();
+ // Set the route without firing the live app's hashchange handler.
+ // The new document must load the injected state before any render can save it.
+ await page.evaluate(route=>history.replaceState(null,'',route),url(s)+'#drill');
+ await page.reload();
+ await expect(page.locator('#question-title')).toHaveText(question.stem);
+ expect((await read(page,s)).active.ids).toEqual(active.ids);
  return active;
 }
 async function answer(page,s) {
@@ -102,7 +107,7 @@ test('legacy finite filtered sessions retain the answer and expand to the whole 
  const s=SUBJECTS.options,q=s.QUESTIONS[0],e=createExamEngine(s),plan=createDrill([q.id,s.QUESTIONS[1].id],{batchSize:2,endless:false,instant:false},()=>.999999);
  const active={...e.makeSession(plan.ids,'practice'),drill:plan.drill,answers:{[q.id]:q.answer},checked:[q.id]};
  await page.goto('/');await page.evaluate(({key,active,id})=>localStorage.setItem(key,JSON.stringify({active,progress:{[id]:{attempts:1,correct:1,wrong:false}},history:[],saved:[]})),{key:s.practiceKey,active,id:q.id});
- await page.goto('/#drill');await page.reload();
+ await page.evaluate(()=>history.replaceState(null,'','/#drill'));await page.reload();
  const current=(await read(page,s)).active;
  expect(current.drill.pool.length).toBe(s.QUESTIONS.length);expect(current.drill.endless).toBe(true);expect(current.drill.instant).toBe(true);
  await expect(page.locator('#question-title')).toHaveText(q.stem);await expect(page.locator('#answer-feedback')).toContainText('回答正确');
