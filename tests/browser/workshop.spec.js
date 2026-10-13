@@ -25,6 +25,7 @@ test('each subject exposes methods and eight linked cases without showing answer
   await page.locator('.workshop-desk summary').click();await expect(page.locator('.method-steps>section')).toHaveCount(3);
   await expect(page.locator('.method-steps')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
  }
+ await page.evaluate(()=>window.scrollTo(0,0));
  await page.screenshot({path:info.outputPath('workshop-methods.png'),fullPage:true});
 });
 test('workshop topics locate exactly one question while random practice retains the whole bank',async({page})=>{
@@ -45,6 +46,7 @@ test('wrong-choice rationale is immediate, draft is private-data-free, and fixed
  const wrong=(q.answer+1)%4;await page.locator(`#option-${wrong}`).click();
  await expect(page.locator('#answer-feedback')).toContainText('再巩固一下');await expect(page.locator('.misconception')).toContainText(q.rationales[wrong]);
  await page.locator('.case-method summary').click();await expect(page.locator('.method-steps')).toBeVisible();
+ await page.evaluate(()=>window.scrollTo(0,0));
  await page.screenshot({path:info.outputPath('workshop-feedback.png'),fullPage:true});
  await page.reload();await expect(page.locator('.misconception')).toContainText(q.rationales[wrong]);
  const state=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),s.practiceKey);expect(state.progress[q.id].attempts).toBe(1);
@@ -59,5 +61,8 @@ test('wrong and right workshop feedback stay within narrow screens and unobstruc
   await page.locator(`#option-${q.answer}`).click();await expect(page.locator('#answer-feedback')).toContainText('回答正确');await expect(page.locator('.misconception')).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   await expect(page.locator('[data-action="drill-next"]')).toBeEnabled();
+  expect(await page.locator('.question-actions').evaluate(el=>getComputedStyle(el).position)).toBe('static');
+  const trace=await page.locator('.question-trace').boundingBox(),actions=await page.locator('.question-actions').boundingBox();
+  expect(actions.y).toBeGreaterThanOrEqual(trace.y+trace.height-1);
  }
 });
