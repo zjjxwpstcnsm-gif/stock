@@ -1,3 +1,4 @@
+import { drillRecapView } from './drill-recap.js';
 import { questionTools, misconceptionView } from './question-tools.js';
 import { caseMethodView } from './workshop-methods.js';
 import { esc, letters, sourceLabel } from './academy-views.js';
@@ -35,6 +36,7 @@ export function focusedDrillView({session: s, question: q, subject, correct, boo
       ${questionTools(subject, q)}
       <div class="question-actions"><span class="save-indicator">${warning ? '记录未能保存，请勿关闭页面' : '进度已自动保存'}</span>${drillNextButton(s, revealed, multi)}</div>
     </section>
+    ${drillRecapView(subject, s)}
     <p class="focus-note">当前科目 ${subject.QUESTIONS.length} 道题，一轮内不重复，刷完后重新随机。<br>答案不会自动跳走，读懂后再继续。</p>
   </div>`;
 }

@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-13.3",
-  "questionCount": 2774,
+  "version": "2026-10-13.4",
+  "questionCount": 2838,
   "newPrecisionQuestions": 96,
   "numericAuditCases": 44,
   "features": [
@@ -10,8 +10,13 @@
     "resumable-shuffle-bag",
     "question-permalinks",
     "prefilled-correction-feedback",
-    "case-solving-methods"
+    "case-solving-methods",
+    "read-only-answer-recap",
+    "concept-comparison-cards"
   ],
   "newWorkshopQuestions": 64,
-  "newWorkshopNumericAuditCases": 38
+  "newWorkshopNumericAuditCases": 38,
+  "newClinicQuestions": 64,
+  "newClinicNumericAuditCases": 32,
+  "conceptComparisons": 24
 }

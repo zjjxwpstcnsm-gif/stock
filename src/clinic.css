@@ -1,0 +1,47 @@
+/* Concept notes and read-only answer recall, scoped to avoid legacy quiz selectors. */
+.concept-clinic{margin:36px 0;padding:30px;border:1px solid #d8e0eb;border-radius:18px;background:#fff}
+.concept-clinic header h2{margin:8px 0 12px;font:600 clamp(22px,3vw,30px)/1.5 "Songti SC","Noto Serif CJK SC",serif;color:#182d4d}
+.concept-clinic header>p:last-child{margin:0;color:#566579;line-height:1.8;font-size:15px}
+.concept-pairs{margin-top:22px;border-top:1px solid #e2e8f0}
+.concept-pair{border-bottom:1px solid #e2e8f0}
+.concept-pair>summary{list-style:none;display:flex;gap:16px;align-items:center;padding:19px 0;min-height:56px;cursor:pointer}
+.concept-pair>summary::-webkit-details-marker,.drill-recap>summary::-webkit-details-marker,.recap-item>summary::-webkit-details-marker{display:none}
+.concept-number{font:500 12px/1.5 ui-monospace,monospace;letter-spacing:.08em;color:#68788b}
+.concept-pair summary strong{flex:1;min-width:0;color:#243851;font-size:17px;line-height:1.65}
+.concept-pair summary em{font-style:normal;font-weight:400;font-size:13px;margin:0 12px;color:#6d7a8a}
+.concept-expand{color:#436180;font-size:22px}
+.concept-pair[open] .concept-expand{transform:rotate(45deg)}
+.concept-content{padding:0 0 20px 34px}
+.concept-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.concept-columns section{border-left:2px solid #b5c6dc;padding-left:16px}
+.concept-columns h3{margin:0 0 7px;font-size:15px;color:#263c5a}
+.concept-columns p{margin:0;color:#546278;font-size:15px;line-height:1.85}
+.concept-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:20px}
+.concept-actions button{min-height:44px}
+.clinic-library{margin-top:14px}.clinic-library>summary{padding:12px 0;cursor:pointer;font-size:14px;color:#365776;min-height:44px}
+.clinic-topics{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.clinic-topics button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:12px;border:1px solid #e1e7ef;border-radius:8px;background:#f7f9fc;color:#34506e;min-height:46px;font-size:14px}
+.clinic-topics button:hover{background:#edf3fb;border-color:#b5c6dc}
+.clinic-boundary{font-size:12px;line-height:1.8;color:#64748a;margin:18px 0 0}.clinic-boundary a{color:#345776;text-underline-offset:3px}
+.drill-recap{border:1px solid #d7e0eb;background:#fff;border-radius:14px;margin:18px 0;overflow:hidden}
+.drill-recap>summary{list-style:none;display:flex;align-items:center;gap:14px;padding:18px 22px;min-height:68px;cursor:pointer}
+.drill-recap>summary>span:nth-child(2){flex:1;min-width:0}
+.drill-recap strong{display:block;color:#293e58;font-size:16px;font-weight:600}
+.drill-recap small{display:block;color:#637287;font-size:12px;margin-top:4px;line-height:1.6}
+.recap-icon{font-size:25px;color:#4c6688}.recap-count{font-size:13px;font-variant-numeric:tabular-nums;color:#64748a;white-space:nowrap}
+.drill-recap[open]>summary{border-bottom:1px solid #e2e8f0;background:#f5f8fc}
+.recap-body{padding:0 22px 20px}.recap-caption,.recap-empty{font-size:13px;color:#617187;line-height:1.8;margin:16px 0}
+.recap-item{border-top:1px solid #e2e8f0}
+.recap-item>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:15px 0;min-height:48px;cursor:pointer;color:#314960;font-size:14px;line-height:1.6}
+.recap-item>summary>span:nth-child(2){flex:1;min-width:0}
+.recap-result{border:1px solid currentColor;border-radius:5px;padding:2px 7px;font-size:11px;white-space:nowrap}
+.recap-right{color:#24674f;background:#eff8f3}.recap-wrong{color:#8a521d;background:#fff8ed}.recap-order{font:12px ui-monospace,monospace;color:#66758a}
+.recap-detail{padding:2px 0 20px}.recap-detail h3{font-size:16px;line-height:1.85;margin:8px 0 18px;color:#263951;font-weight:600}
+.recap-detail>p{font-size:14px;line-height:1.9;color:#465b74;overflow-wrap:anywhere}
+.recap-answer{padding:10px 14px;background:#f6f8fb;border-radius:8px}.recap-answer b{display:block;font-size:12px;color:#68788b;margin-bottom:4px}
+.recap-rationales{padding:10px 14px;border-left:2px solid #c4d1e1;margin:18px 0}
+.recap-rationales p{display:flex;gap:12px;font-size:14px;line-height:1.8;color:#4d6078;margin:8px 0}.recap-rationales b{color:#304c70}
+.recap-reference{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:12px;line-height:1.8;color:#68778b;overflow-wrap:anywhere}.recap-reference a{color:#365979;text-underline-offset:3px}
+.concept-clinic summary:focus-visible,.drill-recap summary:focus-visible,.clinic-topics button:focus-visible{outline:3px solid #4073aa;outline-offset:3px;border-radius:5px}
+@media(max-width:600px){.concept-clinic{padding:21px 18px;margin:24px 0}.concept-pair>summary{gap:10px}.concept-pair summary strong{font-size:15px}.concept-pair summary em{margin:0 6px}.concept-content{padding-left:0}.concept-columns{grid-template-columns:1fr;gap:18px}.concept-actions{gap:8px}.concept-actions button{font-size:13px}.clinic-topics{grid-template-columns:1fr}.drill-recap>summary{padding:16px;gap:10px}.recap-body{padding:0 16px 16px}.recap-item>summary{gap:8px}.recap-detail h3{font-size:15px}.recap-answer{padding:10px}.recap-rationales{padding-left:10px;padding-right:0}}
+@media print{.concept-actions,.clinic-library,.drill-recap{display:none}.concept-clinic{break-inside:avoid;border-color:#aaa}}

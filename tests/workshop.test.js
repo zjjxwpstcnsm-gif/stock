@@ -107,7 +107,7 @@ test('focused random practice never leaks reasoning before confirmation and expl
 });
 test('public metadata, original count and bank versions match the integrated bank',()=>{
  const release=JSON.parse(readFileSync(new URL('../src/release.json',import.meta.url),'utf8'));const total=Object.values(SUBJECTS).reduce((n,s)=>n+s.QUESTIONS.length,0);
- assert.equal(total,2774);assert.equal(release.questionCount,total);assert.equal(release.newWorkshopQuestions,64);assert.equal(release.newWorkshopNumericAuditCases,38);
+ assert.equal(total,2838);assert.equal(release.questionCount,total);assert.equal(release.newWorkshopQuestions,64);assert.equal(release.newWorkshopNumericAuditCases,38);
  assert.ok(readFileSync(new URL('../index.html',import.meta.url),'utf8').includes(`${total}道`));
- for(const s of Object.values(SUBJECTS)){assert.equal(s.BANK_VERSION,`${s.id}-2026-10-13.3`);assert.ok(s.COMPATIBLE_BANK_VERSIONS.includes(`${s.id}-2026-10-13.2`));}
+ for(const s of Object.values(SUBJECTS)){assert.equal(s.BANK_VERSION,`${s.id}-2026-10-13.4`);assert.ok(s.COMPATIBLE_BANK_VERSIONS.includes(`${s.id}-2026-10-13.2`));}
 });

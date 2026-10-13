@@ -38,6 +38,10 @@ try {
     });
     await page.goto(base.href, { waitUntil: 'networkidle' });
     await expect(page.locator('.study-home')).toBeVisible();
+    await expect(page.locator('.concept-pair')).toHaveCount(3);
+    await page.locator('.concept-pair>summary').first().click();
+    await expect(page.locator('.concept-columns').first()).toBeVisible();
+    report.checks.push({ device, check: 'published concept comparisons render and expand', passed: true });
     await page.screenshot({ path: `${output}/${device}-home.png`, fullPage: true });
     await page.getByRole('button', { name: '开始随机刷题', exact: true }).click();
     await expect(page.locator('#question-title')).toBeVisible();
@@ -75,8 +79,17 @@ try {
       await page.locator('[data-action="drill-next"]').click();
       await expect(page.locator('#question-title')).not.toHaveText(stem);
       await expect(page.locator('#answer-feedback')).toHaveCount(0);
+      await expect(page.locator('.recap-count')).toHaveText('1 条');
+      await page.locator('.drill-recap>summary').click();
+      await page.locator('.recap-item>summary').first().click();
+      await expect(page.locator('.recap-detail').first()).toContainText(question.explanation);
+      const unchanged = await page.evaluate(key => localStorage.getItem(key), subject.practiceKey);
+      await page.locator('.recap-item>summary').first().focus();
+      await page.keyboard.press('1');
+      await expect(page.locator('#answer-feedback')).toHaveCount(0);
+      assert.equal(await page.evaluate(key => localStorage.getItem(key), subject.practiceKey), unchanged);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
-      report.checks.push({ device, subject: subject.id, check: 'direct start, full pool, answer, refresh and next question', passed: true });
+      report.checks.push({ device, subject: subject.id, check: 'direct start, full pool, answer, refresh, next and read-only recap', passed: true });
     }
     assert.deepEqual(errors, []);
     assert.ok(assets.size > 20, 'Expected the published module graph to load');
