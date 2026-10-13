@@ -9,7 +9,7 @@ import { collectBackup, validateBackup, mergeRecords, importBackup } from '../sr
 
 test('eight banks have consistent chapters, answer formats, lesson links and per-item provenance',()=>{
   assert.equal(Object.keys(SUBJECTS).length,8);
-  assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.QUESTIONS.length,0),2614);
+  assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.QUESTIONS.length,0),2710);
   assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.LESSONS.length,0),95);
   let recalled=0,samples=0;
   for(const s of Object.values(SUBJECTS)) {

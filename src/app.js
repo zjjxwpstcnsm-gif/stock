@@ -1,3 +1,6 @@
+import { PRECISION_BATCH } from './precision-questions.js';
+import { createDrill, advanceDrill } from './drill-engine.js';
+import { drillIntroduction, drillSettings, drillStatus, drillNextButton } from './drill-views.js';
 import { SUBJECT, subjectOptions } from './subjects.js';
 import { fundGuide, fundCoverage } from './fund-views.js';
 import { learningHome, catalogView, resourcesView, academyGuide, searchView, yearOptions, letters, sourceLabel } from './academy-views.js';
@@ -21,6 +24,7 @@ let result = null;
 let reviewFilter = 'all';
 let practiceChapter = 0;
 let practiceCount = 10;
+let drillCount = 10, drillEndless = false, drillInstant = true;
 let practiceSource = 'all', practiceYear = 0, recallYear = 0, coverageChapter = 0;
 let wrongChapter = 0;
 let practiceType = 'all', practiceQuery = '', practiceQuestion = null;
@@ -36,7 +40,7 @@ function hashView() {
   const query = new URLSearchParams(params || '');
   if(route==='search') searchQuery=(query.get('q')||'').slice(0,100);
   if(route==='practice') { const id=query.get('question'); if(qmap.has(id)){resetPractice();practiceQuestion=id;} else practiceQuestion=null; }
-  return ['review','practice','wrong','history','guide','catalog','search','resources',...(SUBJECT.isFund?['coverage']:[])].includes(route) ? route : 'home';
+  return ['drill','review','practice','wrong','history','guide','catalog','search','resources',...(SUBJECT.isFund?['coverage']:[])].includes(route) ? route : 'home';
 }
 let view = hashView();
 let modalAction = null;
@@ -93,8 +97,8 @@ const filteredPractice = (chapter=practiceChapter) => QUESTIONS.filter(q=>matche
 
 function render() {
   const focused = document.activeElement?.id;
-  const current = view === 'quiz' ? 'home' : view === 'result' ? 'history' : view;
-  const links = [['home', 'exam', '模拟考试'], ['course', 'book', '系统教程'], ['practice', 'book', '专项练习'], ['wrong', 'wrong', '错题本'], ['history', 'chart', '学习记录'], ['guide', 'info', '考试说明']];
+  const current = view === 'quiz' ? (state.active?.drill ? 'drill' : 'home') : view === 'result' ? 'history' : view;
+  const links = [['home', 'exam', '模拟考试'], ['drill', 'book', '随机刷题'], ['course', 'book', '系统教程'], ['practice', 'book', '专项练习'], ['wrong', 'wrong', '错题本'], ['history', 'chart', '学习记录'], ['guide', 'info', '考试说明']];
   links.splice(2,0,['resources','info','真题资料']);
   if (SUBJECT.isFund) links.splice(2, 0, ['coverage', 'chart', '大纲清单']);
   links.push(['catalog','book','课程全景']);
@@ -111,7 +115,7 @@ function render() {
     <div class="workspace">
       <header class="topbar"><div class="breadcrumb-trail"><span class="breadcrumb">学习空间</span><span class="separator">/</span><strong>${SUBJECT.short}</strong></div><form id="topbar-search" class="topbar-search"><label class="sr-only" for="global-search">搜索理论、题目与考点</label><input type="search" id="global-search" name="query" maxlength="100" placeholder="搜索理论、题目与考点"><button type="submit" aria-label="搜索">⌕</button></form><span class="version">内容核对 ${CONTENT_DATE}</span></header>
       ${storageWarning ? `<div role="status" class="warning">${esc(storageWarning)}</div>` : ''}
-      <main id="main" tabindex="-1">${view === 'review' ? reviewWorkbench(SUBJECT,state,savedLimit) : view === 'course' ? courseView() : view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'coverage' ? fundCoverage(SUBJECT,coverageChapter) : view === 'resources' ? resourcesView(SUBJECT,recallYear)+qualitySummary(SUBJECT)+ruleNoticeView(SUBJECT) : view === 'catalog' ? catalogView() : view === 'search' ? searchView(searchQuery,searchScope,SUBJECT,searchType,searchLimit) : view === 'guide' ? guideView()+ruleNoticeView(SUBJECT) : view === 'result' ? resultView() : homeView()}</main>
+      <main id="main" tabindex="-1">${view === 'review' ? reviewWorkbench(SUBJECT,state,savedLimit) : view === 'course' ? courseView() : view === 'quiz' ? quizView() : ['practice','drill'].includes(view) ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'coverage' ? fundCoverage(SUBJECT,coverageChapter) : view === 'resources' ? resourcesView(SUBJECT,recallYear)+qualitySummary(SUBJECT)+ruleNoticeView(SUBJECT) : view === 'catalog' ? catalogView() : view === 'search' ? searchView(searchQuery,searchScope,SUBJECT,searchType,searchLimit) : view === 'guide' ? guideView()+ruleNoticeView(SUBJECT) : view === 'result' ? resultView() : homeView()}</main>
       <footer>独立学习项目 · 原创训练与来源题分列 · 模拟成绩仅用于学习<span>记录仅保存在当前浏览器</span></footer>
     </div>
   </div><dialog id="confirm-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><p id="dialog-text"></p><div class="dialog-actions">${btn('返回', 'cancel-dialog', '', 'secondary')}${btn('确认', 'confirm-dialog', 'id="confirm-button"', 'primary')}</div></dialog>`;
@@ -133,11 +137,12 @@ function resumeBanner() {
   if (!a) return '';
   return `<div class="resume-banner"><div>${icon('clock')}<span><strong>有一份未完成的${a.mode === 'exam' ? '模拟卷' : '练习'}</strong> · 已答 ${Object.keys(a.answers).length} / ${a.ids.length} 题${a.mode === 'exam' ? '，计时继续' : ''}</span></div>${btn('继续作答', 'resume', '', 'secondary small')}</div>`;
 }
-function homeView() { return learningHome(SUBJECT,state,courseProgress(),resumeBanner(),grade); }
+function homeView() { return `<section class="drill-entry"><div><h2>今天，从随机 10 题开始。</h2><p>当前科目 ${QUESTIONS.length} 道题 · 点选即看解析 · 支持无限续刷</p></div>${btn('去随机刷题 →','nav','data-view="drill"','primary')}</section>` + learningHome(SUBJECT,state,courseProgress(),resumeBanner(),grade); }
 
 function practiceView() {
   const candidates = filteredPractice();
-  return `${heading('FOCUSED PRACTICE', '专项练习', '按章节、来源和题型巩固知识，确认答案后立即查看解析。')}${resumeBanner()}${practiceQuestion?`<div class="located-question" role="status"><span>已从搜索定位 1 道题，可以直接开始练习。</span>${btn('清除定位','clear-location','','text-button')}</div>`:''}<div class="practice-grid"><section class="panel"><h2>选择练习范围</h2><div class="practice-filters"><label for="practice-source">题目来源<select id="practice-source"><option value="all" ${practiceSource==='all'?'selected':''}>全部来源</option><option value="original" ${practiceSource==='original'?'selected':''}>原创训练</option><option value="recall" ${practiceSource==='recall'?'selected':''}>历年回忆题 · 重述</option><option value="sample" ${practiceSource==='sample'?'selected':''}>历史样卷 · 重述</option></select></label><label for="practice-year">来源年份<select id="practice-year" ${!['recall','sample'].includes(practiceSource)?'disabled':''}>${yearOptions(SUBJECT,practiceYear)}</select></label><label for="practice-type">题型<select id="practice-type"><option value="all">全部题型</option>${Object.entries(TYPE_NAMES).filter(([type])=>QUESTIONS.some(q=>questionType(q)===type)).map(([type,label])=>`<option value="${type}" ${practiceType===type?'selected':''}>${label}</option>`).join('')}</select></label></div><form id="practice-search" class="practice-keyword"><label class="sr-only" for="practice-query">筛选考点关键词</label><input id="practice-query" name="query" type="search" value="${esc(practiceQuery)}" placeholder="输入考点关键词筛选" maxlength="100"><button class="secondary" type="submit">筛选</button></form><div class="learning-filters"><label for="practice-status">练习状态<select id="practice-status">${[['all','全部题目'],['unseen','尚未练过'],['wrong','最近答错'],['saved','我的收藏']].map(([v,t])=>`<option value="${v}" ${practiceStatus===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-difficulty">题目难度<select id="practice-difficulty"><option value="all">全部难度</option>${Object.entries(DIFFICULTIES).map(([v,t])=>`<option value="${v}" ${practiceDifficulty===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-batch">内容批次<select id="practice-batch"><option value="all">全部批次</option><option value="${CASEBOOK_DATE}" ${practiceBatch===CASEBOOK_DATE?'selected':''}>${CASEBOOK_DATE} · 新增情景题</option></select></label></div><div class="filter-reset"><span>来源、章节、状态与难度可组合筛选</span>${btn('重置筛选','reset-practice','','text-button')}</div><div class="chapter-picker" tabindex="0" aria-label="可滚动的章节选择">${btn(`<strong>全部章节</strong><span>覆盖${Object.keys(CHAPTERS).length}个知识模块</span><b>${filteredPractice(0).length} 题</b>`, 'pick-chapter', `data-chapter="0" aria-pressed="${practiceChapter === 0}"`, practiceChapter === 0 ? 'chapter-option selected' : 'chapter-option')}${Object.entries(CHAPTERS).map(([ch,c])=>btn(`<strong>${esc(c.name)}</strong><span>${esc(c.desc)}</span><b>${filteredPractice(Number(ch)).length} 题</b>`,'pick-chapter',`data-chapter="${ch}" aria-pressed="${practiceChapter===Number(ch)}"`,practiceChapter===Number(ch)?'chapter-option selected':'chapter-option')).join('')}</div></section><aside class="panel practice-settings"><span class="eyebrow">本次练习</span><h2>${practiceChapter ? CHAPTERS[practiceChapter].short : '全部章节'}</h2><label for="practice-count">题目数量</label><select id="practice-count"><option value="10" ${practiceCount===10?'selected':''}>随机 10 题</option><option value="20" ${practiceCount===20?'selected':''}>随机 20 题</option><option value="0" ${practiceCount===0?'selected':''}>全部 ${candidates.length} 题（顺序）</option></select><ul class="check-list"><li>不限时，随时继续</li><li>确认后查看答案与解析</li><li>自动记录练习与错题</li><li>多选须选全正确项</li></ul>${btn('开始练习','start-practice',candidates.length?'':'disabled','primary full')}<p class="practice-match" role="status">${candidates.length?`匹配 ${candidates.length} 题 · 本次 ${practiceCount?Math.min(practiceCount,candidates.length):candidates.length} 题`:'当前筛选没有匹配题，请重置或调整条件。'}</p><p class="muted">原创、参数变式与来源题分别标注；均非官方原卷。</p></aside></div>`;
+  const randomMode = view === 'drill';
+  return `${heading(randomMode?'RANDOM PRACTICE':'FOCUSED PRACTICE', randomMode?'随机刷题':'专项练习', randomMode?'每个科目都能随机 X 题或无限续刷；解析停留，理解后再进入下一题。':'按章节、来源和题型巩固知识，确认答案后立即查看解析。')}${resumeBanner()}${randomMode?drillIntroduction():''}${practiceQuestion?`<div class="located-question" role="status"><span>已从搜索定位 1 道题，可以直接开始练习。</span>${btn('清除定位','clear-location','','text-button')}</div>`:''}<div class="practice-grid"><section class="panel"><h2>选择练习范围</h2><div class="practice-filters"><label for="practice-source">题目来源<select id="practice-source"><option value="all" ${practiceSource==='all'?'selected':''}>全部来源</option><option value="original" ${practiceSource==='original'?'selected':''}>原创训练</option><option value="recall" ${practiceSource==='recall'?'selected':''}>历年回忆题 · 重述</option><option value="sample" ${practiceSource==='sample'?'selected':''}>历史样卷 · 重述</option></select></label><label for="practice-year">来源年份<select id="practice-year" ${!['recall','sample'].includes(practiceSource)?'disabled':''}>${yearOptions(SUBJECT,practiceYear)}</select></label><label for="practice-type">题型<select id="practice-type"><option value="all">全部题型</option>${Object.entries(TYPE_NAMES).filter(([type])=>QUESTIONS.some(q=>questionType(q)===type)).map(([type,label])=>`<option value="${type}" ${practiceType===type?'selected':''}>${label}</option>`).join('')}</select></label></div><form id="practice-search" class="practice-keyword"><label class="sr-only" for="practice-query">筛选考点关键词</label><input id="practice-query" name="query" type="search" value="${esc(practiceQuery)}" placeholder="输入考点关键词筛选" maxlength="100"><button class="secondary" type="submit">筛选</button></form><div class="learning-filters"><label for="practice-status">练习状态<select id="practice-status">${[['all','全部题目'],['unseen','尚未练过'],['wrong','最近答错'],['saved','我的收藏']].map(([v,t])=>`<option value="${v}" ${practiceStatus===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-difficulty">题目难度<select id="practice-difficulty"><option value="all">全部难度</option>${Object.entries(DIFFICULTIES).map(([v,t])=>`<option value="${v}" ${practiceDifficulty===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-batch">内容批次<select id="practice-batch"><option value="all">全部批次</option><option value="${CASEBOOK_DATE}" ${practiceBatch===CASEBOOK_DATE?'selected':''}>${CASEBOOK_DATE} · 新增情景题</option><option value="${PRECISION_BATCH}" ${practiceBatch===PRECISION_BATCH?'selected':''}>2026-10-13 · 易错精练 96 题</option></select></label></div><div class="filter-reset"><span>来源、章节、状态与难度可组合筛选</span>${btn('重置筛选','reset-practice','','text-button')}</div><div class="chapter-picker" tabindex="0" aria-label="可滚动的章节选择">${btn(`<strong>全部章节</strong><span>覆盖${Object.keys(CHAPTERS).length}个知识模块</span><b>${filteredPractice(0).length} 题</b>`, 'pick-chapter', `data-chapter="0" aria-pressed="${practiceChapter === 0}"`, practiceChapter === 0 ? 'chapter-option selected' : 'chapter-option')}${Object.entries(CHAPTERS).map(([ch,c])=>btn(`<strong>${esc(c.name)}</strong><span>${esc(c.desc)}</span><b>${filteredPractice(Number(ch)).length} 题</b>`,'pick-chapter',`data-chapter="${ch}" aria-pressed="${practiceChapter===Number(ch)}"`,practiceChapter===Number(ch)?'chapter-option selected':'chapter-option')).join('')}</div></section>${randomMode?drillSettings(drillCount,drillEndless,drillInstant,candidates.length,practiceChapter?CHAPTERS[practiceChapter].short:'全部章节'):`<aside class="panel practice-settings"><span class="eyebrow">本次练习</span><h2>${practiceChapter ? CHAPTERS[practiceChapter].short : '全部章节'}</h2><label for="practice-count">题目数量</label><select id="practice-count"><option value="10" ${practiceCount===10?'selected':''}>随机 10 题</option><option value="20" ${practiceCount===20?'selected':''}>随机 20 题</option><option value="0" ${practiceCount===0?'selected':''}>全部 ${candidates.length} 题（顺序）</option></select><ul class="check-list"><li>不限时，随时继续</li><li>确认后查看答案与解析</li><li>自动记录练习与错题</li><li>多选须选全正确项</li></ul>${btn('开始练习','start-practice',candidates.length?'':'disabled','primary full')}<p class="practice-match" role="status">${candidates.length?`匹配 ${candidates.length} 题 · 本次 ${practiceCount?Math.min(practiceCount,candidates.length):candidates.length} 题`:'当前筛选没有匹配题，请重置或调整条件。'}</p><p class="muted">原创、参数变式与来源题分别标注；均非官方原卷。</p></aside>`}</div>`;
 }
 
 function bookmarkButton(q) {
@@ -170,9 +175,9 @@ function quizView() {
   const revealed = s.mode === 'practice' && s.checked.includes(q.id);
   const answered = Object.keys(s.answers).length;
   const profile = s.mode==='exam' ? sessionProfile(s,SUBJECT) : null;
-  return `<div class="quiz-top"><div>${btn('返回学习空间', 'nav', 'data-view="home"', 'text-button')}<h1>${esc(s.title)}</h1><p>${s.mode === 'exam' ? '答案在交卷后显示 · 离开页面仍继续计时' : '不限时 · 确认答案后查看解析'}</p></div><div class="timer ${s.mode === 'exam' && remainingSeconds(s) <= 300 ? 'urgent' : ''}">${icon('clock')}<div><span>${s.mode === 'exam' ? '剩余时间' : '练习模式'}</span><strong id="timer-value">${s.mode === 'exam' ? formatTime(remainingSeconds(s)) : '不限时'}</strong></div></div></div><div class="quiz-grid"><section class="panel question-panel"><div class="question-top"><div class="question-badges"><span class="blue">${TYPE_NAMES[questionType(q)]}</span><span>${CHAPTERS[q.chapter].short}</span><span>${esc(q.topic)}</span></div><span class="question-counter">${String(s.index + 1).padStart(2, '0')}<small> / ${s.ids.length}</small></span></div><p class="question-origin">${sourceLabel(q)}${q.difficulty?` · ${DIFFICULTIES[q.difficulty]}`:''}${q.year?` · ${esc(q.examSession)}`:''}</p><h2 class="question-stem" id="question-title" tabindex="-1">${esc(q.stem)}</h2><p class="answer-instruction">${Array.isArray(q.answer)?'选择所有正确项；再次点击可取消。多选、少选、错选均不得分。':questionType(q)==='judge'?'请选择正确或错误。':'请选择一个最合适的答案。'}</p><div class="options" role="${Array.isArray(q.answer)?'group':'radiogroup'}" aria-labelledby="question-title">${q.options.map((o, i) => `<button id="option-${i}" role="${Array.isArray(q.answer)?'checkbox':'radio'}" aria-checked="${hasAnswer(selected,i)}" ${revealed ? 'disabled' : ''} class="option ${hasAnswer(selected,i) ? 'selected' : ''} ${revealed && hasAnswer(q.answer,i) ? 'correct' : ''} ${revealed && hasAnswer(selected,i) && !hasAnswer(q.answer,i) ? 'incorrect' : ''}" data-action="answer" data-answer="${i}"><span class="option-letter">${letter(i)}</span><span>${esc(o)}</span>${revealed && hasAnswer(q.answer,i) ? icon('check') : ''}</button>`).join('')}</div>
+  return `<div class="quiz-top"><div>${btn('返回学习空间', 'nav', 'data-view="home"', 'text-button')}<h1>${esc(s.title)}</h1><p>${s.mode === 'exam' ? '答案在交卷后显示 · 离开页面仍继续计时' : s.drill?.instant ? '单选 / 判断点选即答 · 多选提交后揭晓 · 解析不自动跳走' : '不限时 · 确认答案后查看解析'}</p></div><div class="timer ${s.mode === 'exam' && remainingSeconds(s) <= 300 ? 'urgent' : ''}">${icon('clock')}<div><span>${s.mode === 'exam' ? '剩余时间' : '练习模式'}</span><strong id="timer-value">${s.mode === 'exam' ? formatTime(remainingSeconds(s)) : '不限时'}</strong></div></div></div>${drillStatus(s,s.checked.filter(id=>isCorrect(s.answers[id],qmap.get(id))).length)}<div class="quiz-grid"><section class="panel question-panel"><div class="question-top"><div class="question-badges"><span class="blue">${TYPE_NAMES[questionType(q)]}</span><span>${CHAPTERS[q.chapter].short}</span><span>${esc(q.topic)}</span></div><span class="question-counter">${String(s.index + 1).padStart(2, '0')}<small> / ${s.ids.length}</small></span></div><p class="question-origin">${sourceLabel(q)}${q.difficulty?` · ${DIFFICULTIES[q.difficulty]}`:''}${q.year?` · ${esc(q.examSession)}`:''}</p><h2 class="question-stem" id="question-title" tabindex="-1">${esc(q.stem)}</h2><p class="answer-instruction">${Array.isArray(q.answer)?'选择所有正确项；再次点击可取消。多选、少选、错选均不得分。':questionType(q)==='judge'?'请选择正确或错误。':'请选择一个最合适的答案。'}</p><div class="options" role="${Array.isArray(q.answer)?'group':'radiogroup'}" aria-labelledby="question-title">${q.options.map((o, i) => `<button id="option-${i}" role="${Array.isArray(q.answer)?'checkbox':'radio'}" aria-checked="${hasAnswer(selected,i)}" ${revealed ? 'disabled' : ''} class="option ${hasAnswer(selected,i) ? 'selected' : ''} ${revealed && hasAnswer(q.answer,i) ? 'correct' : ''} ${revealed && hasAnswer(selected,i) && !hasAnswer(q.answer,i) ? 'incorrect' : ''}" data-action="answer" data-answer="${i}"><span class="option-letter">${letter(i)}</span><span>${esc(o)}</span>${revealed && hasAnswer(q.answer,i) ? icon('check') : ''}</button>`).join('')}</div>
       ${revealed ? `<div class="explanation ${isCorrect(selected,q) ? 'correct-explanation' : ''}" role="status" id="answer-feedback" tabindex="-1"><strong>${isCorrect(selected,q) ? '回答正确' : '再巩固一下'} · 正确答案 ${letter(q.answer)}</strong><p>${esc(q.explanation)}</p><div class="source">${esc(q.origin)} · 参考依据：${sourceLink(q)}</div></div>${optionRationales(q,selected)}${relatedLesson(q)}` : ''}
-      <div class="question-bottom">${bookmarkButton(q)}${btn(`${icon('flag')}${s.marked.includes(q.id) ? '已标记' : '标记此题'}`, 'mark', `id="mark-button" aria-pressed="${s.marked.includes(q.id)}"`, 'text-button')}<span class="keyboard-hint">1–4 选择 · PgUp / PgDn 切题</span></div><div class="question-actions">${btn('上一题', 'previous', s.index === 0 ? 'disabled' : '', 'secondary')}<span class="save-indicator">${storageWarning ? '记录未能持久保存' : '作答自动保存'}</span>${s.mode === 'practice' && !revealed ? btn('确认答案', 'check', selected == null ? 'disabled' : '', 'primary') : s.index < s.ids.length - 1 ? btn('下一题', 'next', '', 'primary') : btn(s.mode === 'exam' ? '检查并交卷' : '结束练习', 'submit', '', 'primary')}</div></section><aside class="panel answer-panel"><div class="section-title"><h2>答题卡</h2><span>${answered} / ${s.ids.length}</span></div><div class="bar"><span style="width:${answered / s.ids.length * 100}%"></span></div><div class="answer-grid">${s.ids.map((id, i) => btn(String(i + 1), 'jump', `data-index="${i}" aria-label="第 ${i + 1} 题${s.answers[id] != null ? '，已答' : '，未答'}${s.marked.includes(id) ? '，已标记' : ''}" ${i === s.index ? 'aria-current="step"' : ''}`, `answer-cell ${s.answers[id] != null ? 'answered' : ''} ${i === s.index ? 'current' : ''} ${s.marked.includes(id) ? 'marked' : ''}`)).join('')}</div><div class="legend"><span><i></i>未答</span><span><i class="filled"></i>已答</span><span><i class="flagged"></i>标记</span></div>${s.mode === 'exam' ? `<div class="answer-rules"><strong>合格要求</strong><p>总分 ≥ ${profile.pass} 分${profile.sectional ? '<br>第一部分 ≥ 6 / 10<br>第二、三部分各 ≥ 3 / 5' : ''}</p></div>` : '<p class="muted">确认后计入练习记录，未确认的选择可修改。</p>'}${btn(s.mode === 'exam' ? '提交试卷' : '结束练习', 'submit', '', 'primary full')}</aside></div>`;
+      <div class="question-bottom">${bookmarkButton(q)}${btn(`${icon('flag')}${s.marked.includes(q.id) ? '已标记' : '标记此题'}`, 'mark', `id="mark-button" aria-pressed="${s.marked.includes(q.id)}"`, 'text-button')}<span class="keyboard-hint">1–4 选择 · PgUp / PgDn 切题</span></div><div class="question-actions">${btn('上一题', 'previous', s.index === 0 ? 'disabled' : '', 'secondary')}<span class="save-indicator">${storageWarning ? '记录未能持久保存' : '作答自动保存'}</span>${s.drill ? drillNextButton(s,revealed,Array.isArray(q.answer)) : s.mode === 'practice' && !revealed ? btn('确认答案', 'check', selected == null ? 'disabled' : '', 'primary') : s.index < s.ids.length - 1 ? btn('下一题', 'next', '', 'primary') : btn(s.mode === 'exam' ? '检查并交卷' : '结束练习', 'submit', '', 'primary')}</div></section><aside class="panel answer-panel"><div class="section-title"><h2>答题卡</h2><span>${answered} / ${s.ids.length}</span></div><div class="bar"><span style="width:${answered / s.ids.length * 100}%"></span></div><div class="answer-grid">${s.ids.map((id, i) => btn(String(i + 1), 'jump', `data-index="${i}" aria-label="第 ${i + 1} 题${s.drill && s.checked.includes(id) ? isCorrect(s.answers[id],qmap.get(id))?'，正确':'，错误' : s.answers[id] != null ? '，已答' : '，未答'}${s.marked.includes(id) ? '，已标记' : ''}" ${i === s.index ? 'aria-current="step"' : ''}`, `answer-cell ${s.drill && s.checked.includes(id) ? isCorrect(s.answers[id],qmap.get(id))?'checked-correct':'checked-wrong' : ''} ${s.answers[id] != null ? 'answered' : ''} ${i === s.index ? 'current' : ''} ${s.marked.includes(id) ? 'marked' : ''}`)).join('')}</div><div class="legend"><span><i></i>未答</span><span><i class="filled"></i>已答</span><span><i class="flagged"></i>标记</span></div>${s.mode === 'exam' ? `<div class="answer-rules"><strong>合格要求</strong><p>总分 ≥ ${profile.pass} 分${profile.sectional ? '<br>第一部分 ≥ 6 / 10<br>第二、三部分各 ≥ 3 / 5' : ''}</p></div>` : s.drill?'<p class="muted">已答题显示对错；逐题累计进度。答完一组后可继续，记录仅在本机。</p>':'<p class="muted">确认后计入练习记录，未确认的选择可修改。</p>'}${btn(s.mode === 'exam' ? '提交试卷' : '结束练习', 'submit', '', 'primary full')}</aside></div>`;
 }
 
 function resultView() {
@@ -184,7 +189,7 @@ function resultView() {
   return `${heading('REVIEW & REFLECT', isExam ? '模拟完成，看看你的掌握情况。' : '练习完成，再巩固一步。', `${esc(result.title)} · ${date(result.endedAt)}${result.auto ? ' · 到时自动交卷' : ''}`, btn('返回学习空间', 'nav', 'data-view="home"', 'secondary'))}
     <section class="result-summary ${g.passed === false ? 'not-passed' : ''}"><div class="big-score">${g.score}<span>${isExam ? '/ 100 分' : '% 正确率'}</span></div><div class="result-message"><span class="status ${g.passed === false ? 'fail' : 'success'}">${isExam ? g.passed ? '本次模拟达标' : '本次尚未达标' : '本次练习完成'}</span><h2>${g.passed === false ? g.score >= profile?.pass && !g.sectionPass ? '总分达标，还需巩固薄弱部分。' : '找到薄弱点，就是进步的起点。' : '理解每一个答案，比记住分数更重要。'}</h2><p>答对 ${g.correct} / ${g.total} 题 · ${g.total - g.correct} 道${isExam ? '错误或未答' : '错题'}${isExam ? ' · 模拟成绩不具有正式考试效力' : ''}</p></div></section>
     ${isExam ? `<div class="section-results">${g.sections.map(s => `<div class="panel"><span>${SUBJECT.id!=='options' ? SUBJECT.short : ['', '第一部分 · 基础与备兑保险', '第二部分 · 买入开仓', '第三部分 · 卖出开仓'][s.level]}</span><strong>${s.correct}<small> / ${s.total} 题</small></strong><p>${profile.sectional ? `${s.correct / s.total >= .6 ? '已达' : '未达'}分项 60% 要求` : `正确率 ${Math.round(s.correct / s.total * 100)}%`}</p></div>`).join('')}</div>` : ''}
-    <div class="section-title review-heading"><h2>逐题解析</h2><div class="segmented">${btn(`全部 ${g.total}`, 'review-filter', `data-filter="all" aria-pressed="${reviewFilter === 'all'}"`, reviewFilter === 'all' ? 'selected' : '')}${btn(`错题 ${g.total - g.correct}`, 'review-filter', `data-filter="wrong" aria-pressed="${reviewFilter === 'wrong'}"`, reviewFilter === 'wrong' ? 'selected' : '')}</div></div><div class="review-list">${rows.length ? rows.map(r => {const q = qmap.get(r.id); const n = result.ids.indexOf(r.id) + 1; return `<article class="panel review-question"><div class="question-badges"><span class="${r.correct ? 'green' : 'red'}">${r.correct ? '正确' : r.answer == null ? '未作答' : '错误'}</span><span>${CHAPTERS[q.chapter].short}</span><span>${esc(q.topic)}</span></div><h3>${n}. ${esc(q.stem)}</h3><div class="review-options">${q.options.map((o, i) => `<p class="${hasAnswer(q.answer,i) ? 'right-answer' : hasAnswer(r.answer,i) ? 'wrong-answer' : ''}"><b>${letter(i)}</b>${esc(o)}${hasAnswer(q.answer,i) ? '<span>正确答案</span>' : hasAnswer(r.answer,i) ? '<span>你的选择</span>' : ''}</p>`).join('')}</div><div class="explanation"><p>${esc(q.explanation)}</p><div class="source">${esc(q.origin)} · 参考依据：${sourceLink(q)}</div></div>${optionRationales(q,r.answer)}<div class="list-question-actions">${bookmarkButton(q)}${relatedLesson(q)}</div></article>`;}).join('') : '<div class="empty-state"><h2>这次没有错题</h2><p>可以再做一套随机模拟卷，检验掌握是否稳定。</p></div>'}</div>`;
+    ${result.drill?`<section class="drill-restart"><p>本组已保存。按相同题池继续抽取，一轮内不重复；一轮用尽后重新洗牌。</p>${btn('再随机一组 →','drill-repeat','','primary')}</section>`:''}<div class="section-title review-heading"><h2>逐题解析</h2><div class="segmented">${btn(`全部 ${g.total}`, 'review-filter', `data-filter="all" aria-pressed="${reviewFilter === 'all'}"`, reviewFilter === 'all' ? 'selected' : '')}${btn(`错题 ${g.total - g.correct}`, 'review-filter', `data-filter="wrong" aria-pressed="${reviewFilter === 'wrong'}"`, reviewFilter === 'wrong' ? 'selected' : '')}</div></div><div class="review-list">${rows.length ? rows.map(r => {const q = qmap.get(r.id); const n = result.ids.indexOf(r.id) + 1; return `<article class="panel review-question"><div class="question-badges"><span class="${r.correct ? 'green' : 'red'}">${r.correct ? '正确' : r.answer == null ? '未作答' : '错误'}</span><span>${CHAPTERS[q.chapter].short}</span><span>${esc(q.topic)}</span></div><h3>${n}. ${esc(q.stem)}</h3><div class="review-options">${q.options.map((o, i) => `<p class="${hasAnswer(q.answer,i) ? 'right-answer' : hasAnswer(r.answer,i) ? 'wrong-answer' : ''}"><b>${letter(i)}</b>${esc(o)}${hasAnswer(q.answer,i) ? '<span>正确答案</span>' : hasAnswer(r.answer,i) ? '<span>你的选择</span>' : ''}</p>`).join('')}</div><div class="explanation"><p>${esc(q.explanation)}</p><div class="source">${esc(q.origin)} · 参考依据：${sourceLink(q)}</div></div>${optionRationales(q,r.answer)}<div class="list-question-actions">${bookmarkButton(q)}${relatedLesson(q)}</div></article>`;}).join('') : '<div class="empty-state"><h2>这次没有错题</h2><p>可以再做一套随机模拟卷，检验掌握是否稳定。</p></div>'}</div>`;
 }
 
 function guideView() {
@@ -217,19 +222,36 @@ function startSession(session) {
   if (state.active) dialog('开始新的作答？', '已有未完成的答卷。开始后将替换它；已记录的练习与历史成绩仍会保留。', start, '替换并开始');
   else start();
 }
+function confirmPracticeAnswer() {
+  const s=state.active;if(s?.mode!=='practice')return;
+  const id=s.ids[s.index];
+  if(s.answers[id]==null||s.checked.includes(id))return;
+  s.checked.push(id);
+  state.progress=updateProgress(state.progress,[{id,correct:isCorrect(s.answers[id],qmap.get(id))}]);
+  save();render();document.getElementById('answer-feedback')?.focus({preventScroll:true});
+}
+function makeDrillSession(plan,title) {
+  return {...makeSession(plan.ids,'practice'),drill:plan.drill,title};
+}
+function continueDrill(s) {
+  const right=s.checked.filter(id=>isCorrect(s.answers[id],qmap.get(id))).length;
+  const next=makeDrillSession(advanceDrill(s,right),s.title);
+  startSession(next);
+}
 function finish(auto = false) {
   const s = state.active;
   if (!s) return;
   const completed = { ...s, endedAt: Date.now(), auto };
   if (s.mode === 'practice') {
     completed.ids = s.ids.filter(id => s.checked.includes(id));
-    if (!completed.ids.length) { state.active = null; save(); navigate('practice'); return; }
+    if (!completed.ids.length) { state.active = null; save(); navigate(s.drill?'drill':'practice'); return; }
     completed.answers = Object.fromEntries(completed.ids.map(id => [id, s.answers[id]]));
     completed.checked = [...completed.ids];
+    if(s.drill) completed.drill={...s.drill,remaining:[...s.ids.filter(id=>!s.checked.includes(id)),...s.drill.remaining]};
     completed.marked = s.marked.filter(id => completed.ids.includes(id));
     completed.index = 0;
   } else state.progress = updateProgress(state.progress, grade(s, QUESTIONS).rows);
-  state.history = [completed, ...state.history].slice(0, 50);
+  state.history = [completed, ...state.history.map(previous=>{const {drill,...record}=previous;return record;})].slice(0, 50);
   state.active = null;
   result = completed;
   reviewFilter = 'all';
@@ -265,7 +287,7 @@ app.addEventListener('click', e => {
   } else if(action==='practice-one') {
     if(!qmap.has(target.dataset.id))return;resetPractice();practiceQuestion=target.dataset.id;navigate('practice');
   } else if(action==='saved-more') {savedLimit+=12;const top=scrollY;render();scrollTo(0,top);}
-  else if(action==='reset-practice') {resetPractice();navigate('practice');}
+  else if(action==='reset-practice') {const current=view;resetPractice();navigate(current==='drill'?'drill':'practice');}
   else if (action === 'nav') navigate(target.dataset.view);
   else if(action==='quick-practice'||action==='daily-practice') {
     resetLearningFilters();practiceChapter=Number(target.dataset.chapter)||0;practiceCount=10;practiceSource='all';practiceYear=0;practiceType='all';practiceQuery='';practiceQuestion=null;navigate('practice');
@@ -281,6 +303,23 @@ app.addEventListener('click', e => {
   else if (action === 'start-exam') { const profile = target.dataset.profile; startSession(makeSession(makePaper(QUESTIONS, profile), 'exam', profile)); }
   else if (action === 'recall-practice') { resetLearningFilters();practiceChapter=0;practiceSource=target.dataset.source||'recall';practiceYear=Number(target.dataset.year)||0;practiceCount=0;practiceType='all';practiceQuestion=null;practiceQuery='';navigate('practice'); }
   else if (action === 'pick-chapter') { practiceChapter = Number(target.dataset.chapter); render(); }
+  else if(action==='drill-mode') {drillEndless=target.dataset.endless==='true';render();}
+  else if(action==='drill-count') {drillCount=Number(target.dataset.count);render();}
+  else if(action==='start-drill') {
+    const input=document.getElementById('drill-count');if(input && !input.reportValidity())return;
+    if(input)drillCount=Number(input.value);
+    const pool=filteredPractice();if(!pool.length)return;
+    const title=`${practiceChapter?CHAPTERS[practiceChapter].short:'全章节'} · ${drillEndless?'无限续刷':'随机刷题'}`;
+    startSession(makeDrillSession(createDrill(pool.map(q=>q.id),{batchSize:drillCount,endless:drillEndless,instant:drillInstant}),title));
+  } else if(action==='drill-next' && s?.drill) {
+    if(!s.checked.includes(s.ids[s.index]))return;
+    if(s.index<s.ids.length-1){s.index++;save();render();document.querySelector('#question-title')?.focus();}
+    else {
+      const missing=s.ids.findIndex(id=>!s.checked.includes(id));
+      if(missing>=0){s.index=missing;save();render();document.querySelector('#question-title')?.focus();}
+      else {finish();if(s.drill.endless)continueDrill(s);}
+    }
+  } else if(action==='drill-repeat' && result?.drill) {continueDrill(result);}
   else if (action === 'start-practice') {
     let qs = filteredPractice();
     if (!qs.length) return;
@@ -301,13 +340,10 @@ app.addEventListener('click', e => {
       const next=choices.includes(choice)?choices.filter(a=>a!==choice):[...choices,choice].sort();
       if(next.length)s.answers[id]=next;else delete s.answers[id];
     } else s.answers[id]=choice;
+    if(s.drill?.instant && !Array.isArray(qmap.get(id).answer)){confirmPracticeAnswer();return;}
     save(); render(); document.querySelector(`#option-${choice}`)?.focus({preventScroll:true});
   } else if (action === 'check' && s?.mode === 'practice') {
-    const id = s.ids[s.index];
-    if (s.answers[id] == null || s.checked.includes(id)) return;
-    s.checked.push(id);
-    state.progress = updateProgress(state.progress, [{ id, correct: isCorrect(s.answers[id],qmap.get(id)) }]);
-    save(); render();document.getElementById('answer-feedback')?.focus({preventScroll:true});
+    confirmPracticeAnswer();
   } else if (['next', 'previous', 'jump'].includes(action) && s) {
     s.index = action === 'jump' ? Number(target.dataset.index) : Math.min(s.ids.length - 1, Math.max(0, s.index + (action === 'next' ? 1 : -1)));
     save(); render(); document.querySelector('#question-title')?.focus();
@@ -341,11 +377,19 @@ app.addEventListener('submit', e=>{
   else {searchQuery=query;searchLimit=20;navigate('search');}
 });
 app.addEventListener('change', e => {
+  if(e.target.id==='drill-count') {
+    const value=Number(e.target.value);
+    if(!Number.isInteger(value)||value<1||value>200){e.target.setCustomValidity('请输入1至200的整数');e.target.reportValidity();return;}
+    e.target.setCustomValidity('');drillCount=value;
+    document.querySelectorAll('[data-action="drill-count"]').forEach(button=>{const chosen=Number(button.dataset.count)===value;button.setAttribute('aria-pressed',String(chosen));button.classList.toggle('selected',chosen);});
+    const match=document.querySelector('.drill-settings .practice-match'),size=filteredPractice().length;if(match&&size)match.textContent=`匹配 ${size} 道题 · 首组 ${Math.min(value,size)} 题`;return;
+  }
+  if(e.target.id==='drill-instant'){drillInstant=e.target.checked;return;}
   if (e.target.id === 'subject-select') {
     const url = new URL(location.href);
     if (e.target.value === 'options') url.searchParams.delete('subject');
     else url.searchParams.set('subject', e.target.value);
-    url.hash = ''; location.assign(url); return;
+    url.hash = view==='drill'?'#drill':''; location.assign(url); return;
   }
   if(e.target.id==='import-records') {readBackup(e.target.files[0]);return;}
   if (handleCourseChange(e.target, courseCallbacks)) return;
@@ -362,15 +406,15 @@ app.addEventListener('change', e => {
   if (e.target.id === 'coverage-chapter') { coverageChapter=Number(e.target.value);render(); }
   if (e.target.id === 'wrong-chapter') { wrongChapter = Number(e.target.value); render(); }
 });
-app.addEventListener('input', e => { if (e.target.type === 'range') handleLabInput(e.target); });
+app.addEventListener('input', e => { if(e.target.id==='drill-count')e.target.setCustomValidity(''); if (e.target.type === 'range') handleLabInput(e.target); });
 document.addEventListener('keydown', e => {
-  if (view !== 'quiz' || document.querySelector('dialog[open]') || e.ctrlKey || e.metaKey || e.altKey || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+  if (e.repeat || view !== 'quiz' || document.querySelector('dialog[open]') || e.ctrlKey || e.metaKey || e.altKey || ['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
   if (/^[1-4]$/.test(e.key)) { e.preventDefault(); document.querySelector(`#option-${Number(e.key) - 1}`)?.click(); }
   if (['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key) && e.target.matches('.option:not(:disabled)')) {
     e.preventDefault();const options=[...document.querySelectorAll('.option:not(:disabled)')];
     const offset=['ArrowRight','ArrowDown'].includes(e.key)?1:-1;
     const next=options[(options.indexOf(e.target)+offset+options.length)%options.length];
-    if(next?.getAttribute('role')==='radio')next.click();else next?.focus();
+    if(next?.getAttribute('role')==='radio'&&!state.active?.drill?.instant)next.click();else next?.focus();
     return;
   }
   if (['PageDown','PageUp'].includes(e.key)) {

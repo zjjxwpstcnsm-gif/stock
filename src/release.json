@@ -1,0 +1,12 @@
+{
+  "version": "2026-10-13.2",
+  "questionCount": 2710,
+  "newPrecisionQuestions": 96,
+  "numericAuditCases": 44,
+  "features": [
+    "random-batch",
+    "infinite-practice",
+    "immediate-feedback",
+    "resumable-shuffle-bag"
+  ]
+}

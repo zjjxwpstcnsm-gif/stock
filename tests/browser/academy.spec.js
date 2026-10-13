@@ -73,7 +73,7 @@ test('futures exam restores mixed answers and grades type weights rather than qu
 
 test('catalog, cross-subject search and question deep links lead to usable practice without revealing answers',async({page})=>{
  await page.goto('/?subject=securities1#catalog');await expect(page.locator('.subject-card')).toHaveCount(8);
- await expect(page.locator('#main')).toContainText('2,614');
+ await expect(page.locator('#main')).toContainText(Object.values(SUBJECTS).reduce((total,s)=>total+s.QUESTIONS.length,0).toLocaleString('en-US'));
  await page.locator('#global-search').fill('久期');await page.locator('#topbar-search button').click();
  await expect(page).toHaveURL(/#search\?q=/);await expect(page.locator('.search-question').first()).toBeVisible();
  await page.selectOption('#search-scope','all');await expect(page.locator('.search-result').first()).toBeVisible();
@@ -138,7 +138,7 @@ test('all new subject views fit mobile and desktop, with genuine-source zero-mat
  await expect(page.getByRole('button',{name:'开始练习',exact:true})).toBeDisabled();
  await expect(page.locator('.practice-match')).toContainText('没有匹配');
  await page.goto('/#practice');await page.selectOption('#practice-source','original');
- await expect(page.locator('.practice-match')).toContainText('匹配 600 题');
+ await expect(page.locator('.practice-match')).toContainText(`匹配 ${SUBJECTS.options.QUESTIONS.filter(q=>(q.sourceKind||'original')==='original').length} 题`);
  await page.selectOption('#practice-source','sample');await page.selectOption('#practice-year','2015');
  await expect(page.locator('.practice-match')).toContainText('匹配 10 题');
  await page.goto('/#guide');await expect(page.locator('#main')).not.toContainText('undefined');

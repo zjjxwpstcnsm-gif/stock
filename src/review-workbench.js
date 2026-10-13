@@ -1,3 +1,4 @@
+import { PRECISION_BATCH } from './precision-questions.js';
 import { shuffle } from './engine.js';
 import { DIFFICULTIES, CASEBOOK_DATE, POLICY_NOTICES, bankQuality, ruleStatus } from './content-quality.js';
 const esc = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -49,7 +50,7 @@ export function ruleNoticeView(subject) {
 }
 export function qualitySummary(subject) {
   const m=bankQuality(subject.QUESTIONS);
-  return `<section class="panel quality-summary"><div class="section-title"><h2>题库质量档案</h2><span>数量不等于独立考点</span></div><div class="quality-counts"><div><strong>${m.casebook}</strong><span>本次新增情景题</span></div><div><strong>${m.recall}</strong><span>回忆题重述</span></div><div><strong>${m.sample}</strong><span>历史样卷重述</span></div></div><p>本次新增题均为<strong>原创，不是真题</strong>，逐项解释选项、列明参考定位与题设。${m.labeledVariants} 道已有参数变式使用家族标记，属于 ${m.original} 道原创训练的一部分。</p><details><summary>查看核验范围与内容边界</summary><p>情景题编辑批次：${CASEBOOK_DATE}。本次进行了来源核对、答案与选项一致性检查、计算重新求值及结构测试；未宣称全库经过独立专家审定，也不以题量宣称大纲细目完全覆盖。</p><p>回忆题不是官方试卷；历史样卷不是现行真题。来源题保留年份、页内题号和规则提示。旧内容的核对日期与本批次分开保留。</p></details><div class="quality-actions">${button('练习本次新题 →','workbench-filter',`data-batch="${CASEBOOK_DATE}"`)}${button('查阅来源题档案','nav','data-view="resources"','text-button')}</div></section>`;
+  return `<section class="panel quality-summary"><div class="section-title"><h2>题库质量档案</h2><span>数量不等于独立考点</span></div><div class="quality-counts"><div><strong>${m.casebook}</strong><span>本次新增情景题</span></div><div><strong>${m.recall}</strong><span>回忆题重述</span></div><div><strong>${m.sample}</strong><span>历史样卷重述</span></div></div><p>本次新增题均为<strong>原创，不是真题</strong>，逐项解释选项、列明参考定位与题设。${m.labeledVariants} 道已有参数变式使用家族标记，属于 ${m.original} 道原创训练的一部分。</p><details><summary>查看核验范围与内容边界</summary><p>逐项解析 ${m.detailed} 题，其中情景题 ${m.casebook} 题，另含易错精练 ${subject.QUESTIONS.filter(q=>q.editorialBatch===PRECISION_BATCH).length} 题。情景题编辑批次：${CASEBOOK_DATE}。本次进行了来源核对、答案与选项一致性检查、计算重新求值及结构测试；未宣称全库经过独立专家审定，也不以题量宣称大纲细目完全覆盖。</p><p>回忆题不是官方试卷；历史样卷不是现行真题。来源题保留年份、页内题号和规则提示。旧内容的核对日期与本批次分开保留。</p></details><div class="quality-actions">${button('练习本次新题 →','workbench-filter',`data-batch="${CASEBOOK_DATE}"`)}${button('练习易错精练 12 题 →','workbench-filter',`data-batch="${PRECISION_BATCH}"`)}${button('查阅来源题档案','nav','data-view="resources"','text-button')}</div></section>`;
 }
 export function reviewWorkbench(subject,state,savedLimit=12) {
   const bank=subject.QUESTIONS,metrics=chapterMetrics(subject,state.progress),attempted=metrics.reduce((n,m)=>n+m.attempted,0),wrong=metrics.reduce((n,m)=>n+m.wrong,0);

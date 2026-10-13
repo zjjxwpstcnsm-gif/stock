@@ -1,3 +1,4 @@
+import { validDrill } from './drill-engine.js';
 import * as defaultConfig from './config.js';
 
 export const questionType = q => q.type || 'single';
@@ -77,6 +78,7 @@ export function validSession(value, bank, config = defaultConfig) {
   })) return false;
   if (!['checked', 'marked'].every(k => Array.isArray(value[k]) && new Set(value[k]).size === value[k].length && value[k].every(id => value.ids.includes(id)))) return false;
   if (value.checked.some(id => !Object.hasOwn(value.answers,id))) return false;
+  if (!validDrill(value, ids)) return false;
   if (value.mode === 'practice' && value.deadline !== null) return false;
   if (value.mode === 'exam') {
     if (value.checked.length) return false;
