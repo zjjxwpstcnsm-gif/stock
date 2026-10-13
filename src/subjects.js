@@ -1,3 +1,4 @@
+import { WORKSHOP_QUESTIONS, WORKSHOP_SOURCES } from './workshop-questions.js';
 import { PRECISION_QUESTIONS, PRECISION_SOURCES } from './precision-questions.js';
 import * as optionsConfig from './config.js';
 import { QUESTIONS } from './questions.js';
@@ -10,17 +11,17 @@ import { SUPPLEMENT } from './supplement-questions.js';
 import { VERIFIED_QUESTIONS, VERIFIED_SOURCES } from './verified-questions.js';
 import { CASEBOOK_QUESTIONS } from './casebook-questions.js';
 import { CASEBOOK_SOURCES } from './content-quality.js';
-const expanded = (id, bank) => [...bank, ...SUPPLEMENT[id], ...VERIFIED_QUESTIONS[id], ...CASEBOOK_QUESTIONS[id], ...PRECISION_QUESTIONS[id]];
+const expanded = (id, bank) => [...bank, ...SUPPLEMENT[id], ...VERIFIED_QUESTIONS[id], ...CASEBOOK_QUESTIONS[id], ...PRECISION_QUESTIONS[id], ...WORKSHOP_QUESTIONS[id]];
 const upgrade = config => ({
   ...config,
-  BANK_VERSION: `${config.id || 'options'}-2026-10-13.2`,
-  COMPATIBLE_BANK_VERSIONS: [...config.COMPATIBLE_BANK_VERSIONS, `${config.id || 'options'}-2026-10-03.1`, `${config.id || 'options'}-2026-10-13.1`, `${config.id || 'options'}-2026-10-13.2`],
-  SOURCES: {...config.SOURCES, ...VERIFIED_SOURCES,...CASEBOOK_SOURCES,...PRECISION_SOURCES},
+  BANK_VERSION: `${config.id || 'options'}-2026-10-13.3`,
+  COMPATIBLE_BANK_VERSIONS: [...config.COMPATIBLE_BANK_VERSIONS, `${config.id || 'options'}-2026-10-03.1`, `${config.id || 'options'}-2026-10-13.1`, `${config.id || 'options'}-2026-10-13.2`, `${config.id || 'options'}-2026-10-13.3`],
+  SOURCES: {...config.SOURCES, ...VERIFIED_SOURCES,...CASEBOOK_SOURCES,...PRECISION_SOURCES,...WORKSHOP_SOURCES},
 });
 export const SUBJECTS = {
   options: { ...upgrade(optionsConfig), id:'options', isFund:false, family:'期权开户', name:'股票 / ETF 期权', short:'期权开户', QUESTIONS:expanded('options',QUESTIONS), LESSONS, COURSE_SOURCES, practiceKey:'zhiquan.practice.v1', courseKey:'zhiquan.course.v1' },
   ...Object.fromEntries(Object.entries(FUND_CONFIGS).map(([id,c])=>[id,{...upgrade(c),family:'基金从业',QUESTIONS:expanded(id,FUND_QUESTIONS[id]),LESSONS:FUND_LESSONS[id],COURSE_SOURCES:{},practiceKey:`zhiquan.${id}.practice.v1`,courseKey:`zhiquan.${id}.course.v1`}])),
-  ...Object.fromEntries(Object.entries(ACADEMY_CONFIGS).map(([id,c])=>[id,{...upgrade(c),SOURCES:{...c.SOURCES,...VERIFIED_SOURCES,...CASEBOOK_SOURCES,...PRECISION_SOURCES},QUESTIONS:expanded(id,ACADEMY_QUESTIONS[id]),LESSONS:ACADEMY_LESSONS[id],practiceKey:`zhiquan.${id}.practice.v1`,courseKey:`zhiquan.${id}.course.v1`}])),
+  ...Object.fromEntries(Object.entries(ACADEMY_CONFIGS).map(([id,c])=>[id,{...upgrade(c),SOURCES:{...c.SOURCES,...VERIFIED_SOURCES,...CASEBOOK_SOURCES,...PRECISION_SOURCES,...WORKSHOP_SOURCES},QUESTIONS:expanded(id,ACADEMY_QUESTIONS[id]),LESSONS:ACADEMY_LESSONS[id],practiceKey:`zhiquan.${id}.practice.v1`,courseKey:`zhiquan.${id}.course.v1`}])),
 };
 const requested = new URLSearchParams(typeof location === 'undefined' ? '' : location.search).get('subject');
 export const SUBJECT = Object.hasOwn(SUBJECTS,requested) ? SUBJECTS[requested] : SUBJECTS.options;

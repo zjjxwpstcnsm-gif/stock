@@ -62,7 +62,7 @@ test('smart review starts with a previous wrong answer and clears it only after 
 
 test('state, difficulty and editorial filters compose, reset and handle empty results',async({page},info)=>{
  await seed(page,record({saved:[q.id]}));await page.goto('/#review');
- await page.getByRole('button',{name:'练习本次新题 →',exact:true}).click();
+ await page.getByRole('button',{name:'练习情景精练 20 题 →',exact:true}).click();
  await expect(page.locator('.practice-match')).toContainText('匹配 20 题');
  await page.locator('#practice-status').selectOption('saved');
  await expect(page.locator('.practice-match')).toContainText('匹配 1 题');
@@ -76,7 +76,7 @@ test('state, difficulty and editorial filters compose, reset and handle empty re
 });
 
 test('keyboard arrows stay inside the answer group while PageDown changes questions',async({page})=>{
- await page.goto('/#review');await page.getByRole('button',{name:'练习本次新题 →',exact:true}).click();
+ await page.goto('/#review');await page.getByRole('button',{name:'练习情景精练 20 题 →',exact:true}).click();
  await page.getByRole('button',{name:'开始练习',exact:true}).click();
  const stem=await page.locator('#question-title').textContent();
  await page.getByRole('radio').nth(0).focus();await page.keyboard.press('ArrowRight');

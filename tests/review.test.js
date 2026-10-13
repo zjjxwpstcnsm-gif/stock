@@ -61,12 +61,12 @@ test('all 27 new numeric audit cases are recomputed and agree with the displayed
 test('all eight subjects preserve the old bank version and report honest source counts',()=>{
  let originals=0,recalls=0,samples=0;
  for(const s of Object.values(SUBJECTS)){
-  const m=bankQuality(s.QUESTIONS);assert.equal(m.casebook,20);assert.equal(m.detailed,32);
+  const m=bankQuality(s.QUESTIONS);assert.equal(m.casebook,20);assert.equal(m.detailed,40);
   assert.equal(m.total,m.original+m.recall+m.sample);originals+=m.original;recalls+=m.recall;samples+=m.sample;
   assert.ok(s.COMPATIBLE_BANK_VERSIONS.some(v=>v.includes('2026-10-03')));
   assert.ok(s.BANK_VERSION.includes('2026-10-13'));
  }
- assert.equal(originals,2646);assert.equal(recalls,54);assert.equal(samples,10);
+ assert.equal(originals,2710);assert.equal(recalls,54);assert.equal(samples,10);
 });
 
 test('learning filters compose source-independent saved, unseen, wrong, difficulty and batch state',()=>{

@@ -1,12 +1,17 @@
 {
-  "version": "2026-10-13.2",
-  "questionCount": 2710,
+  "version": "2026-10-13.3",
+  "questionCount": 2774,
   "newPrecisionQuestions": 96,
   "numericAuditCases": 44,
   "features": [
-    "random-batch",
+    "one-click-random-practice",
     "infinite-practice",
     "immediate-feedback",
-    "resumable-shuffle-bag"
-  ]
+    "resumable-shuffle-bag",
+    "question-permalinks",
+    "prefilled-correction-feedback",
+    "case-solving-methods"
+  ],
+  "newWorkshopQuestions": 64,
+  "newWorkshopNumericAuditCases": 38
 }

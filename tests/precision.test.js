@@ -61,8 +61,8 @@ test('all 44 new calculations are independently recomputed and match the display
   assert.ok(Math.abs(Number(match[0])-actual)<=.005001,`${q.id}: ${q.options[q.answer]} vs ${actual}`);
  }
 });
-test('full bank contains 2710 questions with 64 source-based items retained and compatible versions',()=>{
- const sizes={options:622,fund1:316,fund2:379,fund3:321,securities1:297,securities2:228,futures1:316,futures2:231};
+test('full bank contains 2774 questions with 64 source-based items retained and compatible versions',()=>{
+ const sizes={options:630,fund1:324,fund2:387,fund3:329,securities1:305,securities2:236,futures1:324,futures2:239};
  let total=0,recall=0,sample=0;
  for(const [id,s] of Object.entries(SUBJECTS)){
   assert.equal(s.QUESTIONS.length,sizes[id]);assert.equal(new Set(s.QUESTIONS.map(q=>q.id)).size,s.QUESTIONS.length);
@@ -70,5 +70,5 @@ test('full bank contains 2710 questions with 64 source-based items retained and 
   for(const q of s.QUESTIONS){assert.ok(s.SOURCES[q.source],q.id);if(q.sourceKind==='recall')recall++;if(q.sourceKind==='sample')sample++;}
   total+=s.QUESTIONS.length;
  }
- assert.equal(total,2710);assert.equal(recall,54);assert.equal(sample,10);
+ assert.equal(total,2774);assert.equal(recall,54);assert.equal(sample,10);
 });
