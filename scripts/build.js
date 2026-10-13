@@ -26,7 +26,7 @@ for (const path of files.filter(path => path.endsWith('.js'))) {
     (_match, prefix, specifier, quote) => `${prefix}${specifier}?v=${version}${quote}`);
   await writeFile(`dist/${path}`, rewritten);
 }
-const html = (await readFile('index.html', 'utf8')).replace(/((?:src|href)=")(\.\/src\/[^"?]+\.(?:js|css))(?:\?[^"]*)?( ")/g,
+const html = (await readFile('index.html', 'utf8')).replace(/((?:src|href)=")(\.\/src\/[^"?]+\.(?:js|css))(?:\?[^"]*)?(")/g,
   (_match, prefix, path, quote) => `${prefix}${path}?v=${version}${quote}`);
 await writeFile('dist/index.html', html);
 await writeFile('dist/version.json', JSON.stringify({ assetVersion: version }) + '\n');
