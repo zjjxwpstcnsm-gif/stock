@@ -9,7 +9,7 @@ test('fund exam is isolated from options, restores timer and grades 100 question
  await page.getByRole('radio').first().click();
  const old=await page.evaluate(()=>localStorage.getItem('zhiquan.practice.v1'));
  await page.selectOption('#subject-select','fund1');
- await expect(page.getByRole('heading',{name:'中国大陆基金从业资格',exact:true})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'把每一次选择，变成理解。',exact:true})).toBeVisible();
  await page.screenshot({path:info.outputPath('fund-home.png'),fullPage:true});
  await page.getByRole('button',{name:'开始本科模拟',exact:true}).click();
  await expect(page.locator('.answer-cell')).toHaveCount(100);
@@ -94,8 +94,8 @@ test('expired fund exam submits on return and corrupted storage is recoverable',
  await expect(page.locator('.result-message')).toContainText('答对 0 / 100');
  await page.evaluate(()=>localStorage.setItem('zhiquan.fund3.practice.v1','{bad'));
  await page.reload();await expect(page.locator('.warning')).toBeVisible();
- await page.getByRole('button',{name:'模拟考试',exact:true}).click();
- await expect(page.getByRole('heading',{name:'中国大陆基金从业资格'})).toBeVisible();
+ await page.getByRole('button',{name:'学习空间',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'把每一次选择，变成理解。'})).toBeVisible();
 });
 
 

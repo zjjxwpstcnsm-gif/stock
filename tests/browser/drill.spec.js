@@ -1,95 +1,152 @@
 import {test,expect} from '@playwright/test';
 import {SUBJECTS} from '../../src/subjects.js';
-import {PRECISION_BATCH} from '../../src/precision-questions.js';
-import {createExamEngine} from '../../src/engine.js';
+import {createExamEngine,questionType} from '../../src/engine.js';
 import {createDrill} from '../../src/drill-engine.js';
-const state=(page,s=SUBJECTS.options)=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),s.practiceKey);
-async function start(page,{id='options',count=2,endless=false,instant=true}={}){
- await page.goto(`/?subject=${id}#drill`);
- await page.locator('#practice-batch').selectOption(PRECISION_BATCH);
- if(endless)await page.locator('[data-action="drill-mode"][data-endless="true"]').click();
- await page.locator('#drill-count').fill(String(count));
- if(!instant)await page.locator('#drill-instant').uncheck();
- await page.locator('[data-action="start-drill"]').click();
- await expect(page.locator('.question-stem')).toBeVisible();
+const url = s => `/?subject=${s.id}`;
+const read = (page,s) => page.evaluate(key=>JSON.parse(localStorage.getItem(key)),s.practiceKey);
+async function seed(page,s,question=s.QUESTIONS[0],batchSize=20) {
+ const pool=[question.id,...s.QUESTIONS.filter(q=>q.id!==question.id).map(q=>q.id)];
+ const plan=createDrill(pool,{batchSize,endless:true,instant:true},()=>.999999);
+ const active={...createExamEngine(s).makeSession(plan.ids,'practice'),drill:plan.drill,title:'随机刷题'};
+ await page.goto(url(s));
+ await page.evaluate(({key,active})=>localStorage.setItem(key,JSON.stringify({active,progress:{},history:[],saved:[]})),{key:s.practiceKey,active});
+ await page.goto(url(s)+'#drill');await page.reload();
+ return active;
 }
-async function choose(page,s=SUBJECTS.options,wrong=false){
- const record=await state(page,s),q=s.QUESTIONS.find(q=>q.id===record.active.ids[record.active.index]);
- if(Array.isArray(q.answer)){
-  for(const index of q.answer)await page.locator(`#option-${index}`).click();
-  await page.locator('[data-action="check"]').click();
- } else await page.locator(`#option-${wrong?(q.answer+1)%q.options.length:q.answer}`).click();
- await expect(page.locator('#answer-feedback')).toBeVisible();return q;
+async function answer(page,s) {
+ const stem=await page.locator('#question-title').textContent(),q=s.QUESTIONS.find(q=>q.stem===stem);
+ for(const n of (Array.isArray(q.answer)?q.answer:[q.answer]))await page.locator(`#option-${n}`).click();
+ if(Array.isArray(q.answer))await page.locator('[data-action="check"]').click();
+ await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+ return q;
 }
-test('all eight subjects provide immediate random practice, source rationales and responsive layouts',async({page},info)=>{
- test.setTimeout(60000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+
+test('all eight subjects open directly with no setup and the complete subject pool',async({page},info)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
  for(const s of Object.values(SUBJECTS)){
-  await start(page,{id:s.id,count:1});const q=await choose(page,s);
-  await expect(page.locator('#answer-feedback')).toContainText('回答正确');
-  await expect(page.locator('#answer-feedback')).toBeFocused();
-  await expect(page.locator('.option-rationales')).toHaveCount(1);
-  expect((await state(page,s)).progress[q.id]).toEqual({attempts:1,correct:1,wrong:false});
+  await page.goto(url(s)+'#drill');
+  await expect(page.locator('.focus-drill-heading h1')).toContainText('随机刷题');
+  await expect(page.locator('#question-title')).toBeVisible();
+  await expect(page.locator('#main select,#main input,.drill-settings,.practice-filters')).toHaveCount(0);
+  await expect(page.locator('#answer-feedback')).toHaveCount(0);
+  await expect(page.locator('[data-view="drill"].nav-item')).toHaveAttribute('aria-current','page');
+  const d=(await read(page,s)).active.drill;
+  expect(new Set(d.pool)).toEqual(new Set(s.QUESTIONS.map(q=>q.id)));
+  expect(d.endless).toBe(true);expect(d.instant).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
-  await page.locator('[data-action="drill-next"]').click();
-  await expect(page.locator('[data-action="drill-repeat"]')).toBeVisible();
  }
- await page.goto('/#drill');await page.screenshot({path:info.outputPath('random-practice-setup.png'),fullPage:true});
- expect(errors).toEqual([]);
+ await page.screenshot({path:info.outputPath('direct-drill.png'),fullPage:true});expect(errors).toEqual([]);
 });
-test('finite batches save once, show wrong answers, resume and continue without repeated IDs',async({page},info)=>{
- await start(page);const first=await state(page),firstId=first.active.ids[0];await choose(page,SUBJECTS.options,true);
- await expect(page.locator('#answer-feedback')).toContainText('再巩固一下');
- await page.keyboard.press('1');expect((await state(page)).progress[firstId].attempts).toBe(1);
- await page.screenshot({path:info.outputPath('random-practice-feedback.png'),fullPage:true});
- await page.reload();await page.locator('[data-action="resume"]').first().click();
- await expect(page.locator('#answer-feedback')).toBeVisible();
- await page.locator('[data-action="drill-next"]').click();await choose(page);await page.locator('[data-action="drill-next"]').click();
- const finished=await state(page);expect(finished.active).toBeNull();expect(finished.history).toHaveLength(1);
- expect(finished.history[0].ids).toHaveLength(2);
- await page.locator('[data-action="drill-repeat"]').click();const next=await state(page);
- expect(next.active.ids.some(id=>first.active.ids.includes(id))).toBeFalsy();expect(next.active.drill.answered).toBe(2);
+
+test('home and sidebar launch immediately; specialist filters never restrict random practice',async({page},info)=>{
+ await page.goto('/');await page.screenshot({path:info.outputPath('study-desk.png'),fullPage:true});
+ await page.getByRole('button',{name:'开始随机刷题',exact:true}).click();
+ await expect(page).toHaveURL(/#drill$/);await expect(page.locator('#question-title')).toBeVisible();
+ await page.getByRole('button',{name:'专项练习',exact:true}).click();
+ await page.selectOption('#practice-source','sample');await page.selectOption('#practice-status','saved');
+ await expect(page.getByRole('button',{name:'开始练习',exact:true})).toBeDisabled();
+ await page.getByRole('button',{name:'随机刷题',exact:true}).click();
+ await expect(page.locator('#question-title')).toBeVisible();
+ expect((await read(page,SUBJECTS.options)).active.drill.pool.length).toBe(SUBJECTS.options.QUESTIONS.length);
+ await expect(page.getByRole('dialog')).not.toBeVisible();
 });
-test('infinite mode refills at the cycle boundary with bounded batches and cumulative totals',async({page})=>{
- test.setTimeout(60000);await start(page,{count:5,endless:true});const seen=[];
- for(let index=0;index<12;index++){
-  const s=await state(page);seen.push(s.active.ids[s.active.index]);await choose(page);await page.locator('[data-action="drill-next"]').click();
- }
- expect(new Set(seen).size).toBe(12);const s=await state(page);
- expect(s.active.drill.cycle).toBe(2);expect(s.active.drill.answered).toBe(12);expect(s.active.drill.correct).toBe(12);
- expect(s.active.ids).toHaveLength(5);expect(s.active.ids[0]).not.toBe(seen.at(-1));
- expect(s.history).toHaveLength(3);expect(s.history.filter(h=>h.drill)).toHaveLength(1);
- expect(s.history.map(h=>h.ids.length)).toEqual([2,5,5]);
+
+test('single choice reveals once, survives refresh, waits for the learner and supports Enter',async({page},info)=>{
+ const s=SUBJECTS.options,q=s.QUESTIONS[0];await seed(page,s,q);
+ await page.locator(`#option-${q.answer}`).click();
+ await expect(page.locator('#answer-feedback')).toContainText(q.explanation);
+ await expect(page.locator('#answer-feedback')).toBeFocused();
+ await expect(page.locator('#question-title')).toHaveText(q.stem);
+ expect((await read(page,s)).progress[q.id].attempts).toBe(1);
+ await page.reload();await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+ await expect(page.locator(`#option-${q.answer}`)).toBeDisabled();
+ await page.screenshot({path:info.outputPath('instant-explanation.png'),fullPage:true});
+ await page.locator('#answer-feedback').focus();await page.keyboard.press('Enter');
+ await expect(page.locator('#question-title')).not.toHaveText(q.stem);
+ expect((await read(page,s)).progress[q.id].attempts).toBe(1);
 });
-test('multi-select waits for explicit submit even with immediate mode enabled',async({page})=>{
- const subject=SUBJECTS.futures1,q=subject.QUESTIONS.find(q=>Array.isArray(q.answer)&&q.answer.length>1);
- expect(q).toBeTruthy();const plan=createDrill([q.id],{endless:true}),session={...createExamEngine(subject).makeSession(plan.ids,'practice'),drill:plan.drill};
- await page.goto('/?subject=futures1');await page.evaluate(({key,session})=>localStorage.setItem(key,JSON.stringify({active:session,history:[],progress:{},saved:[]})),{key:subject.practiceKey,session});
- await page.reload();await page.locator('[data-action="resume"]').click();
- await expect(page.locator('[data-action="check"]')).toHaveText('提交多选答案');
+
+test('multiple choice waits for explicit submission and rejects partial selections',async({page})=>{
+ const s=SUBJECTS.securities2,q=s.QUESTIONS.find(q=>Array.isArray(q.answer)&&q.answer.length>1);
+ await seed(page,s,q);await expect(page.getByRole('button',{name:'提交多选答案',exact:true})).toBeDisabled();
  await page.locator(`#option-${q.answer[0]}`).click();await expect(page.locator('#answer-feedback')).toHaveCount(0);
  await page.locator(`#option-${q.answer[0]}`).click();await expect(page.locator('[data-action="check"]')).toBeDisabled();
- for(const n of q.answer)await page.locator(`#option-${n}`).click();
- await page.locator('[data-action="check"]').click();await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+ await page.locator(`#option-${q.answer[0]}`).click();await page.reload();
+ await expect(page.locator(`#option-${q.answer[0]}`)).toHaveAttribute('aria-checked','true');
+ await page.locator('[data-action="check"]').click();await expect(page.locator('#answer-feedback')).toContainText('再巩固一下');
+ expect((await read(page,s)).progress[q.id].wrong).toBe(true);
 });
-test('number input validates, supports arbitrary counts and preserves the first start click',async({page})=>{
- await page.goto('/#drill');await page.locator('#drill-count').fill('0');await page.locator('[data-action="start-drill"]').click();
- await expect(page.locator('.question-stem')).toHaveCount(0);
- await page.locator('#drill-count').fill('3');await page.locator('[data-action="start-drill"]').click();
- await expect(page.locator('.question-stem')).toBeVisible();expect((await state(page)).active.ids).toHaveLength(3);
+
+test('judgment answers reveal immediately, without a confirmation step',async({page})=>{
+ const s=SUBJECTS.futures1,q=s.QUESTIONS.find(q=>questionType(q)==='judge');
+ await seed(page,s,q);await expect(page.locator('.options button')).toHaveCount(2);
+ await page.locator(`#option-${q.answer}`).click();await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+ await expect(page.locator('[data-action="check"]')).toHaveCount(0);
 });
-test('empty filters, shortages and opt-out of immediate reveal remain explicit',async({page})=>{
- await page.goto('/#drill');await page.locator('#practice-source').selectOption('recall');
- await expect(page.locator('[data-action="start-drill"]')).toBeDisabled();
- await page.locator('[data-action="reset-practice"]').click();
- await page.locator('#practice-batch').selectOption(PRECISION_BATCH);await page.locator('#drill-count').fill('200');
- await page.locator('#drill-instant').uncheck();await page.locator('[data-action="start-drill"]').click();
- expect((await state(page)).active.ids).toHaveLength(12);
- await page.locator('#option-0').click();await expect(page.locator('#answer-feedback')).toHaveCount(0);
- await page.locator('[data-action="check"]').click();await expect(page.locator('#answer-feedback')).toBeVisible();
+
+test('internal batch boundaries never interrupt the next-question loop or repeat IDs',async({page})=>{
+ const s=SUBJECTS.options;await seed(page,s,s.QUESTIONS[0],2);const seen=[];
+ for(let i=0;i<7;i++){
+  seen.push((await answer(page,s)).id);
+  await expect(page.locator('[data-action="drill-next"]')).toHaveText('下一题 ›');
+  await page.locator('[data-action="drill-next"]').click();
+  await expect(page.locator('.result-summary')).toHaveCount(0);
+ }
+ expect(new Set(seen).size).toBe(7);
+ const state=await read(page,s);expect(state.active.drill.answered+state.active.checked.length).toBe(7);
+ expect(state.history.length).toBe(3);expect(state.active.drill.correct).toBe(6);
+ await page.reload();await expect(page.locator('.drill-status')).toContainText('已答 7 题');
 });
-test('keyboard arrow navigation in immediate mode moves focus without submitting an answer',async({page})=>{
- await start(page);await page.locator('#option-0').focus();await page.keyboard.press('ArrowRight');
- await expect(page.locator('#option-1')).toBeFocused();await expect(page.locator('#answer-feedback')).toHaveCount(0);
- expect((await state(page)).active.checked).toEqual([]);
- await page.keyboard.press('Enter');await expect(page.locator('#answer-feedback')).toBeVisible();
+
+test('legacy finite filtered sessions retain the answer and expand to the whole subject',async({page})=>{
+ const s=SUBJECTS.options,q=s.QUESTIONS[0],e=createExamEngine(s),plan=createDrill([q.id,s.QUESTIONS[1].id],{batchSize:2,endless:false,instant:false},()=>.999999);
+ const active={...e.makeSession(plan.ids,'practice'),drill:plan.drill,answers:{[q.id]:q.answer},checked:[q.id]};
+ await page.goto('/');await page.evaluate(({key,active,id})=>localStorage.setItem(key,JSON.stringify({active,progress:{[id]:{attempts:1,correct:1,wrong:false}},history:[],saved:[]})),{key:s.practiceKey,active,id:q.id});
+ await page.goto('/#drill');await page.reload();
+ const current=(await read(page,s)).active;
+ expect(current.drill.pool.length).toBe(s.QUESTIONS.length);expect(current.drill.endless).toBe(true);expect(current.drill.instant).toBe(true);
+ await expect(page.locator('#question-title')).toHaveText(q.stem);await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+});
+
+test('starting random practice parks a pending exam and resume restores its original answers and deadline',async({page})=>{
+ const s=SUBJECTS.options;await page.goto('/');await page.getByRole('button',{name:'开始综合模拟',exact:true}).click();
+ await page.locator('#option-1').click();const exam=(await read(page,s)).active;
+ await page.getByRole('button',{name:'随机刷题',exact:true}).click();
+ await expect(page.getByRole('dialog')).not.toBeVisible();expect((await read(page,s)).suspended).toEqual(exam);
+ await answer(page,s);const drill=(await read(page,s)).active;
+ const backup=await page.evaluate(async()=> (await import('/src/learning-records.js')).collectBackup());
+ expect(backup.subjects.options.practice.suspended).toEqual(exam);
+ await page.reload();await page.locator('.drill-back').click();
+ await page.getByRole('button',{name:'继续作答',exact:true}).click();
+ const resumed=await read(page,s);expect(resumed.active).toEqual(exam);expect(resumed.suspended).toEqual(drill);
+ await expect(page.locator('#option-1')).toHaveAttribute('aria-checked','true');
+ await page.getByRole('button',{name:'随机刷题',exact:true}).click();
+ expect((await read(page,s)).active.ids).toEqual(drill.ids);await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+});
+
+test('switching subject stays in direct practice and preserves each subject answer',async({page})=>{
+ const s=SUBJECTS.options;await seed(page,s);await answer(page,s);const stem=await page.locator('#question-title').textContent();
+ await page.selectOption('#subject-select','fund1');await expect(page).toHaveURL(/subject=fund1#drill$/);
+ await expect(page.locator('#question-title')).toBeVisible();await expect(page.locator('#answer-feedback')).toHaveCount(0);
+ await page.selectOption('#subject-select','options');await expect(page.locator('#question-title')).toHaveText(stem);
+ await expect(page.locator('#answer-feedback')).toContainText('回答正确');
+});
+
+test('early finish grades only confirmed questions and an empty finish returns home',async({page})=>{
+ const s=SUBJECTS.options;await seed(page,s);await page.getByRole('button',{name:'结束练习',exact:true}).click();
+ await page.getByRole('dialog').getByRole('button',{name:'结束练习',exact:true}).click();
+ await expect(page.locator('.study-home')).toBeVisible();expect((await read(page,s)).active).toBeNull();
+ await page.getByRole('button',{name:'开始随机刷题',exact:true}).click();await answer(page,s);
+ await page.getByRole('button',{name:'结束练习',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'结束练习',exact:true}).click();
+ await expect(page.locator('.result-message')).toContainText('答对 1 / 1');expect((await read(page,s)).history[0].ids.length).toBe(1);
+});
+
+test('320px and tablet layouts have no overflow and unconfirmed choices are not covered',async({page},info)=>{
+ for(const width of [320,390,768]){
+  await page.setViewportSize({width,height:844});await page.goto('/#drill');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+  await expect(page.locator('.question-actions')).toHaveCSS('position','static');
+  await expect(page.locator('.focus-question')).toBeVisible();
+  await page.screenshot({path:info.outputPath(`focused-${width}.png`),fullPage:true});
+ }
 });

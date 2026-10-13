@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createDrill,advanceDrill,validDrill,MAX_BATCH} from '../src/drill-engine.js';
-import {drillNextButton,drillSettings,drillStatus} from '../src/drill-views.js';
+import {drillNextButton,drillStatus} from '../src/drill-views.js';
 import {SUBJECTS} from '../src/subjects.js';
 import {createExamEngine,updateProgress} from '../src/engine.js';
 import {collectBackup,validateBackup} from '../src/learning-records.js';
@@ -55,10 +55,13 @@ test('partial completion can requeue unfinished IDs without duplicating answered
  const p=createDrill(sequence(10),{batchSize:4},rng());const completed={...asSession(p),ids:[p.ids[0]],checked:[p.ids[0]],drill:{...p.drill,remaining:[...p.ids.slice(1),...p.drill.remaining]}};
  assert.ok(validDrill(completed,new Set(sequence(10))));const next=advanceDrill(completed,1);assert.deepEqual(next.ids.slice(0,3),p.ids.slice(1));assert.ok(!next.ids.includes(p.ids[0]));
 });
-test('UI communicates multi-select confirmation, shortage, finite and infinite continuation',()=>{
+test('UI has one continuous next action and explicit multi-select confirmation',()=>{
  const p=createDrill(['a','b'],{batchSize:10}),s={...asSession(p),index:1,answers:{a:0,b:1}};
- assert.match(drillSettings(10,false,true,2,'<test>'),/首组 2 题/);assert.match(drillSettings(10,false,true,2,'<test>'),/&lt;test&gt;/);
- assert.match(drillNextButton({...s,checked:[],answers:{}},false,true),/提交多选答案/);assert.match(drillNextButton(s,true),/完成本组/);
- assert.match(drillNextButton({...s,drill:{...s.drill,endless:true}},true),/下一组/);assert.match(drillNextButton({...s,checked:['b']},true),/返回未答题/);
- assert.match(drillStatus(s,1),/50%/);assert.match(drillSettings(10,true,true,0,'空范围'),/disabled/);
+ assert.match(drillNextButton({...s,checked:[],answers:{}},false,true),/提交多选答案/);
+ assert.match(drillNextButton({...s,checked:[],answers:{}},false,true),/disabled/);
+ assert.match(drillNextButton(s,false,false),/选择后即显示解析/);
+ assert.match(drillNextButton(s,true),/下一题/);
+ assert.match(drillNextButton({...s,drill:{...s.drill,endless:true}},true),/下一题/);
+ assert.doesNotMatch(drillNextButton(s,true),/下一组|完成本组|配置/);
+ assert.match(drillStatus(s,1),/50%/);
 });

@@ -6,7 +6,7 @@ test('exam: no answer leakage, save/reload, change answer, grade and review', as
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.goto('/');
-  await expect(page.getByRole('heading',{name:'把知识练熟，再从容开考。'})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'把每一次选择，变成理解。'})).toBeVisible();
   await page.screenshot({path:info.outputPath('home.png'),fullPage:true});
   await page.getByRole('button',{name:'开始综合模拟',exact:true}).click();
   await expect(page.getByRole('radio')).toHaveCount(4);
@@ -59,7 +59,7 @@ test('practice: confirm, explanation, wrong-book, correct retry and persisted pr
   await page.getByRole('button',{name:/错题本/}).click();
   await expect(page.getByRole('heading',{name:'错题本还是空的'})).toBeVisible();
   await page.goto('/');
-  await expect(page.locator('.progress-ring strong')).toHaveText('1');
+  await expect(page.locator('.attempted-count')).toHaveText('1');
 });
 
 test('expired restored exam automatically submits; malformed storage does not break app', async ({page}) => {
@@ -76,14 +76,14 @@ test('expired restored exam automatically submits; malformed storage does not br
   await expect(page.locator('.result-message')).toContainText('答对 0 / 20');
   await page.evaluate(() => localStorage.setItem('zhiquan.practice.v1', '{broken'));
   await page.reload();
-  await page.getByRole('button',{name:'模拟考试',exact:true}).click();
-  await expect(page.getByRole('heading',{name:'把知识练熟，再从容开考。'})).toBeVisible();
+  await page.getByRole('button',{name:'学习空间',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'把每一次选择，变成理解。'})).toBeVisible();
   await expect(page.locator('.warning')).toBeVisible();
 });
 
 test('all main views fit viewport without horizontal overflow', async ({page}) => {
   await page.goto('/');
-  for (const name of ['模拟考试','专项练习','错题本','学习记录','考试说明']) {
+  for (const name of ['学习空间','专项练习','错题本','学习记录','考试说明']) {
     await page.getByRole('button',{name,exact:true}).click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBeTruthy();
   }
@@ -91,7 +91,7 @@ test('all main views fit viewport without horizontal overflow', async ({page}) =
 
 test('expanded bank counts, long question navigation and sourced review work', async ({page}, info) => {
   await page.goto('/');
-  await expect(page.locator('.progress-ring')).toContainText(`/ ${QUESTIONS.length} 题`);
+  await expect(page.locator('.desk-progress > div:first-child')).toContainText(`/ ${QUESTIONS.length} 题`);
   await page.getByRole('button',{name:'专项练习',exact:true}).click();
   await expect(page.locator('.chapter-option b')).toHaveText([`${QUESTIONS.length} 题`,...Object.keys(CHAPTERS).map(ch=>`${QUESTIONS.filter(q=>q.chapter===Number(ch)).length} 题`)]);
   await page.selectOption('#practice-count','0');
@@ -135,7 +135,7 @@ test('original-bank active session, history and wrong-book survive expansion', a
     }));
   },{session,id:q.id});
   await page.goto('/');
-  await expect(page.locator('.progress-ring strong')).toHaveText('1');
+  await expect(page.locator('.attempted-count')).toHaveText('1');
   await page.getByRole('button',{name:'继续作答',exact:true}).click();
   await expect(page.locator('#question-title')).toHaveText(q.stem);
   await expect(page.locator('.explanation')).toContainText(q.explanation);
