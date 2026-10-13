@@ -2,7 +2,7 @@ import * as defaultConfig from './config.js';
 
 export const questionType = q => q.type || 'single';
 export function isCorrect(answer, question) {
-  if (Array.isArray(question.answer)) return Array.isArray(answer) && answer.length === question.answer.length && question.answer.every(a => answer.includes(a));
+  if (Array.isArray(question.answer)) return Array.isArray(answer) && answer.length === question.answer.length && new Set(answer).size === answer.length && question.answer.every(a => answer.includes(a));
   return answer === question.answer;
 }
 export const paperSize = profile => Object.values(profile.typeQuotas || profile.quotas).reduce((a,b)=>a+b,0);
@@ -32,6 +32,8 @@ export function makePaper(bank, profileId, random = Math.random, config = defaul
   });
 }
 
+export const sessionProfile = (session,config=defaultConfig) => (config.LEGACY_PROFILES?.[session.version] || config.PROFILES)[session.profile];
+
 export function grade(session, bank, config = defaultConfig) {
   const { CHAPTERS, PROFILES } = config;
   const byId = new Map(bank.map(q => [q.id, q]));
@@ -40,8 +42,8 @@ export function grade(session, bank, config = defaultConfig) {
     return { id, chapter: q.chapter, type:questionType(q), level: CHAPTERS[q.chapter].level, answer: session.answers[id] ?? null, correct: isCorrect(session.answers[id],q) };
   });
   const correct = rows.filter(r => r.correct).length;
-  const profile = session.mode === 'exam' ? PROFILES[session.profile] : null;
-  const score = profile ? Math.round(rows.reduce((sum,r)=>sum+(r.correct?(profile.typePoints?.[r.type]??profile.points):0),0)*100)/100 : Math.round(correct / rows.length * 100);
+  const profile = session.mode === 'exam' ? sessionProfile(session,config) : null;
+  const score = profile ? Math.round(rows.reduce((sum,r)=>sum+(r.correct?(profile.typePoints?.[r.type]??profile.points):0),0)*100)/100 : (rows.length ? Math.round(correct / rows.length * 100) : 0);
   const sections = [1, 2, 3].map(level => {
     const subset = rows.filter(r => r.level === level);
     return { level, total: subset.length, correct: subset.filter(r => r.correct).length };
@@ -73,8 +75,11 @@ export function validSession(value, bank, config = defaultConfig) {
     if(Array.isArray(q.answer))return !Array.isArray(answer)||!answer.length||new Set(answer).size!==answer.length||answer.some(a=>!Number.isInteger(a)||a<0||a>=q.options.length);
     return !Number.isInteger(answer)||answer<0||answer>=q.options.length;
   })) return false;
-  if (!['checked', 'marked'].every(k => Array.isArray(value[k]) && value[k].every(id => value.ids.includes(id)))) return false;
+  if (!['checked', 'marked'].every(k => Array.isArray(value[k]) && new Set(value[k]).size === value[k].length && value[k].every(id => value.ids.includes(id)))) return false;
+  if (value.checked.some(id => !Object.hasOwn(value.answers,id))) return false;
+  if (value.mode === 'practice' && value.deadline !== null) return false;
   if (value.mode === 'exam') {
+    if (value.checked.length) return false;
     const p = (config.LEGACY_PROFILES?.[value.version] || PROFILES)[value.profile];
     if (!p || !Number.isFinite(value.deadline) || value.deadline !== value.startedAt + p.minutes * 60000) return false;
     if (value.ids.length !== paperSize(p)) return false;

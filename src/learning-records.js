@@ -1,7 +1,7 @@
 import { SUBJECTS } from './subjects.js';
 import { createExamEngine } from './engine.js';
 const FORMAT = 'zhiquan.learning-backup';
-const emptyPractice = () => ({active:null,progress:{},history:[]});
+const emptyPractice = () => ({active:null,progress:{},history:[],saved:[]});
 const emptyCourse = subject => ({last:subject.LESSONS[0].id,done:[]});
 
 export function validateBackup(data) {
@@ -17,11 +17,13 @@ export function validateBackup(data) {
       if (!ids.has(questionId) || !value || !Number.isSafeInteger(value.attempts) || value.attempts<=0 || !Number.isSafeInteger(value.correct) || value.correct<0 || value.correct>value.attempts || typeof value.wrong!=='boolean') throw new Error(`${subject.name}包含无效的作答记录。`);
       progress[questionId]={attempts:value.attempts,correct:value.correct,wrong:value.wrong};
     }
+    const saved=p.saved??[];
+    if(!Array.isArray(saved)||saved.length>ids.size||saved.some(id=>!ids.has(id))) throw new Error(`${subject.name}包含无效收藏。`);
     if (p.active && !validSession(p.active,subject.QUESTIONS)) throw new Error(`${subject.name}的未完成答卷不兼容。`);
     if (p.history.some(s=>!validSession(s,subject.QUESTIONS)||!Number.isFinite(s.endedAt))) throw new Error(`${subject.name}包含无法恢复的历史答卷。`);
     const lessonIds=new Set(subject.LESSONS.map(l=>l.id));
     if (!Array.isArray(course.done) || course.done.some(l=>!lessonIds.has(l)) || !lessonIds.has(course.last)) throw new Error(`${subject.name}包含无效的阅读进度。`);
-    subjects[id]={practice:{active:p.active||null,progress,history:p.history},course:{last:course.last,done:[...new Set(course.done)]}};
+    subjects[id]={practice:{active:p.active||null,progress,history:p.history,saved:[...new Set(saved)]},course:{last:course.last,done:[...new Set(course.done)]}};
   }
   if (!Object.keys(subjects).length) throw new Error('备份中没有可导入的科目记录。');
   return subjects;
@@ -44,7 +46,7 @@ export function mergeRecords(local,incoming) {
   for (const [id,p] of Object.entries(incoming.practice.progress)) if (!progress[id] || p.attempts>progress[id].attempts) progress[id]=p;
   const history=[...new Map([...incoming.practice.history,...local.practice.history].map(s=>[s.id,s])).values()].sort((a,b)=>b.endedAt-a.endedAt).slice(0,50);
   return {
-    practice:{active:local.practice.active||incoming.practice.active,progress,history},
+    practice:{active:local.practice.active||incoming.practice.active,progress,history,saved:[...new Set([...(local.practice.saved||[]),...(incoming.practice.saved||[])])]},
     course:{last:incoming.course.last,done:[...new Set([...local.course.done,...incoming.course.done])]},
   };
 }
@@ -65,7 +67,7 @@ export function importBackup(subjects,storage=localStorage) {
   }
   try { for (const [key,value] of writes) storage.setItem(key,value); }
   catch (error) {
-    for (const [key,value] of before) { if(value===null)storage.removeItem(key);else storage.setItem(key,value); }
+    for (const [key,value] of before) { try { if(value===null)storage.removeItem(key);else storage.setItem(key,value); } catch { /* Best effort for every key, even if one restoration fails. */ } }
     throw error;
   }
 }

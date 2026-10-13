@@ -103,7 +103,7 @@ test('expanded bank counts, long question navigation and sourced review work', a
   await page.getByRole('radio').nth(q.answer).click();
   await page.getByRole('button',{name:'确认答案',exact:true}).click();
   await expect(page.locator('.explanation')).toContainText(q.explanation);
-  await expect(page.locator('.explanation a')).toHaveAttribute('href', /crsec\.com\.cn/);
+  await expect(page.locator('.explanation a')).toHaveAttribute('href', SUBJECTS.options.SOURCES[q.source].url);
   expect(await page.locator('.answer-grid').evaluate(grid => {
     const current = grid.querySelector('[aria-current="step"]').getBoundingClientRect();
     const bounds = grid.getBoundingClientRect();

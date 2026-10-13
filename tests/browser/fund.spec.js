@@ -111,7 +111,7 @@ test('recall filters, provenance, no-match state and outline deep links work',as
  await expect(page.locator('.practice-match')).toContainText('本次 2 题');
  await page.locator('[data-action="pick-chapter"][data-chapter="1"]').click();
  await expect(page.getByRole('button',{name:'开始练习',exact:true})).toBeDisabled();
- await expect(page.locator('.practice-match')).toContainText('暂无匹配');
+ await expect(page.locator('.practice-match')).toContainText('没有匹配');
  await page.locator('[data-action="pick-chapter"][data-chapter="0"]').click();
  await page.getByRole('button',{name:'开始练习',exact:true}).click();
  await expect(page.locator('.question-origin')).toContainText('2026年5月');
