@@ -39,6 +39,13 @@ jobs:
           before = '{key:subject.practiceKey,value});}'
           assert text.count(before) == 1
           path.write_text(text.replace(before, '{key:subject.practiceKey,value});await page.reload();}'))
+          # The final question may now be original. Check its exact reference,
+          # rather than assuming all future appends are historical samples.
+          path = pathlib.Path('tests/browser/flow.spec.js')
+          text = path.read_text()
+          before = r"toHaveAttribute('href', /crsec\.com\.cn/);"
+          assert text.count(before) == 1
+          path.write_text(text.replace(before, "toHaveAttribute('href', SUBJECTS.options.SOURCES[q.source].url);"))
           PY
       - run: npm ci
       - run: npm test
