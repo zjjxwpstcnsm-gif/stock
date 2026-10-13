@@ -1,0 +1,74 @@
+name: Verify published Pages random practice
+on:
+  push:
+    branches: [chore/import-reviewed-random-practice-20261013]
+    paths: ['.delivery/verify-live.json']
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise the actual published GitHub Pages URL
+        run: |
+          mkdir -p live-evidence
+          node --input-type=module <<'JS'
+          import {chromium} from '@playwright/test';
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const wanted=JSON.parse(fs.readFileSync('.delivery/verify-live.json','utf8'));
+          const base='https://zjjxwpstcnsm-gif.github.io/stock/';
+          let release;
+          for(let attempt=0;attempt<8;attempt++){
+            const response=await fetch(`${base}src/release.json?v=${Date.now()}`,{cache:'no-store'});
+            if(response.ok){release=await response.json();if(release.version===wanted.version)break;}
+            await new Promise(r=>setTimeout(r,10000));
+          }
+          assert.equal(release?.version,wanted.version,'Public Pages release is not current');
+          assert.equal(release.questionCount,2710);
+          const browser=await chromium.launch();
+          const rows=[];
+          for(const mobile of [false,true]){
+            const context=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1050},isMobile:mobile,hasTouch:mobile});
+            const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+            for(const subject of ['options','fund1','fund2','fund3','securities1','securities2','futures1','futures2']){
+              await page.goto(`${base}?subject=${subject}&release=${wanted.version}#drill`,{waitUntil:'networkidle'});
+              await page.locator('#drill-count').waitFor();
+              assert.equal(await page.getByRole('button',{name:'随机刷题',exact:true}).count(),1);
+              assert.equal(await page.locator('[data-action="start-drill"]').isEnabled(),true);
+              assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,'Horizontal overflow');
+              rows.push({subject,mobile,entry:true});
+            }
+            await page.goto(`${base}?subject=options&release=${wanted.version}#drill`,{waitUntil:'networkidle'});
+            await page.locator('#drill-count').fill('2');await page.locator('#drill-count').dispatchEvent('change');
+            await page.screenshot({path:`live-evidence/${mobile?'mobile':'desktop'}-entry.png`,fullPage:true});
+            await page.locator('[data-action="start-drill"]').click();
+            await page.getByRole('radio').first().click();
+            await page.locator('#answer-feedback').waitFor();
+            await page.screenshot({path:`live-evidence/${mobile?'mobile':'desktop'}-answer.png`,fullPage:true});
+            await page.reload({waitUntil:'networkidle'});
+            await page.getByRole('button',{name:'继续作答',exact:true}).click();
+            await page.locator('#answer-feedback').waitFor();
+            assert.deepEqual(errors,[],'Public browser runtime errors');
+            await context.close();
+          }
+          await browser.close();
+          fs.writeFileSync('live-evidence/result.json',JSON.stringify({url:base,release,checks:rows,immediateFeedback:true,persistentResume:true,checkedAt:new Date().toISOString()},null,2));
+          console.log('Published release verified: all eight subject entries on desktop/mobile; immediate feedback and real localStorage resume passed.');
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: actual-pages-verification
+          path: live-evidence/
+          retention-days: 14

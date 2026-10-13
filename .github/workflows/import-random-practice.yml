@@ -1,0 +1,125 @@
+name: Verify and publish reviewed random practice
+on:
+  push:
+    branches: [chore/import-reviewed-random-practice-20261013]
+    paths-ignore: ['.delivery/verify-live.json']
+permissions:
+  contents: write
+concurrency:
+  group: reviewed-random-practice-import
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: delivery
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/publish-random-practice-20261013
+          path: candidate
+      - name: Verify exact reviewed payload and apply to clean baseline
+        shell: python
+        run: |
+          import hashlib, json, lzma, os, re, subprocess
+          from pathlib import Path
+          repo = Path('candidate').resolve()
+          packed = b''.join(Path(f'delivery/.delivery/payload.part{i}.xz').read_bytes() for i in range(4))
+          assert len(packed) == 51696, 'Transport length mismatch'
+          raw = lzma.decompress(packed)
+          assert len(raw) == 278992, 'Payload length mismatch'
+          assert hashlib.sha256(raw).hexdigest() == '4b5eed39cd90c3e22e7ac65a4b542f1e779cddc5e3d4748c0a4f6129ae9c80f2', 'Payload checksum mismatch'
+          data = json.loads(raw)
+          def git(*args, text=None):
+              p = subprocess.run(['git', '-C', str(repo), *args], input=text, text=True, capture_output=True, check=True)
+              return p.stdout
+          def safe(name):
+              rel = Path(name)
+              assert not rel.is_absolute() and '..' not in rel.parts and '.git' not in rel.parts, name
+              assert name.startswith(('src/', 'tests/', 'docs/')) or name in ('index.html', 'README.md'), name
+              path = (repo / name).resolve()
+              assert repo in path.parents, name
+              return path
+          assert data['base'] == '1c897717f36f3b75a91e9404bbcb6dd7e2c9d8a3'
+          assert git('rev-parse', 'HEAD').strip() == data['base'], 'Candidate changed; reconcile before retrying'
+          assert not git('status', '--porcelain').strip(), 'Candidate must be clean'
+          patched = []
+          for line in data['patch'].splitlines():
+              if line.startswith('diff --git '):
+                  m = re.fullmatch(r'diff --git a/(\S+) b/(\S+)', line)
+                  assert m and m[1] == m[2], 'Unsupported patch header'
+                  assert safe(m[1]).is_file(), m[1]
+                  patched.append(m[1])
+          assert patched
+          git('apply', '--check', '-', text=data['patch'])
+          writes = {}
+          for name, pairs in data['replacements'].items():
+              value = safe(name).read_text(encoding='utf-8')
+              for old, new in pairs:
+                  assert value.count(old) == 1, name
+                  value = value.replace(old, new, 1)
+              writes[name] = value
+          for name, value in data['files'].items():
+              assert not safe(name).exists(), name
+              writes[name] = value
+          readme = safe('README.md').read_text(encoding='utf-8')
+          assert data['readmePrefix'] not in readme
+          writes['README.md'] = data['readmePrefix'] + readme
+          expected = {'README.md','docs/precision-audit.md','docs/random-practice.md','index.html','src/academy-views.js','src/app.js','src/drill-engine.js','src/drill-views.js','src/drill.css','src/engine.js','src/precision-questions.js','src/release.json','src/review-workbench.js','src/subjects.js','tests/academy.test.js','tests/browser/drill.spec.js','tests/drill.test.js','tests/precision.test.js','tests/review.test.js'}
+          assert set(patched) | set(writes) == expected, 'Unexpected changed paths'
+          git('apply', '-', text=data['patch'])
+          for name, value in writes.items():
+              path = safe(name)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(value, encoding='utf-8')
+          print('Applied 19 reviewed files to exact baseline; source and tests are ready for full CI.')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('## Reviewed payload verified\nSHA-256: `4b5eed39cd90c3e22e7ac65a4b542f1e779cddc5e3d4748c0a4f6129ae9c80f2`\n\n19 source/documentation/test files, 96 new precision questions, random and infinite practice.\n')
+      - name: Save reproducible candidate source
+        run: tar --exclude=.git -czf "$RUNNER_TEMP/candidate-source.tar.gz" -C candidate .
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: candidate/package-lock.json
+      - run: npm ci
+        working-directory: candidate
+      - name: Full unit and content integrity suite
+        working-directory: candidate
+        run: |
+          set -o pipefail
+          npm test | tee "$RUNNER_TEMP/unit-test.log"
+      - run: npx playwright install --with-deps chromium
+        working-directory: candidate
+      - name: Full desktop and mobile browser suite
+        working-directory: candidate
+        run: |
+          set -o pipefail
+          npx playwright test | tee "$RUNNER_TEMP/browser-test.log"
+      - run: npm run build && git diff --check
+        working-directory: candidate
+      - name: Commit verified source to release candidate branch
+        working-directory: candidate
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md docs index.html src tests
+          git commit -m 'feat: publish random practice and 96 precision questions'
+          git push origin HEAD:fix/publish-random-practice-20261013
+          echo "## Verified candidate commit" >> "$GITHUB_STEP_SUMMARY"
+          git rev-parse HEAD >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reviewed-random-practice-verification
+          path: |
+            ${{ runner.temp }}/candidate-source.tar.gz
+            ${{ runner.temp }}/unit-test.log
+            ${{ runner.temp }}/browser-test.log
+            candidate/playwright-report/
+            candidate/test-results/
+            candidate/src/release.json
+          retention-days: 7
