@@ -70,14 +70,27 @@ jobs:
           writes['README.md'] = data['readmePrefix'] + readme
           expected = {'README.md','docs/precision-audit.md','docs/random-practice.md','index.html','src/academy-views.js','src/app.js','src/drill-engine.js','src/drill-views.js','src/drill.css','src/engine.js','src/precision-questions.js','src/release.json','src/review-workbench.js','src/subjects.js','tests/academy.test.js','tests/browser/drill.spec.js','tests/drill.test.js','tests/precision.test.js','tests/review.test.js'}
           assert set(patched) | set(writes) == expected, 'Unexpected changed paths'
+          # First full CI identified two stale 2614/600 browser snapshots.
+          # Keep the assertions, derive expected display counts from the imported bank.
+          # Independent unit snapshots still require exactly 2710 total / 64 sourced items.
+          name = 'tests/browser/academy.spec.js'
+          value = safe(name).read_text(encoding='utf-8')
+          replacements = [
+              ("toContainText('2,614')", "toContainText(Object.values(SUBJECTS).reduce((total,s)=>total+s.QUESTIONS.length,0).toLocaleString('en-US'))"),
+              ("toContainText('匹配 600 题')", "toContainText(`匹配 ${SUBJECTS.options.QUESTIONS.filter(q=>(q.sourceKind||'original')==='original').length} 题`)")
+          ]
+          for old, new in replacements:
+              assert value.count(old) == 1, name
+              value = value.replace(old, new, 1)
+          writes[name] = value
           git('apply', '-', text=data['patch'])
           for name, value in writes.items():
               path = safe(name)
               path.parent.mkdir(parents=True, exist_ok=True)
               path.write_text(value, encoding='utf-8')
-          print('Applied 19 reviewed files to exact baseline; source and tests are ready for full CI.')
+          print('Applied 19 reviewed files and corrected two stale browser count expectations in one existing test file.')
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
-              f.write('## Reviewed payload verified\nSHA-256: `4b5eed39cd90c3e22e7ac65a4b542f1e779cddc5e3d4748c0a4f6129ae9c80f2`\n\n19 source/documentation/test files, 96 new precision questions, random and infinite practice.\n')
+              f.write('## Reviewed payload verified\nSHA-256: `4b5eed39cd90c3e22e7ac65a4b542f1e779cddc5e3d4748c0a4f6129ae9c80f2`\n\n19 payload files + existing browser snapshot correction. No tests removed or skipped.\n')
       - name: Save reproducible candidate source
         run: tar --exclude=.git -czf "$RUNNER_TEMP/candidate-source.tar.gz" -C candidate .
       - uses: actions/setup-node@v4
