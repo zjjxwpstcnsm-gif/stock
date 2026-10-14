@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { SUBJECTS } from '../../src/subjects.js';
 const FUND_QUESTIONS=Object.fromEntries(['fund1','fund2','fund3'].map(id=>[id,SUBJECTS[id].QUESTIONS]));
+import { FUND_SOURCES } from '../../src/fund-config.js';
 import { FUND_LESSONS } from '../../src/fund-course-data.js';
 
 test('fund exam is isolated from options, restores timer and grades 100 questions at one point each',async({page},info)=>{
@@ -77,7 +78,7 @@ test('all 50 lessons, self-checks, diagrams, source resources and chapter practi
   await page.getByRole('button',{name:'真题资料',exact:true}).click();await page.reload();
   await expect(page.getByRole('heading',{name:'真题资料与官方大纲'})).toBeVisible();
   await expect(page.locator('#main')).toContainText('非官方原卷');
-  await expect(page.locator('#main a[href$=".pdf"]')).toHaveCount(3);
+  for(const key of ['outline1','outline2','outline3']) await expect(page.locator(`#main a[href="${FUND_SOURCES[key].url}"]`)).toHaveCount(1);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
  }
  expect(errors).toEqual([]);

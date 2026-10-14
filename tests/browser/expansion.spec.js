@@ -24,6 +24,7 @@ for(const s of Object.values(SUBJECTS)){
   await page.reload();
   const state=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),s.practiceKey);
   expect(state.progress[q.id]).toEqual({attempts:1,correct:1,wrong:false});
+  await page.locator('[data-action="resume"]').click();
   await expect(page.locator('#question-title')).toHaveText(q.stem);
   await page.getByRole('button',{name:'回到对应教程 →',exact:true}).click();
   await expect(page).toHaveURL(new RegExp(`#course/${q.lessonId}$`));
