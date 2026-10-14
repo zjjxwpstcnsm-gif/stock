@@ -7,6 +7,7 @@ export const CASEBOOK_SOURCES = {
   derivatives2026: {title:'证监会 · 衍生品交易监督管理办法（试行）发布说明',url:'https://www.csrc.gov.cn/csrc/c100028/c7632835/content.shtml',kind:'official',note:'2026-05-15公布，2026-11-16施行。公布日期不等于施行日期，适用范围不等同所有期权交易。'},
 };
 export const POLICY_NOTICES = [
+  {id:'futures-companies-2026',subjects:['futures2'],title:'期货公司管理新办法：2027年起施行',published:'2026-09-11',effective:'2027-01-01',verified:'2026-10-14',source:'https://www.csrc.gov.cn/csrc/c101953/c7658242/content.shtml',detail:'证监会第235号令已公布，施行日为2027年1月1日。2026年10月核对题目时，不能将新办法条号与旧办法混用。',note:'对照题所依据版本、施行时间及配套实施公告；本提示不是实时更新。'},
   {id:'derivatives2026',subjects:['futures1','futures2','options'],title:'衍生品新规：分清公布与施行',published:'2026-05-15',effective:'2026-11-16',verified:CASEBOOK_DATE,source:CASEBOOK_SOURCES.derivatives2026.url,detail:'范围为期货交易以外的互换、远期、非标准化期权及其组合。不能直接套到所有场内标准化期权。',note:'核对时尚未施行；届时仍需检查配套通知与过渡安排。'},
   {id:'futures-capital',subjects:['futures2'],title:'历史样卷的注册资本数字不可机械沿用',effective:'2022-08-01',verified:CASEBOOK_DATE,source:CASEBOOK_SOURCES.futuresLawReview.url,detail:'期货和衍生品法第六十条规定期货公司注册资本基础下限为1亿元、实缴货币资本，并允许审慎监管提高最低限额。',note:'2016年样卷有3000万元旧口径。历史答案与当前适用规则须分开。'},
 ];

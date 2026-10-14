@@ -1,0 +1,37 @@
+{
+  "commit": "4e31461f3b204c8401dbcb32883d8ca39cb12557",
+  "subjects": {
+    "options": {
+      "count": 638,
+      "recordHash": "d80ca73598ad01d5e4a02ac24381beea93088ed180fbbc77287093cf42969e9b"
+    },
+    "fund1": {
+      "count": 332,
+      "recordHash": "9e4bb75c8d0d04e47921ba6c16da7ab93890a7114c2ace8a5f0636592601e53e"
+    },
+    "fund2": {
+      "count": 395,
+      "recordHash": "21330a9b32dca96e74f02315bb800026b0f0d8c974ed3e04a9a7a51f5d073d57"
+    },
+    "fund3": {
+      "count": 337,
+      "recordHash": "2efe32ffc0df05a74725ebe87294a0afa9ee602e3eab10dd77c0eb5e8714e4d0"
+    },
+    "securities1": {
+      "count": 313,
+      "recordHash": "c0abab7f7ffcf9618e4e85c4a6d2b76650a2731269effc77dab8c0d2db18d32c"
+    },
+    "securities2": {
+      "count": 244,
+      "recordHash": "0e05cd0e840d79f427ac0fa59863b5fd7badbc5b4b06ca2c22d7a072acdfafa0"
+    },
+    "futures1": {
+      "count": 332,
+      "recordHash": "899c2685df2462a7ce94ee384e6864c9a44ce96464ceae247b989a7cfea22ba7"
+    },
+    "futures2": {
+      "count": 247,
+      "recordHash": "ad7d3b9770b96d1413b89dc7baad8311b0cc55654144b65d73bf49bf1083e18b"
+    }
+  }
+}

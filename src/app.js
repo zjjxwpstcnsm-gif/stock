@@ -1,9 +1,11 @@
+import { editorialBatches } from './content-updates.js';
 import { PRECISION_BATCH } from './precision-questions.js';
 import { createDrill, advanceDrill } from './drill-engine.js';
 import { drillStatus, drillNextButton, focusedDrillView } from './drill-views.js';
 import { studyHome } from './study-home.js';
 import { SUBJECT, subjectOptions } from './subjects.js';
-import { fundGuide, fundCoverage } from './fund-views.js';
+import { fundGuide } from './fund-views.js';
+import { fundCoverage, questionIdsForObjective } from './coverage-views.js';
 import { catalogView, resourcesView, academyGuide, searchView, yearOptions, letters, sourceLabel } from './academy-views.js';
 import { TYPE_NAMES } from './academy-data.js';
 import { CONTENT_DATE } from './academy-sources.js';
@@ -26,6 +28,7 @@ let reviewFilter = 'all';
 let practiceChapter = 0;
 let practiceCount = 10;
 let practiceSource = 'all', practiceYear = 0, recallYear = 0, coverageChapter = 0;
+let coverageQuery = '', coverageStatus = 'all';
 let wrongChapter = 0;
 let practiceType = 'all', practiceQuery = '', practiceQuestion = null;
 let practiceStatus = 'all', practiceDifficulty = 'all', practiceBatch = 'all', savedLimit = 12;
@@ -92,7 +95,7 @@ function save() {
 function wrongIds() { return QUESTIONS.filter(q => state.progress[q.id]?.wrong).map(q => q.id); }
 function sourceLink(q) {
   const source=SOURCES[q.source];
-  return `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${esc(source.title)}</a>${['recall','sample'].includes(q.sourceKind) ? ` · 来源页面第 ${q.sourceQuestion} 题 · ${esc(q.examSession)}<p>${esc(q.reviewNote)}</p>` : q.editorialBatch ? `<p>参考定位：${esc(q.referenceSection)} · 本题核对 ${esc(q.reviewedAt)}</p><p>${esc(q.reviewNote)}</p>` : ''}`;
+  return `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${esc(source.title)}</a>${['recall','sample'].includes(q.sourceKind) ? ` · 来源页面第 ${q.sourceQuestion} 题 · ${esc(q.examSession)}<p>${esc(q.reviewNote)}</p>${q.referenceUrl?`<p>规则复核：<a href="${esc(q.referenceUrl)}" target="_blank" rel="noopener noreferrer">${esc(q.referenceTitle)}</a> · 核对 ${esc(q.reviewedAt)}</p>`:''}` : q.editorialBatch ? `<p>参考定位：${esc(q.referenceSection)} · 本题核对 ${esc(q.reviewedAt)}</p><p>${esc(q.reviewNote)}</p>` : ''}`;
 }
 const filteredPractice = (chapter=practiceChapter) => QUESTIONS.filter(q=>matchesLearningFilter(q,state,practiceStatus,practiceDifficulty,practiceBatch) && (!chapter || q.chapter===chapter) && (practiceSource==='all' || (q.sourceKind||'original')===practiceSource) && (!practiceYear || q.year===practiceYear) && (practiceType==='all' || questionType(q)===practiceType) && (!practiceQuestion || q.id===practiceQuestion) && (!practiceQuery || `${q.stem} ${q.topic} ${q.options.join(' ')}`.toLowerCase().includes(practiceQuery.toLowerCase())));
 
@@ -117,7 +120,7 @@ function render() {
     <div class="workspace">
       <header class="topbar"><div class="breadcrumb-trail"><span class="breadcrumb">学习空间</span><span class="separator">/</span><strong>${SUBJECT.short}</strong></div><form id="topbar-search" class="topbar-search"><label class="sr-only" for="global-search">搜索理论、题目与考点</label><input type="search" id="global-search" name="query" maxlength="100" placeholder="搜索理论、题目与考点"><button type="submit" aria-label="搜索">⌕</button></form><span class="version">内容核对 ${CONTENT_DATE}</span></header>
       ${storageWarning ? `<div role="status" class="warning">${esc(storageWarning)}</div>` : ''}
-      <main id="main" tabindex="-1">${view === 'review' ? reviewWorkbench(SUBJECT,state,savedLimit) : view === 'course' ? courseView() : view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'coverage' ? fundCoverage(SUBJECT,coverageChapter) : view === 'resources' ? resourcesView(SUBJECT,recallYear)+qualitySummary(SUBJECT)+ruleNoticeView(SUBJECT) : view === 'catalog' ? catalogView() : view === 'search' ? searchView(searchQuery,searchScope,SUBJECT,searchType,searchLimit) : view === 'guide' ? guideView()+ruleNoticeView(SUBJECT) : view === 'result' ? resultView() : homeView()}</main>
+      <main id="main" tabindex="-1">${view === 'review' ? reviewWorkbench(SUBJECT,state,savedLimit) : view === 'course' ? courseView() : view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'coverage' ? fundCoverage(SUBJECT,coverageChapter,{query:coverageQuery,status:coverageStatus,progress:state.progress}) : view === 'resources' ? resourcesView(SUBJECT,recallYear)+qualitySummary(SUBJECT)+ruleNoticeView(SUBJECT) : view === 'catalog' ? catalogView() : view === 'search' ? searchView(searchQuery,searchScope,SUBJECT,searchType,searchLimit) : view === 'guide' ? guideView()+ruleNoticeView(SUBJECT) : view === 'result' ? resultView() : homeView()}</main>
       <footer>独立学习项目 · 原创训练与来源题分列 · 模拟成绩仅用于学习<span>记录仅保存在当前浏览器</span></footer>
     </div>
   </div><dialog id="confirm-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title"></h2><p id="dialog-text"></p><div class="dialog-actions">${btn('返回', 'cancel-dialog', '', 'secondary')}${btn('确认', 'confirm-dialog', 'id="confirm-button"', 'primary')}</div></dialog>`;
@@ -143,7 +146,7 @@ function homeView() { return studyHome(SUBJECT,state,courseProgress(),resumeBann
 
 function practiceView() {
   const candidates = filteredPractice();
-  return `${heading('FOCUSED PRACTICE', '专项练习', '按章节、来源和题型巩固知识，确认答案后立即查看解析。')}${resumeBanner()}${practiceQuestion?`<div class="located-question" role="status"><span>已从搜索定位 1 道题，可以直接开始练习。</span>${btn('清除定位','clear-location','','text-button')}</div>`:''}<div class="practice-grid"><section class="panel"><h2>选择练习范围</h2><div class="practice-filters"><label for="practice-source">题目来源<select id="practice-source"><option value="all" ${practiceSource==='all'?'selected':''}>全部来源</option><option value="original" ${practiceSource==='original'?'selected':''}>原创训练</option><option value="recall" ${practiceSource==='recall'?'selected':''}>历年回忆题 · 重述</option><option value="sample" ${practiceSource==='sample'?'selected':''}>历史样卷 · 重述</option></select></label><label for="practice-year">来源年份<select id="practice-year" ${!['recall','sample'].includes(practiceSource)?'disabled':''}>${yearOptions(SUBJECT,practiceYear)}</select></label><label for="practice-type">题型<select id="practice-type"><option value="all">全部题型</option>${Object.entries(TYPE_NAMES).filter(([type])=>QUESTIONS.some(q=>questionType(q)===type)).map(([type,label])=>`<option value="${type}" ${practiceType===type?'selected':''}>${label}</option>`).join('')}</select></label></div><form id="practice-search" class="practice-keyword"><label class="sr-only" for="practice-query">筛选考点关键词</label><input id="practice-query" name="query" type="search" value="${esc(practiceQuery)}" placeholder="输入考点关键词筛选" maxlength="100"><button class="secondary" type="submit">筛选</button></form><div class="learning-filters"><label for="practice-status">练习状态<select id="practice-status">${[['all','全部题目'],['unseen','尚未练过'],['wrong','最近答错'],['saved','我的收藏']].map(([v,t])=>`<option value="${v}" ${practiceStatus===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-difficulty">题目难度<select id="practice-difficulty"><option value="all">全部难度</option>${Object.entries(DIFFICULTIES).map(([v,t])=>`<option value="${v}" ${practiceDifficulty===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-batch">内容批次<select id="practice-batch"><option value="all">全部批次</option><option value="${CASEBOOK_DATE}" ${practiceBatch===CASEBOOK_DATE?'selected':''}>${CASEBOOK_DATE} · 新增情景题</option><option value="${PRECISION_BATCH}" ${practiceBatch===PRECISION_BATCH?'selected':''}>2026-10-13 · 易错精练 96 题</option></select></label></div><div class="filter-reset"><span>来源、章节、状态与难度可组合筛选</span>${btn('重置筛选','reset-practice','','text-button')}</div><div class="chapter-picker" tabindex="0" aria-label="可滚动的章节选择">${btn(`<strong>全部章节</strong><span>覆盖${Object.keys(CHAPTERS).length}个知识模块</span><b>${filteredPractice(0).length} 题</b>`, 'pick-chapter', `data-chapter="0" aria-pressed="${practiceChapter === 0}"`, practiceChapter === 0 ? 'chapter-option selected' : 'chapter-option')}${Object.entries(CHAPTERS).map(([ch,c])=>btn(`<strong>${esc(c.name)}</strong><span>${esc(c.desc)}</span><b>${filteredPractice(Number(ch)).length} 题</b>`,'pick-chapter',`data-chapter="${ch}" aria-pressed="${practiceChapter===Number(ch)}"`,practiceChapter===Number(ch)?'chapter-option selected':'chapter-option')).join('')}</div></section><aside class="panel practice-settings"><span class="eyebrow">本次练习</span><h2>${practiceChapter ? CHAPTERS[practiceChapter].short : '全部章节'}</h2><label for="practice-count">题目数量</label><select id="practice-count"><option value="10" ${practiceCount===10?'selected':''}>随机 10 题</option><option value="20" ${practiceCount===20?'selected':''}>随机 20 题</option><option value="0" ${practiceCount===0?'selected':''}>全部 ${candidates.length} 题（顺序）</option></select><ul class="check-list"><li>不限时，随时继续</li><li>确认后查看答案与解析</li><li>自动记录练习与错题</li><li>多选须选全正确项</li></ul>${btn('开始练习','start-practice',candidates.length?'':'disabled','primary full')}<p class="practice-match" role="status">${candidates.length?`匹配 ${candidates.length} 题 · 本次 ${practiceCount?Math.min(practiceCount,candidates.length):candidates.length} 题`:'当前筛选没有匹配题，请重置或调整条件。'}</p><p class="muted">原创、参数变式与来源题分别标注；均非官方原卷。</p></aside></div>`;
+  return `${heading('FOCUSED PRACTICE', '专项练习', '按章节、来源和题型巩固知识，确认答案后立即查看解析。')}${resumeBanner()}${practiceQuestion?`<div class="located-question" role="status"><span>已从搜索定位 1 道题，可以直接开始练习。</span>${btn('清除定位','clear-location','','text-button')}</div>`:''}<div class="practice-grid"><section class="panel"><h2>选择练习范围</h2><div class="practice-filters"><label for="practice-source">题目来源<select id="practice-source"><option value="all" ${practiceSource==='all'?'selected':''}>全部来源</option><option value="original" ${practiceSource==='original'?'selected':''}>原创训练</option><option value="recall" ${practiceSource==='recall'?'selected':''}>历年回忆题 · 重述</option><option value="sample" ${practiceSource==='sample'?'selected':''}>历史样卷 · 重述</option></select></label><label for="practice-year">来源年份<select id="practice-year" ${!['recall','sample'].includes(practiceSource)?'disabled':''}>${yearOptions(SUBJECT,practiceYear)}</select></label><label for="practice-type">题型<select id="practice-type"><option value="all">全部题型</option>${Object.entries(TYPE_NAMES).filter(([type])=>QUESTIONS.some(q=>questionType(q)===type)).map(([type,label])=>`<option value="${type}" ${practiceType===type?'selected':''}>${label}</option>`).join('')}</select></label></div><form id="practice-search" class="practice-keyword"><label class="sr-only" for="practice-query">筛选考点关键词</label><input id="practice-query" name="query" type="search" value="${esc(practiceQuery)}" placeholder="输入考点关键词筛选" maxlength="100"><button class="secondary" type="submit">筛选</button></form><div class="learning-filters"><label for="practice-status">练习状态<select id="practice-status">${[['all','全部题目'],['unseen','尚未练过'],['wrong','最近答错'],['saved','我的收藏']].map(([v,t])=>`<option value="${v}" ${practiceStatus===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-difficulty">题目难度<select id="practice-difficulty"><option value="all">全部难度</option>${Object.entries(DIFFICULTIES).map(([v,t])=>`<option value="${v}" ${practiceDifficulty===v?'selected':''}>${t}</option>`).join('')}</select></label><label for="practice-batch">内容批次<select id="practice-batch"><option value="all">全部批次</option>${editorialBatches(SUBJECT).map(batch=>`<option value="${esc(batch.id)}" ${practiceBatch===batch.id?'selected':''}>${esc(batch.id.slice(0,10))} · ${esc(batch.name)} ${batch.count}题</option>`).join('')}</select></label></div><div class="filter-reset"><span>来源、章节、状态与难度可组合筛选</span>${btn('重置筛选','reset-practice','','text-button')}</div><div class="chapter-picker" tabindex="0" aria-label="可滚动的章节选择">${btn(`<strong>全部章节</strong><span>覆盖${Object.keys(CHAPTERS).length}个知识模块</span><b>${filteredPractice(0).length} 题</b>`, 'pick-chapter', `data-chapter="0" aria-pressed="${practiceChapter === 0}"`, practiceChapter === 0 ? 'chapter-option selected' : 'chapter-option')}${Object.entries(CHAPTERS).map(([ch,c])=>btn(`<strong>${esc(c.name)}</strong><span>${esc(c.desc)}</span><b>${filteredPractice(Number(ch)).length} 题</b>`,'pick-chapter',`data-chapter="${ch}" aria-pressed="${practiceChapter===Number(ch)}"`,practiceChapter===Number(ch)?'chapter-option selected':'chapter-option')).join('')}</div></section><aside class="panel practice-settings"><span class="eyebrow">本次练习</span><h2>${practiceChapter ? CHAPTERS[practiceChapter].short : '全部章节'}</h2><label for="practice-count">题目数量</label><select id="practice-count"><option value="10" ${practiceCount===10?'selected':''}>随机 10 题</option><option value="20" ${practiceCount===20?'selected':''}>随机 20 题</option><option value="0" ${practiceCount===0?'selected':''}>全部 ${candidates.length} 题（顺序）</option></select><ul class="check-list"><li>不限时，随时继续</li><li>确认后查看答案与解析</li><li>自动记录练习与错题</li><li>多选须选全正确项</li></ul>${btn('开始练习','start-practice',candidates.length?'':'disabled','primary full')}<p class="practice-match" role="status">${candidates.length?`匹配 ${candidates.length} 题 · 本次 ${practiceCount?Math.min(practiceCount,candidates.length):candidates.length} 题`:'当前筛选没有匹配题，请重置或调整条件。'}</p><p class="muted">原创、参数变式与来源题分别标注；均非官方原卷。</p></aside></div>`;
 }
 
 function bookmarkButton(q) {
@@ -343,6 +346,11 @@ app.addEventListener('click', e => {
     const next = makeSession(qs.map(q => q.id), 'practice');
     next.title = `${practiceChapter ? CHAPTERS[practiceChapter].short : '全章节'}${practiceSource==='recall' ? ` · ${practiceYear||'历年'}回忆题` : ''}练习`;
     startSession(next);
+  } else if (action === 'coverage-reset') {
+    coverageChapter=0;coverageQuery='';coverageStatus='all';render();document.querySelector('#coverage-query')?.focus();
+  } else if (action === 'coverage-practice') {
+    const ids=questionIdsForObjective(SUBJECT,target.dataset.code);if(!ids.length)return;
+    const next=makeSession(shuffle(ids),'practice');next.title=`大纲 ${target.dataset.code} · 对应题练习`;startSession(next);
   } else if (action === 'start-wrong') {
     const ids = wrongIds().filter(id => !wrongChapter || qmap.get(id).chapter === wrongChapter);
     if (!ids.length) return;
@@ -386,10 +394,11 @@ async function readBackup(file) {
   } catch(error) {recordStatus=error instanceof SyntaxError?'文件不是有效JSON，请选择导出的学习记录。':error.message;render();}
 }
 app.addEventListener('submit', e=>{
-  const form=e.target;if(!['topbar-search','knowledge-search','practice-search'].includes(form.id))return;
+  const form=e.target;if(!['topbar-search','knowledge-search','practice-search','coverage-search'].includes(form.id))return;
   e.preventDefault();
   const query=String(new FormData(form).get('query')||'').trim().slice(0,100);
-  if(form.id==='practice-search'){practiceQuery=query;practiceQuestion=null;render();}
+  if(form.id==='coverage-search'){coverageQuery=query;render();document.querySelector('#coverage-query')?.focus();}
+  else if(form.id==='practice-search'){practiceQuery=query;practiceQuestion=null;render();}
   else {searchQuery=query;searchLimit=20;navigate('search');}
 });
 app.addEventListener('change', e => {
@@ -411,6 +420,7 @@ app.addEventListener('change', e => {
   if (e.target.id === 'practice-source') { practiceSource=e.target.value;practiceYear=0;practiceQuestion=null;render(); }
   if (e.target.id === 'practice-year') { practiceYear=Number(e.target.value);render(); }
   if (e.target.id === 'recall-year') { recallYear=Number(e.target.value);render(); }
+  if(e.target.id==='coverage-status'){coverageStatus=e.target.value;render();document.querySelector('#coverage-status')?.focus();}
   if (e.target.id === 'coverage-chapter') { coverageChapter=Number(e.target.value);render(); }
   if (e.target.id === 'wrong-chapter') { wrongChapter = Number(e.target.value); render(); }
 });

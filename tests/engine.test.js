@@ -18,11 +18,13 @@ test('500 unique questions have four distinct options, valid keys, explanations 
   assert.deepEqual([1, 2, 3, 4].map(c => QUESTIONS.filter(q => q.chapter === c).length), [150, 100, 125, 125]);
 });
 
-test('the original 100 question IDs, texts, options and answers remain unchanged', () => {
+test('original 100-question snapshot only allows the documented covered-call premise clarification', () => {
   const counts = {1:30, 2:20, 3:25, 4:25};
   const original = QUESTIONS.filter(q => Number(q.id.split('-')[1]) <= counts[q.chapter]);
   assert.equal(original.length, 100);
-  assert.equal(createHash('sha256').update(JSON.stringify(original)).digest('hex'), 'e3ade52b35956fd74ea3fae052611ddece13f421b662ad7cb0444a80eb82fc34');
+  // Normalize only the audited missing-strike clarification; choices and answer are still frozen.
+  const normalized = original.map(q=>q.id==='c2-007'?{...q,stem:'ETF 买入价 3.00 元，备兑认购收到权利金 0.08 元。忽略费用，到期组合盈亏平衡点是多少？'}:q);
+  assert.equal(createHash('sha256').update(JSON.stringify(normalized)).digest('hex'), 'e3ade52b35956fd74ea3fae052611ddece13f421b662ad7cb0444a80eb82fc34');
 });
 
 test('additive bank update keeps prior-version practice and exam sessions gradeable', () => {

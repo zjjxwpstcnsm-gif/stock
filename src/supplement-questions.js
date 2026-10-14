@@ -1,5 +1,6 @@
 // Calculation drills use explicit hypothetical inputs. Parameter variants are
 // labelled separately; they are not additional exam recollections.
+import { calculationWalkthrough } from './calculation-walkthroughs.js';
 export const SUPPLEMENT={options:[],fund1:[],fund2:[],fund3:[],securities1:[],securities2:[],futures1:[],futures2:[]};
 const clean=x=>Math.round(x*10000)/10000;
 function family(subject,key,chapter,topic,lessonId,source,make){
@@ -7,7 +8,7 @@ function family(subject,key,chapter,topic,lessonId,source,make){
   const {stem,value,unit='',explanation,inputs}=make(i),right=clean(value);
   const step=Math.max(.1,Math.abs(right)*.1),values=[right,clean(right+step),clean(right+2*step),clean(right-step)];
   const offset=i%4,options=values.map(v=>`${v}${unit}`);
-  SUPPLEMENT[subject].push({id:`${subject}-drill-${key}-${i}`,chapter,topic,lessonId,source,stem,options:[...options.slice(offset),...options.slice(0,offset)],answer:(4-offset)%4,explanation,sourceKind:'original',origin:'原创计算训练 · 参数变式',type:'single',calculation:{family:key,inputs,expected:right,unit},variantFamily:key});
+  SUPPLEMENT[subject].push({id:`${subject}-drill-${key}-${i}`,chapter,topic,lessonId,source:'calculationAudit',curriculumSource:source,stem,options:[...options.slice(offset),...options.slice(0,offset)],answer:(4-offset)%4,explanation:`${explanation}\n分步复算：${calculationWalkthrough(key,inputs,right,unit)}`,reviewedAt:'2026-10-14',referenceSection:`计算训练 · ${key} · 题设假定与单位换算`,reviewNote:'保留既有题号、选项和答案；本次补全计算步骤并修正参考依据类别。参数变式不代表新增独立考点。',editorialBatch:'2026-10-14-calculation-review',sourceKind:'original',origin:'原创计算训练 · 参数变式',type:'single',calculation:{family:key,inputs,expected:right,unit},variantFamily:key});
  }
 }
 family('options','delta-position',3,'Delta与头寸','delta-gamma','greeks1',i=>{const d=.1+i*.04,n=i+1;return {stem:`题设每张单位10000份，持有${n}张认购多头，Delta=${d.toFixed(2)}。其他条件不变，标的上涨0.02元，采用Delta局部近似，头寸市值约增加多少元？`,value:d*n*10000*.02,unit:'元',inputs:{d,n},explanation:`ΔV≈Delta×标的变动×合约单位×张数＝${d.toFixed(2)}×0.02×10000×${n}。这是局部近似，不包含Gamma等影响。`};});
@@ -33,7 +34,7 @@ for(const subject of ['fund1','fund2']){
 for(const [key,make] of [
  ['postmoney',i=>({stem:`题设投前股权估值${i*500}万元，新投资人出资500万元，无其他股权变动。投后估值多少万元？`,value:(i+1)*500,unit:'万元',inputs:{pre:i*500},explanation:'投后股权价值＝投前股权价值＋新增权益投资；债务融资不应直接按同一方式增加股权价值。'})],
  ['stake',i=>({stem:`题设投前股权估值${i*500}万元，新增股权投资500万元，无其他稀释，新投资人的投后持股比例约多少？（四位小数）`,value:100/(i+1),unit:'%',inputs:{pre:i*500},explanation:`投后持股＝500÷(${i*500}＋500)，分母是投后而非投前估值。`})],
- ['enterprise-bridge',i=>({stem:`题设企业价值${1000+i*100}万元，现金100万元，有息债务300万元，无其他调整，股权价值多少万元？`,value:800+i*100,unit:'万元',inputs:{ev:1000+i*100},explanation:'股权价值＝企业价值＋现金−有息债务。营运资本是否另调应看估值口径和交易约定。'})],
+ ['enterprise-bridge',i=>({stem:`题设企业价值${1000+i*100}万元，可计入的非经营现金100万元，有息债务300万元，无其他调整，股权价值多少万元？`,value:800+i*100,unit:'万元',inputs:{ev:1000+i*100},explanation:'股权价值＝企业价值＋现金−有息债务。营运资本是否另调应看估值口径和交易约定。'})],
  ['dpi',i=>({stem:`题设实缴资本2000万元，累计已分配${i*300}万元，无剩余分配计入，同口径DPI是多少倍？`,value:i*300/2000,unit:'倍',inputs:{distributed:i*300},explanation:'DPI＝累计分配÷实缴资本，仅反映已实现分配，不包含剩余估值。'})],
  ['rvpi',i=>({stem:`题设实缴2000万元，剩余净资产价值${i*200}万元，未分配估值同口径，RVPI是多少倍？`,value:i/10,unit:'倍',inputs:{residual:i*200},explanation:'RVPI＝剩余净价值÷实缴资本，剩余价值不是已兑现收益。'})],
  ['tvpi',i=>({stem:`题设实缴2000万元，已分配600万元，剩余价值${i*200}万元，同口径TVPI是多少倍？`,value:(600+i*200)/2000,unit:'倍',inputs:{residual:i*200},explanation:'TVPI＝(分配＋剩余价值)÷实缴资本＝DPI＋RVPI。'})],

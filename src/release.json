@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-13.4",
-  "questionCount": 2838,
+  "version": "2026-10-14.1",
+  "questionCount": 2892,
   "newPrecisionQuestions": 96,
   "numericAuditCases": 44,
   "features": [
@@ -12,11 +12,20 @@
     "prefilled-correction-feedback",
     "case-solving-methods",
     "read-only-answer-recap",
-    "concept-comparison-cards"
+    "concept-comparison-cards",
+    "explicit-objective-coverage",
+    "objective-focused-practice",
+    "dated-rule-version-checks",
+    "numeric-walkthroughs"
   ],
   "newWorkshopQuestions": 64,
   "newWorkshopNumericAuditCases": 38,
   "newClinicQuestions": 64,
   "newClinicNumericAuditCases": 32,
-  "conceptComparisons": 24
+  "conceptComparisons": 24,
+  "newFundCoverageQuestions": 30,
+  "newRuleReviewQuestions": 24,
+  "reviewedCalculationVariants": 480,
+  "correctedExistingQuestions": 7,
+  "explicitFundObjectives": 31
 }

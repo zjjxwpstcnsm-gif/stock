@@ -47,7 +47,7 @@ test('64 new cases are balanced, independently worded, fully explained and trans
    assert.equal(q.rationales.length,4);assert.ok(q.rationales.every(r=>r.length>=10));assert.equal(q.explanation,q.rationales[q.answer]);
    assert.equal(new Set(q.options).size,4);assert.equal(subject.QUESTIONS.filter(other=>other.stem===q.stem).length,1);
    assert.ok(subject.LESSONS.some(l=>l.id===q.lessonId));assert.ok(subject.CHAPTERS[q.chapter]);assert.ok(subject.SOURCES[q.source]);
-   assert.equal(q.reviewedAt,'2026-10-13');assert.ok(q.referenceSection.length>=8);assert.ok(!q.year&&!q.sourceQuestion&&!q.variantFamily);
+   assert.equal(q.reviewedAt,q.id==='securities2-clinic-001'?'2026-10-14':'2026-10-13');assert.ok(q.referenceSection.length>=8);assert.ok(!q.year&&!q.sourceQuestion&&!q.variantFamily);
   }
  }
 });

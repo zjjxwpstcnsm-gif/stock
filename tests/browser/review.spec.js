@@ -11,7 +11,7 @@ test('review workspace renders all subjects with honest counts, dated notices an
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  for(const s of Object.values(SUBJECTS)){
   await page.goto(`/?subject=${s.id}#review`);await expect(page.getByRole('heading',{name:'复习工作台',exact:true})).toBeVisible();
-  await expect(page.locator('.quality-counts>div').first()).toContainText('20');
+  await expect(page.locator('.quality-counts>div').first()).toContainText(`${s.QUESTIONS.filter(q=>q.rationales?.length===q.options.length).length}逐项解析题`);
   await expect(page.locator('.review-coverage')).toContainText('非掌握度');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
  }

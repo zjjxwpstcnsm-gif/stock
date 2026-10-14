@@ -3,6 +3,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { chromium, expect } from '@playwright/test';
 import { SUBJECTS } from '../src/subjects.js';
+import { coverageIndex, coverageSummary } from '../src/coverage-views.js';
 
 const base = new URL(process.env.PAGES_URL || 'https://zjjxwpstcnsm-gif.github.io/stock/');
 assert.equal(base.protocol, 'https:');
@@ -90,6 +91,36 @@ try {
       assert.equal(await page.evaluate(key => localStorage.getItem(key), subject.practiceKey), unchanged);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
       report.checks.push({ device, subject: subject.id, check: 'direct start, full pool, answer, refresh, next and read-only recap', passed: true });
+    }
+    for (const id of ['fund1','fund2','fund3']) {
+      const subject=SUBJECTS[id], rows=coverageIndex(subject), summary=coverageSummary(rows);
+      const url=new URL(base);url.searchParams.set('subject',id);url.hash='coverage';
+      await page.goto(url.href,{waitUntil:'networkidle'});
+      await expect(page.locator('.coverage-objective')).toHaveCount(summary.total);
+      await page.selectOption('#coverage-status','mapped');
+      await expect(page.locator('.coverage-objective')).toHaveCount(summary.mapped);
+      assert.ok(summary.mapped>0,'Expected actual exact-objective mappings');
+      const row=rows.find(r=>r.hasDirect),card=page.locator(`[data-outline-code="${row.code}"]`);
+      await card.locator('.coverage-matches summary').click();
+      await expect(card).toContainText(row.directQuestions[0].stem);
+      await expect(page.locator('.explanation')).toHaveCount(0);
+      const before=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).active,subject.practiceKey);
+      await card.locator('[data-action="coverage-practice"]').click();
+      await expect(page.getByRole('dialog')).toBeVisible();
+      await page.locator('[data-action="cancel-dialog"]').click();
+      assert.deepEqual(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)).active,subject.practiceKey),before);
+      await card.locator('[data-action="coverage-practice"]').click();
+      await page.locator('#confirm-button').click();
+      const stem=await page.locator('#question-title').textContent();
+      const question=row.directQuestions.find(q=>q.stem===stem);assert.ok(question);
+      await page.locator(`#option-${question.answer}`).click();
+      await page.getByRole('button',{name:'确认答案',exact:true}).click();
+      await expect(page.locator('.explanation')).toContainText(question.explanation);
+      await page.getByRole('button',{name:'大纲清单',exact:true}).click();
+      await expect(page.locator(`[data-outline-code="${row.code}"] .coverage-attempts`)).toContainText('1 /');
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      if(id==='fund2')await page.screenshot({path:`${output}/${device}-coverage.png`,fullPage:true});
+      report.checks.push({device,subject:id,check:'exact objective mappings, no answer leak, cancel preservation and confirmed practice',mapped:summary.mapped,total:summary.total,passed:true});
     }
     assert.deepEqual(errors, []);
     assert.ok(assets.size > 20, 'Expected the published module graph to load');

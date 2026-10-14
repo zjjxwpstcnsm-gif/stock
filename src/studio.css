@@ -17,3 +17,11 @@ body{background:var(--canvas);color:var(--ink)}h1,h2,h3{color:var(--ink)}h1{font
 /* Before answering, an inert sticky footer must never cover a choice. */
 body:has(.drill-status) .focus-question:not(:has(#answer-feedback)) .question-actions{position:static}
 .focus-question .question-actions .save-indicator{display:block;flex:1;text-align:left}
+
+/* Reviewed case collections stay outside the zero-configuration random flow. */
+.content-update{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:26px 0;background:#f5f8fc}
+.content-update h2{font-size:21px;line-height:1.6;margin:8px 0}
+.content-update p{font-size:13px;line-height:1.9;color:#63768e;max-width:670px;margin-bottom:0}
+.content-update-actions{display:flex;flex-direction:column;align-items:stretch;gap:8px;flex-shrink:0}
+.content-update-actions button{font-size:12px;min-height:44px}
+@media(max-width:760px){.content-update{display:block}.content-update h2{font-size:19px}.content-update-actions{margin-top:15px;align-items:flex-start}.content-update p{font-size:12px}}
