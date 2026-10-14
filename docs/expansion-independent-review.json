@@ -1,0 +1,478 @@
+{
+  "batch": "2026-10-14-expansion",
+  "reviewedAt": "2026-10-14",
+  "scope": "Only the explicitly accepted question snapshots; not a certification of the prior 2892 questions or later drafts.",
+  "hashAlgorithm": "sha256(JSON.stringify(question))",
+  "reviewer": "independent-content-review",
+  "accepted": [
+    {
+      "id": "fund2-expansion-invest-0001",
+      "sha256": "e3b92f9f9c35be0ab131ab380fb8c25361d23e3ce4da1f777b5e45d3fd9fa22b",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0002",
+      "sha256": "ff8db9d0779e604c79d377286ad93dabc08050c81c9edf4c276072726c23d7dd",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0003",
+      "sha256": "09ac2621ae691506ad9a60c453bcf2b265e5d0c452d52f53ff6a5cd7708471f3",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0004",
+      "sha256": "b6593a63ae129509a480fdae528042eccfddd2b5f8b85bfd09a0bfa2e9fab79a",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0005",
+      "sha256": "233661630c9165c3a6385e6bacf9d1b3147aa6a3093590d750c48395885ced5e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0006",
+      "sha256": "d2e5a498732d0446c770e873f11f291055d3597261e31a92df36616dc5a6eeca",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0007",
+      "sha256": "d9abd0f5a194af349c4002b7079542917ac42d325ef72b7d04baf930ea87626c",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0008",
+      "sha256": "8b0ce704afeb08be6a5d15874197a1fb62ebdf5c0acb633ca9101c25973cde50",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0009",
+      "sha256": "06451c7e8398a0e7d3dde5cc2b93082d147e3472783b1505df2ecde7594e6795",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0010",
+      "sha256": "f2ef53173e870528bbc7c7ca9d3099ad763bfdccf1daedcaa5061605762c3e54",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0011",
+      "sha256": "914c5d311ba080df8d560d8daa0d8a595ca12812e29f49becc5624736af4d97e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0012",
+      "sha256": "aed53bc8da7ad5a0b770cb7f2362c1dd039130d4bac88482c141cf90f3b652c3",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0013",
+      "sha256": "a1a9418b702ec166acecbe0193bb3af354e91c321701004251bc2d0466216e4b",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0014",
+      "sha256": "68e262b102b97cb16210ebb8568938668ec760c4ef6e6cdbd6b543518425499e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0015",
+      "sha256": "d9b0fe8b5bac1a8b695d9e4344a1e2152891ea6762a5b9c6ab9810c2ab7b41c4",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0016",
+      "sha256": "55c21406e470f4153637152529763ac7e4022a0885cb78af000be692bd0567c5",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0017",
+      "sha256": "c39385bcab39a1aa0f34f13916f66d6687f103accd45bf94df6aa6cf9d73e733",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0018",
+      "sha256": "450ba7938fee9d8ac6f7e66480cd330bf7f77b15dc6ad6d5b007ce72ec301493",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0019",
+      "sha256": "0aa8bca2a2628e8c7fdcd37d22e14e227e489daf9b62ace6d3be25b8c36902eb",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0020",
+      "sha256": "3abeb3612d642b3aa8a7f0758cc8f5b432af97f4ea3d3a0d222e394afc7b2858",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0021",
+      "sha256": "67b4aa90023bdee78711539d3bba2c733111e082990a92cf94523ffa49fa9c2b",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0022",
+      "sha256": "f6752c14c25abb5d36611a1e92d8b736d270c8b90ac7fc3e16c79079aa212a53",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0023",
+      "sha256": "586bb007c4ce1c150f31b518f10e901adabe68e4cee27879954b92a2ce2ab8c2",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0024",
+      "sha256": "cadb8fdd8de26954e61bfe7ac1d49d319d169889f0170f906a07e83567691d6d",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0025",
+      "sha256": "09c929ad649e37b1f0c51dda4ccda4535ce264a3bb824a372a87d3b748e6895a",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0026",
+      "sha256": "d1f7117552d442fbcf47228d1a1363f41a84bd5d8d073ab47bed0b66f2bc808b",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0027",
+      "sha256": "a4819e8c5c87aad869b89ed4c9eaa5c435a11ecf32462852519a28e2fa45fbdf",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0028",
+      "sha256": "9b6f112a79c44de51ca322d5dc39cb5badf02875090c5102050eb7cf050ddf1c",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0029",
+      "sha256": "1f421596263f22e781878238010a9995c134c2268542b7775e221bf67391c6dc",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0030",
+      "sha256": "4a198151c2b2d565176719a83f53a298d27e3c4a86eaf386986be59a5fac2b8e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0031",
+      "sha256": "f4c39af118a478af4c97954b85f4469547bc5b386595710e5c7affce0a9a1054",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0032",
+      "sha256": "d76e545a64f2048f7f9a8463b3c6a91c8b5c96d4cd67ddefc3fcdfd039700f5c",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0033",
+      "sha256": "9337a5d704f5088b485996c44eae5bc60a5ee3eca0c7fad5a4a50c382bb34eb3",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0034",
+      "sha256": "cf7d248bf6e91f182af113b6e8c791ed4fe05a23f40ce4cfc63365cc38436532",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0035",
+      "sha256": "558ad7700a1a4b6dc38f21166eca60a373effa6b45fb17d18e297a498997ba3f",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0036",
+      "sha256": "fdb9ab8de5e9ade56d53ac8bb56cd82bdf0d6be6bcbd8fbcf46ec1b03ef99bcc",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0037",
+      "sha256": "c25e49bc67c3bcc2c431ed4363b295a576072da8c6523f873ffd3080c2086058",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0038",
+      "sha256": "f03c6636be55c36d42a9679dca3f39fcea9d16bf351006e65b6e349c77da4b29",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0039",
+      "sha256": "4dfe4d53bd727c8eb31ba726cf2f967228d43ba947287b9f13c70dfbc701c5c5",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0040",
+      "sha256": "63471ca31dbde36046e984023ee83316e699b032964e3d0c65d628a6cd3b0d7c",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0041",
+      "sha256": "2b502cca590f8a929cd4cd9148c7004e1eabfec7212490c70856d8a0d1c4cc4f",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0042",
+      "sha256": "240ebd542e567c71d79a99f9e51c6d92da7f2f555f0b072158b55c6a43aaee9c",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0043",
+      "sha256": "d5e93a3faaa0178c3f216f722717cd4952f0c09063e8b9538a82310656f74162",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0044",
+      "sha256": "f0ebc330b628e5deac7363331f7eee5b6cce0847db386033554337c616529402",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0045",
+      "sha256": "b6bb2d5ddcdba78b268b221fd563f4b87046090adf086a9329afab2ffdc8c02a",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0046",
+      "sha256": "3653e4553c96159eec9a5ee127d63391e2997ed4ec4fd0f99eff47f04e6f768e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0047",
+      "sha256": "bf711013b32d1f2aaa5c3e64562d5aa165b040863d4b1324c44e53f1f60b5954",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0048",
+      "sha256": "efb67b3f95eee548ab68c55abf9db408fcafbc0893796bb74bf979c5380d4abb",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0049",
+      "sha256": "58c88394d2c84e078151cb05e5fc2525cbf44568afef2ec47fbc12c7c16107c0",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0050",
+      "sha256": "1e2c3ef793615f798b6eb56753f2bcd7629e600ce36e90bfa13e738b72d15a92",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0051",
+      "sha256": "5c6acc46868fd092daa6b19cfa9f3bdee096d6d9dc691ab2948affd0b597b79a",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0052",
+      "sha256": "fdcd799ba90b73af29d47fd4af4beca22b8d3ff2fa1a1f64a12ec93afaffb22f",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0053",
+      "sha256": "02c347968d7577ff960dc1f7a0acdf957f6ca4ea5c42a73356640c7a5423cfab",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0054",
+      "sha256": "1df04df016f4febab316285f3510a439654e6362dfdc22d57b1301d86daf0e5e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0055",
+      "sha256": "334cb18332bc7a61e337329a4b6a66cd50eb64b186f641c2f9bf0e31609d93da",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0056",
+      "sha256": "228ab92e306b2d31e3db8035581d7bb5a228acbc0eb5e869532279e2ba4c1604",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0057",
+      "sha256": "df65ccda5da054b2aff5eeca0f8a97f0cb85479eb30e13b64eb65fbe0bbab69d",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0058",
+      "sha256": "d40a326b2fc8832a2e9e945d3151a39e8fabdab1f8d3e694dafd283796190834",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0059",
+      "sha256": "87bf866aa8678195d736686d0f1af08da854545b93c80e4c09490ece566c48f0",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0060",
+      "sha256": "8a8a0667fc4ae8a495ace3330428ecdd5eff2d22b3c9231466221e0e5bf037a4",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0061",
+      "sha256": "adf83fea1956448c2ca20987a3e3735889aaad06b108ed62fc4dcb963343b57b",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0062",
+      "sha256": "66d2df317aff11a2d245923e37d4c92d2ce8ffd8370cb96529854091cf9df826",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0063",
+      "sha256": "6ebec6c525869f01a4bfb80d035b3f657a0548a2a7c7c1122d49ff3ac3c47316",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0064",
+      "sha256": "9287138658f74066311a75ed5c9e05508565243cf16833349ee920ff812e31e1",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0065",
+      "sha256": "21d112b551bedf5b3a5310ecc5966764b47529421f73137157bca46d9d88f3ef",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0066",
+      "sha256": "84035f57b4c6571700df38afdda41a87b3ab8a7840e4543d93d661a6a3a77330",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0067",
+      "sha256": "b93925dee223e30162b41473fbb67ecba9cf1700fe653bdd99b2e936208b7a95",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0068",
+      "sha256": "65415604f7661940470198c93f733f9b433351880dae98c024906179e1b6d8db",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0069",
+      "sha256": "ed2964c8ff4de756ab5e95cf449634e6df6e4bd78085522388397ba1c8145edf",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0070",
+      "sha256": "fa316b4f8a9570fcfff0d7108dc44ffc9a1e1c58acb16b2e2a2300ac959ebd87",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0071",
+      "sha256": "b3ac7abe9fc1d8fff5eec943fa66040f09ef8e711954acb12efe54a7ddec61c3",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0072",
+      "sha256": "89d50aa10df5a9c8cc444ec704260a5d9af62f7397e578a5c841f98374dc8537",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0073",
+      "sha256": "16dcd4d15f388f15502345e480816797650a352e433fcd08eb17612e25baf041",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0074",
+      "sha256": "73d9285d3ccc172f07bd3acdd93b3d806f97e232164614c0b77a3a24974c256e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0075",
+      "sha256": "2f732ba02bc3efde9afde5557398668149893bbf0c6a623e8766543f90134574",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0076",
+      "sha256": "5ff63710f9c2ad203d629d604ae13341361f620ae9eedff409c2ab3f981ca90d",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0077",
+      "sha256": "6121499833463930465b7007f495448840f2e15c0ea0ff5d7b6f46cf0085dd8e",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    },
+    {
+      "id": "fund2-expansion-invest-0078",
+      "sha256": "10b712637d959c70a76a140dc3448278f045b341c28b32fa06883cfd4c9b105a",
+      "review": "read-stem-all-options-and-rationales; checked-model-source-outline-and-novelty; numerical cases independently recomputed"
+    }
+  ],
+  "acceptedSourceSnapshots": {
+    "expansionInvestAnalysis": {
+      "sha256": "2ba07a665b65b77919d64044c9f8d53372f5e0170c3426f097dbb096374bea7c",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/financial-analysis-techniques",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestAssumptions": {
+      "sha256": "f503ca9b40b3e357bbdd65c922a7631c5b7324c8d68c28d74076bcf342489be4",
+      "url": "https://github.com/zjjxwpstcnsm-gif/stock/blob/main/docs/expansion-investment.md",
+      "scope": "authored teaching assumptions"
+    },
+    "expansionInvestEquity": {
+      "sha256": "86e2fb34d137861e6ecfb190c9ad97a3a22d8efc15b84c558dccb12b07ff40a3",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-equity-securities",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestValuation": {
+      "sha256": "2dc6bd9e2eb70c54baf84e70ebb16c2f010c762cbc9e18abafb8128ec7777683",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/equity-valuation-concepts-basic-tools",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestFixedIncome": {
+      "sha256": "8b38ec44cd5b39cde8377f93c6fa26a247216a22848f51b46d3b17b69fcfdae0",
+      "url": "https://www.cfainstitute.org/sites/default/files/-/media/documents/study-session/2024-l1-los-t6.pdf",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestPortfolio": {
+      "sha256": "b11c5480929b6c7da69f7f618e00db58be2a1105d7126fc2b4a4a21207f0bdba",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestCAPM": {
+      "sha256": "50d06a10c75d7fee0f47c7d39d7d01fbcbf0062f96a8a4363eb5c1217107eb2c",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestEfficiency": {
+      "sha256": "ef999b875693c374afb520905c68d8efb9f6d9c72e678d2297e6dada5e33e56a",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-efficiency",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestRisk": {
+      "sha256": "0ebdc1472d0db33d4dab64273127c8be238a940b9b104152bbabf72d7a8f9105",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/introduction-risk-management",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    },
+    "expansionInvestPlanning": {
+      "sha256": "ddbe994f706d1a4184aec33e1ef6edc59df0f8cdad86d8ba8cf924af691dfec8",
+      "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction",
+      "scope": "public publisher reference, not inaccessible full curriculum"
+    }
+  },
+  "pending": [
+    {
+      "prefix": "fund1-expansion-gov-",
+      "readThrough": "0056",
+      "reason": "four cross-module semantic collisions and mapping revisions pending reread"
+    },
+    {
+      "prefix": "fund3-expansion-gov-",
+      "readThrough": "0041",
+      "reason": "one remaining exact-objective mapping refinement pending reread"
+    },
+    {
+      "prefix": "securities2-expansion-reg-",
+      "readThrough": "0075",
+      "reason": "three scenario/distractor corrections and one exception-wording correction pending reread"
+    },
+    {
+      "prefix": "securities1-expansion-invest-",
+      "readThrough": null,
+      "reason": "new 42-case checkpoint awaiting independent review"
+    },
+    {
+      "prefix": "options-expansion-deriv-",
+      "readThrough": "0025",
+      "reason": "separate coordinating reviewer owns full derivatives acceptance; no acceptance inferred here"
+    }
+  ]
+}

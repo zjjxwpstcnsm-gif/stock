@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-14.1",
-  "questionCount": 2892,
+  "version": "2026-10-14.2",
+  "questionCount": 3459,
   "newPrecisionQuestions": 96,
   "numericAuditCases": 44,
   "features": [
@@ -27,5 +27,8 @@
   "newRuleReviewQuestions": 24,
   "reviewedCalculationVariants": 480,
   "correctedExistingQuestions": 7,
-  "explicitFundObjectives": 31
+  "explicitFundObjectives": 31,
+  "newExpansionQuestions": 567,
+  "expansionTarget": 5784,
+  "expansionStatus": "in-progress"
 }
