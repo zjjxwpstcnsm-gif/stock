@@ -1,0 +1,294 @@
+{
+  "url": "https://zjjxwpstcnsm-gif.github.io/stock/",
+  "assetVersion": "6307cda2b24e",
+  "commit": "457e9f28e8f3417b61b0d834daf1aade4b99db52",
+  "checks": [
+    {
+      "device": "desktop",
+      "check": "published concept comparisons render and expand",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "check": "home opens random practice in one click"
+    },
+    {
+      "device": "desktop",
+      "subject": "options",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund3",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "securities1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "securities2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "futures1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "futures2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund1",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 62,
+      "total": 108,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund2",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 92,
+      "total": 153,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund3",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 85,
+      "total": 152,
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "options",
+      "question": "options-expansion-deriv-0145",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund1",
+      "question": "fund1-expansion-gov-0391",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund2",
+      "question": "fund2-expansion-invest-0459",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "fund3",
+      "question": "fund3-expansion-gov-0443",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "securities1",
+      "question": "securities1-expansion-intermed-0121",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "securities2",
+      "question": "securities2-expansion-reg-0480",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "futures1",
+      "question": "futures1-expansion-deriv-0297",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "subject": "futures2",
+      "question": "futures2-expansion-reg-0334",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "desktop",
+      "check": "published module graph uses the exact built version",
+      "assets": 65,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "check": "published concept comparisons render and expand",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "check": "home opens random practice in one click"
+    },
+    {
+      "device": "mobile",
+      "subject": "options",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund3",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "securities1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "securities2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "futures1",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "futures2",
+      "check": "direct start, full pool, answer, refresh, next and read-only recap",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund1",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 62,
+      "total": 108,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund2",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 92,
+      "total": 153,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund3",
+      "check": "exact objective mappings, no answer leak, cancel preservation and confirmed practice",
+      "mapped": 85,
+      "total": 152,
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "options",
+      "question": "options-expansion-deriv-0145",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund1",
+      "question": "fund1-expansion-gov-0391",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund2",
+      "question": "fund2-expansion-invest-0459",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "fund3",
+      "question": "fund3-expansion-gov-0443",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "securities1",
+      "question": "securities1-expansion-intermed-0121",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "securities2",
+      "question": "securities2-expansion-reg-0480",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "futures1",
+      "question": "futures1-expansion-deriv-0297",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "subject": "futures2",
+      "question": "futures2-expansion-reg-0334",
+      "check": "published expansion answer, four rationales, source and AI attribution",
+      "passed": true
+    },
+    {
+      "device": "mobile",
+      "check": "published module graph uses the exact built version",
+      "assets": 65,
+      "passed": true
+    }
+  ],
+  "errors": []
+}

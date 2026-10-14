@@ -1,0 +1,55 @@
+{
+  "version": "2026-10-14.2",
+  "assetVersion": "6307cda2b24e",
+  "totalQuestions": 5784,
+  "newAcceptedQuestions": 2892,
+  "baselineQuestions": 2892,
+  "sourceTree": "1e2efc3f1fb6d929274a20b38bc2f11fef0fcbcc",
+  "reviewCommit": "3039636f0f0aad06c0c38ff1ac76ebc3ff081401",
+  "releaseCommit": "457e9f28e8f3417b61b0d834daf1aade4b99db52",
+  "qualityRun": 38580600428,
+  "qualityJob": 115909163396,
+  "unitTestsPassed": 240,
+  "browserTestsPassed": 122,
+  "sourceArtifact": {
+    "id": 11902796522,
+    "sha256": "fcb740b5931db1c50b353247c22c86cc634cbe0f54b66b10e70540d780da3fba",
+    "all144FilesByteMatched": true,
+    "expires": "2026-10-21"
+  },
+  "browserArtifact": {
+    "id": 11903146485,
+    "sha256": "aee0f1aab12c832667b81eda001e7795cdc25f9f8ec47e92a118b3fc371c1eec",
+    "newAnswerScreenshots": 16,
+    "visuallyInspected": [
+      "mobile-fund2-expansion-answer.png",
+      "desktop-securities2-expansion-answer.png"
+    ],
+    "expires": "2026-10-28"
+  },
+  "pagesRun": 38581237350,
+  "pagesStatus": "success",
+  "pagesChecksPassed": 44,
+  "pagesAssetGraphModulesPerDevice": 65,
+  "publishedArtifact": {
+    "id": 11903736325,
+    "sha256": "3f41020fc44e9a27b8cca7eb966b335d4ad9b0c5b629e42e19286668aa4e0055",
+    "expires": "2026-10-28"
+  },
+  "verifiedAt": "2026-10-14T14:36:48Z",
+  "publishedVisualInspection": [
+    "mobile-fund2-expansion-answer.png",
+    "desktop-securities2-expansion-answer.png"
+  ],
+  "acceptedManifestTreeCheck": {
+    "tree": "1e2efc3f1fb6d929274a20b38bc2f11fef0fcbcc",
+    "allFiles": 144,
+    "changedFiles": 49,
+    "allStageFilesMatch": true,
+    "acceptedManifestBlobHashes": {
+      "docs/expansion-derivatives-review.json": "3deb9cf53c0504815923a9c60814656b77e50cd3",
+      "docs/expansion-independent-review.json": "98afd24c1c3ddd27a45cfd2cc53ea24c8afc8b06",
+      "docs/expansion-integration-review.json": "50d1a1f89b84c0f2c3fe707be50dc7cf28270e1b"
+    }
+  }
+}
