@@ -1,181 +1,1205 @@
 # 原创投资应用题扩展审校
 
-编写及核对日期：2026-10-14。此文件记录持续扩展中的已落盘检查点，不表示最终总量已经完成。
+核对日期：2026-10-14。本文件记录投资模块最终内容检查点：681题均已逐题复核接受。题目与来源内容已冻结；全项目总量及发布状态以统一审计记录为准。
 
-## 原创与范围
+## 数量及审校边界
 
-每行是单独编写的决策任务。加载函数只做解析、ID分配和答案位置轮换；没有按数值、主体名称、措辞或正反转换生成题目。来源用于核对通用概念，不是原题来源；不存在官方真题或官方审定答案声明。
+当前基金科目二 459 题，证券基础 222 题，合计 681 题。此检查点合并独立主审及集成复审两份清单，与逐题哈希匹配的已接受对象为 681 题；本模块无待审题。
 
-现有题库中净值、申赎、久期等已有大量重复数值演练。第一批优先填补财务诊断、模型选择、估值口径、微观结构和组合决策，避免继续用同公式换数凑数。
+- fund2 0001–0459：迁移前逐题内容复核通过；以下为当时完整对象数组指纹；SHA256 34e73c4859daddedda26f13c326a13efe8d9d056420b96575d489d33391989a7
+- securities1 0001–0222：迁移前逐题内容复核通过；以下为当时完整对象数组指纹；SHA256 acf3b174b80d611edc61fc407513c32f1a42f14f0fa44354290ec0b096a8d373
 
-## 首个稳定检查点
+以上为统一AI归属标注迁移前的内容接受检查点。哈希口径为 JSON.stringify(对应题对象数组) 的 UTF-8 SHA256；已审范围修改须重新通知审校。基金0146、0151、0152曾因跨科或本批目标重复被撤回，现分别实质替换为VaR次可加反例、增量VaR与单独风险、情景限额与实际止损的触发区别；当前接受状态以独立逐题清单及归属迁移证据为准，不能把上方迁移前数组哈希与迁移后对象直接比对。独立主审和集成复审记录由主任务分别维护，最终总量以统一审计脚本合并结果为准；结构检查不替代逐题内容复核。
 
-- fund2-expansion-invest-0001 至 0024：24题
-- 0001–0004：横向规模、并购口径、季节基期、比率异常证据
-- 0005–0014：赊购比率变化、资产变现质量、平均余额、成本周转、利润层级、保障倍数、营运周期、行业模式、ROA、现金效率
-- 0015–0018：杠杆驱动、负权益ROE符号陷阱、平均口径对账、回购分母局限
-- 0019–0021：延期付款现金流质量、关联销售、会计估计变更
-- 0022–0024：延期付款现值、先付年金、逐期利率折现
 
-## 来源核对及可访问边界
 
-2026-10-14使用公开网页检索及页面读取，实际取得如下原始发布机构资料：
+## 原创与编写方法
 
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/financial-analysis-techniques ：公开简介、学习目标及摘要，涵盖同比/共同比、营运、流动性、偿债、盈利、杜邦和分析局限
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-organization-structure ：公开简介及摘要，覆盖中介、指令、一级二级市场、交易机制
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-equity-securities ：公开页面
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1 ：公开风险、相关性、有效前沿摘要
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2 ：公开页面
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction ：检索取得官方公开摘要，投资政策书及限制条件
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/alternative-investment-features-methods-and-structures ：检索取得官方公开摘要，投资方式、费用及非流动性
-- https://www.cfainstitute.org/sites/default/files/-/media/documents/study-session/2024-l1-los-t6.pdf ：检索取得官方PDF学习目标，稳定的固定收益模型
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/equity-valuation-concepts-basic-tools ：公开估值方法、股利模型、倍数及资产基础法摘要
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-efficiency ：公开页面
-- https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/introduction-risk-management ：检索取得官方公开摘要，风险流程及风险相互作用
+所有情景、参数、选项及逐项理由均为AI辅助逐题原创。加载器只解析行、分配稳定ID和轮换答案位置，不按数值、主体名称、措辞或正反转换生成题目，未用参数模板变体扩充。原始来源用于核对事实、模型或规则，不是原题来源，也不构成官方真题或官方审定答案声明。
 
-CFA完整教材链接要求登录，未登录或声称取得完整教材。两次尝试的固定收益旧路径未取得内容，未作为已读取正文的证据。国际资料仅核对通用金融原理，不用于推导中国市场现行法律门槛、税率或交收日。
+对照全部既有科目及本次并行增量审查独立学习目标；已经实质替换纯数字杜邦题、重复动态Delta对冲、普通保护性认沽、重复期限匹配、撤单确认、红利再投资、地域分散、情景损失与概率等重述。保留ID并重写决策，调整章节与能力点。基金代码使用仓库正式大纲；映射某能力点不表示穷尽该能力点。决定答案的合同、模型与例外前提须在可见题干中给出。
 
-所有应用情景、数字及干扰项为本项目原创。现值等题设公式由独立算术复核；基金大纲代码只使用仓库的2026基金科目二正式能力点，映射不等于充分覆盖。
+## 来源证据与访问限制
 
-## 独立复算
+- expansionInvestAnalysis：CFA Institute · Financial Analysis Techniques (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/financial-analysis-techniques
+  - 证据与边界：2026-10-14已读取公开简介、学习目标及比率分析摘要；完整教材需登录，未声称读取。只核对一般原理，情景及数字原创。
+- expansionInvestEquity：CFA Institute · Overview of Equity Securities (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/overview-equity-securities
+  - 证据与边界：2026-10-14已读取公开页面；股票权利、资本成本、账面价值与市场价值。中国特定规则不由此推导。
+- expansionInvestMarket：CFA Institute · Market Organization and Structure (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-organization-structure
+  - 证据与边界：2026-10-14已读取公开市场组织、交易指令及中介职能摘要；不作为中国交易所具体门槛或时间规则依据。
+- expansionInvestPortfolio：CFA Institute · Portfolio Risk and Return: Part I (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-1
+  - 证据与边界：2026-10-14已读取公开风险收益、相关性及有效前沿摘要；题内模型与参数原创。
+- expansionInvestCAPM：CFA Institute · Portfolio Risk and Return: Part II (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-risk-return-part-2
+  - 证据与边界：2026-10-14已访问公开页面；资本市场线、证券市场线及系统风险为一般模型，不是收益承诺。
+- expansionInvestPlanning：CFA Institute · Basics of Portfolio Planning and Construction (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction
+  - 证据与边界：2026-10-14检索取得官方公开全文摘要；投资目标、流动性约束、再平衡与ESG实施方式。
+- expansionInvestAlternative：CFA Institute · Alternative Investment Features, Methods, and Structures (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/alternative-investment-features-methods-and-structures
+  - 证据与边界：2026-10-14检索取得官方公开摘要；直接投资、共同投资、基金投资及非流动性差异。
+- expansionInvestFixedIncome：CFA Institute · Fixed Income learning outcomes (2024)
+  - URL：https://www.cfainstitute.org/sites/default/files/-/media/documents/study-session/2024-l1-los-t6.pdf
+  - 证据与边界：2026-10-14检索核对官方PDF学习目标；久期、凸性、信用风险及证券化属于稳定模型，非现行中国业务规则。
+- expansionInvestAssumptions：原创投资案例 · 模型假设与独立复算
+  - URL：https://github.com/zjjxwpstcnsm-gif/stock/blob/main/docs/expansion-investment.md
+  - 证据与边界：逐题明示的合同、数据与模型均为自编教学设定；未冒充真实产品或官方考试题。
+- expansionInvestValuation：CFA Institute · Equity Valuation: Concepts and Basic Tools (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/equity-valuation-concepts-basic-tools
+  - 证据与边界：2026-10-14已读取公开简介、学习目标及估值模型摘要；并未取得需登录的完整教材。
+- expansionInvestEfficiency：CFA Institute · Market Efficiency (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-efficiency
+  - 证据与边界：2026-10-14已读取公开Introduction、学习目标和全部Summary，核三类信息集、竞争和个体偏差与总体效率的不同层次；未读取需登录的完整教材。问题考条件推断，不声称某真实市场或策略已经证明有效或无效。
+- expansionInvestRisk：CFA Institute · Introduction to Risk Management (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/introduction-risk-management
+  - 证据与边界：2026-10-14检索取得官方公开摘要；风险流程、风险治理、非线性传导及模型风险。
+- expansionInvestMonetary：欧洲中央银行 · Transmission mechanism of monetary policy
+  - URL：https://www.ecb.europa.eu/mopo/intro/transmission/html/index.en.html
+  - 证据与边界：2026-10-14读取公开正文；只用于货币政策一般传导机制，不声称适用于中国具体政策工具参数。
+- expansionInvestSecuritization：CFA Institute · Fixed-Income Securitization (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/fixed-income-securitization
+  - 证据与边界：2026-10-14访问官方公开页面；题中分层支付、损失和资产池合同条件为原创明示假设。
+- expansionInvestStocks：美国证券交易委员会 · Investor.gov Stocks FAQs
+  - URL：https://www.investor.gov/introduction-investing/investing-basics/investment-products/stocks
+  - 证据与边界：2026-10-14读取公开正文；核对普通股经济权利及风险，未把美国申报与账户规则作为中国规则。
+- expansionInvestBonds：美国证券交易委员会 · Investor.gov Bonds FAQs
+  - URL：https://www.investor.gov/introduction-investing/investing-basics/investment-products/bonds-or-fixed-income-products/bonds
+  - 证据与边界：2026-10-14访问公开页面；仅核对债券基本经济特征，具体合同由题设明确。
+- expansionInvestDerivatives：CFA Institute · Derivative Benefits, Risks, and Issuer and Investor Uses (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/derivative-benefits-risks-and-issuer-and-investor-uses
+  - 证据与边界：2026-10-14检索取得官方公开简介与学习目标；具体合约、风险比较和现金流为题设原创。
+- expansionInvestHedge：CME Group · Comparing Grain Buying Strategies
+  - URL：https://www.cmegroup.com/education/lessons/comparing-grain-buying-strategies
+  - 证据与边界：2026-10-14检索取得交易所教学正文；只用一般套保成本及权利义务权衡，不引用其练习题或美国合约参数。
+- expansionInvestContracts：CFA Institute · Forward Commitment and Contingent Claim Features and Instruments (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/forward-commitment-contingent-claim-features-instruments
+  - 证据与边界：2026-10-14检索取得官方公开摘要，核对承诺型/或有工具、现金流及收益形状。
+- expansionInvestIndexes：CFA Institute · Security Market Indexes (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/security-market-indexes
+  - 证据与边界：2026-10-14已读取公开指数编制、加权、再平衡和重构摘要；数字为原创。
+- expansionInvestPerformance：CFA Institute · Portfolio Performance Evaluation (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-performance-evaluation
+  - 证据与边界：2026-10-14已访问官方公开业绩评价页面；题设归因及收益口径明确，不声称取得登录后完整教材。
+- expansionInvestExecution：CFA Institute · Trading Costs and Electronic Markets (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/trading-costs-and-electronic-markets
+  - 证据与边界：2026-10-14已访问官方公开执行成本页面；所有指令与现金成本比较为原创场景。
+- expansionInvestStructured：SEC Investor Bulletin · Structured Notes
+  - URL：https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-76
+  - 证据与边界：2026-10-14检索取得官方说明；结构化票据的收益封顶、敲入及发行人信用。所有本题参数为原创合同，不代表真实在售产品。
+- expansionInvestProtection：SEC Investor.gov · Structured Notes with Principal Protection
+  - URL：https://www.investor.gov/introduction-investing/investing-basics/investment-products/structured-notes-principal-protection
+  - 证据与边界：2026-10-14读取公开页；本金保护的合同条件与发行人偿付依赖，不用于声称中国产品可向任何人销售。
+- expansionInvestRepo：纽约联储 · Are Higher Haircuts Better? A Paradox
+  - URL：https://libertystreeteconomics.newyorkfed.org/2013/08/are-higher-haircuts-better-a-paradox/
+  - 证据与边界：2026-10-14检索取得原始研究说明；haircut为抵押融资中的超额担保机制，合同百分比公式由题设明示。研究观点不等同监管规定。
+- expansionInvestAttribution：CFA Institute Research Foundation · Performance Attribution: History and Progress (2019)
+  - URL：https://www.cfainstitute.org/sites/default/files/-/media/documents/book/rf-lit-review/2019/rflr-performance-attribution.pdf
+  - 证据与边界：2026-10-14读取原始PDF，并由独立审校核对Foundations的BHB/BF公式；不是官方考试题。
+- expansionInvestSidePocket：中国证券投资基金业协会 · 证券投资基金侧袋机制操作细则（试行）
+  - URL：https://www.amac.org.cn/xwfb/hydt/202106/P020231126371237550716.pdf
+  - 证据与边界：2026-10-14读取协会官方12页PDF；逐题引用具体条款。题设为适用该细则且依法启用侧袋的基金，未把公募操作规则机械套用私募合同。
+- expansionInvestRepoStructure：纽约联储 · Follow the Cash! Microstructure of Repo Markets
+  - URL：https://libertystreeteconomics.newyorkfed.org/2026/09/follow-the-cash-microstructure-of-repo-markets/
+  - 证据与边界：2026-10-14读取2026-09-29原始研究全文，From Lenders to Dealers段落明确三方清算银行仅为代理、不替代交易相对方；不直接推导中国回购规则。
+- expansionInvestSZSE2026：深圳证券交易所交易规则（2026年修订）
+  - URL：https://docs.static.szse.cn/www/lawrules/rule/trade/current/W020260424690713155663.pdf
+  - 证据与边界：2026-10-14读取交易所官方40页PDF及发布通知https://www.szse.cn/lawrules/rule/trade/current/t20260424_620190.html，确认2026-07-06施行并废止2023版。逐题限定深市、交易阶段及有无涨跌幅限制。
+- expansionInvestTreasuryAuction：财政部 · 记账式国债招标发行规则（财库〔2022〕4号）
+  - URL：https://yn.mof.gov.cn/tongzhitonggao/202206/t20220623_3820920.htm
+  - 证据与边界：2026-10-14读取财政部官方分站完整规则，并核对2026年十四期、十五期和十六期发行通知仍引用该规则。具体期次通知可另作特别规定，题目明确无特别规定或直接引用期次通知，不把旧手续费率当作通用现行费率。
+- expansionInvestOnlineIPO：深交所、中国结算 · 深圳市场首次公开发行股票网上发行实施细则（2018年修订）
+  - URL：https://www.szse.cn/lawrules/rule/stock/issue/P020190228664910292959.pdf
+  - 证据与边界：2026-10-14通过官方PDF检索正文核对第3至13条、第16与18条；直接PDF读取超时，未宣称完整下载。另核对深交所2023投教问答及2026-09发行公告仍引用深证上〔2018〕279号。仅使用实际取得的条款。
+- expansionInvestSSEIPO：上交所 · 首次公开发行证券发行与承销业务实施细则（2025年修订）
+  - URL：https://www.sse.com.cn/lawandrules/sselawsrules2025/stocks/issue/c/c_20250515_10778980.shtml
+  - 证据与边界：2026-10-14读取官方发布页，标示现行有效；通过官方检索正文取得第58至68条超额配售规则。docx附件无法由网页工具解析，未声称已下载。仅适用于题设上交所发行，不移植深交所2026修订。
+- expansionInvestNonTradeTransfer：中国结算 · 证券非交易过户业务实施细则（适用于继承、捐赠等情形）（2025）
+  - URL：https://www.chinaclear.cn/zdjs/dzb/202503/51d6385b7786443e8859809a2c65bbea/files/7.中国证券登记结算有限责任公司证券非交易过户业务实施细则（适用于继承、捐赠等情形）.pdf
+  - 证据与边界：2026-10-14读取中国结算官方7页PDF，中国结算发〔2025〕36号；仅使用实际读取的申请主体、权属证明、账户用途和处理程序条款。
+- expansionInvestRegistration：中国结算 · 证券登记规则（2025）
+  - URL：https://www.chinaclear.cn/zdjs/gszb/202503/831aa16286e5496d90885d30607a5eb8/files/1.中国证券登记结算有限责任公司证券登记规则.pdf
+  - 证据与边界：2026-10-14读取官方14页PDF，中国结算发〔2025〕36号；初始登记、名义持有、限制标识、退出登记、名册及查询服务。未使用文件中可能须与上位民法进一步协调的质押合同生效表述。
+- expansionInvestTreasuryReopen：财政部 · 2026年记账式附息（十四期）国债第一次续发行通知
+  - URL：https://m.mof.gov.cn/czxw/202607/t20260731_3994598.htm
+  - 证据与边界：2026-10-14读取官方检索正文，续发行后与之前发行的同期国债合并上市；问题日期为原创设定，不冒充该期实际发行日。
+- expansionInvestMoneyCreation：Bank of England · Money creation in the modern economy (2014 Q1)
+  - URL：https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/2014/money-creation-in-the-modern-economy.pdf
+  - 证据与边界：2026-10-14读取14页官方PDF；采用资产负债表与部门合并的一般机制，不把英国当年货币占比或操作制度当作中国现行规定。
+- expansionInvestMoneyAggregates：中国人民银行 · 狭义货币和广义货币（2025-03-10）
+  - URL：https://www.pbc.gov.cn/rmyh/109339/2025080818580470423/index.html
+  - 证据与边界：2026-10-14读取全文；M1包含单位及个人活期存款、非银行支付机构客户备付金，M2包含M1，采用该现行口径。
+- expansionInvestPMI：国家统计局 · 采购经理指数编制方法（2025）
+  - URL：https://www.stats.gov.cn/zs/tjws/zytjzbqs/cgzlzs/202501/t20250121_1958396.html
+  - 证据与边界：2026-10-14读取全文；分类扩散指数、制造业五项加权、配送时间逆向处理及综合产出指数，全部数字为原创教学数据。
+- expansionInvestEmployment：国家统计局 · 调查失业率的计算方法（2024）
+  - URL：https://www.stats.gov.cn/zs/tjws/zytjzbqs/tcsyl/202411/t20241115_1957491.html
+  - 证据与边界：2026-10-14读取全文；就业、失业与非劳动力定义及就业充分程度边界。
+- expansionInvestEmploymentStudents：国家统计局人口和就业统计司 · 在校生与调查失业率统计范围答复
+  - URL：https://www.stats.gov.cn/hd/lyzx/zxgk/202406/t20240619_1955075.html
+  - 证据与边界：2026-10-14读取公开答复全文；总体城镇调查包括满足定义的学生，发布的有关青年分组剔除在校生，不可无权重拼接。
+- expansionInvestEmploymentInterpret：国家统计局 · 什么是调查失业率（2024）
+  - URL：https://www.stats.gov.cn/zs/tjws/zytjzbqs/tcsyl/202409/t20240910_1956360.html
+  - 证据与边界：2026-10-14读取全文；劳动力分母、常住地划分及失业率的解释边界。
+- expansionInvestInflationCarry：国家统计局 · 什么是翘尾因素（2025）
+  - URL：https://www.stats.gov.cn/zs/tjws/tjbk/202301/t20230101_1912942.html
+  - 证据与边界：2026-10-14读取全文；网页路径含2023但正文发布时间为2025-07-14，按正文识别。
+- expansionInvestGDP：国家统计局 · 如何正确解读GDP数据（2025）
+  - URL：https://www.stats.gov.cn/zs/tjws/zytjzbqs/gnsczz/202502/t20250226_1958799.html
+  - 证据与边界：2026-10-14读取全文；现价与不变价、核算方法、初核终核版本、同比环比及专业指标边界。
+- expansionInvestRealGDP：国家统计局 · 不变价核算方法（2024）
+  - URL：https://www.stats.gov.cn/zs/tjws/zytjzbqs/gnsczz/202412/t20241220_1957808.html
+  - 证据与边界：2026-10-14读取全文；价格缩减、物量外推、出口进口分别缩减及隐含缩减指数。
+- expansionInvestExchangeable：中国结算 · 可交换公司债券登记结算业务细则（2025）
+  - URL：https://www.chinaclear.cn/zdjs/gszb/202503/831aa16286e5496d90885d30607a5eb8/files/10.中国证券登记结算有限责任公司可交换公司债券登记结算业务细则.pdf
+  - 证据与边界：2026-10-14完整读取官方11页PDF，中国结算发〔2025〕36号，检索核对2026发行披露继续援引。适用可交换债，不将可转债2026修订与此文件混同；仅采用明确具体业务条款。
+- expansionInvestMarketRisk：CFA Institute · Measuring and Managing Market Risk (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/measuring-managing-market-risk
+  - 证据与边界：2026-10-14读取公开学习目标与完整摘要，scenario limit和stop-loss limit定义明确区分；完整教材需登录，未宣称取得。
+- expansionInvestTreasuryCounter：财政部 · 关于政府债券柜台交易业务有关事项的通知（财库〔2024〕12号）
+  - URL：https://jx.mof.gov.cn/xxgk/tongzhitonggao/202405/t20240506_3934014.htm
+  - 证据与边界：2026-10-14读取官方全文八项；2024-05-01起施行。范围包括发行结束的记账式国债和地方政府债券，并明确一级实名直接托管。
+- expansionInvestGIPS：CFA Institute · 2020 GIPS Standards for Firms
+  - URL：https://www.gipsstandards.org/wp-content/uploads/2021/03/2020_gips_standards_firms.pdf
+  - 证据与边界：2026-10-14通过官方现行标准入口取得146页PDF；实际逐条读取第1至4节相关规定及2020勘误，不宣称读取所有附录。官方网页可解析PDF；直接HTTP下载遭403后未继续该下载路径。问题为原创应用，不是官方考试题。
+- expansionInvestGIPSHandbook：CFA Institute · GIPS Standards Handbook for Firms
+  - URL：https://www.gipsstandards.org/standards/gips-standards-for-firms/gips-standards-handbook-for-firms/
+  - 证据与边界：2026-10-14读取公开手册相关条款解释，包含1.A.16报告更新不得因未完成年度鉴证而拖延。
+- expansionInvestActive：CFA Institute · Analysis of Active Portfolio Management (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/analysis-active-portfolio-management
+  - 证据与边界：2026-10-14读取公开简介、学习目标及完整摘要；主动权重、主动风险、基准混合与转移系数。完整教材需登录，未取得；题内参数与计算案例原创。
+- expansionInvestYieldCurve：CFA Institute · Yield Curve Strategies (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/yield-curve-strategies
+  - 证据与边界：2026-10-14读取公开简介、学习目标及摘要；主动久期和静态向上曲线的滚降机制。仅采用承诺现金流得到支付的教学模型，不作真实收益承诺。
+- expansionInvestManager：CFA Institute · Investment Manager Selection (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/investment-manager-selection
+  - 证据与边界：2026-10-14读取公开简介、学习目标及摘要；第一/二类筛选错误、持仓快照窗口粉饰、独立账户与集合工具。未声称读取需登录的完整教材。
+- expansionInvestConditional：CFA Research Foundation · Conditional Performance Evaluation, Revisited (2004)
+  - URL：https://rpc.cfainstitute.org/sites/default/files/-/media/documents/book/rf-publication/2004/rf-v2004-n5-3929-pdf.pdf
+  - 证据与边界：2026-10-14取得官方95页PDF并实际读取简介及印刷页53–55（PDF第63–65页），核对式8/9/10、公共状态信息交互项、择时系数与风险厌恶的关系。仅引用方法学，不将历史样本结果当作今日市场事实。
+- expansionInvestHKRules：上海证券交易所 · 沪港通业务实施办法（2024年修订）
+  - URL：https://www.sse.com.cn/lawandrules/sselawsrules2025/global/hkexsc/c/c_20251017_10795123.shtml
+  - 证据与边界：2026-10-14核对官网标示现行有效、生效2024-06-14；从页面真实附件下载DOCX并解析完整19321字，实际逐条读取港股通第62至104条等。网页工具不支持DOCX，普通HTTP首次超时、随后成功；未据未取得的施行衔接附件新增结论。
+- expansionInvestHKRisk：上海证券交易所、中国结算 · 港股通交易风险揭示书必备条款（2026年修订）
+  - URL：https://www.sse.com.cn/lawandrules/sselawsrules2025/global/hkexsc/c/c_20260605_10820839.shtml
+  - 证据与边界：2026-10-14读取官方通知及完整DOCX的45条，2026-06-08施行；普通HTTP下载并解析6147字。另核深交所同年官方10页PDF相关共同机制，但题目明确采用沪港通口径，不混用两个通道的个别程序。
+- expansionInvestHKRates：上海证券交易所 · 沪港通参考汇率与结算汇兑比率说明
+  - URL：https://www.sse.com.cn/services/hkexsc/home/
+  - 证据与边界：2026-10-14读取当前服务页对买卖参考汇率及结算汇兑比率的方向说明；题内汇率全部原创假设，不采用当日市场报价。
+- expansionInvestSwiftTypes：Swift · ISO 15022与ISO 20022证券报文对照（官方2014材料）
+  - URL：https://www.swift.com/node/10286
+  - 证据与边界：2026-10-14读取官方公开13页材料的附录1对照表（材料自身标注confidential draft）；另读官方37页ESMA回复第9页的MT540–548对照，并以当前官方证券结算课程和Securities View页面交叉确认仍在使用的基础类型。只采用稳定业务含义，不将2014字段版本当作2026实施规范。
+- expansionInvestSwiftUTI：Swift · Securities View与证券交易UTI
+  - URL：https://www.swift.com/products/swift-securities-view
+  - 证据与边界：2026-10-14读取公开产品说明及FAQ，核对交易分配时生成UTI、买卖方及托管链持续传递同一UTI；不使用页面中的历史客户数量或预测。
+- expansionInvestSwiftBIC：Swift · Business Identifier Code (BIC)
+  - URL：https://www.swift.com/standards/data-standards/bic-business-identifier-code
+  - 证据与边界：2026-10-14读取官方BIC定义、联网/非联网类别及8字符主体加可选3字符分支的结构；未调用任何账户或个人查询服务。
+- expansionInvestSwiftMigration：Swift · ISO 20022 Standards FAQ
+  - URL：https://www.swift.com/de/node/308355
+  - 证据与边界：2026-10-14读取官方FAQ关于CBPR+迁移与其他业务继续使用FIN/MT的范围；交叉核对当前Securities View仍使用MT540–548。只考迁移适用范围，不扩展为全部报文已统一切换。
+- expansionInvestSwiftSSI：Swift · Standing Settlement Instructions Directory
+  - URL：https://www.swift.com/ru/node/309902
+  - 证据与边界：2026-10-14读取官方公开目录说明；另读取SwiftRef API公开说明的按BIC、币种及可选资产类别取得SSI定义。未购买或访问付费目录实际客户数据。
+- expansionInvestSwiftAllegement：Swift · Category 5 Message Usage Guidelines (2022)，MT578用途
+  - URL：https://www2.swift.com/knowledgecentre/rest/v1/publications/us5u_20220722/3.0/us5u_20220722.pdf?logDownload=true
+  - 证据与边界：2026-10-14通过官方PDF检索返回实际读取第97页MT578 Purpose段和结构段；直接打开全文未成功，未声称阅读全文。当前官方T+1研究与MT578培训页确认该通知类型继续使用。
+- expansionInvestSwiftRMA：Clearstream · Relationship Management Application（2026-05-28）
+  - URL：https://clearstream.com/clearstream-en/res-library/releases-and-initiatives/relationship-management-application-rma--5288836
+  - 证据与边界：2026-10-14读取清算托管机构官方现行RMA说明，核对授予收报授权生成对方发报授权、双向关系分别处理；另核Swift官方入网说明要求互相设置RMA并测试端到端报文。
+- expansionInvestQDIIImplement：证监发〔2007〕81号 · QDII实施通知（协会官方全文）
+  - URL：https://www.amac.org.cn/fwdt/wyb/jgdjhcpbeian/zcglcpba/xgzc/202003/t20200311_19862.html
+  - 证据与边界：2026-10-14实际读取协会官方转载全文第五至七部分，并交叉读取证监会第46号令。证监会上海局同文普通HTTP返回403，未绕过权限；采用可公开读取的协会全文。仅用具体交易、估值条款，不将旧募集审批措辞扩展为现行全部注册程序。
+- expansionInvestMoneyRules：证监会、人民银行令第120号 · 货币市场基金监督管理办法
+  - URL：https://www.csrc.gov.cn/csrc/c106256/c1654015/content.shtml
+  - 证据与边界：2026-10-14读取证监会现行规章库全文，重点核第四、五、九至十五、二十九条；另核2017流动性规定的更严格条件。未采用本办法旧销售费率，未将普通货基限制冒充重要货基专项限制。
+- expansionInvestFundLiquidity：证监会公告〔2017〕12号 · 公开募集开放式证券投资基金流动性风险管理规定
+  - URL：https://www.csrc.gov.cn/csrc/c101877/c1029552/content.shtml
+  - 证据与边界：2026-10-14从正式发布页实际打开17页最终版PDF，核第二十八至三十五及第四十条；没有使用搜索中出现的征求意见稿。普通货基案例明确排除重要货基及另行更严约定。
+- expansionInvestTransmission：Bank of England · About a rate of (general) interest: how monetary policy transmits（2024）
+  - URL：https://www.bankofengland.co.uk/quarterly-bulletin/2024/2024/about-a-rate-of-general-interest-how-monetary-policy-transmits
+  - 证据与边界：2026-10-14实际读取央行文章第2、3.1、3.2.1至3.2.3节的公开网页正文；普通HTTP另取返回403，未声称该路径成功。案例仅使用名义刚性、现金流再分配、借款利差、投资时点及目标储蓄等机制，不把英国历史参数当作中国当前估计。
+- expansionInvestBPM7：IMF · Integrated Balance of Payments and International Investment Position Manual, seventh edition，2025白皮预编辑版
+  - URL：https://www.imf.org/-/media/files/data/statistics/bpm6/draft-bpm7-wcv.pdf
+  - 证据与边界：2026-10-14实际打开1076页官方PDF并定点读取4.12–4.15、5.21–5.23、6.12、8.15、9.21–9.23、10.16、14.28–14.29及19.4–19.18、19.84–19.85。另读2025-03-20发布通知，确认白皮预编辑状态及建议2029–2030实施窗口；不声称中国2026全部统计已经切换BPM7，也未声称阅读全文。
+- expansionInvestBOPDefinitions：国家外汇管理局 · 国际收支平衡表编制原则与指标说明
+  - URL：https://www.safe.gov.cn/safe/2015/1230/6080.html
+  - 证据与边界：2026-10-14读取官方指标说明，核经常账户组成、经济所有权转移、加工服务及资本与金融账户区别；仅使用明确的基础核算口径，未将网页金融账户正负展示惯例与IMF净资产取得口径混算。
+- expansionInvestGlobalImbalance：IMF · Understanding Global Imbalances（2026-04）
+  - URL：https://www.imf.org/-/media/files/publications/pp/2026/english/ppea2026006.pdf
+  - 证据与边界：2026-10-14实际打开57页政策论文，定点读取第23–27段及永久、临时关税的跨期模型解释。题干明确投资不响应等简化假设，不把特定模型条件下的结果推广为所有关税政策的无条件结论。
+- expansionInvestMeanCI：NIST · Confidence Limits for the Mean
+  - URL：https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm
+  - 证据与边界：2026-10-14实际读取全文；核均值标准误s/√N、t区间及重复抽样覆盖率解释。仅用统计原理，自编投资案例不复用原网页数据。
+- expansionInvestPrediction：NIST Dataplot · Prediction Limits
+  - URL：https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/predlimi.htm
+  - 证据与边界：2026-10-14实际读取Description及公式；未来m个独立同分布观察均值的预测区间含1/n+1/m，单个未来观察取m=1；明确近似正态等适用条件。
+- expansionInvestPValue：NIST · P-value definition
+  - URL：https://csrc.nist.gov/glossary/term/P_value
+  - 证据与边界：2026-10-14读取两项正式定义。仅取原假设成立时统计量同样或更极端的条件概率定义，不把该信息安全词汇页作为基金监管规则。
+- expansionInvestBonferroni：NIST · Bonferroni’s method
+  - URL：https://itl.nist.gov/div898/handbook/prc/section4/prc473.htm
+  - 证据与边界：2026-10-14实际读取全文及一般概率不等式；自编有限、事前确定的比较族，以α/g控制族错误上界，不把至少覆盖率写成必然恰好覆盖率。
+- expansionInvestBootstrap：NIST Dataplot · Bootstrap Fit
+  - URL：https://itl.nist.gov/div898/software/dataplot/refman1/auxillar/bootfit.htm
+  - 证据与边界：2026-10-14读取Description、两种重抽样路径及限制；使用有放回重抽样的定义核查原创均值估计程序，不将不放回的全样本排列说成标准自助样本。
+- expansionInvestCorrelation：NIST · Correlation and scatter-plot diagnostics
+  - URL：https://www.itl.nist.gov/div898/software/dataplot/refman2/ch2/correlat.pdf
+  - 证据与边界：2026-10-14检索读取官方相关系数PDF的公式与线性关系定义，并实际读取官方Scatter Plot页的非线性关系示例。三状态非线性例子为原创并独立复算。
+- expansionInvestMisspecification：CFA Institute · Model Misspecification (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/model-misspecification
+  - 证据与边界：2026-10-14读取公开Introduction、学习目标；核条件异方差、稳健标准误、多重共线性。完整教材需登录；题设明确外生性等条件，不把异方差一概说成OLS系数必然有偏。
+- expansionInvestTimeSeries：CFA Institute · Time-Series Analysis (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/time-series-analysis
+  - 证据与边界：2026-10-14实际读取公开学习目标和Summary，核AR递推、协方差平稳、均值回复、ARCH条件方差、线性及对数趋势；未声称读取付费正文。公式与数值假设在题干给出。
+- expansionInvestHypothesis：CFA Institute · Hypothesis Testing (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/hypothesis-testing
+  - 证据与边界：2026-10-14读取公开简介、学习目标及检验步骤摘要；核配对与独立样本区分、显著性解释。投资费用和经济净收益条件为原创题设。
+- expansionInvestBayes：CFA Institute · Probability Trees and Conditional Expectations (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/probability-trees-and-conditional-expectations
+  - 证据与边界：2026-10-14访问公开简介及条件概率、总概率、贝叶斯更新学习目标；完整课程需登录。题设概率树原创，分支加总与后验概率独立复算。
+- expansionInvestBacktesting：BIS · Basel Framework MAR99，2023-01-01生效现行章
+  - URL：https://www.bis.org/committees/bcbs/basel-framework/standard/mar/99/inforce/2023-01-01/published/2020-03-27
+  - 证据与边界：2026-10-14实际读取现行页状态及99.1–99.17；较早2019发布版标注Removed，已另取本2020发布、2023生效的Current版交叉核验。仅用冻结头寸P&L与独立二项回测方法，不宣称国际银行资本规则直接适用于中国基金。
+- expansionInvestBenchmark2026：中国证监会 · 公开募集证券投资基金业绩比较基准指引（2026年第3号公告）
+  - URL：https://www.csrc.gov.cn/csrc/c101954/c7610812/content.shtml
+  - 证据与边界：2026-10-14实际读取正式公告及10页附件全文，并通过HTTP成功下载181535字节PDF后提取核对条号。2026-03-01施行；第8条第4款、第9条、第16条第1款、第17条延后一年执行，第15条第2、3款延后六个月执行。涉及延后条款的题目明确为已公布要求的实施准备，不冒充2026年10月已执行。
+- expansionInvestBenchmarkDetail：中国证券投资基金业协会 · 公开募集证券投资基金业绩比较基准操作细则（2026）
+  - URL：https://www.amac.org.cn/xwfb/xhyw/202601/t20260123_27602.html
+  - 证据与边界：2026-10-14实际读取正式发布页及其链接P020260421579395559123.pdf的9页全文；HTTP成功下载约141KB并提取全文，不使用2025征求意见稿。第28条规定13、14、23至25条延后一年，20至22条延后六个月执行。要素库查询页两次超时，未宣称读取其附件或具体入库名单。
+- expansionInvestUSCycle：美国eCFR · 17 CFR 240.15c6-1 证券交收周期
+  - URL：https://www.ecfr.gov/current/title-17/chapter-II/part-240/subject-group-ECFRc8401dcba174f73/section-240.15c6-1
+  - 证据与边界：2026-10-14实际读取(a)至(d)全文；页面标注Title 17更新至2026-10-09。用于美国境外交收专题，明确一般T+1、发行例外和约定程序，不套用于中国境内交易。eCFR为持续更新的权威但非正式纸质法典版本。
+- expansionInvestUSAffirm：美国eCFR · 17 CFR 240.15c6-2 同日分配与确认
+  - URL：https://www.ecfr.gov/current/title-17/chapter-II/part-240/subject-group-ECFRc8401dcba174f73/section-240.15c6-2
+  - 证据与边界：2026-10-14实际读取(a)(1)(2)、(b)(1)至(5)全部条文，页面更新至2026-10-09；规则针对参与相关分配、确认流程的经纪交易商，须区分适用范围、两条合规路径、技术可行的尽早处理与日末上限。
+- expansionInvestUSForeignOrder：美国SEC · 外国证券交收有限豁免命令（1995，现行规则衔接核对）
+  - URL：https://www.govinfo.gov/content/pkg/FR-1995-05-26/pdf/95-12986.pdf
+  - 证据与边界：2026-10-14实际打开官方3页PDF，逐读SEC命令正文与第7至9脚注（Federal Register 27994–27996）；同文件包含其他机构材料，未混用。2023最终规则及2024官方FAQ明确原豁免继续；1995文中的T+3历史周期不作为当前周期。特别核对存托凭证独立判断、美国客户合同与境外执行合同的区别。
+- expansionInvestUST1Release：美国SEC · Shortening the Securities Transaction Settlement Cycle 最终规则34-96930
+  - URL：https://www.sec.gov/files/rules/final/2023/34-96930.pdf
+  - 证据与边界：2026-10-14实际打开314页官方PDF，重点读取第50–51、82–108页有关发行例外、执行/清算经纪商角色、协议或政策、单笔迟延与系统设计、直通处理及留档；未声称通读314页。与现行eCFR条文交叉核对。
+- expansionInvestUST1FAQ：美国SEC职员 · T+1交收常见问题（2024-03-27）
+  - URL：https://www.sec.gov/exams/educationhelpguidesfaqs/t1-faq
+  - 证据与边界：2026-10-14实际读取7问及脚注；网页明确仅代表职员意见，不具独立法律效力、不增加义务。题目以规则及正式豁免命令为基础，FAQ仅辅助解释延长交收、90%指标与迟收到的确认记录。
+- expansionInvestUSAdviserRecords：美国eCFR · 17 CFR 275.204-2 投资顾问记录
+  - URL：https://www.ecfr.gov/current/title-17/chapter-II/part-275/section-275.204-2
+  - 证据与边界：2026-10-14实际读取(a)(7)(iii)确认、分配和affirmation保存范围及收发时间戳，页面更新至2026-10-09；配合SEC官方FAQ第7问核对迟到的托管人副本，不把美国注册顾问要求扩成中国管理人普遍规则。
+- expansionInvestAttributionMethods：CFA Research Foundation · Carl Bacon, Performance Attribution: History and Progress（2019）
+  - URL：https://rpc.cfainstitute.org/sites/default/files/-/media/documents/book/rf-lit-review/2019/rflr-performance-attribution.pdf
+  - 证据与边界：2026-10-14实际打开官方66页PDF，HTTP下载约1.5MB并提取正文；重点阅读印刷页7–9、14–32的中间组合、交互归属、跨期链接、几何归因、多币种、债券价格来源和衍生工具。研究综述反映作者对方法的讨论，并非中国监管规范或唯一强制算法。案例和参数原创；明确给定的链接公式仅为本题可验证的教学约定。
+- expansionInvestSharpeStyle：William F. Sharpe · Asset Allocation: Management Style and Performance Measurement（1992）
+  - URL：https://web.stanford.edu/~wfsharpe/art/sa/sa.htm
+  - 证据与边界：2026-10-14实际读取作者斯坦福网站的授权转载，重点为Asset Class Factor Models、Evaluating、Determining Fund Exposures、Style Analysis及各基金类型解释；核对非负且和为1的约束、最小残差方差目标、R²含义及行为暴露不同于法律持仓。未复制论文原例数值或试题。
+- expansionInvestAssetAccounting：财政部 · 资产管理产品相关会计处理规定（财会〔2022〕14号）
+  - URL：https://www.mof.gov.cn/jrttts/202206/P020220602508167084584.pdf
+  - 证据与边界：2026-10-14实际打开38页官方PDF并HTTP下载321978字节；逐读总体要求、投资适用准则、金融资产及其他交易处理、披露和附1相关账务处理。另查2026新财务报表列报准则，系分步未来实施，题设采用当前产品规定且未提前执行新列报准则；不将9月会计科目征求意见稿当现行。
+- expansionInvestAccountingFAQ：财政部会计司 · 资产管理产品会计处理规定答记者问（2022）
+  - URL：https://www.mof.gov.cn/jrttts/202206/t20220602_3815621.htm
+  - 证据与边界：2026-10-14实际读取全文；核对有限寿命、现金流量表特殊要求、摊余成本两项条件、赎回时扣收的业绩报酬属于服务补偿和相关列示。与正式规定交叉使用，不依解读创设新收费权利。
+- expansionInvestFundAccountingHandbook：中国证券投资基金业协会 · 证券投资基金会计核算操作实务手册（2024）
+  - URL：https://www.amac.org.cn/hyyj/hjtj/202405/P020240530424712416888.pdf
+  - 证据与边界：2026-10-14网页直取PDF超时，随后官方同一URL经HTTP成功下载1268279字节；pdfinfo核实273页，已提取正文。已读取第1章、第2章第7–21页、第4章第58–76页、第12章第188–194页、第13至14章第195–227页及第3章相关段落；按题目标明页节，不声称通读273页。手册明示仅为行业最佳实践参考，不构成核算正确或运作合规的必然证明，须结合有效准则和实际业务判断。
+- expansionInvestCAS19：财政部 · 企业会计准则解释第19号（财会〔2025〕32号）
+  - URL：https://kjs.mof.gov.cn/zhengcefabu/202512/t20251218_3979556.htm
+  - 证据与边界：2026-10-14实际读取官方全文，重点第三部分电子支付终止确认、第四部分合同现金流量及披露、第五部分权益工具披露和第六部分生效日。自2026-01-01施行；会计终止确认的政策例外不被表述为支付法律最终性。
+- expansionInvestSPPIQA2026：财政部会计司 · 或有特征条款的合同现金流量评估实施问答（2026-05-07）
+  - URL：https://kjs.mof.gov.cn/zt/kjzzss/sswd/jrgjzzss/202604/t20260430_3988923.htm
+  - 证据与边界：2026-10-14网页工具访问超时，随后HTTP成功取得官方HTML并实际读取完整答复；核对变动前后基本借贷安排、忽略发生概率的特征测试、所有合同情景和整个存续期最大累计调整。不是按单年度利率变化设置统一数字安全线。
+- expansionInvestCAS20：财政部 · 企业会计准则解释第20号（财会〔2026〕7号）
+  - URL：https://kjs.mof.gov.cn/zhengcefabu/202606/t20260615_3991686.htm
+  - 证据与边界：2026-10-14实际读取官方全文，核对第一部分无追索权及合同挂钩工具、第二部分货币缺乏可兑换性的定义评估估计披露和衔接。2026-06-17公布，自公布之日起施行，2026-01-01至施行日新增相关业务亦须调整。题目明确2026年适用时点，不混淆货币可兑换性与普通流动性。
+- expansionInvestVATBase2026：财政部、税务总局 · 增值税应税交易销售额计算口径公告（2026年第12号）
+  - URL：https://www.mof.gov.cn/jrttts/202602/t20260203_3983177.htm
+  - 证据与边界：2026-10-14实际读取官方全文，重点第一（一）金融商品转让差额、正负差年度边界、买价方法36个月及不得开具专票。相关案例已排除免税交易，不把增值税负差结转规则与企业所得税亏损混用。
+- expansionInvestVATReorg2026：财政部、税务总局 · 非应税交易等增值税公告（2026年第25号）
+  - URL：https://qingdao.chinatax.gov.cn/ssfg2019/zxwj/202608/t20260831_107529.html
+  - 证据与边界：2026-10-14读取税务机关正式转载全文；第六项规定符合不征增值税的重组后再次转让金融商品承继买入价。2026-09-01施行，年初至8月末已发生未处理事项按公告执行；题干采用2026年10月，不使用征求意见稿。
+- expansionInvestVATExempt2026：财政部、税务总局 · 增值税优惠政策衔接公告（2026年第10号）
+  - URL：https://fgk.chinatax.gov.cn/zcfgk/c102416/c5247434/content.html
+  - 证据与边界：2026-10-14实际读取税务总局法规库全文相关部分，重点第二（一）21（6）保留2025债息政策、第二（二）16公募基金买卖股票债券及18金融同业范围。仅引用已核具体条款；没有将公募交易收入免税扩展为所有票息免税。
+- expansionInvestBondVAT2025：财政部、税务总局 · 国债等债券利息收入增值税政策（2025年第4号）
+  - URL：https://szs.mof.gov.cn/zhengcefabu/202508/t20250801_3969257.htm
+  - 证据与边界：2026-10-14实际读取正式公告全部两项，并用2026年第10号第二（一）21（6）交叉核对延续效力。2025-08-08新发行债券恢复征税；此前已发行债券及其后续发行部分延续免税至到期。案例不覆盖另有专门优惠的境外机构等。
+- expansionInvestDividendTax2015：财政部、税务总局、证监会 · 上市公司股息红利差别化个人所得税（财税〔2015〕101号）
+  - URL：https://www.chinatax.gov.cn/chinatax/n810341/n810765/n1465977/n1466017/c1967339/content.html
+  - 证据与边界：2026-10-14实际读取2015正式通知全文，核对超过一年暂免、一个月以内全额和一年以内50%计税、派息暂不扣及转让后扣缴。与2012年第85号第三至八项操作条款合用，不沿用2012年超过一年仍按25%计基数的旧税负。
+- expansionInvestDividendTaxOps：财政部、税务总局、证监会 · 股息红利差别化税收操作规则（财税〔2012〕85号）
+  - URL：https://tianjin.chinatax.gov.cn/11200000000/0300/030004/03000418/20260122140336284.shtml
+  - 证据与边界：2026-10-14实际读取税务机关转载全文第三至八项：先进先出、日终净增减、限售股解禁起算、证券投资基金适用、ETF实物申购属于转让、自然月。税率及暂扣机制已按2015年第101号更新，旧文第一二项不直接当2026税负依据；题设排除跨境互认等特殊持有人情形。
+- expansionInvestStampLaw：中华人民共和国印花税法及2023年证券交易减半政策
+  - URL：https://shanghai.chinatax.gov.cn/zcfw/zcfgk/yhs/202106/t458595.html
+  - 证据与边界：2026-10-14实际读取税务机关展示全文，核第三、五、七、十四条；税率表的千分之一另核天津税务2022-07-25官方问答。2023年第39号减半公告官方搜索正文完整取得，直连移动页报内部错误，另核商务部法规转载全文：https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=97971 。仅2026题设采用有效减半，不把法定税率直接误当实缴税负。
+- expansionInvestFundCIT：财政部、税务总局 · 企业所得税若干优惠政策（财税〔2008〕1号）
+  - URL：https://fgk.chinatax.gov.cn/zcfgk/c102416/c5203352/content.html
+  - 证据与边界：2026-10-14读取官方法规库第二条全部三项，并核江苏税务2024免税收入目录2.5，案例仅为明确的公募证券投资基金。企业赎回差价另核财税〔2002〕128号第二2项官方搜索原文（总局原页打开为空），不引用该旧文已失效的营业税和旧印花税率。
+- expansionInvestPensionTax：财政部、税务总局 · 全国个人养老金个人所得税优惠（2024年第21号）
+  - URL：https://fgk.chinatax.gov.cn/zcfgk/c102416/c5237110/content.html
+  - 证据与边界：2026-10-14读取正式公告全部条文，重点第一条缴费扣除/投资暂免/领取3%和第二条凭据及预扣汇算路径；另核广西税务2026-07-01现行问答。限定依法设立的个人养老金资金账户，不把普通养老主题基金购买自动等同税优缴费。
+- expansionInvestCDRTax2026：财政部、税务总局、证监会 · 创新企业CDR税收延续公告（2026年第8号）
+  - URL：https://www.mof.gov.cn/jrttts/202601/t20260122_3982353.htm
+  - 证据与边界：2026-10-14读取官方全文，核个人股息国内存托机构扣缴及境外税款依规定抵免、QFII/RQFII按基础股票处理的企业所得税路径。对限期规定明确2026–2027；题目不把CDR发行交易所在地一概当基础权益所得来源地。
+- expansionInvestAdaptiveAllocation：William F. Sharpe · Adaptive Asset Allocation Policies (2009)
+  - URL：https://web.stanford.edu/~wfsharpe/retecon/wfsaaap.pdf
+  - 证据与边界：2026-10-14已读取作者33页公开论文第1–14、20–24页，核对传统配置的市场出清条件、负权重例外及反向优化。题设为独立简化模型，不将论文的政策建议称作监管要求。
+- expansionInvestCPPIMorley：Christopher S. B. Morley · Pricing CPPI Capital Guarantees: A Lagrangian Framework (2011)
+  - URL：https://dspacemainprd01.lib.uwaterloo.ca/server/api/core/bitstreams/0e6577bb-bec7-46c5-bdd6-dcaf7f82d963/content
+  - 证据与边界：2026-10-14网页抓取未成功，独立HTTP实际下载107页学位论文并提取全文；实际核读正文第1–3、7–12页，含式2.2.3/2.2.5、跳跃缺口及借款约束。仅引用稳定策略模型，未称CPPI本身提供无条件保证。
+- expansionInvestCPPILockIn：Louis Paulot and Xavier Lacroze · Efficient Pricing of CPPI using Markov Operators (2009)
+  - URL：https://arxiv.org/pdf/0901.1218
+  - 证据与边界：2026-10-14已读取作者公开40页论文第11–12及26页；第4.2节给出历史高值比例锁定机制，题内零利率及具体比例为原创设定。
+- expansionInvestRiskBudget：Thierry Roncalli · Introduction to Risk Parity and Budgeting: Tutorial Exercise Solutions (2014)
+  - URL：https://arxiv.org/pdf/1403.1889
+  - 证据与边界：2026-10-14独立HTTP取得作者151页公开习题解，实际核读印刷第61–64及101–102页的Euler风险贡献、ERC和相关性关系。此文件是2013年著作的习题解，未声称读取410页完整著作；题目案例和参数自行设计。作者ERC原论文直连返回HTML，未用其不可读正文作依据。
+- expansionInvestAllocationGuide：CFA Institute · 2018 Members’ Guide to Practitioner-Relevant Updates (2017)
+  - URL：https://www.cfainstitute.org/sites/default/files/-/media/documents/book/curriculum-update/rrv-2017-n1-1.pdf
+  - 证据与边界：2026-10-14实际下载93页官方指南，核读印刷第6–24页资产配置摘要及第35–40页负债驱动策略摘要。文件为教材更新简介和摘要，非完整教材；用于稳定配置、风险预算、税后模型和金额久期原理，不套用境外税法。
+- expansionInvestVolTarget：CFA Institute · The Impact of Volatility Targeting (2019) and Conditional Volatility Targeting (2020)
+  - URL：https://rpc.cfainstitute.org/research/cfa-digest/2019/07/dig-v49-7-2
+  - 证据与边界：2026-10-14已读取官方公开研究摘要全文及 https://rpc.cfainstitute.org/research/financial-analysts-journal/2020/conditional-volatility-targeting 的全文摘要，核对预期波动缩放与事后偏离。未读取付费论文全篇，不把样本绩效结果当成保证；题内公式、上限、预测误差均显式给出。
+- expansionInvestTargetDate：SEC Investor.gov · Target Date Funds – Investor Bulletin
+  - URL：https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/target-date-funds-investor-bulletin
+  - 证据与边界：2026-10-14已读取官方投资者说明全文，核对to/through下滑路径及相同目标年不必有相同配置。文件明确为工作人员教育说明，不是规则，也不据此推导中国产品门槛。
+- expansionInvestMoneyQuotes：CFA Institute · Yield and Yield Spread Measures for Floating-Rate Instruments (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/yield-and-yield-spread-measures-for-floating-rate-instruments
+  - 证据与边界：2026-10-14已读取公开Overview及全部要点，核对货币市场原始期限、贴现与附加报价分母、quoted/required margin；完整教材仍须登录。贴现买卖双边报价及比较数值为题设模型，并非实时市场报价。
+- expansionInvestTreasuryCurves：U.S. Treasury · Interest Rates Frequently Asked Questions
+  - URL：https://home.treasury.gov/policy-issues/financing-the-government/interest-rate-statistics/interest-rates-frequently-asked-questions
+  - 证据与边界：2026-10-14实际读取CMT与个券区别、年化口径、长期均值与定期点、非零息曲线等FAQ全文。CMT用于统计曲线，题目不把其当成可成交产品或持有期收益序列。
+- expansionInvestCurveBootstrap：CFA Institute · The Term Structure and Interest Rate Dynamics (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/term-structure-and-interest-rate-dynamics
+  - 证据与边界：2026-10-14已读取公开Introduction、学习目标和Summary；明确由平价曲线逐期剥离零息折现因子的bootstrapping。未取得完整教材；现金流、年付假设和两期价格为独立模型。
+- expansionInvestHorizonDuration：CFA Institute · Interest Rate Risk and Return (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/interest-rate-risk-and-return
+  - 证据与边界：2026-10-14已取得官方公开Overview及完整要点，核对现金流现值加权麦考利久期、持有期与价格/再投资风险关系。结论限题设一次微小平行利率变化模型，不声称实际长期持债保证获利。
+- expansionInvestTreasuryFRN：eCFR · 31 CFR Part 356 Appendix B: Formulas and Tables
+  - URL：https://www.ecfr.gov/current/title-31/subtitle-B/chapter-II/subchapter-A/part-356/appendix-Appendix%20B%20to%20Part%20356
+  - 证据与边界：2026-10-14已读取现行官方附录I.C全部及IV.A/B/C和计息例，核对日累积季付、合计利率零下限、lockout、漏拍一期延用及续发固定spread。另实际读取TreasuryDirect当前FRN FAQ https://www.treasurydirect.gov/help-center/faqs/frn-faqs/ 和发行FAQ https://www.treasurydirect.gov/laws-and-regulations/auction-regulations-uoc/frn-faq/ 。2013三页term sheet已读但未采用其旧500万美元门槛；题中指数利率均为按规定已转换后的值，不把拍卖贴现率未经转换直接代入。
+- expansionInvestAPTOriginal：Burmeister, Roll and Ross · A Practitioner’s Guide to Arbitrage Pricing Theory (1994)
+  - URL：https://rpc.cfainstitute.org/sites/default/files/-/media/documents/book/rf-publication/1994/rf-v1994-n4-4445-pdf.pdf
+  - 证据与边界：2026-10-14已取得CFA Research Foundation官方93页PDF，实际读取前言及第一章印刷1–7页，核APT假设、因子实现值与风险溢价、近似与精确定价条件、因子身份及统计识别限制。三位作者含APT提出者Ross。未将全部论文集称为已逐页读取；题内精确无残差、可卖空及现金流均另行明示。
+- expansionInvestMultiFactor：CFA Institute · Using Multifactor Models (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/using-multifactor-models
+  - 证据与边界：2026-10-14实际读取公开Introduction、学习目标及全部Summary；宏观意外项、基本面模型估计顺序、统计模型及纯因子组合。完整教材需登录，未读取。题内线性模型和数据独立设定，不把因子中性当作全风险消失。
+- expansionInvestFamaLecture：Eugene F. Fama · Two Pillars of Asset Pricing, Nobel Lecture (2013)
+  - URL：https://www.nobelprize.org/uploads/2018/06/fama-lecture.pdf
+  - 证据与边界：2026-10-14检索取得官方链接，网页提取端403；普通HTTP下载PDF成功并提取文本，实际读取印刷365–369页。核联合假设、均衡预期收益可变、事件时间与公告价格调整；并非宣称全部讲座已读。仅为稳定理论来源，不作为实时市场实证结论。
+- expansionInvestStiglitzLecture：Joseph E. Stiglitz · Information and the Change in the Paradigm in Economics, Nobel Lecture (2001)
+  - URL：https://www.nobelprize.org/uploads/2018/06/stiglitz-lecture.pdf
+  - 证据与边界：2026-10-14官方检索正文与普通HTTP下载均取得，网页直开403；实际读取印刷491页（PDF第20页）关于有成本信息生产与完全即时价格揭示的激励矛盾。未声称逐页读取69页讲座，也未把该理论推广为任意主动策略必可获利。
+- expansionInvestIPS：CFA Institute · Elements of an Investment Policy Statement for Individual Investors (2010)
+  - URL：https://rpc.cfainstitute.org/sites/default/files/-/media/documents/article/position-paper/investment-policy-statement-individual-investors.pdf
+  - 证据与边界：2026-10-14已下载官方26页PDF并实际读取Introduction及1b、1c、2a–2e、3a–3e、4a–4c（印刷1、3–17页相关段）。这是投资政策设计建议，示例不是中国法律或所有投资者必须采用的统一合同。题设授权、费用和支出规则独立编写。
+- expansionInvestProcess：CFA Institute · Portfolio Management: An Overview (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/portfolio-management-overview
+  - 证据与边界：2026-10-14已读取公开Introduction、Learning Outcomes及Summary，核客户需求与IPS、配置、证券分析、构建、监控再平衡、评价报告的流程；未读取需登录的完整教材。
+- expansionInvestMandate：CFA Institute · Standard III(C) Suitability — Managing to an Index or Mandate
+  - URL：https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-iii-c
+  - 证据与边界：2026-10-14已实际读取Updating an Investment Policy、Diversification、Managing to an Index or Mandate及IPS/Regular Updates段落。仅用于CFA职业标准下管理集合资产与个别顾问关系的职责区分，不替代中国销售机构法定适当性义务。
+- expansionInvestAllocationPrinciples：CFA Institute · Principles of Asset Allocation (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/principles-asset-allocation
+  - 证据与边界：2026-10-14已读取官方公开Introduction、全部学习目标与Summary，核配置与实施两层、MVO目标与约束、目标子组合、再平衡区间因素；完整教材需登录。集合包含关系和数值反例是明确假设下的原创推导。
+- expansionInvestRealConstraints：CFA Institute · Asset Allocation with Real-World Constraints (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/asset-allocation-with-real-world-constraints
+  - 证据与边界：2026-10-14已读取公开全文摘要，核规模与最低投入、治理能力、定期复查、心理账户、框架及本土熟悉偏差的管理。未读取完整教材；没有把教学投入门槛当成现行法律门槛。
+- expansionInvestMultiAssetPrimer：Chambers, Black and Lacey · Alternative Investments: A Primer for Investment Professionals (2018)
+  - URL：https://rpc.cfainstitute.org/sites/default/files/-/media/documents/book/rf-publication/2018/rf-v2018-n1-1.pdf
+  - 证据与边界：2026-10-14已打开官方183页PDF并实际读取印刷100–102页风险敏感度与组合汇总、157–159页股债组合与配置选择。未声称读完整书；股债风险及联合情景数值为独立设定，不将旧书产品数据视为现行规则。
+- expansionInvestCorrelationPSD：NISTIR 7739 · Object-Oriented Monte Carlo Engine — Correlations
+  - URL：https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7739.pdf
+  - 证据与边界：2026-10-14已实际打开34页官方PDF，读取4.1.3（印刷12页/PDF14页）和第8节（印刷26页/PDF28页），核相关系数逐项范围与矩阵整体半正定的区别。仅采用一般矩阵有效性约束，未将该软件正态输入限制推广为所有相关矩阵条件。
+- expansionInvestReturnUses：CFA Institute · Rates and Returns (2026)
+  - URL：https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/rates-and-returns
+  - 证据与边界：2026-10-14已读取公开Introduction与各项Learning Outcomes；公开页没有完整推导或案例，完整阅读须登录。期望财富题由可见独立离散状态逐一枚举验证，来源仅支持不同收益口径应用的课程范围。
+- expansionInvestActiveShareDimensions：Antti Petajisto · Response to AQR’s Article Titled “Deactivating Active Share” (June 18, 2015)
+  - URL：https://www.petajisto.net/papers/petajisto%20response%20to%20AQR%20article.pdf
+  - 证据与边界：2026-10-14由作者研究主页定位并实际读取作者托管的5页PDF，核第1页摘要第3项、第3页第6项对持仓主动程度与收益因子风险两维度的解释。此文件为2015年6月18日答复稿，不称作2016年已发表全文；仅取度量差异，不将历史主动收益实证作为未来业绩保证。
+- expansionInvestRelativeDrawdown：Ashish Lodh and Noël Amenc · Relative Risk Allocation with Smart Factor Indexes, EDHEC-Risk / Pensions & Investments supplement (November 2015)
+  - URL：https://climateimpact.edhec.edu/sites/risk/files/pdf/about_us/documents/attachments/PI_EDHEC-Risk_Supplement_November_2015.pdf
+  - 证据与边界：2026-10-14官方PDF的检索索引实际展示印刷第19页正文、作者及Exhibit 1脚注，明确以策略指数/基准指数比值的比例变化构造相对指数再求回撤；2015及2016研究专刊官方索引同式交叉核对。网页直开失败，普通HTTP取得非PDF页面，未声称已下载或读完整专刊。题干完整给定这一几何相对财富定义，不冒充所有超额收益回撤口径唯一一致。
+- expansionInvestESContributions：Dirk Tasche · Expected Shortfall and Beyond (2002), arXiv:cond-mat/0203558v3
+  - URL：https://arxiv.org/pdf/cond-mat/0203558
+  - 证据与边界：2026-10-14取得作者存入arXiv的18页PDF并实际读取第4节第11–16页，重点第15页式4.10、4.13及第16页组合尾部条件平均解释。原文以利润损失变量和符号表示，本题显式改用正损失金额，全部为现有持仓的金额贡献；四等概率状态取最坏25%且无并列，避免分位点原子概率部分分配问题。非当前监管资本计量规则。
 
-- 0005：250 / 150 = 1.6666667；原200 / 100 = 2
-- 0007：1200 / ((100 + 300) / 2) = 6
-- 0008：600 / 200 = 3
-- 0010：90 / 30 = 3
-- 0013：80 / ((600 + 1000) / 2) = 10%
-- 0016：−20 / −100 = +20%，数值为正并不改变净亏损；0017改为分母口径对账，无数值代入题
-- 0022：108 / 1.10 = 98.181818万元
-- 0024：110.24 / (1.04 × 1.06) = 100万元
+未用于出题的访问限制：已确认中国结算2026年8月可转换债登记结算新修通知，但对应PDF在网页工具及普通HTTP读取中未成功取得；未以旧版替代，也未据不可读全文出题。公开来源若只展示摘要，均只声明摘要核验。
 
-## 首批120题稳定检查点
+## 算术及模型回归要点
 
-78题基金科目二＋42题证券基础；基金0001–0078，证券0001–0042。结构核验：合法章节与课程、基金精确大纲代码、来源解析、四个不重复选项、四条至少15字理由、答案理由一致、无与原库完全相同题干，均通过。以上是结构检查，不以此替代人工内容审查。基金首78已由独立审校逐题对比旧题，已替换重述任务并修正假设可见性。
+独立复核包含财务比率的平均余额与成本口径、正态单侧概率、分阶段现值、双重股权表决比例、持有期提款顺序、债券本金/利息分配、现金流对账、直接资本化、最低佣金、指数基期归一、收益捕获率及独立事件联合概率。
 
-### 完整学习任务索引
+- 赊购后的流动比率：250 / 150；应收周转：1200 / 200；ROA：80 / 800
+- 负权益和亏损：−20 / −100 = +20%，符号为正不代表有利润
+- 现值：108 / 1.10 ≈ 98.1818；110.24 / (1.04 × 1.06) = 100
+- 现金对账：100 + 40 − 60 + 10 = 90
+- 直接资本化：100 / 5% = 2000；110 / 6% ≈ 1833.3333
+- 交易拆分：0.1% 费率、每笔最低5元，2000元一笔为5元，1000元两笔为10元
+- 两目标相互独立、各90%成功，联合成功率81%
+- BHB与BF配置项在完整权重均合计1时，差额为基准总收益乘主动权重之和，故总和相同；分项可不同，不能仅因模型名称不同认定不相容
+- 同额融资资产收入4%、资金成本5%，按相同计息基础净利差为−1个百分点
+- 摊还证券成交金额：100万元 × 0.8 × 102 / 100 = 81.6万元
 
-#### fund2
+新增作者复算：
 
-- fund2-expansion-invest-0001：规模差异下的纵向共同比分析（3.2.a）；expansionInvestAnalysis；Introduction：common-size statements
-- fund2-expansion-invest-0002：趋势分析中的并购口径（3.2.a）；expansionInvestAnalysis；Introduction：cross-sectional and trend analysis
-- fund2-expansion-invest-0003：季节性企业的比较基期（3.2.a）；expansionInvestAnalysis；Introduction：comparison basis
-- fund2-expansion-invest-0004：比率异常后的证据链（3.2.a）；expansionInvestAnalysis；Introduction：ratios show what not why
-- fund2-expansion-invest-0005：赊购存货对流动比率的影响（3.2.b）；expansionInvestAnalysis；Liquidity ratios；题设流动资产200、流动负债100
-- fund2-expansion-invest-0006：存货积压与速动比率（3.2.b）；expansionInvestAnalysis；Liquidity ratios：quick ratio
-- fund2-expansion-invest-0007：周转率分母的期间匹配（3.2.b）；expansionInvestAnalysis；Activity ratios：receivables turnover
-- fund2-expansion-invest-0008：库存周转的成本口径（3.2.b）；expansionInvestAnalysis；Activity ratios：inventory turnover
-- fund2-expansion-invest-0009：毛利率与净利率的诊断（3.2.b）；expansionInvestAnalysis；Profitability ratios
-- fund2-expansion-invest-0010：利息保障倍数的盈利层级（3.2.b）；expansionInvestAnalysis；Solvency ratios：interest coverage
-- fund2-expansion-invest-0011：现金周转周期的业务解释（3.2.b）；expansionInvestAnalysis；Liquidity：cash conversion cycle
-- fund2-expansion-invest-0012：负营运资金的行业解释（3.2.b）；expansionInvestAnalysis；Liquidity ratios and industry-specific ratios
-- fund2-expansion-invest-0013：资产回报率的平均资产（3.2.b）；expansionInvestAnalysis；Profitability ratios；净利润/平均资产
-- fund2-expansion-invest-0014：高现金比率的双面性（3.2.b）；expansionInvestAnalysis；Liquidity and profitability ratios
-- fund2-expansion-invest-0015：杜邦分解中的杠杆驱动（3.2.c）；expansionInvestAnalysis；DuPont analysis
-- fund2-expansion-invest-0016：负权益下ROE的符号陷阱（3.2.c）；expansionInvestAnalysis；DuPont analysis and denominator limitations
-- fund2-expansion-invest-0017：杜邦分解的平均口径对账（3.2.c）；expansionInvestAnalysis；DuPont analysis；连乘分子分母应一致
-- fund2-expansion-invest-0018：杜邦模型的账面局限（3.2.c）；expansionInvestAnalysis；DuPont analysis and limitations
-- fund2-expansion-invest-0019：延迟付款带来的现金流改善（3.2.a）；expansionInvestAnalysis；Analysis framework；经营现金流质量
-- fund2-expansion-invest-0020：关联方销售的商业实质（3.2.d）；expansionInvestAnalysis；Analysis framework：input data and interpretation
-- fund2-expansion-invest-0021：会计估计变更的利润影响（3.2.d）；expansionInvestAnalysis；Analysis framework：follow-up and comparability
-- fund2-expansion-invest-0022：不同时点付款的比较（3.3.a）；expansionInvestAssumptions；现值模型；两方案同风险且折现率10%
-- fund2-expansion-invest-0023：年金现金流时点（3.3.a）；expansionInvestAssumptions；等额付款现值；正折现率且付款期数相同
-- fund2-expansion-invest-0024：分阶段折现的利率口径（3.3.a）；expansionInvestAssumptions；逐期复利；第一年4%、第二年6%
-- fund2-expansion-invest-0025：离群收益与中位数（3.4.a）；expansionInvestAssumptions；顺序统计量；五个观察值
-- fund2-expansion-invest-0026：期望值与最可能结果（3.4.a）；expansionInvestAssumptions；离散概率模型；总概率为1
-- fund2-expansion-invest-0027：分散程度与单位换算（3.4.a）；expansionInvestAssumptions；方差与标准差；收益以小数表示
-- fund2-expansion-invest-0028：样本波动率的自由度（3.4.a）；expansionInvestAssumptions；样本方差；两个观察值−1%和3%
-- fund2-expansion-invest-0029：正态阈值的单侧概率（3.4.b）；expansionInvestAssumptions；题设正态模型；标准正态P(Z≤−1)=15.87%
-- fund2-expansion-invest-0030：标准化分数的同尺度比较（3.4.a）；expansionInvestAssumptions；z=(观察值−均值)/标准差
-- fund2-expansion-invest-0031：债务到期与权益资金的差异（4.1.a）；expansionInvestEquity；Equity versus debt securities
-- fund2-expansion-invest-0032：固定股息优先股的权利边界（4.1.a）；expansionInvestEquity；Preferred and common shares；题设条款
-- fund2-expansion-invest-0033：价值估计的不确定区间（4.4.a）；expansionInvestValuation；Summary：intrinsic value and model uncertainty
-- fund2-expansion-invest-0034：账面净资产与股权价值（4.4.a）；expansionInvestValuation；Asset-based valuation and limitations
-- fund2-expansion-invest-0035：高速成长企业的分阶段估值（4.4.b）；expansionInvestValuation；Summary：two-stage dividend discount model
-- fund2-expansion-invest-0036：终值与折现时点（4.4.b）；expansionInvestValuation；两阶段股利模型；终值位于第二年末
-- fund2-expansion-invest-0037：无分红公司的模型选择（4.4.b）；expansionInvestValuation；Summary：free-cash-flow-to-equity model
-- fund2-expansion-invest-0038：永续固定优先股定价（4.4.b）；expansionInvestValuation；非赎回非转换优先股；每年固定股息6元、要求回报8%
-- fund2-expansion-invest-0039：市销率比较中的毛利差异（4.4.c）；expansionInvestValuation；Summary：price multiples and comparables
-- fund2-expansion-invest-0040：企业价值倍数的资本结构可比性（4.4.c）；expansionInvestValuation；Enterprise value multiples；简化EV=股权＋债务−现金
-- fund2-expansion-invest-0041：周期顶部盈利与低市盈率（4.4.c）；expansionInvestValuation；Price multiples and normalized earnings
-- fund2-expansion-invest-0042：滚动盈利与预测盈利的混比（4.4.c）；expansionInvestValuation；Price multiples；forward versus trailing earnings
-- fund2-expansion-invest-0043：含权债券的有效久期（5.3.c）；expansionInvestFixedIncome；Curve-based risk measures：embedded options
-- fund2-expansion-invest-0044：非平行曲线变化的风险定位（5.3.c）；expansionInvestFixedIncome；Key rate duration learning outcome
-- fund2-expansion-invest-0045：相同到期日的票息与久期（5.3.c）；expansionInvestFixedIncome；Duration properties；同收益率无含权债
-- fund2-expansion-invest-0046：零息债的持有期与价格风险（5.3.c）；expansionInvestFixedIncome；Interest rate risk and return；不违约且持有至到期
-- fund2-expansion-invest-0047：同评级债券的利差差异（5.3.d）；expansionInvestFixedIncome；Credit risk：issuer and market spread factors
-- fund2-expansion-invest-0048：远期利率不是无条件预测（5.3.d）；expansionInvestFixedIncome；Term structure learning outcome；无套利远期
-- fund2-expansion-invest-0049：收益率曲线倒挂的解释边界（5.3.d）；expansionInvestFixedIncome；Term structure：curve shapes
-- fund2-expansion-invest-0050：相关性估计的频率错配（9.1.b）；expansionInvestPortfolio；Learning outcomes：covariance and correlation
-- fund2-expansion-invest-0051：压力相关性与历史均值（9.1.b）；expansionInvestPortfolio；Summary：correlation determines portfolio risk
-- fund2-expansion-invest-0052：分散化中的重复经济暴露（9.1.b）；expansionInvestPortfolio；Summary：portfolio risk depends on covariance
-- fund2-expansion-invest-0053：均值方差支配的可行性检查（9.1.c）；expansionInvestPortfolio；Summary：efficient frontier；同投资限制
-- fund2-expansion-invest-0054：最优权重对输入误差的敏感性（9.1.c）；expansionInvestPortfolio；Portfolio construction；mean-variance model assumptions
-- fund2-expansion-invest-0055：有效前沿与个人最优的区分（9.1.c）；expansionInvestPortfolio；Summary：investor preferences and efficient frontier
-- fund2-expansion-invest-0056：负Beta资产的模型补偿（9.2.b）；expansionInvestCAPM；CAPM；正市场风险溢价
-- fund2-expansion-invest-0057：同Beta不同特有风险的评价（9.2.b）；expansionInvestCAPM；CAPM and systematic versus nonsystematic risk
-- fund2-expansion-invest-0058：证券市场线下方的预期收益（9.2.b）；expansionInvestCAPM；CAPM；给定估值与预测均成立
-- fund2-expansion-invest-0059：处置效应的持仓证据（9.3.b）；expansionInvestEfficiency；Behavioral finance；题设行为识别
-- fund2-expansion-invest-0060：证据筛选中的确认偏差（9.3.b）；expansionInvestEfficiency；Behavioral finance；information processing
-- fund2-expansion-invest-0061：近期经验对长期配置的干扰（9.3.b）；expansionInvestEfficiency；Behavioral finance；recency bias
-- fund2-expansion-invest-0062：指数换仓的时点偏离（9.4.b）；expansionInvestRisk；Index tracking：sources of tracking error
-- fund2-expansion-invest-0063：申购现金拖累的控制（9.4.b）；expansionInvestRisk；Index tracking：cash and implementation
-- fund2-expansion-invest-0064：跟踪风险预算与主动赌注（9.4.b）；expansionInvestRisk；Index tracking and ex ante management
-- fund2-expansion-invest-0065：新增现金用于再平衡（9.6.a）；expansionInvestPlanning；Summary：rebalancing policy；无税费模型
-- fund2-expansion-invest-0066：目标变化与例行再平衡（9.6.a）；expansionInvestPlanning；Summary：IPS and strategic allocation
-- fund2-expansion-invest-0067：阈值再平衡的成本权衡（9.6.a）；expansionInvestPlanning；Summary：allowable drift and rebalancing
-- fund2-expansion-invest-0068：负面筛选与股东参与的区分（9.7.a）；expansionInvestPlanning；Summary：ESG implementation approaches
-- fund2-expansion-invest-0069：ESG整合与道德偏好区分（9.7.a）；expansionInvestPlanning；Summary：ESG integration
-- fund2-expansion-invest-0070：风险治理与交易层限额（11.1.a）；expansionInvestRisk；Summary：risk governance and operational policies
-- fund2-expansion-invest-0071：对冲后的风险迁移（11.1.a）；expansionInvestRisk；Summary：risk modification and interactions
-- fund2-expansion-invest-0072：期限错配与可变现资产（11.1.b）；expansionInvestRisk；Summary：liquidity risk；题设七日刚性支付
-- fund2-expansion-invest-0073：抵押品与交易对手的错向风险（11.1.b）；expansionInvestRisk；Summary：risk interactions；原创条件
-- fund2-expansion-invest-0074：历史风险与新增头寸（11.2.a）；expansionInvestRisk；Summary：measurement and monitoring
-- fund2-expansion-invest-0075：短样本Beta的置信边界（11.2.a）；expansionInvestRisk；Beta estimation and limitations
-- fund2-expansion-invest-0076：VaR回测超限的模型诊断（11.2.c）；expansionInvestRisk；Summary：tail measures；题设250个独立交易日
-- fund2-expansion-invest-0077：反向压力测试的起点（11.2.d）；expansionInvestRisk；Risk framework：strategic risk analysis
-- fund2-expansion-invest-0078：联合冲击的情景一致性（11.2.d）；expansionInvestRisk；Summary：nonlinear risk interactions
+- 国债边际分配12×18/24=9、12×6/24=3；追加min(20×50%,6)=6
+- 新开户5×8/20=2万元；超额配售150−90=60万股；开盘价格双上限min(10,9.7)=9.7
+- PMI扩散20+60×0.5=50；配送逆向贡献−4×15%=−0.6；综合产出52×40%+54×60%=53.2
+- 劳动力退出后80/(900+80)≈8.1633%，不能以原1000为分母
+- 实际净出口120/1.20−90/0.90=0；修订GDP同比109.2/104−1=5%
+- 可交换债补股：1000/8−100=25万股，不能以市值足够代替交付股数
 
-#### securities1
 
-- securities1-expansion-invest-0001：银行购债与融资性质；expansionInvestMarket；Financial intermediaries and primary markets
-- securities1-expansion-invest-0002：滚动短融支持长项目；expansionInvestMarket；Financial system：maturity transformation；原创融资安排
-- securities1-expansion-invest-0003：二级流动性对发行成本的间接作用；expansionInvestMarket；Learning outcomes：secondary markets support primary markets
-- securities1-expansion-invest-0004：混合发行中新增融资识别；expansionInvestMarket；Primary market；题设不计费用
-- securities1-expansion-invest-0005：货币政策传导的时滞；expansionInvestMonetary；Transmission mechanism：variable and uncertain lags
-- securities1-expansion-invest-0006：抵押品价值的信用传导；expansionInvestMonetary；Transmission mechanism：collateral channel
-- securities1-expansion-invest-0007：预期通胀与事前实际利率；expansionInvestMonetary；利率传导；近似实际利率=名义利率−预期通胀
-- securities1-expansion-invest-0008：汇率渠道对经营主体的差异；expansionInvestMonetary；Transmission mechanism：exchange rate channel；其他条件不变
-- securities1-expansion-invest-0009：银行资本约束与信贷传导；expansionInvestMonetary；Transmission mechanism：bank capital and supply of loans
-- securities1-expansion-invest-0010：包销安排的库存风险；expansionInvestMarket；Financial intermediaries；题设余额包销合同
-- securities1-expansion-invest-0011：经纪委托与自营报价的识别；expansionInvestMarket；Summary：brokers and dealers
-- securities1-expansion-invest-0012：跨机构对账差异的处理；expansionInvestMarket；Financial infrastructure；原创运营控制情景
-- securities1-expansion-invest-0013：报价信息服务与履约保证的边界；expansionInvestMarket；Market intermediaries；题设数据服务
-- securities1-expansion-invest-0014：低股价与低公司估值的区别；expansionInvestStocks；Stocks FAQ：market capitalization
-- securities1-expansion-invest-0015：配股参与与持股比例；expansionInvestStocks；题设全体按比例配股；不涉及除权价格
-- securities1-expansion-invest-0016：回购提升每股收益的限定解释；expansionInvestStocks；题设现金回购、净利润暂不变
-- securities1-expansion-invest-0017：授权股数与实际权益分母；expansionInvestStocks；题设已发行且流通在外400万股、可发行上限1000万股
-- securities1-expansion-invest-0018：股息率中的历史与未来；expansionInvestStocks；Stocks FAQ：dividend payments；题设去年特别股利
-- securities1-expansion-invest-0019：可转债转股后的索取权变化；expansionInvestStocks；题设转股完成、债权注销且新股发行
-- securities1-expansion-invest-0020：票息再投资与到期收益率实现；expansionInvestBonds；债券收益来源；题设持有至到期且不违约
-- securities1-expansion-invest-0021：折价债的趋近面值条件；expansionInvestBonds；固定现金流债；收益率不变且无违约
-- securities1-expansion-invest-0022：浮息债重定价与信用利差；expansionInvestBonds；题设票息=基准利率＋固定加点
-- securities1-expansion-invest-0023：投资者回售权的经济作用；expansionInvestBonds；题设到第三年可按100元回售
-- securities1-expansion-invest-0024：本金分期偿还与再投资安排；expansionInvestBonds；题设摊还型债券现金流
-- securities1-expansion-invest-0025：应计利息与买方下次收息；expansionInvestBonds；题设成交日在付息日前、买方收到完整下一期票息
-- securities1-expansion-invest-0026：证券化现金流瀑布的支付顺序；expansionInvestSecuritization；原创合同：先费用再优先利息再本金
-- securities1-expansion-invest-0027：提前偿还与证券化期限延长；expansionInvestSecuritization；Fixed-income learning outcomes：prepayment risk
-- securities1-expansion-invest-0028：服务机构中断的运营风险；expansionInvestSecuritization；Securitization parties；题设服务机构负责收款分配
-- securities1-expansion-invest-0029：循环购买资产池的信用漂移；expansionInvestSecuritization；原创合同：回款可再购买新应收账款
-- securities1-expansion-invest-0030：ETF现金替代的成本归属；expansionInvestAssumptions；原创申赎合同：特定证券现金替代并实际购入
-- securities1-expansion-invest-0031：封闭式基金折价扩大的持有回报；expansionInvestAssumptions；原创无分红案例；净值保持10元
-- securities1-expansion-invest-0032：基础交易取消后的套保敞口；expansionInvestDerivatives；Derivative uses；题设进口采购取消
-- securities1-expansion-invest-0033：货币互换的本金条款；expansionInvestDerivatives；原创货币互换合同：期初换本金、期末反向换回
-- securities1-expansion-invest-0034：远期正市值与信用敞口；expansionInvestDerivatives；Derivative risks；无抵押无净额抵销的题设
-- securities1-expansion-invest-0035：套保到期日错配的展期风险；expansionInvestDerivatives；Derivative risks；长期暴露与短期期货
-- securities1-expansion-invest-0036：降低权利金的代价；expansionInvestHedge；原创采购领口：买看涨并卖较低执行价看跌
-- securities1-expansion-invest-0037：非线性套保的动态数量；expansionInvestAssumptions；题设期权Delta由0.4变0.7；每份对应1股
-- securities1-expansion-invest-0038：负超额收益下夏普排序的误用；expansionInvestAssumptions；题设Sharpe=(收益−无风险)/标准差
-- securities1-expansion-invest-0039：持续提款与收益顺序；expansionInvestAssumptions；题设初始100；每年末提款10、忽略费税
-- securities1-expansion-invest-0040：相同回撤幅度的恢复时间；expansionInvestAssumptions；题设两组合最大回撤均20%
-- securities1-expansion-invest-0041：净敞口为零与总头寸风险；expansionInvestAssumptions；题设多头100万元、空头100万元、标的不同
-- securities1-expansion-invest-0042：盘口深度与卖出均价；expansionInvestAssumptions；原创静态订单簿；无新增报价、手续费为零
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 新补独立复算：单只VaR95为0、联合为100；增量VaR24−30=−6；久期相对变化−3%−(−5%)=2个百分点；零息债静态曲线滚降1.04²/1.03−1=5.0097%；主动风险√(5%²+10%²)=11.1803%；25%主动策略混75%同基准将TE8%缩为2%。
+- 择时模型以实际阅读的式8–10核验：Zrm改变状态贝塔，Zrm²改变状态曲率；不把曲率系数直接等同预测准确度。
+
+- 跨境与货基复算：港股通投票90/150比例得48、24、18；冻结10000×0.90=9000元、结算10000×0.87=8700元；QDII借出520/1000=52%（分母不含540担保物）；伞型12%+11%=23%；货基周末权益10万份、下交易日10+2−3=9万份。
+
+- 最后三题独立复算：相对财富序列为1、11/12、11/12，最大回撤1/12约8.33%；组合情景损失10、9、16、0万元，最坏25%唯一尾态为第三态，甲ES贡献8万元、乙8万元、总ES16万元。
+
+## 全部学习目标与引用定位
+
+### fund2
+
+- fund2-expansion-invest-0001：规模差异下的纵向共同比分析；3.2.a；expansionInvestAnalysis；Introduction：common-size statements
+- fund2-expansion-invest-0002：趋势分析中的并购口径；3.2.a；expansionInvestAnalysis；Introduction：cross-sectional and trend analysis
+- fund2-expansion-invest-0003：季节性企业的比较基期；3.2.a；expansionInvestAnalysis；Introduction：comparison basis
+- fund2-expansion-invest-0004：比率异常后的证据链；3.2.a；expansionInvestAnalysis；Introduction：ratios show what not why
+- fund2-expansion-invest-0005：赊购存货对流动比率的影响；3.2.b；expansionInvestAnalysis；Liquidity ratios；题设流动资产200、流动负债100
+- fund2-expansion-invest-0006：存货积压与速动比率；3.2.b；expansionInvestAnalysis；Liquidity ratios：quick ratio
+- fund2-expansion-invest-0007：周转率分母的期间匹配；3.2.b；expansionInvestAnalysis；Activity ratios：receivables turnover
+- fund2-expansion-invest-0008：库存周转的成本口径；3.2.b；expansionInvestAnalysis；Activity ratios：inventory turnover
+- fund2-expansion-invest-0009：毛利率与净利率的诊断；3.2.b；expansionInvestAnalysis；Profitability ratios
+- fund2-expansion-invest-0010：利息保障倍数的盈利层级；3.2.b；expansionInvestAnalysis；Solvency ratios：interest coverage
+- fund2-expansion-invest-0011：现金周转周期的业务解释；3.2.b；expansionInvestAnalysis；Liquidity：cash conversion cycle
+- fund2-expansion-invest-0012：负营运资金的行业解释；3.2.b；expansionInvestAnalysis；Liquidity ratios and industry-specific ratios
+- fund2-expansion-invest-0013：资产回报率的平均资产；3.2.b；expansionInvestAnalysis；Profitability ratios；净利润/平均资产
+- fund2-expansion-invest-0014：高现金比率的双面性；3.2.b；expansionInvestAnalysis；Liquidity and profitability ratios
+- fund2-expansion-invest-0015：杜邦分解中的杠杆驱动；3.2.c；expansionInvestAnalysis；DuPont analysis
+- fund2-expansion-invest-0016：负权益下ROE的符号陷阱；3.2.c；expansionInvestAnalysis；DuPont analysis and denominator limitations
+- fund2-expansion-invest-0017：杜邦分解的平均口径对账；3.2.c；expansionInvestAnalysis；DuPont analysis；连乘分子分母应一致
+- fund2-expansion-invest-0018：杜邦模型的账面局限；3.2.c；expansionInvestAnalysis；DuPont analysis and limitations
+- fund2-expansion-invest-0019：延迟付款带来的现金流改善；3.2.a；expansionInvestAnalysis；Analysis framework；经营现金流质量
+- fund2-expansion-invest-0020：关联方销售的商业实质；3.2.d；expansionInvestAnalysis；Analysis framework：input data and interpretation
+- fund2-expansion-invest-0021：会计估计变更的利润影响；3.2.d；expansionInvestAnalysis；Analysis framework：follow-up and comparability
+- fund2-expansion-invest-0022：不同时点付款的比较；3.3.a；expansionInvestAssumptions；现值模型；两方案同风险且折现率10%
+- fund2-expansion-invest-0023：年金现金流时点；3.3.a；expansionInvestAssumptions；等额付款现值；正折现率且付款期数相同
+- fund2-expansion-invest-0024：分阶段折现的利率口径；3.3.a；expansionInvestAssumptions；逐期复利；第一年4%、第二年6%
+- fund2-expansion-invest-0025：离群收益与中位数；3.4.a；expansionInvestAssumptions；顺序统计量；五个观察值
+- fund2-expansion-invest-0026：期望值与最可能结果；3.4.a；expansionInvestAssumptions；离散概率模型；总概率为1
+- fund2-expansion-invest-0027：分散程度与单位换算；3.4.a；expansionInvestAssumptions；方差与标准差；收益以小数表示
+- fund2-expansion-invest-0028：样本波动率的自由度；3.4.a；expansionInvestAssumptions；样本方差；两个观察值−1%和3%
+- fund2-expansion-invest-0029：正态阈值的单侧概率；3.4.b；expansionInvestAssumptions；题设正态模型；标准正态P(Z≤−1)=15.87%
+- fund2-expansion-invest-0030：标准化分数的同尺度比较；3.4.a；expansionInvestAssumptions；z=(观察值−均值)/标准差
+- fund2-expansion-invest-0031：债务到期与权益资金的差异；4.1.a；expansionInvestEquity；Equity versus debt securities
+- fund2-expansion-invest-0032：固定股息优先股的权利边界；4.1.a；expansionInvestEquity；Preferred and common shares；题设条款
+- fund2-expansion-invest-0033：价值估计的不确定区间；4.4.a；expansionInvestValuation；Summary：intrinsic value and model uncertainty
+- fund2-expansion-invest-0034：账面净资产与股权价值；4.4.a；expansionInvestValuation；Asset-based valuation and limitations
+- fund2-expansion-invest-0035：高速成长企业的分阶段估值；4.4.b；expansionInvestValuation；Summary：two-stage dividend discount model
+- fund2-expansion-invest-0036：终值与折现时点；4.4.b；expansionInvestValuation；两阶段股利模型；终值位于第二年末
+- fund2-expansion-invest-0037：无分红公司的模型选择；4.4.b；expansionInvestValuation；Summary：free-cash-flow-to-equity model
+- fund2-expansion-invest-0038：永续固定优先股定价；4.4.b；expansionInvestValuation；非赎回非转换优先股；每年固定股息6元、要求回报8%
+- fund2-expansion-invest-0039：市销率比较中的毛利差异；4.4.c；expansionInvestValuation；Summary：price multiples and comparables
+- fund2-expansion-invest-0040：企业价值倍数的资本结构可比性；4.4.c；expansionInvestValuation；Enterprise value multiples；简化EV=股权＋债务−现金
+- fund2-expansion-invest-0041：周期顶部盈利与低市盈率；4.4.c；expansionInvestValuation；Price multiples and normalized earnings
+- fund2-expansion-invest-0042：滚动盈利与预测盈利的混比；4.4.c；expansionInvestValuation；Price multiples；forward versus trailing earnings
+- fund2-expansion-invest-0043：含权债券的有效久期；5.3.c；expansionInvestFixedIncome；Curve-based risk measures：embedded options
+- fund2-expansion-invest-0044：非平行曲线变化的风险定位；5.3.c；expansionInvestFixedIncome；Key rate duration learning outcome
+- fund2-expansion-invest-0045：相同到期日的票息与久期；5.3.c；expansionInvestFixedIncome；Duration properties；同收益率无含权债
+- fund2-expansion-invest-0046：零息债的持有期与价格风险；5.3.c；expansionInvestFixedIncome；Interest rate risk and return；不违约且持有至到期
+- fund2-expansion-invest-0047：同评级债券的利差差异；5.3.d；expansionInvestFixedIncome；Credit risk：issuer and market spread factors
+- fund2-expansion-invest-0048：远期利率不是无条件预测；5.3.d；expansionInvestFixedIncome；Term structure learning outcome；无套利远期
+- fund2-expansion-invest-0049：收益率曲线倒挂的解释边界；5.3.d；expansionInvestFixedIncome；Term structure：curve shapes
+- fund2-expansion-invest-0050：相关性估计的频率错配；9.1.b；expansionInvestPortfolio；Learning outcomes：covariance and correlation
+- fund2-expansion-invest-0051：压力相关性与历史均值；9.1.b；expansionInvestPortfolio；Summary：correlation determines portfolio risk
+- fund2-expansion-invest-0052：分散化中的重复经济暴露；9.1.b；expansionInvestPortfolio；Summary：portfolio risk depends on covariance
+- fund2-expansion-invest-0053：均值方差支配的可行性检查；9.1.c；expansionInvestPortfolio；Summary：efficient frontier；同投资限制
+- fund2-expansion-invest-0054：最优权重对输入误差的敏感性；9.1.c；expansionInvestPortfolio；Portfolio construction；mean-variance model assumptions
+- fund2-expansion-invest-0055：有效前沿与个人最优的区分；9.1.c；expansionInvestPortfolio；Summary：investor preferences and efficient frontier
+- fund2-expansion-invest-0056：负Beta资产的模型补偿；9.2.b；expansionInvestCAPM；CAPM；正市场风险溢价
+- fund2-expansion-invest-0057：同Beta不同特有风险的评价；9.2.b；expansionInvestCAPM；CAPM and systematic versus nonsystematic risk
+- fund2-expansion-invest-0058：证券市场线下方的预期收益；9.2.b；expansionInvestCAPM；CAPM；给定估值与预测均成立
+- fund2-expansion-invest-0059：处置效应的持仓证据；9.3.b；expansionInvestEfficiency；Behavioral finance；题设行为识别
+- fund2-expansion-invest-0060：证据筛选中的确认偏差；9.3.b；expansionInvestEfficiency；Behavioral finance；information processing
+- fund2-expansion-invest-0061：近期经验对长期配置的干扰；9.3.b；expansionInvestEfficiency；Behavioral finance；recency bias
+- fund2-expansion-invest-0062：指数换仓的时点偏离；9.4.b；expansionInvestRisk；Index tracking：sources of tracking error
+- fund2-expansion-invest-0063：申购现金拖累的控制；9.4.b；expansionInvestRisk；Index tracking：cash and implementation
+- fund2-expansion-invest-0064：跟踪风险预算与主动赌注；9.4.b；expansionInvestRisk；Index tracking and ex ante management
+- fund2-expansion-invest-0065：新增现金用于再平衡；9.6.a；expansionInvestPlanning；Summary：rebalancing policy；无税费模型
+- fund2-expansion-invest-0066：目标变化与例行再平衡；9.6.a；expansionInvestPlanning；Summary：IPS and strategic allocation
+- fund2-expansion-invest-0067：阈值再平衡的成本权衡；9.6.a；expansionInvestPlanning；Summary：allowable drift and rebalancing
+- fund2-expansion-invest-0068：负面筛选与股东参与的区分；9.7.a；expansionInvestPlanning；Summary：ESG implementation approaches
+- fund2-expansion-invest-0069：ESG整合与道德偏好区分；9.7.a；expansionInvestPlanning；Summary：ESG integration
+- fund2-expansion-invest-0070：风险治理与交易层限额；11.1.a；expansionInvestRisk；Summary：risk governance and operational policies
+- fund2-expansion-invest-0071：对冲后的风险迁移；11.1.a；expansionInvestRisk；Summary：risk modification and interactions
+- fund2-expansion-invest-0072：期限错配与可变现资产；11.1.b；expansionInvestRisk；Summary：liquidity risk；题设七日刚性支付
+- fund2-expansion-invest-0073：抵押品与交易对手的错向风险；11.1.b；expansionInvestRisk；Summary：risk interactions；原创条件
+- fund2-expansion-invest-0074：历史风险与新增头寸；11.2.a；expansionInvestRisk；Summary：measurement and monitoring
+- fund2-expansion-invest-0075：短样本Beta的置信边界；11.2.a；expansionInvestRisk；Beta estimation and limitations
+- fund2-expansion-invest-0076：VaR回测超限的模型诊断；11.2.c；expansionInvestRisk；Summary：tail measures；题设250个独立交易日
+- fund2-expansion-invest-0077：反向压力测试的起点；11.2.d；expansionInvestRisk；Risk framework：strategic risk analysis
+- fund2-expansion-invest-0078：联合冲击的情景一致性；11.2.d；expansionInvestRisk；Summary：nonlinear risk interactions
+- fund2-expansion-invest-0079：远期交割价格与合约价值；6.2.a；expansionInvestContracts；Forward contracts；题设公平定价、零初始支付
+- fund2-expansion-invest-0080：融资现金伪装成经营回款的核查；3.2.d；expansionInvestAnalysis；Analysis framework；原创银行融资线索
+- fund2-expansion-invest-0081：旧远期合约的价值与重新签约；6.2.a；expansionInvestContracts；Forward value；同到期新交割价提高
+- fund2-expansion-invest-0082：业务结构变化与综合毛利率；3.2.b；expansionInvestAnalysis；Financial analysis：mix effect；题设两分部毛利率不变
+- fund2-expansion-invest-0083：实物交割与现货采购地点；6.3.a；expansionInvestContracts；Futures features；题设指定交割地点和品质
+- fund2-expansion-invest-0084：存量报表与期间流量的汇总；3.1.a；expansionInvestAssumptions；财务报表口径；原创季度汇总流程
+- fund2-expansion-invest-0085：总额净额收入列报的可比性；3.2.a；expansionInvestAnalysis；Financial analysis：comparison basis；题设已知列报差异
+- fund2-expansion-invest-0086：行权价值与事前决策成本；6.4.a；expansionInvestHedge；题设欧式看涨到期；权利金已支付、无交易费
+- fund2-expansion-invest-0087：利率互换无法消除贷款加点重定价；6.5.a；expansionInvestContracts；题设贷款=基准＋可变信用加点；互换收同基准付固定
+- fund2-expansion-invest-0088：股票总收益互换的分红处理；6.5.a；expansionInvestContracts；原创合同：收股价变化和现金分红、付固定融资额
+- fund2-expansion-invest-0089：提前终止互换的市值成本；6.5.a；expansionInvestContracts；Swap valuation；题设可按公平市值终止
+- fund2-expansion-invest-0090：信用保护与利率风险的拆分；6.1.a；expansionInvestContracts；Summary：credit derivatives separate default risk
+- fund2-expansion-invest-0091：现金余额与三类现金流的勾稽；3.1.a；expansionInvestAssumptions；原创财务预测：无汇率及其他现金调整
+- fund2-expansion-invest-0092：直接投资的治理成本；7.1.a；expansionInvestAlternative；Overview：fund versus direct investment
+- fund2-expansion-invest-0093：固定长租约的通胀保护边界；7.3.a；expansionInvestAssumptions；Real estate investment；题设租金十年固定且无指数调整
+- fund2-expansion-invest-0094：商品股票与商品现货敞口；7.2.a；expansionInvestAlternative；Alternative categories：commodities；原创成本冲击
+- fund2-expansion-invest-0095：实物商品持有的非价格成本；7.2.a；expansionInvestAlternative；Alternative categories：commodities；题设实物储存
+- fund2-expansion-invest-0096：资本化率与租金改善的冲突；7.3.a；expansionInvestAssumptions；题设物业价值=稳定净营运收入/资本化率
+- fund2-expansion-invest-0097：租约到期集中度；7.3.a；expansionInvestAssumptions；Real assets cash flows；原创租约安排
+- fund2-expansion-invest-0098：建设期与运营期基础设施风险；7.3.a；expansionInvestAssumptions；Infrastructure categories；题设尚未完工项目
+- fund2-expansion-invest-0099：并购套利价差的失败风险；7.4.c；expansionInvestAssumptions；题设现金收购报价50元、目标股现价47元
+- fund2-expansion-invest-0100：多空配对的关系断裂；7.4.c；expansionInvestAssumptions；题设两公司历史利润相关、无合同保证
+- fund2-expansion-invest-0101：价格加权指数的拆股维护；8.1.b；expansionInvestIndexes；Summary：weighting methods and index management
+- fund2-expansion-invest-0102：等权指数的权重漂移；8.1.b；expansionInvestIndexes；Index weighting and rebalancing；两只股票初始等权
+- fund2-expansion-invest-0103：自由流通权重的可投资性；8.1.b；expansionInvestIndexes；Index construction；题设只用自由流通市值
+- fund2-expansion-invest-0104：债券市值加权的发行人集中度；8.1.b；expansionInvestIndexes；Types of fixed-income indexes；按存量债市值加权
+- fund2-expansion-invest-0105：不同基期指数的点位比较；8.1.b；expansionInvestIndexes；Index value and return；题设同一观察期
+- fund2-expansion-invest-0106：指数重构与权重再平衡的区分；8.1.b；expansionInvestIndexes；Learning outcomes：reconstitution and rebalancing
+- fund2-expansion-invest-0107：跨币种基准的收益可比性；8.1.c；expansionInvestPerformance；Benchmark selection；基金人民币、基准美元口径
+- fund2-expansion-invest-0108：混合基准的再平衡规则；8.1.c；expansionInvestPerformance；题设60%股票40%债券基准
+- fund2-expansion-invest-0109：TWAP在成交量不均时的参与率；10.2.b；expansionInvestExecution；算法执行；题设每分钟等量下单
+- fund2-expansion-invest-0110：成交量跟随算法的目标差异；10.2.b；expansionInvestExecution；算法执行；题设固定10%参与率
+- fund2-expansion-invest-0111：固定拆单模式的信息泄露；10.2.b；expansionInvestExecution；Electronic markets；题设可预测同量同间隔订单
+- fund2-expansion-invest-0112：延迟下单对执行基准的美化；10.2.a；expansionInvestExecution；Execution shortfall；题设决策到成交的完整过程
+- fund2-expansion-invest-0113：交易紧迫性与隐性成本；10.2.a；expansionInvestExecution；Best execution：trade-off；题设信号很快失效
+- fund2-expansion-invest-0114：跨场所最优报价的可执行性；10.2.a；expansionInvestExecution；Market fragmentation and transaction costs
+- fund2-expansion-invest-0115：相对VWAP优秀但仍高成本；10.2.a；expansionInvestExecution；Execution benchmarks；题设买单推动市场价格
+- fund2-expansion-invest-0116：逐笔最低佣金与拆单成本；10.3.b；expansionInvestAssumptions；原创费率：每笔成交金额0.1%、最低5元
+- fund2-expansion-invest-0117：价格单位校验与风控限额；10.3.b；expansionInvestAssumptions；原创数据接口：分与元字段误配
+- fund2-expansion-invest-0118：跨时区市场时间戳对账；10.3.b；expansionInvestAssumptions；原创运营情景：UTC与当地时间混用
+- fund2-expansion-invest-0119：基金合并接续业绩的身份边界；12.1.a；expansionInvestPerformance；Performance evaluation；原创数据库接续规则
+- fund2-expansion-invest-0120：不同观察窗口的冠军比较；12.1.a；expansionInvestPerformance；Performance evaluation：comparability
+- fund2-expansion-invest-0121：可控现金流下资金加权的意义；12.2.b；expansionInvestPerformance；Money-weighted versus time-weighted evaluation
+- fund2-expansion-invest-0122：内部资产调仓不是外部现金流；12.2.b；expansionInvestPerformance；Return measurement；题设同一基金内部买卖
+- fund2-expansion-invest-0123：实物申购与外部资金流的识别；12.2.b；expansionInvestPerformance；原创基金安排：投资者以公允价值证券换新份额
+- fund2-expansion-invest-0124：下行捕获率的分母符号；12.2.c；expansionInvestAssumptions；题设单个下跌期：基金−6%、基准−10%，捕获率=基金/基准
+- fund2-expansion-invest-0125：上行捕获与下行风险的联合评价；12.2.c；expansionInvestAssumptions；题设两经理上行捕获都120%
+- fund2-expansion-invest-0126：持仓快照归因的遗漏交易；12.3.a；expansionInvestPerformance；Performance attribution：holdings versus transactions
+- fund2-expansion-invest-0127：收益贡献与风险贡献不等价；11.1.a；expansionInvestPerformance；Return versus risk attribution
+- fund2-expansion-invest-0128：完整权重下BHB与BF总配置项的关系；12.3.b；expansionInvestAttribution；CFA Research Foundation 2019：Foundations；题设明确公式
+- fund2-expansion-invest-0129：债券收益归因中的利差成分；12.3.b；expansionInvestPerformance；Fixed-income attribution：yield and credit spread
+- fund2-expansion-invest-0130：收益风格回归与持仓验证；12.4.a；expansionInvestPerformance；Returns-based versus holdings-based style analysis
+- fund2-expansion-invest-0131：风格暴露与经理能力分离；12.4.a；expansionInvestPerformance；Style analysis；题设全市场小盘风格上涨
+- fund2-expansion-invest-0132：风险意愿与财务承受能力冲突；18.1.c；expansionInvestPlanning；Summary：willingness versus ability to take risk
+- fund2-expansion-invest-0133：多个目标的优先级冲突；18.1.c；expansionInvestPlanning；IPS：return and risk objectives
+- fund2-expansion-invest-0134：工资与金融资产的共同风险；18.1.c；expansionInvestPlanning；IPS：resources and unique circumstances
+- fund2-expansion-invest-0135：养老金负债的币种匹配；18.1.c；expansionInvestPlanning；IPS：liabilities and currency exposure
+- fund2-expansion-invest-0136：应急现金与长期投资组合；18.1.c；expansionInvestPlanning；IPS：liquidity requirements
+- fund2-expansion-invest-0137：多目标共同达成概率；3.4.a；expansionInvestAssumptions；原创简化模型：两个目标达成事件相互独立
+- fund2-expansion-invest-0138：发行人收入阈值与组合权重错配；18.1.c；expansionInvestPlanning；原创IPS：排除烟草收入占自身总收入至少5%的发行人
+- fund2-expansion-invest-0139：退休前后投资期限的多阶段性；18.1.c；expansionInvestPlanning；IPS：time horizon and changing liabilities
+- fund2-expansion-invest-0140：明星经理离任与流程可迁移性；12.5.a；expansionInvestPerformance；Investment manager appraisal；原创尽调
+- fund2-expansion-invest-0141：管理规模增长与策略容量；12.5.a；expansionInvestPerformance；Investment manager appraisal；题设小盘低流动性策略
+- fund2-expansion-invest-0142：业绩归因与流程证据的交叉核查；12.5.a；expansionInvestPerformance；Investment manager appraisal：skill versus luck
+- fund2-expansion-invest-0143：份额类别比较中的费用差异；12.6.a；expansionInvestPerformance；Fund product appraisal；题设相同底层组合
+- fund2-expansion-invest-0144：投资者结构与潜在集中赎回；12.6.a；expansionInvestPerformance；Fund product appraisal；原创客户结构
+- fund2-expansion-invest-0145：跨境市场休市与赎回安排；11.3.f；expansionInvestRisk；Cross-border fund risk；原创不同市场日历
+- fund2-expansion-invest-0146：离散损失下VaR不保证次可加；11.2.c；expansionInvestMarketRisk；损失分位数定义；原创互斥状态，VaR95取累计概率首次达到95%的损失
+- fund2-expansion-invest-0147：债券集中赎回中的先卖流动资产；11.3.c；expansionInvestRisk；Bond fund risk；题设先卖全部高流动性债券
+- fund2-expansion-invest-0148：信用迁移与持仓准入约束；11.3.c；expansionInvestRisk；Bond fund risk；原创合同评级下限
+- fund2-expansion-invest-0149：下行风险目标的选择；11.2.b；expansionInvestAssumptions；题设下行偏差基于目标收益计算
+- fund2-expansion-invest-0150：最大回撤对观察频率的敏感性；11.2.b；expansionInvestAssumptions；Drawdown measurement；同一净值路径
+- fund2-expansion-invest-0151：新增头寸的增量VaR与单独VaR；11.2.c；expansionInvestMarketRisk；CFA Market Risk摘要：incremental VaR；题设同持有期、置信度及估值口径
+- fund2-expansion-invest-0152：情景损失限额与实际止损的触发区别；11.2.d；expansionInvestMarketRisk；Measuring and Managing Market Risk：scenario limit；题设已批准的风险政策
+- fund2-expansion-invest-0153：价格下跌但估值确定时的侧袋边界；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第五条
+- fund2-expansion-invest-0154：侧袋内特定资产的合并容纳；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第七条
+- fund2-expansion-invest-0155：侧袋部分变现后的付款安排；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第八条第一款
+- fund2-expansion-invest-0156：侧袋回款的再投资限制；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第八条第二款
+- fund2-expansion-invest-0157：特定资产整体分割的要求；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第十六条
+- fund2-expansion-invest-0158：多个侧袋账户的账套隔离；15.1.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第十七条
+- fund2-expansion-invest-0159：侧袋启用当日新申购的权益范围；13.2.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第六条
+- fund2-expansion-invest-0160：侧袋启用日赎回与未变现权益；13.2.c；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第六条
+- fund2-expansion-invest-0161：侧袋管理报酬与处置费用的分界；15.2.a；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第十条
+- fund2-expansion-invest-0162：启用侧袋咨询审计费的承担方；15.2.b；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第十条
+- fund2-expansion-invest-0163：主袋分红条款对侧袋的适用边界；16.1.a；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第九条
+- fund2-expansion-invest-0164：侧袋信息与主袋财务报表的披露分工；17.4.a；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第二十条
+- fund2-expansion-invest-0165：侧袋参考区间不能变成兑现承诺；17.4.a；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第二十条第五项
+- fund2-expansion-invest-0166：多次侧袋变现的临时公告；17.4.a；expansionInvestSidePocket；《证券投资基金侧袋机制操作细则》第二十一条
+- fund2-expansion-invest-0167：GIPS合规声明的主体边界；12.7.a；expansionInvestGIPS；2020 GIPS for Firms 1.A.1、1.A.2
+- fund2-expansion-invest-0168：GIPS第三方鉴证的推荐性质；12.7.c；expansionInvestGIPS；2020 GIPS for Firms Introduction、1.B.3
+- fund2-expansion-invest-0169：GIPS与当地强制披露规则冲突的处理；12.7.c；expansionInvestGIPS；2020 GIPS for Firms Introduction：applicable laws and regulations
+- fund2-expansion-invest-0170：持续潜在客户收到报告的更新；12.7.a；expansionInvestGIPS；2020 GIPS for Firms 1.A.12、1.A.16；Handbook 1.A.16
+- fund2-expansion-invest-0171：有限发行集合产品的报告替代条件；12.7.a；expansionInvestGIPS；2020 GIPS for Firms 1.A.13、1.A.15
+- fund2-expansion-invest-0172：GIPS重大错误更正的接收范围；12.7.a；expansionInvestGIPS；2020 GIPS for Firms 1.A.20
+- fund2-expansion-invest-0173：收购非合规业务后的整改窗口；12.7.a；expansionInvestGIPS；2020 GIPS for Firms 1.A.34
+- fund2-expansion-invest-0174：公司资产总额与综合组合资格的不同口径；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.1、3.A.2；题设均实际受托管理
+- fund2-expansion-invest-0175：叠加策略业绩分母的一致性；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.6、2.A.7；题设同一综合组合
+- fund2-expansion-invest-0176：不足一年业绩的GIPS年化限制；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.12
+- fund2-expansion-invest-0177：费前收益仍须扣除交易成本；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.13、2.A.37、2.A.38
+- fund2-expansion-invest-0178：不可拆分打包费用的保守扣减；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.14；题设无法估计或分离交易成本
+- fund2-expansion-invest-0179：底层外部基金管理费的加回边界；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.17
+- fund2-expansion-invest-0180：模型管理费不得抬高合规净收益；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.30、2.A.31
+- fund2-expansion-invest-0181：业绩报酬追回的归属期间；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.34；题设追回款本年实际偿还
+- fund2-expansion-invest-0182：综合组合资金加权收益的汇总方法；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 2.A.39
+- fund2-expansion-invest-0183：纳入综合组合的完整计量期间；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 3.A.8；题设按整月计算综合组合收益
+- fund2-expansion-invest-0184：策略变更后的历史业绩归属；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 3.A.10；题设客户已书面改变长期委托策略
+- fund2-expansion-invest-0185：综合组合最低资产门槛的时序；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 3.A.11
+- fund2-expansion-invest-0186：大额现金流估值与重大现金流剔除的边界；12.7.b；expansionInvestGIPSHandbook；GIPS Handbook 2.A.23、2.A.24、3.A.12；large与significant cash flow不同功能
+- fund2-expansion-invest-0187：综合组合历史长度的逐年累积；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 4.A.1.a；题设已有五年合规年度记录
+- fund2-expansion-invest-0188：内部离散度与三年波动率的观察对象；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 4.A.1.i、4.A.1.j
+- fund2-expansion-invest-0189：组合数量与离散度豁免的不同计数期；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 4.A.1.f、4.A.1.i；题设TWR综合组合
+- fund2-expansion-invest-0190：综合组合空窗期后的历史连接；12.7.b；expansionInvestGIPS；2020 GIPS for Firms 4.A.5
+- fund2-expansion-invest-0191：久期偏离的相对收益与绝对损失；9.5.a；expansionInvestYieldCurve；主动债券：相对基准久期；题设仅计平行移动的一阶价格效应
+- fund2-expansion-invest-0192：静态曲线上的剩余期限滚降；9.5.a；expansionInvestYieldCurve；静态向上收益率曲线；零息债P=面额/(1+y)^剩余年数
+- fund2-expansion-invest-0193：低绝对波动不必低主动风险；9.5.a；expansionInvestActive；主动风险为组合减基准收益的标准差；同期间同年化口径
+- fund2-expansion-invest-0194：用基准混合调节主动风险；9.5.a；expansionInvestActive；主动策略与同基准的固定比例混合；无费用且收益线性加权
+- fund2-expansion-invest-0195：预测能力与实施约束的分离；9.5.a；expansionInvestActive；主动管理基本定律：信息系数与转移系数
+- fund2-expansion-invest-0196：择时回归的非线性系数解释；12.2.e；expansionInvestConditional；Conditional Performance Evaluation第53页式8；rp与rm均为超额收益
+- fund2-expansion-invest-0197：公共状态下动态贝塔的择时误判；12.2.e；expansionInvestConditional；Conditional Performance Evaluation第53页式8、9；Z为事前已公开状态变量
+- fund2-expansion-invest-0198：择时系数大小与信号准确度的区别；12.2.e；expansionInvestConditional；Conditional Performance Evaluation第53–54页：precision与risk aversion
+- fund2-expansion-invest-0199：状态变化中的择时强度检验；12.2.e；expansionInvestConditional；Conditional Performance Evaluation第54页式10；区分Zrm与Zrm²
+- fund2-expansion-invest-0200：管理人筛选中的两类错误；12.5.b；expansionInvestManager；管理人选择摘要：以没有技能为原假设
+- fund2-expansion-invest-0201：季末持仓快照的窗口粉饰检验；12.5.b；expansionInvestManager；持仓分析的透明度、过时定价与window dressing限制
+- fund2-expansion-invest-0202：集合工具与专户的个性化实施能力；12.5.b；expansionInvestManager；管理人选择摘要：pooled vehicle与separate account的成本收益
+- fund2-expansion-invest-0203：港股通小型股调入调出的缓冲区间；14.3.b；expansionInvestHKRules；沪港通办法第七十、七十三、七十四条；非A+H，定期考察口径
+- fund2-expansion-invest-0204：A加H新上市调入的双重时间条件；14.3.b；expansionInvestHKRules；沪港通办法第七十二条第二款
+- fund2-expansion-invest-0205：港股通ETF合成复制的范围排除；14.3.b；expansionInvestHKRules；沪港通办法第七十六条第七项
+- fund2-expansion-invest-0206：港股通ETF指数数据的可获取要求；14.3.b；expansionInvestHKRules；沪港通办法第八十条
+- fund2-expansion-invest-0207：企业行动获得的非标的证券交易权限；14.3.b；expansionInvestHKRules；沪港通办法第九十九条第一、三款；无另行例外
+- fund2-expansion-invest-0208：交收前可卖与证券权益归属的区别；14.3.b；expansionInvestHKRules；沪港通办法第八十八条及2026风险揭示第三十二项
+- fund2-expansion-invest-0209：指定交易变更后的港股通启用时点；14.3.b；expansionInvestHKRules；沪港通办法第八十九条
+- fund2-expansion-invest-0210：额度回补在不同交易时段的恢复规则；14.3.b；expansionInvestHKRules；沪港通办法第一百〇三条；无本所另行规定
+- fund2-expansion-invest-0211：港股通委托盘种与交易时段匹配；14.3.b；expansionInvestHKRules；沪港通办法第八十五条第二款
+- fund2-expansion-invest-0212：港股通碎股的专用处置通道；14.3.b；expansionInvestHKRules；沪港通办法第八十五条第一款
+- fund2-expansion-invest-0213：参考汇率冻结与日终实际清算的对账；14.3.b；expansionInvestHKRates；服务页买卖方向说明；原创汇率均为人民币元/港元
+- fund2-expansion-invest-0214：半日交易与非交收日的日历区别；14.3.b；expansionInvestHKRisk；2026风险揭示第十五、三十二项；原创已确认业务日历
+- fund2-expansion-invest-0215：交易单位变更期间的代码通道限制；14.3.b；expansionInvestHKRisk；2026风险揭示第二十一项；题设为交易单位变更而非一般自由换码
+- fund2-expansion-invest-0216：非对称假期内取消分拆的恢复边界；14.3.b；expansionInvestHKRisk；2026风险揭示第二十二项；非对称节假日为内地假日、香港非假日
+- fund2-expansion-invest-0217：香港退市流程不能套用ST退出窗口；14.3.b；expansionInvestHKRisk；2026风险揭示第九项
+- fund2-expansion-invest-0218：现金红利的跨境处理链与到账差异；14.3.b；expansionInvestHKRisk；2026风险揭示第三十六项
+- fund2-expansion-invest-0219：红股可卖日期与处理日衔接；14.3.b；expansionInvestHKRisk；2026风险揭示第三十七项；原创已确认交易日历
+- fund2-expansion-invest-0220：无登记日投票的持有基准与境内截止；14.3.b；expansionInvestHKRisk；2026风险揭示第三十八项；题设该投票没有权益登记日
+- fund2-expansion-invest-0221：超额投票数量的比例分配；14.3.b；expansionInvestHKRisk；2026风险揭示第三十八项；题设同一议案可用持有基数90股
+- fund2-expansion-invest-0222：零碎权益舍尾后的总量差额处理；14.3.b；expansionInvestHKRisk；2026风险揭示第三十九项；题设分配总数已确认
+- fund2-expansion-invest-0223：分级结算下客户已足额支付的边界；14.3.b；expansionInvestHKRisk；2026风险揭示第四十二项第一款
+- fund2-expansion-invest-0224：港股通ETF二级买卖与一级申赎的边界；14.3.b；expansionInvestHKRisk；2026风险揭示第三十三项
+- fund2-expansion-invest-0225：港币报价与发行人所在地税务的分离；14.3.b；expansionInvestHKRisk；2026风险揭示第四十三项
+- fund2-expansion-invest-0226：非对称假期内权益登记的境内衔接；14.3.b；expansionInvestHKRisk；2026风险揭示第三十四项；原创日历且无其他特殊安排
+- fund2-expansion-invest-0227：证券收付方向与付款条件的报文分类；14.4.d；expansionInvestSwiftTypes；ISO15022：MT540收券免付款、541收券对付款、542交券免付款、543交券对付款
+- fund2-expansion-invest-0228：持仓快照与期间交易报表的用途区分；14.4.d；expansionInvestSwiftTypes；ISO15022：MT535持仓、MT536交易、MT537待结算交易
+- fund2-expansion-invest-0229：多个MT业务映射同一MX名称的语义保留；14.4.d；expansionInvestSwiftTypes；官方MT/MX对照：MT540–543均对应sese.023
+- fund2-expansion-invest-0230：同一证券交易UTI在托管链的持续传递；14.4.d；expansionInvestSwiftUTI；Securities View：generated once and consistently referenced across settlement chain
+- fund2-expansion-invest-0231：存在BIC记录与具备联网收报能力的区别；14.4.d；expansionInvestSwiftBIC；BIC官方说明：connected及non-connected两类
+- fund2-expansion-invest-0232：BIC分支后缀与独立法律主体的区别；14.4.d；expansionInvestSwiftBIC；ISO9362：8字符主体标识、可选3字符分支标识
+- fund2-expansion-invest-0233：支付报文迁移与证券报文范围的区别；14.4.d；expansionInvestSwiftMigration；截至2026-10-14官方ISO20022 FAQ；CBPR+并非所有业务域
+- fund2-expansion-invest-0234：常设结算指令的币种与路由匹配；14.4.d；expansionInvestSwiftSSI；SSI Directory：correspondent、account、clearing path；SwiftRef按币种取得SSI
+- fund2-expansion-invest-0235：结算提示MT578对应的缺失本方指令；14.4.d；expansionInvestSwiftAllegement；官方Category5指南第97页Purpose；题设为新结算提示而非取消消息
+- fund2-expansion-invest-0236：RMA收发权限的方向性；14.4.d；expansionInvestSwiftRMA；Clearstream现行RMA说明；收报授权向对方产生相应发报授权
+- fund2-expansion-invest-0237：境外证券出借期间的股息补偿；14.4.c；expansionInvestQDIIImplement；实施通知第五（七）3；题设为依法开展的证券借贷
+- fund2-expansion-invest-0238：证券借贷信用证担保的关联方限制；14.4.c；expansionInvestQDIIImplement；实施通知第五（七）4（5）；其他条件均符合
+- fund2-expansion-invest-0239：借出证券比例分母中的担保物剔除；14.4.c；expansionInvestQDIIImplement；实施通知第五（九）；仅检验50%比例，金额均为当前市值
+- fund2-expansion-invest-0240：跨市场存托凭证与权证的投票比例归并；11.3.f；expansionInvestQDIIImplement；实施通知第五（四）4；非指数基金，题设转换后发行总股本已核实
+- fund2-expansion-invest-0241：场外衍生品的估值与公允退出条款；14.4.c；expansionInvestQDIIImplement；实施通知第五（六）3（2）；题设其他条件合格
+- fund2-expansion-invest-0242：QDII衍生品持仓触发的净值计算频率；15.1.d；expansionInvestQDIIImplement；实施通知第六（二）；按该条最低要求，无其他例外
+- fund2-expansion-invest-0243：QDII净值所属日期与披露日期的区分；15.1.d；expansionInvestQDIIImplement；实施通知第六（三）；只考估值日与后续披露时点
+- fund2-expansion-invest-0244：跨时区资产取价时间的事先约定；15.1.d；expansionInvestQDIIImplement；实施通知第六（八）；题设不是价格失真情形
+- fund2-expansion-invest-0245：QDII未交收交易进入最近净值计算；15.1.d；expansionInvestQDIIImplement；实施通知第六（五）；题设成交真实有效且已进入估值期间
+- fund2-expansion-invest-0246：QDII基金中基金的伞型基金合并限额；11.3.f；expansionInvestQDIIImplement；实施通知第五（五）1；无另行个案调整，仅检验该项上限
+- fund2-expansion-invest-0247：货币基金每日分配与份额结转的分离；16.1.b；expansionInvestMoneyRules；货币市场基金办法第十条；面值报价，合同每日分配、按月结转
+- fund2-expansion-invest-0248：货币基金周末分配权益的交易日衔接；16.1.b；expansionInvestMoneyRules；货币市场基金办法第十五条；非特殊品种，周末非交易日
+- fund2-expansion-invest-0249：货币工具的期限上限不能跨品种借用；11.3.e；expansionInvestMoneyRules；货币市场基金办法第四条；无其他例外，其余投资条件均合格
+- fund2-expansion-invest-0250：定存基准浮息债的最后重定价期例外；11.3.e；expansionInvestMoneyRules；货币市场基金办法第五条第三项；其他条件均符合
+- fund2-expansion-invest-0251：货币基金剩余期限与存续期双约束；11.3.e；expansionInvestMoneyRules；货币市场基金办法第九条；前十持有人合计不超20%，非重要货基，无另行更严限制
+- fund2-expansion-invest-0252：影子定价正负偏离的不同处置；11.3.e；expansionInvestMoneyRules；货币市场基金办法第十二条；偏离尚未达到其他更重触发条件
+- fund2-expansion-invest-0253：货基投资期限随持有人集中度收紧；11.3.e；expansionInvestFundLiquidity；流动性规定第三十条；非重要货基，无另行更严限制
+- fund2-expansion-invest-0254：摊余成本货基规模约束的计价方法范围；11.3.e；expansionInvestFundLiquidity；流动性规定第二十九条；无差别化倍数调整，仅检验200倍限额
+- fund2-expansion-invest-0255：低评级银行存款的特别审批与债券限制区别；11.3.e；expansionInvestFundLiquidity；流动性规定第三十三条；银行主体评级低于AA+，其余额度及期限均合格
+- fund2-expansion-invest-0256：货基存款提前支取利息损失的弥补来源；11.3.e；expansionInvestMoneyRules；货币市场基金办法第二十九条；题设已发生提前支取利息损失
+- fund2-expansion-invest-0257：均值估计精度与单日收益波动分离；11.2.a；expansionInvestMeanCI；均值标准误s/√N；题设独立同分布，未发生策略或市场分布改变
+- fund2-expansion-invest-0258：跨日相关性下的波动期限换算；11.2.a；expansionInvestTimeSeries；协方差平稳与自协方差；原创两日损益相加模型
+- fund2-expansion-invest-0259：高度相关因子下的Beta单项识别；11.2.a；expansionInvestMisspecification；公开Introduction：multicollinearity及标准误；多因子回归的β估计应用
+- fund2-expansion-invest-0260：外生条件下的异方差与Beta推断；11.2.a；expansionInvestMisspecification；公开Introduction：heteroskedasticity、robust standard errors；只讨论给定模型的推断
+- fund2-expansion-invest-0261：准确VaR模型也可能一年没有超限；11.2.c；expansionInvestBacktesting；MAR99.11表1；250次独立观察，每次真实超限概率1%
+- fund2-expansion-invest-0262：冻结头寸损益与实际损益的回测用途；11.2.c；expansionInvestBacktesting；MAR99.1–99.8；仅借鉴统计验证方法，非中国基金资本要求
+- fund2-expansion-invest-0263：管理人Alpha检验的p值不是技能后验概率；12.5.b；expansionInvestPValue；P-value一般定义；原假设alpha=0，检验预先指定且模型条件成立
+- fund2-expansion-invest-0264：统计显著的毛Alpha与可实现净收益；12.5.b；expansionInvestHypothesis；公开统计检验步骤；同一月度口径，费用为确定增量
+- fund2-expansion-invest-0265：事前比较族的整体误报预算；12.5.b；expansionInvestBonferroni；Bonferroni一般不等式；10项事前指定检验，采用等额α/g方案
+- fund2-expansion-invest-0266：基准要素两类库与使用要求的区分；8.1.a；expansionInvestBenchmarkDetail；操作细则第六条；2026年10月，新产品设计，无其他特殊限制
+- fund2-expansion-invest-0267：基准名称中的久期币种及收益处理标识；8.1.a；expansionInvestBenchmarkDetail；操作细则第七条；指数官方中文全称可取得
+- fund2-expansion-invest-0268：全市场债券基准规则的股权权重例外；8.1.a；expansionInvestBenchmarkDetail；操作细则第十条第一项；无证监会另行认可安排
+- fund2-expansion-invest-0269：已获注册未完成募集基金的过渡整改适用；17.3.a；expansionInvestBenchmark2026；指引第二十条；2026年3月1日前已获注册且当时尚未完成募集
+- fund2-expansion-invest-0270：托管风格库提醒后的调整与说明路径；11.3.a；expansionInvestBenchmarkDetail；操作细则第二十、二十八条；2026年10月，相关条款已经执行
+- fund2-expansion-invest-0271：指数历史回测与持续编制能力的区别；8.1.b；expansionInvestBenchmark2026；指引第六条第三项；指数成分、方法及数据发布条件另已合格
+- fund2-expansion-invest-0272：偏离基准管理方法的法律文件说明；17.3.a；expansionInvestBenchmark2026；指引第七条第四项；新产品合同与招募说明书审核
+- fund2-expansion-invest-0273：相近基准优化的提前公告程序；17.4.a；expansionInvestBenchmark2026；指引第八条第一款；无实质性不利影响，且无投资目标等重大变更
+- fund2-expansion-invest-0274：基准决策责任与合规监督的岗位分工；8.3.a；expansionInvestBenchmark2026；指引第十、十一、十三条；产品设计和持续监督
+- fund2-expansion-invest-0275：内部偏离阈值的例外审议和持续跟踪；11.3.a；expansionInvestBenchmark2026；指引第十三条；仅为公司内部指标，未触及法律或合同硬限制
+- fund2-expansion-invest-0276：超额收益相抵时的持仓结构偏离监测；11.3.b；expansionInvestBenchmarkDetail；操作细则第十六条；股票基金，两个行业偏离收益恰好相抵
+- fund2-expansion-invest-0277：客观因素对管理人超额收益的双向调整；12.5.b；expansionInvestBenchmark2026；指引第十四条第二款；原创算术归因，贡献均为百分点且可相加
+- fund2-expansion-invest-0278：主题基准与宽基产品的不同监督重点；12.4.a；expansionInvestBenchmarkDetail；操作细则第二十二条；2026年10月，条款已执行
+- fund2-expansion-invest-0279：基准新规分阶段执行的上线判断；17.1.a；expansionInvestBenchmark2026；指引第二十一条；仅按已公布时间安排，不考虑后续修订
+- fund2-expansion-invest-0280：旧基准停止编制后的双基准披露例外；17.4.a；expansionInvestBenchmarkDetail；操作细则第十四、二十八条；为已公布2027年3月要求准备系统
+- fund2-expansion-invest-0281：主动选择其他基准与默认替换展示的区别；17.1.a；expansionInvestBenchmark2026；指引第十六条第一款、第二十一条；为已公布2027年3月要求设计页面
+- fund2-expansion-invest-0282：基准变更引起基金评价分类重大调整；12.6.a；expansionInvestBenchmarkDetail；操作细则第二十五、二十八条；为已公布2027年3月要求设计评价系统
+- fund2-expansion-invest-0283：基准行业对比中的分类粒度选择；17.4.a；expansionInvestBenchmarkDetail；操作细则第十三、二十八条；为已公布2027年3月要求准备A股报告
+- fund2-expansion-invest-0284：约定较长交收与同日确认义务的并行；14.4.b；expansionInvestUST1FAQ；Rule 15c6-1(a)、15c6-2(a)；官方FAQ第4、5问
+- fund2-expansion-invest-0285：存托凭证与基础股票分别判断交收豁免；14.4.b；expansionInvestUSForeignOrder；1995命令脚注7；当前周期另按15c6-1，题设无其他豁免
+- fund2-expansion-invest-0286：跨境执行合同与美国客户合同的分层判断；14.4.b；expansionInvestUSForeignOrder；1995命令脚注9；假定美国客户合同无其他豁免且未另约交收日
+- fund2-expansion-invest-0287：晚间定价包销发行的交收例外；14.4.b；expansionInvestUSCycle；15c6-1(c)；2026年，无另外明确约定
+- fund2-expansion-invest-0288：包销发行统一交收日与个别约定的优先关系；14.4.b；expansionInvestUSCycle；15c6-1(d)；现金包销发行，题设协议均合法有效
+- fund2-expansion-invest-0289：同日确认的两种实施路径；14.4.b；expansionInvestUSAffirm；15c6-2(a)(1)(2)；参与适用股票交易流程的美国经纪商
+- fund2-expansion-invest-0290：技术可行尽早处理与日末上限；14.4.b；expansionInvestUSAffirm；15c6-2(a)、(b)(2)；美国普通股票，资料完整且系统可即时处理
+- fund2-expansion-invest-0291：完成率指标与单笔迟延的合规证据；14.4.b；expansionInvestUST1Release；最终规则第92–93页；官方FAQ第6问交叉核对
+- fund2-expansion-invest-0292：迟收到的托管人确认副本及时间戳；14.4.b；expansionInvestUSAdviserRecords；275.204-2(a)(7)(iii)；官方FAQ第7问；affirmation不同于成交confirmation
+- fund2-expansion-invest-0293：执行经纪商与清算经纪商的流程角色；14.4.b；expansionInvestUST1Release；最终规则第83–85页；仅讨论15c6-2的参与触发，不概括其他法律责任
+- fund2-expansion-invest-0294：低美国成交占比条件与交易渠道排除条款；14.4.b；expansionInvestUSForeignOrder；1995命令正文；2026适用范围判断，无其他豁免
+- fund2-expansion-invest-0295：确认与交收指令自动联动的制度边界；14.4.b；expansionInvestUST1Release；最终规则第100–102页；仅讨论15c6-2，不排除合同或其他要求
+- fund2-expansion-invest-0296：将交互效应并入选股项后的报表对账；12.3.b；expansionInvestAttributionMethods；印刷页14–15；三项选股wb×(rp−rb)，交互(wp−wb)×(rp−rb)
+- fund2-expansion-invest-0297：两期归因贡献的明确链接方法；12.3.b；expansionInvestAttributionMethods；印刷页15–17；本题定义链接C=C1×(1+b2)+C2×(1+p1)
+- fund2-expansion-invest-0298：共同换算币种对几何超额的影响；12.3.b；expansionInvestAttributionMethods；印刷页18；同期间、无现金流、组合与基准共同换算且均无额外汇率对冲
+- fund2-expansion-invest-0299：相对套保基准下的主动货币贡献；12.3.b；expansionInvestAttributionMethods；印刷页20–22；只测期初外汇敞口的一阶即期效应，忽略远期溢价与费用
+- fund2-expansion-invest-0300：跨市场归因采用本地收益溢价；12.3.b；expansionInvestAttributionMethods；印刷页22；Karnosky–Singer思想，所有数值为同期间连续复利收益率
+- fund2-expansion-invest-0301：远期溢价与汇率意外贡献的区分；12.3.b；expansionInvestAttributionMethods；印刷页21–22；多币种归因中forward premium与currency surprise
+- fund2-expansion-invest-0302：债券同持仓的价格来源贡献；12.3.b；expansionInvestAttributionMethods；印刷页29：price effect；无交易、无费用且现金流完全一致
+- fund2-expansion-invest-0303：零初始市值衍生头寸的贡献纳入；12.3.a；expansionInvestAttributionMethods；印刷页30：适当名义资产与名义收益；原创单期核算，不计算保证金收益率
+- fund2-expansion-invest-0304：政策配置与经理战术配置的分层评价；12.3.b；expansionInvestAttributionMethods；印刷页7–9；原创中间组合；本题用单期算术差依次分解
+- fund2-expansion-invest-0305：非负风格权重下的单期可解释区间；12.4.a；expansionInvestSharpeStyle；Style Analysis；原创可行性检查，两个基准非负权重且和为1，无截距
+- fund2-expansion-invest-0306：风格拟合目标中的残差方差与均值；12.4.a；expansionInvestSharpeStyle；Style Analysis：最小化跟踪差异方差，不是压低平均差异；原创两期例
+- fund2-expansion-invest-0307：风格回归解释度与收益来源金额的区别；12.4.a；expansionInvestSharpeStyle；Evaluating Asset Class Factor Models；R²为收益变动的样本拟合指标
+- fund2-expansion-invest-0308：风格暴露系数与法律持仓类别的区别；12.4.a；expansionInvestSharpeStyle；High-Quality Bond Fund：行为暴露与名义分类；同一观察期
+- fund2-expansion-invest-0309：有限存续期产品的持续经营基础；15.3.a；expansionInvestAssetAccounting；正文一：总体要求；产品按初始计划正常到期，资产能按公允价值处置
+- fund2-expansion-invest-0310：外币募集产品的本位币和人民币报表；15.3.a；expansionInvestAssetAccounting；正文一；主要募集和兑付币种为美元，符合准则选定美元本位币
+- fund2-expansion-invest-0311：产品报表豁免与母公司合并资料需要；15.3.a；expansionInvestAssetAccounting；正文一；2026年，题设未提前执行2026新列报准则
+- fund2-expansion-invest-0312：投资性主体对不合并子公司投资的核算；15.3.a；expansionInvestAssetAccounting；正文二；已确认属于CAS33投资性主体，所涉子公司依法不纳入合并
+- fund2-expansion-invest-0313：非投资性资管主体的联营投资计量选择；15.3.a；expansionInvestAssetAccounting；正文二（二）；初始核算决策，符合CAS2第三条（二）相关条件
+- fund2-expansion-invest-0314：合同本金利息条件与出售业务模式的共同判断；15.3.a；expansionInvestAssetAccounting；正文三（一）；合同满足本金加利息，但业务模式明确为出售获利
+- fund2-expansion-invest-0315：交易性权益投资不能为平滑损益任意指定OCI；15.3.a；expansionInvestAssetAccounting；正文三（一）；题设权益投资明确属于交易性
+- fund2-expansion-invest-0316：交易性股票取得时交易费用的入账；15.3.a；expansionInvestAssetAccounting；附1“交易性金融资产”3（1）；不含股利，股价随后未变
+- fund2-expansion-invest-0317：买入价款包含已宣告现金股利的分离；15.3.a；expansionInvestAssetAccounting；附1“交易性金融资产”3（1）；合同明确随交易取得该股利请求权
+- fund2-expansion-invest-0318：股票交易日确认与尚未付款的区分；15.3.a；expansionInvestFundAccountingHandbook；手册第8–9页；普通交易日核算，无汇率、费用或价格变动
+- fund2-expansion-invest-0319：处置时转出历史估值变动不增加本期总利润；15.3.a；expansionInvestAssetAccounting；附1“交易性金融资产”3（4）；原公允价值变动均已计入以前年度
+- fund2-expansion-invest-0320：交易性债券利息分列政策与总损益一致性；15.3.a；expansionInvestAssetAccounting；正文四及附1交易性金融资产；无收付、费用、汇率影响
+- fund2-expansion-invest-0321：实际利率收入与票息现金的账面衔接；15.3.a；expansionInvestAssetAccounting；附1“债权投资”3（2）；一年期计算，未发生信用减值且无其他调整
+- fund2-expansion-invest-0322：本金全额迟收也可能产生信用现金短缺；15.3.a；expansionInvestFundAccountingHandbook；手册第4页：现金短缺现值的概率加权；本题实际利率10%，单一确定情景
+- fund2-expansion-invest-0323：未出现逾期并不排除预期信用损失；15.3.a；expansionInvestAssetAccounting；正文三（二）；摊余成本计量、正常履约，模型结果已按准则合理确定
+- fund2-expansion-invest-0324：其他债权投资减值与资产公允价值列示；15.3.a；expansionInvestAssetAccounting；附1“其他债权投资”3（2）（3）；无利息等其他因素，期初100
+- fund2-expansion-invest-0325：应税利息收入与增值税义务时点错开；15.3.a；expansionInvestAssetAccounting；正文四及附1“应交税费”；题给税额已依法确定，不考税率
+- fund2-expansion-invest-0326：申购款按净资产构成分摊而非投资收入；15.3.a；expansionInvestAssetAccounting；正文四及附1“应收申购款”；金额均万元，无费用，三项构成全部净资产
+- fund2-expansion-invest-0327：赎回时扣收业绩报酬的会计性质；15.3.a；expansionInvestAccountingFAQ；2022答记者问：管理人报酬为服务补偿；合法合同且当期报酬已可合理计量
+- fund2-expansion-invest-0328：清算往来明细借贷余额的报表分拆；15.3.a；expansionInvestAssetAccounting；附1“清算资金往来”第4项；无可抵销权和净额结算安排
+- fund2-expansion-invest-0329：暂估管理报酬与投资者实付差异的解释；15.4.a；expansionInvestAssetAccounting；正文五（六）；已依法按合理方法暂估，未认定会计差错
+- fund2-expansion-invest-0330：净资产变动表中经营成果与份额交易的桥接；15.4.a；expansionInvestAssetAccounting；附2净资产变动表；2026年未提前执行新列报准则；原创勾稽式
+- fund2-expansion-invest-0331：借贷利息的补偿对象与低收益幅度分离；15.3.a；expansionInvestCAS19；解释19第四（一）1；2026年10月金融资产分类，不考虑其他分类条件
+- fund2-expansion-invest-0332：低概率触发条款不能从现金流特征测试中删除；15.3.a；expansionInvestSPPIQA2026；2026年实施问答第一段；触发条款真实有效，不属不具有商业实质的条款
+- fund2-expansion-invest-0333：碳目标利率调整需检视全寿命累计影响；15.3.a；expansionInvestSPPIQA2026；2026年实施问答末段；变动前后均为基本借贷现金流，或有事件不直接关联借贷成本
+- fund2-expansion-invest-0334：未触发的非借贷或有条款仍有披露信息；15.4.a；expansionInvestCAS19；解释19第四（二）；2026年度报表，相关债权依法分类为摊余成本
+- fund2-expansion-invest-0335：电子支付提前终止确认的现金控制条件；15.3.a；expansionInvestCAS19；解释19第三（一）；2026年，已选择同系统一致应用的会计政策，无其他终止确认原因
+- fund2-expansion-invest-0336：付款方的电子支付例外不对称扩展到收款资产；15.3.a；expansionInvestCAS19；解释19第三（一）第2、3项；2026年，债权合同权利未终止且无符合条件转移
+- fund2-expansion-invest-0337：无追索权债权的现金流联系穿透；15.3.a；expansionInvestCAS20；解释20第一（一）1；2026年10月，最终收款权仅限特定项目现金流
+- fund2-expansion-invest-0338：发起人锁定次级的信用增强与合同挂钩分类；15.3.a；expansionInvestCAS20；解释20第一（一）2第二段；2026年10月，全部事实符合该例示安排
+- fund2-expansion-invest-0339：合同挂钩基础池中租赁应收款的筛查；15.3.a；expansionInvestCAS20；解释20第一（一）2第三段；2026年10月，仅判断基础池现金流条件
+- fund2-expansion-invest-0340：货币可兑换性的特定用途与取得金额；15.3.a；expansionInvestCAS20；解释20第二（一）1；2026年10月，题设金额不重大已经合理判断
+- fund2-expansion-invest-0341：合法间接换汇能力与管理人无兑换意图；15.3.a；expansionInvestCAS20；解释20第二（一）1第1项及定义；2026年10月，无其他限制
+- fund2-expansion-invest-0342：非强制执行报价在兑换能力与汇率估计中的不同作用；15.3.a；expansionInvestCAS20；解释20第二（一）1第2项及3第3项；2026年10月，缺乏可兑换性已确认
+- fund2-expansion-invest-0343：恢复可兑换后的首个汇率与计量日经济条件；15.3.a；expansionInvestCAS20；解释20第二（一）3第2项；2026年报表，恢复日在计量日三个月后
+- fund2-expansion-invest-0344：缺乏可兑换性首次执行的两种权益衔接；15.3.a；expansionInvestCAS20；解释20第二（三）；2026年首次执行，无其他变化，比较数据不调整
+- fund2-expansion-invest-0345：移动加权成本须先结转卖出再合并新买入；15.3.a；expansionInvestFundAccountingHandbook；手册第10–11页：移动加权平均法；只计算历史成本，费用为零
+- fund2-expansion-invest-0346：派送他公司股票与自身送股的成本区别；15.3.a；expansionInvestFundAccountingHandbook；手册第13–14页；均无现金缴款，不讨论除权价格预测
+- fund2-expansion-invest-0347：股份收购的新资产计量与缺少收购方报价；15.3.a；expansionInvestFundAccountingHandbook；手册第15–16页；收购完成，非同一资产的转板，原股票公允价值可靠
+- fund2-expansion-invest-0348：缴款前除权的配股权与新股区分；15.3.a；expansionInvestFundAccountingHandbook；手册第14–15页；除权早于缴款截止，配股权已形成且尚未行权
+- fund2-expansion-invest-0349：退市股票的账户转列不等于基金资产归零；15.3.a；expansionInvestFundAccountingHandbook；手册第17页；基金仍拥有股份，公允价值已合理确定，无其他变动
+- fund2-expansion-invest-0350：外币货币性项目与交易性股票的汇差列报；15.3.a；expansionInvestFundAccountingHandbook；手册第206页；人民币本位币，股票按公允价值损益计量，无现金流
+- fund2-expansion-invest-0351：外币份额申购确认后应收款的汇率重估；15.3.a；expansionInvestFundAccountingHandbook；手册第212–213页；人民币本位币，固定份额已确认，无费用、违约或份额重定
+- fund2-expansion-invest-0352：ETF现金差额与单券现金替代款的不同对账对象；15.3.a；expansionInvestFundAccountingHandbook；手册第218、223–224页；按有效申赎清单及最终确认数据核对
+- fund2-expansion-invest-0353：ETF申购预估现金差额的事后校准去向；15.3.a；expansionInvestFundAccountingHandbook；手册第62页注281；两笔均适用该方法，调整金额已准确确定
+- fund2-expansion-invest-0354：ETF补券前可退现金替代款的负债重估；15.3.a；expansionInvestFundAccountingHandbook；手册第217、224–225页；无费用及其他变化，估计退款等于已收款减补券公允价值
+- fund2-expansion-invest-0355：被投基金清算分配的赎回与分红路径；15.3.a；expansionInvestFundAccountingHandbook；手册第66、71页；两份正式方案分别采用赎回注销份额与保留份额分红
+- fund2-expansion-invest-0356：MOM共用银行间账户的子账交易归属；15.3.a；expansionInvestFundAccountingHandbook；手册第74页；两个资产单元共用产品账户且有完整成交归属资料
+- fund2-expansion-invest-0357：MOM专属费用与共同费用的分摊层次；15.3.a；expansionInvestFundAccountingHandbook；手册第76页；费用归属和分摊规则已合法约定，金额均万元
+- fund2-expansion-invest-0358：MOM总子账尾差的规则处理与对账基准；15.3.a；expansionInvestFundAccountingHandbook；手册第76页：以总账科目余额为基准核对子账汇总；已查明为舍入差
+- fund2-expansion-invest-0359：待摊费用在未来受益终止时的处理；15.3.a；expansionInvestFundAccountingHandbook；手册第204–205页；合规列支、不可退款，题设已确认无后续受益
+- fund2-expansion-invest-0360：期末利润结转后的零余额不等于本年零收益；15.3.a；expansionInvestFundAccountingHandbook；手册第207页；结转前本期利润贷方60万元，无差错调整
+- fund2-expansion-invest-0361：已认定重要前期差错的年度归属；15.3.a；expansionInvestFundAccountingHandbook；手册第208–209页；上年报告已报出，本年发现，已认定重要前期差错
+- fund2-expansion-invest-0362：金融商品转让负差不能跨会计年度结转；16.2.a；expansionInvestVATBase2026；2026年第12号第一（一）；同一纳税口径，均属应税转让，无其他抵扣优惠
+- fund2-expansion-invest-0363：金融商品税务买价方法的选择锁定期；16.2.a；expansionInvestVATBase2026；2026年第12号第一（一）；无特别变更规定
+- fund2-expansion-invest-0364：金融商品转让的专用发票限制；16.2.a；expansionInvestVATBase2026；2026年第12号第一（一）；交易依法应税，不涉及免税资格争议
+- fund2-expansion-invest-0365：非应税重组后金融商品税务买价的承继；16.2.a；expansionInvestVATReorg2026；2026年第25号第六项；2026年10月，已确认重组符合不征增值税条件
+- fund2-expansion-invest-0366：公募基金债券交易免税不覆盖新发国债票息；16.2.a；expansionInvestVATExempt2026；2026年第10号第二（二）16及2025年第4号第一项；无其他优惠
+- fund2-expansion-invest-0367：老券续发行不按新增发行日期重置债息优惠；16.2.a；expansionInvestBondVAT2025；2025年第4号第一项；2026年判断，无其他特殊优惠
+- fund2-expansion-invest-0368：股息税持有期分批识别采用先进先出；16.2.a；expansionInvestDividendTaxOps；2012年第85号第三、五项及2015年第101号第一项；普通流通股，无特殊跨境份额
+- fund2-expansion-invest-0369：派息暂未扣税与最终股息税义务的区别；16.2.a；expansionInvestDividendTaxOps；2015年第101号第二项，2012年第85号第五项；普通境内公募持股，无特殊持有人优惠
+- fund2-expansion-invest-0370：限售股解禁后的股息持有期起点；16.2.a；expansionInvestDividendTaxOps；2012年第85号第四项；题设属于该项限售股，解禁后取得股息，无特殊跨境情形
+- fund2-expansion-invest-0371：以股票申购ETF属于股息税规则中的转让；16.2.a；expansionInvestDividendTaxOps；2012年第85号第七（七）项；2026年，股票有待按持股期结算的股息税
+- fund2-expansion-invest-0372：股息税自然月与固定三十天的区别；16.2.a；expansionInvestDividendTaxOps；2012年第85号第八项及2015年第101号第一项；无特殊优惠
+- fund2-expansion-invest-0373：股票ETF份额不因持有股票而变成证券交易印花税对象；16.2.a；expansionInvestStampLaw；印花税法第三条；2026年普通境内股票ETF二级交易，仅问该税目
+- fund2-expansion-invest-0374：股票交易印花税按卖出成交额而非净盈利计算；16.2.a；expansionInvestStampLaw；印花税法第三、五条及2023年第39号；2026年，无其他减免
+- fund2-expansion-invest-0375：无转让价格的证券交易印花税计税依据；16.2.a；expansionInvestStampLaw；印花税法第七条；2026年，已确认属应税证券交易且无减免
+- fund2-expansion-invest-0376：企业取得公募分配与赎回差价的所得税范围；16.2.a；expansionInvestFundCIT；财税〔2008〕1号第二（二）及财税〔2002〕128号第二2；无其他免税或亏损抵扣
+- fund2-expansion-invest-0377：养老金基金缴费扣除不是等额退税；16.2.a；expansionInvestPensionTax；2024年第21号第一条；2026年，实际缴费8000元，相关所得充足且全在20%边际档
+- fund2-expansion-invest-0378：养老金账户内基金赎回再投资的税收环节；16.2.a；expansionInvestPensionTax；2024年第21号第一条；2026年，资金始终留在合法个人养老金资金账户
+- fund2-expansion-invest-0379：养老金领取的税基包含返还缴费本金；16.2.a；expansionInvestPensionTax；2024年第21号第一条；2026年依法领取，无其他特殊处理
+- fund2-expansion-invest-0380：养老金缴费的扣除路径取决于所得和预扣方式；16.2.a；expansionInvestPensionTax；2024年第21号第二条；2026年，均有平台扣除凭证且不重复扣除
+- fund2-expansion-invest-0381：未在工资预扣申报的养老金缴费可汇算扣除；16.2.a；expansionInvestPensionTax；2024年第21号第二条；2026年度缴费，凭据齐备且此前未扣除
+- fund2-expansion-invest-0382：被动底层工具与主动资产配置的层次；9.4.a；expansionInvestAllocationGuide；印刷第23–24页TAA；区分配置决策与底层证券复制
+- fund2-expansion-invest-0383：借款组合恒定权重再平衡的方向例外；9.6.a；expansionInvestAdaptiveAllocation；第10页脚注15；原创简化150%风险资产政策，无利息费用和资金流
+- fund2-expansion-invest-0384：全体投资者恒定配置的市场出清约束；9.6.a；expansionInvestAdaptiveAllocation；第11–13页；封闭二资产模型，无新增发行回购或第三方，价格暂固定
+- fund2-expansion-invest-0385：反向优化的输入与输出识别；9.1.c；expansionInvestAdaptiveAllocation；第20–21页；把既定市场组合视作模型最优，协方差与风险厌恶已给定
+- fund2-expansion-invest-0386：CPPI下跌后按安全垫重算风险资产；9.6.c；expansionInvestCPPIMorley；正文第9–10页式2.2.3；风险敞口=3×max(净值−80,0)，现金收益零，无费用外部流
+- fund2-expansion-invest-0387：CPPI离散调仓的跳跃缺口；9.6.c；expansionInvestCPPIMorley；正文第2页gap risk及式2.2.3；零利率，无费用、现金流、外部担保或盘中调仓
+- fund2-expansion-invest-0388：CPPI耗尽安全垫后的市场反弹参与；9.6.c；expansionInvestCPPIMorley；正文第2、10页零安全垫分支；零利率，固定底线，无追加资金、费用或规则重启
+- fund2-expansion-invest-0389：CPPI的敞口公式与禁止借款约束；9.6.c；expansionInvestCPPIMorley；正文第12页式2.2.5；风险敞口=min(净值,3×max(净值−80,0))，不准借款或卖空
+- fund2-expansion-invest-0390：利润锁定底线使相同净值对应不同风险敞口；9.6.c；expansionInvestCPPILockIn；第4.2.1节连续锁定；零利率，底线=max(初始80,历次观察净值最高值×80%)，乘数3
+- fund2-expansion-invest-0391：风险贡献用权重乘边际风险而非单看仓位；9.6.c；expansionInvestRiskBudget；印刷第61–62页Euler分解；同一模型，边际量以权重变动为单位
+- fund2-expansion-invest-0392：两资产等风险配置与最小方差配置的区别；9.6.c；expansionInvestRiskBudget；印刷第61–64页ERC定义；两资产不相关、波动率10%及20%，长仓且满仓
+- fund2-expansion-invest-0393：多资产逆波动权重不能忽略相关性结构；9.6.c；expansionInvestRiskBudget；印刷第101–102页同波动情形；成分风险分子=w_i×Σ_j(w_j×cov_ij)
+- fund2-expansion-invest-0394：负成分风险与超过百分之百的正风险份额；9.6.c；expansionInvestRiskBudget；印刷第61页Euler贡献；同一可微波动模型，风险贡献可为负
+- fund2-expansion-invest-0395：最优风险预算比较单位边际风险的预期补偿；9.6.c；expansionInvestAllocationGuide；印刷第17页；正边际风险、无约束，小幅调配，现金可补资金差，参数局部稳定
+- fund2-expansion-invest-0396：动态目标波动仓位的逐期回报路径；9.6.c；expansionInvestVolTarget；2019摘要：按事前预期波动调整敞口；原创两期模型，零现金收益和费用，无外部资金流
+- fund2-expansion-invest-0397：波动率预测误差与事后风险偏离；9.6.c；expansionInvestVolTarget；2019及2020官方摘要；简单线性敞口模型，持仓期不再调仓，无融资波动
+- fund2-expansion-invest-0398：最低资产波动不等于最低负债相对风险；9.6.b；expansionInvestAllocationGuide；印刷第15、17、38页；同初始金额，单期，负债价值变动与匹配债券完全相同
+- fund2-expansion-invest-0399：资产负回报与资金充足率改善的并存；9.6.c；expansionInvestAllocationGuide；印刷第15页资产负债整体健康；资金充足率=资产市值/负债现值，无外部资金流
+- fund2-expansion-invest-0400：资产负债金额不同应匹配金额久期；9.6.c；expansionInvestAllocationGuide；印刷第40页money duration；忽略凸性，同币种平行微小利率变化
+- fund2-expansion-invest-0401：对称比例税收对收益分布输入的转换；9.6.a；expansionInvestAllocationGuide；印刷第23页税后配置；仅教学税制，所有收益损失均当期按20%对称征退，无门槛递延
+- fund2-expansion-invest-0402：同样资产配置下账户位置影响税后财富；9.6.a；expansionInvestAllocationGuide；印刷第23页strategic asset location；教学税制，两个账户各100，无费用和限制
+- fund2-expansion-invest-0403：目标日期产品的到点与跨点下滑路径；9.6.c；expansionInvestTargetDate；官方Investor Bulletin：to/through glide path；只判断题设路径，不推定法定配置比例
+- fund2-expansion-invest-0404：单笔负债免疫的现金流分散与凸性选择；9.6.c；expansionInvestAllocationGuide；印刷第39–40页单笔负债结构风险；不能推广为多负债组合的一般凸性规则
+- fund2-expansion-invest-0405：纯等风险模型对预期收益变化的反应边界；9.6.c；expansionInvestRiskBudget；印刷第61–64页；目标仅各项波动成分贡献相等，协方差、资产范围、约束均不变
+- fund2-expansion-invest-0406：货币市场异口径报价的投资收益比较；5.4.a；expansionInvestMoneyQuotes；Overview：discount/add-on；P=面值×(1−贴现率×天数/360)，附加利息按投入本金×利率×天数/365
+- fund2-expansion-invest-0407：贴现率买卖报价的数字方向与价格方向；5.4.a；expansionInvestMoneyQuotes；Overview贴现报价；教学交易商双边报价，P=100×(1−d×90/360)
+- fund2-expansion-invest-0408：原始期限与剩余期限在货币市场分类中的区别；5.4.a；expansionInvestMoneyQuotes；Overview：money market instruments have original maturities of one year or less
+- fund2-expansion-invest-0409：固定期限收益率序列不能直接代表同一债券持有序列；5.3.d；expansionInvestTreasuryCurves；FAQ：CMT为曲线固定期限点，不必对应特定证券
+- fund2-expansion-invest-0410：由附息债平价报价逐期剥离零息折现因子；5.3.d；expansionInvestCurveBootstrap；公开学习目标bootstrapping；同币种无违约、无期权、年付，面值100，无应计利息
+- fund2-expansion-invest-0411：同一债券对不同持有期限的利率风险方向；5.3.c；expansionInvestHorizonDuration；Overview：持有期与麦考利久期；一次微小平行升息后利率不再变，按新率再投资，仅比较一阶效应
+- fund2-expansion-invest-0412：麦考利久期的现金流现值权重；5.3.c；expansionInvestHorizonDuration；Overview：现金流现值占全价为权重；题设两笔现值已经按同一到期收益率正确算出
+- fund2-expansion-invest-0413：逐期现金流匹配须计入长债的早期票息；9.6.c；expansionInvestAllocationGuide；印刷第40页cash flow matching；不借款，不使用未知再投资收益，按到期实付匹配
+- fund2-expansion-invest-0414：单笔负债免疫的剩余期限与久期再校准；9.6.c；expansionInvestAllocationGuide；印刷第39页单笔负债随时间再平衡；仅维持久期条件，不代表其他免疫条件自动满足
+- fund2-expansion-invest-0415：APT理论不能替实证研究指定因子身份；9.2.c；expansionInvestAPTOriginal；印刷第3、7页；理论层面与具体经验模型的区分
+- fund2-expansion-invest-0416：APT与市场组合均值方差有效假设的区别；9.2.c；expansionInvestAPTOriginal；印刷第2页脚注1、第4–5页两项postulates；不讨论CAPM的特殊扩展
+- fund2-expansion-invest-0417：相同市场Beta在多因子模型中未必同必要收益；9.2.c；expansionInvestAPTOriginal；印刷第5–6页风险数量乘风险价格；同一年化口径的精确两因子模型
+- fund2-expansion-invest-0418：完全因子复制下零投入组合的确定现金收益；9.2.c；expansionInvestAPTOriginal；印刷第4–6页；精确线性模型，所有残差在每个状态均为零，允许卖空且无费用
+- fund2-expansion-invest-0419：有限持仓的因子中性与无风险套利证明；9.2.c；expansionInvestAPTOriginal；印刷第4–5页特定残差与perfectly diversified；已知残差具有正方差
+- fund2-expansion-invest-0420：宏观因子应以未预期变化计算冲击；9.2.c；expansionInvestMultiFactor；Summary：surprise=actual−forecast；系数每1个百分点意外通胀造成−2个百分点收益影响
+- fund2-expansion-invest-0421：基本面因子模型的横截面估计顺序；9.2.c；expansionInvestMultiFactor；Summary：fundamental与macroeconomic factor models；只辨识估计对象
+- fund2-expansion-invest-0422：统计因子序号不能自动赋予稳定经济含义；9.2.c；expansionInvestAPTOriginal；印刷第7页统计提取因子的非唯一线性组合；未做经济变量对齐检验
+- fund2-expansion-invest-0423：纯因子组合需要同时隔离其他暴露与资金权重；9.2.c；expansionInvestMultiFactor；Summary：unit sensitivity与zero sensitivity；现金两因子暴露均零，允许卖空
+- fund2-expansion-invest-0424：因子度量单位改变必须同步转换暴露和风险价格；9.2.c；expansionInvestAPTOriginal；印刷第4–6页式1、3的线性关系；只重标度，同一经济因子与资产不变
+- fund2-expansion-invest-0425：弱式有效的证据不能跨越到全部公开信息；9.3.a；expansionInvestEfficiency；Summary三类信息集；假定已充分验证所有历史价量规则均无异常收益
+- fund2-expansion-invest-0426：私人信息优势对有效市场分类的证据边界；9.3.a；expansionInvestEfficiency；Summary三类信息集；仅学术证据解释，不涉及交易实施建议
+- fund2-expansion-invest-0427：公告时价格跳变与信息迅速吸收；9.3.a；expansionInvestEfficiency；Introduction及Summary；异常回报已扣除相应风险基准，没有其他同时事件
+- fund2-expansion-invest-0428：异常收益检验同时依赖市场效率与定价模型；9.3.a；expansionInvestFamaLecture；印刷第365–367页joint hypothesis；模型检验的证据范围
+- fund2-expansion-invest-0429：可预测的正常风险补偿不等于可预测异常利润；9.3.a；expansionInvestFamaLecture；印刷第366–367页式2–4；题设条件均衡模型已正确描述风险补偿
+- fund2-expansion-invest-0430：事件研究应按信息发生相对时点对齐；9.3.a；expansionInvestFamaLecture；印刷第368页event time；甲三月、乙九月分别公开同类消息，无提前泄露
+- fund2-expansion-invest-0431：有成本信息生产与完全揭示价格的激励矛盾；9.3.a；expansionInvestStiglitzLecture；印刷第491页Grossman–Stiglitz讨论；正研究成本且无其他补偿来源
+- fund2-expansion-invest-0432：个体行为偏差不能直接推出总体定价失效；9.3.b；expansionInvestEfficiency；Summary末项；区分心理证据与市场价格层面的检验
+- fund2-expansion-invest-0433：整体财富分析与投资政策授权范围的分离；8.2.a；expansionInvestIPS；1b、1c及2a；题设仅证券账户获委托，经营性企业为范围外资产
+- fund2-expansion-invest-0434：同一模型组合与客户实施约束的定制衔接；8.2.a；expansionInvestIPS；Introduction、3d税收约束；税基差异和收益实现上限为题设，不引用具体税法
+- fund2-expansion-invest-0435：集合产品管理任务与个别顾问关系的区分；8.2.a；expansionInvestMandate；Managing to an Index or Mandate；仅问CFA标准，排除兼任销售或个别顾问的情形
+- fund2-expansion-invest-0436：证券研究结论不能倒置客户规划的起点；8.2.a；expansionInvestProcess；Summary管理流程；尚未确认投资目标、限制及可投资资金
+- fund2-expansion-invest-0437：战略配置与具体实施工具的两层决策；8.2.a；expansionInvestAllocationPrinciples；Introduction第一步配置与第二步实施；资产类别目标及风险授权不变
+- fund2-expansion-invest-0438：定期监测频率与绩效目标考察期限的区别；8.2.a；expansionInvestIPS；3d印刷第12页；题设约定季度监测、滚动八季评估，无违规等其他事件
+- fund2-expansion-invest-0439：允许投资类别与当前零权重的不同含义；8.2.a；expansionInvestIPS；3b印刷第9–10页；policy universe不等于实时持仓清单
+- fund2-expansion-invest-0440：支出政策采用总回报不等于只能花现金收益；8.2.a；expansionInvestIPS；3b印刷第10页spending policy；题设允许按政策卖出资产，无税费及其他约束
+- fund2-expansion-invest-0441：真实本金保全目标与费用支出的合并预算；8.2.a；expansionInvestIPS；3b spending calculus；原创一期模型，费用年末按扣费前财富1%，随后支出4，无税
+- fund2-expansion-invest-0442：资本市场预期输入不能由客户愿望倒推填报；8.2.a；expansionInvestIPS；2d印刷第7页输入假设；目标制定与市场预测角色区分
+- fund2-expansion-invest-0443：复杂投资安排对资产所有者治理能力的要求；8.2.a；expansionInvestRealConstraints；Summary：complex vehicles require sufficient governance capacity；不评判单个从业者资格
+- fund2-expansion-invest-0444：最低投资规模对目标配置实施的约束；8.2.a；expansionInvestRealConstraints；Summary规模与最低投资要求；仅题设商业条款，不是法定合格投资者门槛
+- fund2-expansion-invest-0445：客户情况不变仍需复查战略配置假设；8.2.a；expansionInvestRealConstraints；Summary：periodic review even without changed circumstances；区分复查与必然换仓
+- fund2-expansion-invest-0446：混合组合不同风险敏感度不能直接相加；11.3.d；expansionInvestMultiAssetPrimer；印刷第100–102、157页；Beta对应股票百分比变化，修正久期对应收益率绝对变化
+- fund2-expansion-invest-0447：减少股票配置并不保证混合基金情景损失下降；11.3.d；expansionInvestMultiAssetPrimer；印刷第157页股债子组合分别控制风险；原创一期冲击，比例期初确定，无费用、外部流或期间交易
+- fund2-expansion-invest-0448：灵活配置基金的现时风险与授权可变范围；11.3.d；expansionInvestMultiAssetPrimer；印刷第157–159页投资范围和配置；题设股票范围10%至70%，无自动减仓承诺
+- fund2-expansion-invest-0449：目标型配置可以有纪律地利用心理账户；9.3.b；expansionInvestRealConstraints；Summary：goals-based investing incorporates mental accounting；没有承诺目标达成
+- fund2-expansion-invest-0450：相同风险分布的收益与损失表述框架；9.3.b；expansionInvestRealConstraints；Summary：framing通过多视角展示缓解；两份资料描述同一方案同一期间
+- fund2-expansion-invest-0451：本土熟悉偏差的比较基准与理由审查；9.3.b；expansionInvestRealConstraints；Summary：familiarity bias、global market portfolio；不是要求每位投资者机械复制全球权重
+- fund2-expansion-invest-0452：相对偏离区间与百分点区间的不同触发条件；9.6.a；expansionInvestAllocationPrinciples；Summary再平衡区间；题设固定相对区间，非一般最优宽度公式
+- fund2-expansion-invest-0453：同一输入下添加约束不能提高数学最优目标值；9.1.c；expansionInvestAllocationPrinciples；Summary MVO目标及权重约束；固定同一输入和目标，求得全局最优，新增约束后仍可行
+- fund2-expansion-invest-0454：单项资产被均值方差支配不等于不能改善组合；9.1.c；expansionInvestPortfolio；Summary两资产风险取决于相关性；同期间均值和波动，模型相关系数−1，无费用
+- fund2-expansion-invest-0455：逐对合法相关系数仍可能无法组成有效风险矩阵；9.1.b；expansionInvestCorrelationPSD；NISTIR7739第4.1.3及8节；三资产同单位标准差均1，所有两两相关为−0.9
+- fund2-expansion-invest-0456：随机复利的期望财富不能用固定一涨一跌路径替代；12.2.a；expansionInvestReturnUses；原创离散模型逐状态枚举；每年独立同分布，全部收益再投资，无费用和资金流
+- fund2-expansion-invest-0457：高主动持仓比例与低跟踪误差可以同时出现；11.2.b；expansionInvestActiveShareDimensions；作者答复第1页第3项、第3页第6项；核查同一基准、观察期和持仓资料无误
+- fund2-expansion-invest-0458：绝对财富上涨仍可能发生相对财富回撤；11.2.b；expansionInvestRelativeDrawdown；印刷第19页Exhibit 1脚注；本题限定几何相对财富及三个观察时点
+- fund2-expansion-invest-0459：ES分项贡献必须使用组合自身的尾部状态；11.2.c；expansionInvestESContributions；第4节第15页式4.10、4.13及第16页；正损失金额，各状态概率25%，最差尾部无并列
+
+### securities1
+
+- securities1-expansion-invest-0001：银行购债与融资性质；securities1-1；expansionInvestMarket；Financial intermediaries and primary markets
+- securities1-expansion-invest-0002：滚动短融支持长项目；securities1-1；expansionInvestMarket；Financial system：maturity transformation；原创融资安排
+- securities1-expansion-invest-0003：二级流动性对发行成本的间接作用；securities1-1；expansionInvestMarket；Learning outcomes：secondary markets support primary markets
+- securities1-expansion-invest-0004：混合发行中新增融资识别；securities1-1；expansionInvestMarket；Primary market；题设不计费用
+- securities1-expansion-invest-0005：货币政策传导的时滞；securities1-2；expansionInvestMonetary；Transmission mechanism：variable and uncertain lags
+- securities1-expansion-invest-0006：抵押品价值的信用传导；securities1-2；expansionInvestMonetary；Transmission mechanism：collateral channel
+- securities1-expansion-invest-0007：预期通胀与事前实际利率；securities1-2；expansionInvestMonetary；利率传导；近似实际利率=名义利率−预期通胀
+- securities1-expansion-invest-0008：汇率渠道对经营主体的差异；securities1-2；expansionInvestMonetary；Transmission mechanism：exchange rate channel；其他条件不变
+- securities1-expansion-invest-0009：银行资本约束与信贷传导；securities1-2；expansionInvestMonetary；Transmission mechanism：bank capital and supply of loans
+- securities1-expansion-invest-0010：包销安排的库存风险；securities1-3；expansionInvestMarket；Financial intermediaries；题设余额包销合同
+- securities1-expansion-invest-0011：经纪委托与自营报价的识别；securities1-3；expansionInvestMarket；Summary：brokers and dealers
+- securities1-expansion-invest-0012：跨机构对账差异的处理；securities1-3；expansionInvestMarket；Financial infrastructure；原创运营控制情景
+- securities1-expansion-invest-0013：报价信息服务与履约保证的边界；securities1-3；expansionInvestMarket；Market intermediaries；题设数据服务
+- securities1-expansion-invest-0014：低股价与低公司估值的区别；securities1-4；expansionInvestStocks；Stocks FAQ：market capitalization
+- securities1-expansion-invest-0015：配股参与与持股比例；securities1-4；expansionInvestStocks；题设全体按比例配股；不涉及除权价格
+- securities1-expansion-invest-0016：经济权益与表决权比例分离；securities1-4；expansionInvestStocks；原创股份条款：A类每股5票、B类每股1票
+- securities1-expansion-invest-0017：授权股数与实际权益分母；securities1-4；expansionInvestStocks；题设已发行且流通在外400万股、可发行上限1000万股
+- securities1-expansion-invest-0018：股息率中的历史与未来；securities1-4；expansionInvestStocks；Stocks FAQ：dividend payments；题设去年特别股利
+- securities1-expansion-invest-0019：可转债转股后的索取权变化；securities1-4；expansionInvestStocks；题设转股完成、债权注销且新股发行
+- securities1-expansion-invest-0020：票息再投资与到期收益率实现；securities1-5；expansionInvestBonds；债券收益来源；题设持有至到期且不违约
+- securities1-expansion-invest-0021：折价债的趋近面值条件；securities1-5；expansionInvestBonds；固定现金流债；收益率不变且无违约
+- securities1-expansion-invest-0022：浮息债重定价与信用利差；securities1-5；expansionInvestBonds；题设票息=基准利率＋固定加点
+- securities1-expansion-invest-0023：投资者回售权的经济作用；securities1-5；expansionInvestBonds；题设到第三年可按100元回售
+- securities1-expansion-invest-0024：本金分期偿还与再投资安排；securities1-5；expansionInvestBonds；题设摊还型债券现金流
+- securities1-expansion-invest-0025：应计利息与买方下次收息；securities1-5；expansionInvestBonds；题设成交日在付息日前、买方收到完整下一期票息
+- securities1-expansion-invest-0026：证券化现金流瀑布的支付顺序；securities1-6；expansionInvestSecuritization；原创合同：先费用再优先利息再本金
+- securities1-expansion-invest-0027：提前偿还与证券化期限延长；securities1-6；expansionInvestSecuritization；Fixed-income learning outcomes：prepayment risk
+- securities1-expansion-invest-0028：服务机构中断的运营风险；securities1-6；expansionInvestSecuritization；Securitization parties；题设服务机构负责收款分配
+- securities1-expansion-invest-0029：循环购买资产池的信用漂移；securities1-6；expansionInvestSecuritization；原创合同：回款可再购买新应收账款
+- securities1-expansion-invest-0030：ETF现金替代的成本归属；securities1-6；expansionInvestAssumptions；原创申赎合同：特定证券现金替代并实际购入
+- securities1-expansion-invest-0031：基金分配中的本金返还识别；securities1-6；expansionInvestAssumptions；原创封闭产品报告：每份分配1元，其中经营净现金0.6元、返还资本0.4元
+- securities1-expansion-invest-0032：基础交易取消后的套保敞口；securities1-7；expansionInvestDerivatives；Derivative uses；题设进口采购取消
+- securities1-expansion-invest-0033：货币互换的本金条款；securities1-7；expansionInvestDerivatives；原创货币互换合同：期初换本金、期末反向换回
+- securities1-expansion-invest-0034：远期正市值与信用敞口；securities1-7；expansionInvestDerivatives；Derivative risks；无抵押无净额抵销的题设
+- securities1-expansion-invest-0035：套保到期日错配的展期风险；securities1-7；expansionInvestDerivatives；Derivative risks；长期暴露与短期期货
+- securities1-expansion-invest-0036：降低权利金的代价；securities1-7；expansionInvestHedge；原创采购领口：买看涨并卖较低执行价看跌
+- securities1-expansion-invest-0037：反向交易与原合约终止；securities1-7；expansionInvestAssumptions；原创远期安排：两家不同银行、无跨银行净额安排
+- securities1-expansion-invest-0038：负超额收益下夏普排序的误用；securities1-8；expansionInvestAssumptions；题设Sharpe=(收益−无风险)/标准差
+- securities1-expansion-invest-0039：持续提款与收益顺序；securities1-8；expansionInvestAssumptions；题设初始100；每年末提款10、忽略费税
+- securities1-expansion-invest-0040：相同回撤幅度的恢复时间；securities1-8；expansionInvestAssumptions；题设两组合最大回撤均20%
+- securities1-expansion-invest-0041：净敞口为零与总头寸风险；securities1-8；expansionInvestAssumptions；题设多头100万元、空头100万元、标的不同
+- securities1-expansion-invest-0042：盘口深度与卖出均价；securities1-8；expansionInvestAssumptions；原创静态订单簿；无新增报价、手续费为零
+- securities1-expansion-invest-0043：结构票据本金保护的到期条件；securities1-6；expansionInvestProtection；Principal protection；原创三年持有至到期条款
+- securities1-expansion-invest-0044：本金保护与发行人信用；securities1-6；expansionInvestProtection；Principal protection；题设无外部担保的普通无担保票据
+- securities1-expansion-invest-0045：参与率与封顶条款的先后；securities1-6；expansionInvestStructured；原创票据：正收益=最小值(指数涨幅×80%,12%)
+- securities1-expansion-invest-0046：票据发行价与初始估计价值；securities1-6；expansionInvestStructured；SEC Structured Notes：Issuance price and note value
+- securities1-expansion-invest-0047：敲入观察方式与路径依赖；securities1-6；expansionInvestStructured；原创条款：存续期任一日跌破初值70%即敲入
+- securities1-expansion-invest-0048：自动赎回与未来票息中止；securities1-6；expansionInvestStructured；原创条款：触发自动赎回后返本并终止后续票息
+- securities1-expansion-invest-0049：最差表现挂钩不等于篮子分散；securities1-6；expansionInvestStructured；原创票据：到期收益取三只股票中最差者
+- securities1-expansion-invest-0050：条件票息与现金流预算；securities1-6；expansionInvestStructured；原创条款：仅观察日标的高于初值80%时支付票息
+- securities1-expansion-invest-0051：提前卖出票据的估值因素；securities1-6；expansionInvestStructured；Structured-note liquidity；原创利率波动变化
+- securities1-expansion-invest-0052：外币票据的保护币种；securities1-6；expansionInvestStructured；原创条款：到期返还1000美元本金、无本币保额条款
+- securities1-expansion-invest-0053：三方回购代理与中央对手方的区别；securities1-5；expansionInvestRepoStructure；纽约联储2026-09-29：From Lenders to Dealers
+- securities1-expansion-invest-0054：折扣率与超额担保率分母不同；securities1-5；expansionInvestRepo；原创合同：抵押证券100、借入现金90
+- securities1-expansion-invest-0055：抵押品跌价后的融资缺口；securities1-5；expansionInvestRepo；原创合同：现金不得超过抵押市值90%、不计利息
+- securities1-expansion-invest-0056：回购融资与资产票息的净利差；securities1-5；expansionInvestRepo；原创一年简化持仓：资产收益固定4%、融资费率浮动
+- securities1-expansion-invest-0057：信用分层的损失吸收顺序；securities1-6；expansionInvestSecuritization；原创结构：次级本金20、优先本金80、先损次级
+- securities1-expansion-invest-0058：超额利差缓冲的持续性；securities1-6；expansionInvestSecuritization；原创结构：贷款利息减证券利息及费用作为缓冲
+- securities1-expansion-invest-0059：超额抵押与外部担保区分；securities1-6；expansionInvestSecuritization；原创结构：资产池120、证券本金100、无外部担保
+- securities1-expansion-invest-0060：证券化循环期结束后的回款用途；securities1-6；expansionInvestAssumptions；原创合同：循环期买新应收款，摊还期回款全部还证券本金
+- securities1-expansion-invest-0061：逾期垫付与最终信用损失；securities1-6；expansionInvestSecuritization；原创服务协议：短期垫付款有追偿权、不承担最终损失
+- securities1-expansion-invest-0062：摊还证券本金因子与报价金额；securities1-6；expansionInvestAssumptions；原创报价规则：成交金额=原始面额×未偿本金因子×报价/100
+- securities1-expansion-invest-0063：市价申报的交易阶段边界；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.5
+- securities1-expansion-invest-0064：本方最优申报缺少本方报价；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.4、3.3.6
+- securities1-expansion-invest-0065：最优五档市价单的搜索边界；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.4第三项
+- securities1-expansion-invest-0066：不足一手余额的卖出安排；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.8
+- securities1-expansion-invest-0067：创业板市价和限价的数量上限；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.9
+- securities1-expansion-invest-0068：股票与基金报价精度的区分；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.11；无另行调整
+- securities1-expansion-invest-0069：低价股票价格笼子的十跳保护；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.16；不考虑其他价格限制
+- securities1-expansion-invest-0070：买入基准价缺少卖盘时的回退；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.16第二款
+- securities1-expansion-invest-0071：超有效价格范围申报的状态；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.18
+- securities1-expansion-invest-0072：无涨跌幅限制与申报价格约束；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.3.15、3.3.16、3.3.17
+- securities1-expansion-invest-0073：集合竞价优先实现最大成交量；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.4.3；原创已验证的候选统计
+- securities1-expansion-invest-0074：深市开盘集合竞价的最后择价；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.4.3
+- securities1-expansion-invest-0075：连续竞价主动买单的实际成交价；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.4.4；无其他盘口变化
+- securities1-expansion-invest-0076：大宗交易数量与金额的择一门槛；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.1第一项
+- securities1-expansion-invest-0077：大宗意向申报的成交义务边界；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.6第一款
+- securities1-expansion-invest-0078：协议大宗成交申报的双边匹配；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.6第二款
+- securities1-expansion-invest-0079：无涨跌幅股票协议大宗的双重价格边界；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.4；原创当日数据
+- securities1-expansion-invest-0080：大宗定价申报部分成交的最低规模；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.6第三款
+- securities1-expansion-invest-0081：大宗成交对指数与成交量的不同影响；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.5.11
+- securities1-expansion-invest-0082：盘后买入限价低于收盘价的有效性；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.6.6
+- securities1-expansion-invest-0083：盘后申报接受时间与撮合时间；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.6.3
+- securities1-expansion-invest-0084：收盘仍停牌与盘后固定价格交易；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.6.3第二款
+- securities1-expansion-invest-0085：盘后固定价格交易的证券适用范围；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.6.1；2026-07-06生效
+- securities1-expansion-invest-0086：开盘集合未成交后的开盘价；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.2.1、4.2.2
+- securities1-expansion-invest-0087：收盘集合无成交时的加权回退；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.2.3；无其他交易或特殊规则
+- securities1-expansion-invest-0088：全天无成交时的收盘价数据处理；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.2.3末款
+- securities1-expansion-invest-0089：临时停牌跨收盘集合时点的衔接；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.3.4
+- securities1-expansion-invest-0090：除权日涨跌幅计算基准；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.4.3、5.2.3第四项
+- securities1-expansion-invest-0091：深市转托管与卖出交易单元；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.1.1、4.1.2
+- securities1-expansion-invest-0092：跨境基金当日回转的底层条件；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.1.5第二款
+- securities1-expansion-invest-0093：风险警示股票跨交易方式累计买入；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）4.5.4；无另行规定
+- securities1-expansion-invest-0094：深股通盘后额度耗尽的买卖分流；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）3.6.12；无另行规定
+- securities1-expansion-invest-0095：交易公开信息中振幅的分母；securities1-4；expansionInvestSZSE2026；深交所交易规则（2026）5.4.1第二项；原创当日价格
+- securities1-expansion-invest-0096：国债价格招标与利率招标的优先方向；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第三项
+- securities1-expansion-invest-0097：国债边际标位的比例分配；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第三项；无需尾数处理
+- securities1-expansion-invest-0098：单一利率招标的票面利率；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第四项
+- securities1-expansion-invest-0099：修正多重利率招标的共同票息与价格差；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第四项
+- securities1-expansion-invest-0100：续发行合并上市不重置原券期限；securities1-5；expansionInvestTreasuryReopen；国债续发行公告的一般结构；题设到期日和合并上市条件
+- securities1-expansion-invest-0101：无效投标与中标加权均值；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第五项
+- securities1-expansion-invest-0102：国债单一标位与机构总投标限额；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第四条第五项；无特别规定
+- securities1-expansion-invest-0103：追加承销双重上限的较小值；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第五条第二项；无特别规定
+- securities1-expansion-invest-0104：追加投标不是第二轮定价；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第五条第一项
+- securities1-expansion-invest-0105：最低投标责任与最低承销责任分开；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第六条；题设责任额已算定
+- securities1-expansion-invest-0106：未指定国债托管机构的默认处理；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第七条第一项
+- securities1-expansion-invest-0107：发行款未到账与债权确立；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第七条第三项
+- securities1-expansion-invest-0108：国债应急投标的收件时点；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第八条第三项；无延期通知
+- securities1-expansion-invest-0109：应急投标录入后的渠道状态；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第八条第四项
+- securities1-expansion-invest-0110：应急延期与机构自身故障的区别；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第八条第六项
+- securities1-expansion-invest-0111：承销团成员之间的国债分销边界；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第十条第三项
+- securities1-expansion-invest-0112：非成员在分销期的再转让限制；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第十条第四项
+- securities1-expansion-invest-0113：国债分销价格不等于中标价格；securities1-5；expansionInvestTreasuryAuction；记账式国债招标发行规则第十条第五项
+- securities1-expansion-invest-0114：网上申购市值的观察窗口；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第四条
+- securities1-expansion-invest-0115：同一投资者多账户市值的合并；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第五条；普通个人账户
+- securities1-expansion-invest-0116：同日多只新股的额度独立使用；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第十六条
+- securities1-expansion-invest-0117：新开户不足二十日的日均分母；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第七条
+- securities1-expansion-invest-0118：司法冻结与申购市值资格的分离；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第八条；非限售A股
+- securities1-expansion-invest-0119：企业年金同名账户的市值例外；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第六条
+- securities1-expansion-invest-0120：网上申购两种超额的不同无效范围；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第十一条
+- securities1-expansion-invest-0121：新股中签后不足缴款的认购边界；securities1-4；expansionInvestOnlineIPO；深圳网上发行实施细则第十八条；题设其余条件均已满足
+- securities1-expansion-invest-0122：联合主承销下超额配售授权的集中；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第五十八条
+- securities1-expansion-invest-0123：超额配售稳定资金的专用边界；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第五十九条
+- securities1-expansion-invest-0124：绿鞋购回与增发的数量对账；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第六十四条
+- securities1-expansion-invest-0125：绿鞋市场购回证券的用途限制；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第六十三条末款、第六十五条
+- securities1-expansion-invest-0126：绿鞋结余资金与承销利润的区分；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第六十七条
+- securities1-expansion-invest-0127：绿鞋二级市场买入费用的承担；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第六十七条第二款
+- securities1-expansion-invest-0128：绿鞋开盘买价的两重上限；securities1-4；expansionInvestSSEIPO；上交所首发承销细则（2025）第六十三条第一项
+- securities1-expansion-invest-0129：证券捐赠非交易过户的受赠范围；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第三条第二项
+- securities1-expansion-invest-0130：继承与捐赠过户的申请人配置；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第四条
+- securities1-expansion-invest-0131：继承调解协议的司法确认配套；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第五条第三项第二目
+- securities1-expansion-invest-0132：离婚证明与具体证券权属分割；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第七条
+- securities1-expansion-invest-0133：法人待注销状态的过户材料；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第八条第二项
+- securities1-expansion-invest-0134：私募资管证券过户与托管人知情同意；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第九条第四项
+- securities1-expansion-invest-0135：私募资管过户股票的流通条件；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第九条末款
+- securities1-expansion-invest-0136：继承受让者开户资格受限的处置账户；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第十八条
+- securities1-expansion-invest-0137：特别表决权股份非交易过户的转换；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第十四条；交易场所无另行规定
+- securities1-expansion-invest-0138：非交易过户数量不足的整笔处理；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第十七条
+- securities1-expansion-invest-0139：终止主体过户清空后的账户注销；securities1-3；expansionInvestNonTradeTransfer；非交易过户细则第二十条
+- securities1-expansion-invest-0140：名义持有人投票与权益人意见；securities1-3；expansionInvestRegistration；证券登记规则第五条
+- securities1-expansion-invest-0141：初始登记在上市之前的程序位置；securities1-3；expansionInvestRegistration；证券登记规则第八条
+- securities1-expansion-invest-0142：网上与网下初始登记的数据来源；securities1-3；expansionInvestRegistration；证券登记规则第十二条
+- securities1-expansion-invest-0143：初始登记错误更正的依据；securities1-3；expansionInvestRegistration；证券登记规则第十三条
+- securities1-expansion-invest-0144：司法冻结的登记标识与所有权；securities1-3；expansionInvestRegistration；证券登记规则第二十二、二十三条
+- securities1-expansion-invest-0145：股票退市与登记资料移交；securities1-3；expansionInvestRegistration；证券登记规则第三十二、三十三条
+- securities1-expansion-invest-0146：债券兑付与退出登记的自动衔接；securities1-3；expansionInvestRegistration；证券登记规则第三十六条
+- securities1-expansion-invest-0147：自行召集股东会的名册用途；securities1-3；expansionInvestRegistration；证券登记规则第四十三条
+- securities1-expansion-invest-0148：派息资金迟付的通知与公告；securities1-3；expansionInvestRegistration；证券登记规则第四十七条
+- securities1-expansion-invest-0149：网络查询结果与法定持有证明；securities1-3；expansionInvestRegistration；证券登记规则第四十八条
+- securities1-expansion-invest-0150：同一持有人类别标识冲突的复核；securities1-3；expansionInvestRegistration；证券登记规则第五十九条
+- securities1-expansion-invest-0151：贷款发放的双重资产负债记录；securities1-2；expansionInvestMoneyCreation；Money creation in reality；原创简化模型，无手续费或资产重估
+- securities1-expansion-invest-0152：跨行付款与全系统准备金的区分；securities1-2；expansionInvestMoneyCreation；Figure 2；原创两银行封闭模型，无其他交易
+- securities1-expansion-invest-0153：央行购债卖方不同的存款结果；securities1-2；expansionInvestMoneyCreation；QE and broad money；原创即时账务模型，均按账面价值成交
+- securities1-expansion-invest-0154：银行长期债发行与存款负债替换；securities1-2；expansionInvestMoneyCreation；Money creation in reality，第17页；原创简化货币定义为现金及银行存款
+- securities1-expansion-invest-0155：货币层次之间的重复相加；securities1-2；expansionInvestMoneyAggregates；人民银行2025货币层次定义；题设单位均为亿元
+- securities1-expansion-invest-0156：活期转定期与货币结构变化；securities1-2；expansionInvestMoneyAggregates；人民银行2025货币层次定义；同一货币持有部门内部转换
+- securities1-expansion-invest-0157：扩散指数中的持平回答权重；securities1-2；expansionInvestPMI；分类指数DI=增加比例+持平比例×0.5
+- securities1-expansion-invest-0158：配送时间逆指数的合成方向；securities1-2；expansionInvestPMI；制造业PMI五项权重公式，配送时间项为(100−指数)×15%
+- securities1-expansion-invest-0159：综合产出指数的制造业输入项；securities1-2；expansionInvestPMI；综合PMI产出指数=制造业生产指数×权重+非制造业商务活动指数×权重
+- securities1-expansion-invest-0160：低于荣枯线时的指数回升；securities1-2；expansionInvestPMI；月度扩散指数的50临界点与环比属性
+- securities1-expansion-invest-0161：退出劳动力对失业率的分母效应；securities1-2；expansionInvestEmployment；失业率=失业人数/(就业人数+失业人数)；其余分类不变
+- securities1-expansion-invest-0162：一小时就业标准与充分就业的边界；securities1-2；expansionInvestEmployment；就业定义及一小时标准；题设人员均16岁以上
+- securities1-expansion-invest-0163：青年分组与总体失业率的学生口径；securities1-2；expansionInvestEmploymentStudents；人口和就业统计司公开答复：总体与不含在校生的年龄分组
+- securities1-expansion-invest-0164：城镇失业率的常住地而非户籍归属；securities1-2；expansionInvestEmploymentInterpret；城乡分类依据常住地；原创劳动者已符合失业定义
+- securities1-expansion-invest-0165：同比涨价的上年翘尾解释；securities1-2；expansionInvestInflationCarry；翘尾因素与本年新涨价因素；原创单商品价格路径
+- securities1-expansion-invest-0166：现价规模与隐含价格指数的匹配；securities1-2；expansionInvestRealGDP；GDP缩减指数=现价GDP/同基期不变价GDP；题设基期=100
+- securities1-expansion-invest-0167：净出口的不变价分别缩减；securities1-2；expansionInvestRealGDP；分别以出口和进口价格指数缩减，再求差；题设价格指数用倍数表示
+- securities1-expansion-invest-0168：三种GDP核算视角不能相加；securities1-2；expansionInvestGDP；解读GDP注意事项：生产法、收入法与支出法
+- securities1-expansion-invest-0169：历史修订后的GDP增速对账；securities1-2；expansionInvestGDP；解读GDP注意事项：初步核算、最终核实及历史修订
+- securities1-expansion-invest-0170：GDP同比与环比的不同方向；securities1-2；expansionInvestGDP；解读GDP注意事项：相邻期与上年同期比较；可比且经必要季调数据
+- securities1-expansion-invest-0171：专业指标与整体增加值的覆盖边界；securities1-2；expansionInvestGDP；解读GDP注意事项：GDP与专业指标关系
+- securities1-expansion-invest-0172：换股价下修后的备股数量复核；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第八条；题设全部未偿面额1000万元
+- securities1-expansion-invest-0173：可交换债担保股票孳息的纳入；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第五条
+- securities1-expansion-invest-0174：长期政府债券柜台业务的品种范围；securities1-5；expansionInvestTreasuryCounter；财政部财库〔2024〕12号第一项
+- securities1-expansion-invest-0175：可交换债未成功发行后的担保解除；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第九条
+- securities1-expansion-invest-0176：二级受让可交换债后的受益权衔接；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第十二条
+- securities1-expansion-invest-0177：可交换债备股表决权的意见来源；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第十三条
+- securities1-expansion-invest-0178：同日多项可交换债申报的业务顺序；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第十八条；深圳不同托管单元转托管
+- securities1-expansion-invest-0179：债券交易担保交收与换股服务的分离；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第二十、二十一及三十一条
+- securities1-expansion-invest-0180：换股不足一股的资金准备责任；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第三十条
+- securities1-expansion-invest-0181：柜台政府债券的一级实名托管；securities1-5；expansionInvestTreasuryCounter；财政部财库〔2024〕12号第四项
+- securities1-expansion-invest-0182：未换股且到期违约时的担保处置；securities1-5；expansionInvestExchangeable；可交换债登记结算细则第三十三条
+- securities1-expansion-invest-0183：利息收入再分配与总消费的非对称反应；securities1-2；expansionInvestTransmission；第3.2.1节cash-flow channel；原创线性消费反应，其他影响为零
+- securities1-expansion-invest-0184：固定利率借款的预期现金流反应；securities1-2；expansionInvestTransmission；第3.2.1节：fixed-rate mortgage与预期再融资
+- securities1-expansion-invest-0185：实际利率不变与当期名义现金约束；securities1-2；expansionInvestTransmission；第3.2.1节最后一段；当前名义收入固定，无法借入补足现金
+- securities1-expansion-invest-0186：长期设备投资中的短期等待成本；securities1-2；expansionInvestTransmission；第3.2.2节：when to invest与短期利率
+- securities1-expansion-invest-0187：前期投资提前实现后的政策响应减弱；securities1-2；expansionInvestTransmission；第3.2.2节：taking demand away from the future
+- securities1-expansion-invest-0188：低利率下目标财富储蓄的反向作用；securities1-2；expansionInvestTransmission；第3.2.3节financial wealth；目标不变的储蓄动机
+- securities1-expansion-invest-0189：房价上涨中的未来住房需求差异；securities1-2；expansionInvestTransmission；第3.2.3节housing wealth：换大房者与缩小住房者
+- securities1-expansion-invest-0190：名义价格刚性与短期产量响应；securities1-2；expansionInvestTransmission；第2节；明确简化模型，不作无条件长期预测
+- securities1-expansion-invest-0191：贸易顺差与经常账户余额的不同范围；securities1-2；expansionInvestBOPDefinitions；国际收支指标1.A、1.B、1.C；原创数据，其他经常项目均为零
+- securities1-expansion-invest-0192：国民储蓄必须合并私人和政府部门；securities1-2；expansionInvestBPM7；BPM7第19.4、19.8段；S和I均为同期间同口径总额
+- securities1-expansion-invest-0193：临时关税与永久关税的跨期消费激励；securities1-2；expansionInvestGlobalImbalance；第24段简化模型；投资不响应，仅比较跨期消费渠道
+- securities1-expansion-invest-0194：净国际投资头寸的交易与重估对账；securities1-2；expansionInvestBPM7；BPM7第19.15段式15；资本账户、其他量变及统计误差均为零
+- securities1-expansion-invest-0195：零净头寸下的外币资产负债结构；securities1-2；expansionInvestBPM7；BPM7第19.17段；无套保、无交易及其他估值变化
+- securities1-expansion-invest-0196：债券市价下降造成的净头寸估值悖论；securities1-2；expansionInvestBPM7；BPM7第19.84–19.85段；债务合同及其他项目均不变
+- securities1-expansion-invest-0197：经常账户融资与对外债务的边界；securities1-2；expansionInvestBPM7；BPM7第5.21、5.23、19.11–19.13段；金融账户股权负债分类，无其他流量
+- securities1-expansion-invest-0198：直接投资留存收益的推算双重记录；securities1-2；expansionInvestBPM7；BPM7第8.15段；已确认直接投资关系，金额为外方应占留存收益
+- securities1-expansion-invest-0199：企业居民身份不随最终股东国籍转移；securities1-2；expansionInvestBPM7；BPM7第4.12–4.15段；普通独立经营法人，无特殊组织例外
+- securities1-expansion-invest-0200：来料加工的过境货值与服务出口；securities1-2；expansionInvestBOPDefinitions；指标1.A.a及1.A.b.1；题设经济所有权始终由非居民持有
+- securities1-expansion-invest-0201：直接投资判断的投票权口径；securities1-2；expansionInvestBPM7；BPM7第6.12段；普通公司股权，无其他直接或间接关系及例外
+- securities1-expansion-invest-0202：协议债务减免与单方坏账核销的账户差别；securities1-2；expansionInvestBPM7；BPM7第9.21–9.23、14.28–14.29段；均无实际偿还
+- securities1-expansion-invest-0203：固定参数的置信区间与重复抽样含义；securities1-8；expansionInvestMeanCI；Purpose：95% confidence interval的频率学派解释
+- securities1-expansion-invest-0204：均值区间不能替代单次损失预测区间；securities1-8；expansionInvestPrediction；Description：m=1的预测区间；同一置信水平、同一历史样本
+- securities1-expansion-invest-0205：零线性相关与非线性风险依赖；securities1-8；expansionInvestCorrelation；NIST相关系数定义及Scatter Plot非线性示例；原创三状态
+- securities1-expansion-invest-0206：全样本不放回排列不能估计均值抽样误差；securities1-8；expansionInvestBootstrap；Description：bootstrap有放回重抽样；100个独立同分布损失观察
+- securities1-expansion-invest-0207：均值回复模型的截距与长期水平；securities1-8；expansionInvestTimeSeries；Summary：AR(1)、均值回复；创新条件均值为零且参数稳定
+- securities1-expansion-invest-0208：ARCH条件方差预测与收益方向分离；securities1-8；expansionInvestTimeSeries；Summary：ARCH；原创方差模型h下一期=0.2+0.5ε本期²，单位一致
+- securities1-expansion-invest-0209：非平稳价格回归的高拟合风险；securities1-8；expansionInvestTimeSeries；公开学习目标：非平稳及协整检验；并非以高R²证明均衡关系
+- securities1-expansion-invest-0210：固定比例增长的趋势变量选择；securities1-8；expansionInvestTimeSeries；Summary：linear与log-linear趋势；仅选择描述形式，不保证未来增长
+- securities1-expansion-invest-0211：低基率下的违约预警后验概率；securities1-8；expansionInvestBayes；公开条件概率及贝叶斯更新学习目标；所有概率为同一年度真实总体参数
+- securities1-expansion-invest-0212：同一交易日双算法执行成本的配对检验；securities1-8；expansionInvestHypothesis；公开摘要：dependent samples与paired comparisons；日与日独立
+- securities1-expansion-invest-0213：创新企业CDR股息的境外税款抵免与境内扣缴；securities1-4；expansionInvestCDRTax2026；2026年第8号第一2；2026年居民个人，已确认可抵免税额及境内上限
+- securities1-expansion-invest-0214：合格境外投资者持CDR的基础股票税收参照；securities1-4；expansionInvestCDRTax2026；2026年第8号第二3；2026年，仅判断企业所得税适用路径
+- securities1-expansion-invest-0215：美国浮息国债的利率调整与现金付息频率；securities1-5；expansionInvestTreasuryFRN；2026年按现行附录I.C.1–3；日累积季付，指数由13周票据拍卖决定
+- securities1-expansion-invest-0216：美国浮息国债跨利率区段的日累积金额；securities1-5；expansionInvestTreasuryFRN；现行附录I.C.1–3；已给转换后指数加spread的最终有效年率，actual/360，无复利
+- securities1-expansion-invest-0217：美国浮息国债零下限作用于指数加固定差额之和；securities1-5；expansionInvestTreasuryFRN；现行附录I.C.3及IV.B；指数已转换，合计日计息年率最低为零
+- securities1-expansion-invest-0218：美国浮息国债lockout推迟的是指数生效；securities1-5；expansionInvestTreasuryFRN；现行附录I.C.3及发行FAQ；假定新指数本应在该券两营业日lockout内生效
+- securities1-expansion-invest-0219：美国浮息国债某周未拍卖时的指数接续；securities1-5；expansionInvestTreasuryFRN；现行附录I.C.4(ii)；仅某周未举行，未宣布永久停发或变更指数
+- securities1-expansion-invest-0220：美国浮息国债续发改变价格而不重写原spread；securities1-5；expansionInvestTreasuryFRN；现行附录IV.C及当前FRN FAQ；仅续发同一证券，非新券发行
+- securities1-expansion-invest-0221：浮息券利差相等的平价结论受零下限影响；securities1-5；expansionInvestTreasuryFRN；现行附录IV.B；教学估值，已转换指数0.10%、spread=discount margin=−0.15%持续不变
+- securities1-expansion-invest-0222：浮息国债的重定价频率与再融资期限分离；securities1-5；expansionInvestTreasuryFRN；发行FAQ：FRN保留短期利率敏感度但可延长债务期限；题设两年券无提前到期
+

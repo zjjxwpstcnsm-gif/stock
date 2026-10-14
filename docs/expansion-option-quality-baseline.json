@@ -1,0 +1,1653 @@
+{
+  "recordedAt": "2026-10-14T10:08:00Z",
+  "purpose": "Pre-revision answer-length screening snapshot; not a correctness verdict",
+  "questionCount": 4755,
+  "newQuestionCount": 1863,
+  "subjects": {
+    "options": {
+      "added": 122,
+      "correctOptionUniquelyLongest": 68,
+      "correctOptionUniquelyShortest": 6,
+      "flags": [
+        {
+          "id": "options-expansion-deriv-0012",
+          "lengths": [
+            14,
+            15,
+            15,
+            23
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "options-expansion-deriv-0015",
+          "lengths": [
+            9,
+            9,
+            21,
+            9
+          ],
+          "ratio": 2.33
+        },
+        {
+          "id": "options-expansion-deriv-0036",
+          "lengths": [
+            15,
+            16,
+            16,
+            25
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "options-expansion-deriv-0040",
+          "lengths": [
+            15,
+            14,
+            14,
+            27
+          ],
+          "ratio": 1.8
+        },
+        {
+          "id": "options-expansion-deriv-0053",
+          "lengths": [
+            29,
+            16,
+            14,
+            13
+          ],
+          "ratio": 1.81
+        },
+        {
+          "id": "options-expansion-deriv-0054",
+          "lengths": [
+            14,
+            26,
+            15,
+            15
+          ],
+          "ratio": 1.73
+        },
+        {
+          "id": "options-expansion-deriv-0056",
+          "lengths": [
+            17,
+            15,
+            16,
+            34
+          ],
+          "ratio": 2
+        },
+        {
+          "id": "options-expansion-deriv-0072",
+          "lengths": [
+            16,
+            15,
+            16,
+            26
+          ],
+          "ratio": 1.63
+        },
+        {
+          "id": "options-expansion-deriv-0074",
+          "lengths": [
+            11,
+            27,
+            15,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "options-expansion-deriv-0080",
+          "lengths": [
+            18,
+            11,
+            16,
+            30
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "options-expansion-deriv-0081",
+          "lengths": [
+            23,
+            14,
+            14,
+            10
+          ],
+          "ratio": 1.64
+        },
+        {
+          "id": "options-expansion-deriv-0083",
+          "lengths": [
+            17,
+            19,
+            29,
+            17
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "options-expansion-deriv-0087",
+          "lengths": [
+            14,
+            17,
+            30,
+            16
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "options-expansion-deriv-0088",
+          "lengths": [
+            15,
+            17,
+            18,
+            27
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "options-expansion-deriv-0090",
+          "lengths": [
+            13,
+            27,
+            17,
+            17
+          ],
+          "ratio": 1.59
+        },
+        {
+          "id": "options-expansion-deriv-0095",
+          "lengths": [
+            14,
+            18,
+            27,
+            13
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "options-expansion-deriv-0100",
+          "lengths": [
+            17,
+            17,
+            15,
+            30
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "options-expansion-deriv-0105",
+          "lengths": [
+            41,
+            25,
+            23,
+            16
+          ],
+          "ratio": 1.64
+        },
+        {
+          "id": "options-expansion-deriv-0110",
+          "lengths": [
+            17,
+            30,
+            16,
+            18
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "options-expansion-deriv-0113",
+          "lengths": [
+            38,
+            16,
+            18,
+            20
+          ],
+          "ratio": 1.9
+        }
+      ]
+    },
+    "fund1": {
+      "added": 248,
+      "correctOptionUniquelyLongest": 150,
+      "correctOptionUniquelyShortest": 45,
+      "flags": []
+    },
+    "fund2": {
+      "added": 236,
+      "correctOptionUniquelyLongest": 127,
+      "correctOptionUniquelyShortest": 26,
+      "flags": [
+        {
+          "id": "fund2-expansion-invest-0015",
+          "lengths": [
+            12,
+            13,
+            22,
+            9
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "fund2-expansion-invest-0028",
+          "lengths": [
+            2,
+            2,
+            2,
+            5
+          ],
+          "ratio": 2.5
+        },
+        {
+          "id": "fund2-expansion-invest-0031",
+          "lengths": [
+            14,
+            11,
+            26,
+            14
+          ],
+          "ratio": 1.86
+        },
+        {
+          "id": "fund2-expansion-invest-0037",
+          "lengths": [
+            27,
+            13,
+            14,
+            13
+          ],
+          "ratio": 1.93
+        },
+        {
+          "id": "fund2-expansion-invest-0045",
+          "lengths": [
+            21,
+            14,
+            14,
+            14
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "fund2-expansion-invest-0046",
+          "lengths": [
+            14,
+            21,
+            10,
+            13
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "fund2-expansion-invest-0059",
+          "lengths": [
+            5,
+            8,
+            18,
+            9
+          ],
+          "ratio": 2
+        },
+        {
+          "id": "fund2-expansion-invest-0084",
+          "lengths": [
+            16,
+            15,
+            17,
+            28
+          ],
+          "ratio": 1.65
+        },
+        {
+          "id": "fund2-expansion-invest-0096",
+          "lengths": [
+            8,
+            8,
+            9,
+            14
+          ],
+          "ratio": 1.56
+        }
+      ]
+    },
+    "fund3": {
+      "added": 256,
+      "correctOptionUniquelyLongest": 128,
+      "correctOptionUniquelyShortest": 53,
+      "flags": [
+        {
+          "id": "fund3-expansion-gov-0137",
+          "lengths": [
+            6,
+            4,
+            4,
+            4
+          ],
+          "ratio": 1.5
+        }
+      ]
+    },
+    "securities1": {
+      "added": 182,
+      "correctOptionUniquelyLongest": 91,
+      "correctOptionUniquelyShortest": 22,
+      "flags": [
+        {
+          "id": "securities1-expansion-invest-0023",
+          "lengths": [
+            14,
+            12,
+            21,
+            14
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities1-expansion-invest-0038",
+          "lengths": [
+            14,
+            26,
+            9,
+            17
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities1-expansion-invest-0041",
+          "lengths": [
+            21,
+            12,
+            6,
+            13
+          ],
+          "ratio": 1.62
+        },
+        {
+          "id": "securities1-expansion-invest-0055",
+          "lengths": [
+            3,
+            3,
+            5,
+            3
+          ],
+          "ratio": 1.67
+        }
+      ]
+    },
+    "securities2": {
+      "added": 261,
+      "correctOptionUniquelyLongest": 202,
+      "correctOptionUniquelyShortest": 12,
+      "flags": [
+        {
+          "id": "securities2-expansion-reg-0002",
+          "lengths": [
+            12,
+            16,
+            13,
+            24
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0005",
+          "lengths": [
+            14,
+            21,
+            12,
+            14
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0007",
+          "lengths": [
+            23,
+            12,
+            14,
+            12
+          ],
+          "ratio": 1.64
+        },
+        {
+          "id": "securities2-expansion-reg-0011",
+          "lengths": [
+            22,
+            12,
+            11,
+            14
+          ],
+          "ratio": 1.57
+        },
+        {
+          "id": "securities2-expansion-reg-0018",
+          "lengths": [
+            12,
+            11,
+            12,
+            22
+          ],
+          "ratio": 1.83
+        },
+        {
+          "id": "securities2-expansion-reg-0024",
+          "lengths": [
+            11,
+            12,
+            26,
+            13
+          ],
+          "ratio": 2
+        },
+        {
+          "id": "securities2-expansion-reg-0035",
+          "lengths": [
+            21,
+            13,
+            13,
+            13
+          ],
+          "ratio": 1.62
+        },
+        {
+          "id": "securities2-expansion-reg-0039",
+          "lengths": [
+            36,
+            22,
+            21,
+            24
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0044",
+          "lengths": [
+            15,
+            13,
+            25,
+            14
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "securities2-expansion-reg-0045",
+          "lengths": [
+            14,
+            21,
+            14,
+            14
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0054",
+          "lengths": [
+            12,
+            10,
+            15,
+            28
+          ],
+          "ratio": 1.87
+        },
+        {
+          "id": "securities2-expansion-reg-0056",
+          "lengths": [
+            14,
+            12,
+            25,
+            12
+          ],
+          "ratio": 1.79
+        },
+        {
+          "id": "securities2-expansion-reg-0057",
+          "lengths": [
+            15,
+            26,
+            12,
+            17
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities2-expansion-reg-0065",
+          "lengths": [
+            14,
+            23,
+            14,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities2-expansion-reg-0068",
+          "lengths": [
+            13,
+            12,
+            24,
+            11
+          ],
+          "ratio": 1.85
+        },
+        {
+          "id": "securities2-expansion-reg-0070",
+          "lengths": [
+            13,
+            12,
+            12,
+            24
+          ],
+          "ratio": 1.85
+        },
+        {
+          "id": "securities2-expansion-reg-0074",
+          "lengths": [
+            13,
+            11,
+            17,
+            26
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities2-expansion-reg-0075",
+          "lengths": [
+            25,
+            10,
+            11,
+            14
+          ],
+          "ratio": 1.79
+        },
+        {
+          "id": "securities2-expansion-reg-0083",
+          "lengths": [
+            27,
+            16,
+            12,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "securities2-expansion-reg-0084",
+          "lengths": [
+            15,
+            14,
+            24,
+            15
+          ],
+          "ratio": 1.6
+        },
+        {
+          "id": "securities2-expansion-reg-0087",
+          "lengths": [
+            22,
+            13,
+            14,
+            14
+          ],
+          "ratio": 1.57
+        },
+        {
+          "id": "securities2-expansion-reg-0095",
+          "lengths": [
+            26,
+            12,
+            14,
+            16
+          ],
+          "ratio": 1.63
+        },
+        {
+          "id": "securities2-expansion-reg-0097",
+          "lengths": [
+            16,
+            24,
+            16,
+            14
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0107",
+          "lengths": [
+            27,
+            15,
+            16,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "securities2-expansion-reg-0113",
+          "lengths": [
+            14,
+            27,
+            16,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "securities2-expansion-reg-0117",
+          "lengths": [
+            11,
+            32,
+            15,
+            21
+          ],
+          "ratio": 1.52
+        },
+        {
+          "id": "securities2-expansion-reg-0131",
+          "lengths": [
+            28,
+            18,
+            18,
+            18
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "securities2-expansion-reg-0132",
+          "lengths": [
+            18,
+            16,
+            27,
+            17
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0134",
+          "lengths": [
+            18,
+            16,
+            17,
+            28
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "securities2-expansion-reg-0143",
+          "lengths": [
+            32,
+            21,
+            18,
+            19
+          ],
+          "ratio": 1.52
+        },
+        {
+          "id": "securities2-expansion-reg-0144",
+          "lengths": [
+            19,
+            19,
+            31,
+            18
+          ],
+          "ratio": 1.63
+        },
+        {
+          "id": "securities2-expansion-reg-0163",
+          "lengths": [
+            29,
+            19,
+            15,
+            18
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities2-expansion-reg-0167",
+          "lengths": [
+            27,
+            15,
+            18,
+            18
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "securities2-expansion-reg-0170",
+          "lengths": [
+            19,
+            20,
+            20,
+            31
+          ],
+          "ratio": 1.55
+        },
+        {
+          "id": "securities2-expansion-reg-0172",
+          "lengths": [
+            17,
+            16,
+            30,
+            16
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "securities2-expansion-reg-0183",
+          "lengths": [
+            27,
+            17,
+            17,
+            17
+          ],
+          "ratio": 1.59
+        },
+        {
+          "id": "securities2-expansion-reg-0187",
+          "lengths": [
+            26,
+            15,
+            14,
+            17
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "securities2-expansion-reg-0206",
+          "lengths": [
+            19,
+            21,
+            21,
+            34
+          ],
+          "ratio": 1.62
+        },
+        {
+          "id": "securities2-expansion-reg-0219",
+          "lengths": [
+            34,
+            20,
+            22,
+            22
+          ],
+          "ratio": 1.55
+        }
+      ]
+    },
+    "futures1": {
+      "added": 293,
+      "correctOptionUniquelyLongest": 169,
+      "correctOptionUniquelyShortest": 18,
+      "flags": [
+        {
+          "id": "futures1-expansion-deriv-0001",
+          "lengths": [
+            28,
+            14,
+            16,
+            13
+          ],
+          "ratio": 1.75
+        },
+        {
+          "id": "futures1-expansion-deriv-0002",
+          "lengths": [
+            11,
+            22,
+            11,
+            12
+          ],
+          "ratio": 1.83
+        },
+        {
+          "id": "futures1-expansion-deriv-0003",
+          "lengths": [
+            16,
+            17,
+            26,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0019",
+          "lengths": [
+            5,
+            5,
+            15,
+            5
+          ],
+          "ratio": 3
+        },
+        {
+          "id": "futures1-expansion-deriv-0020",
+          "lengths": [
+            14,
+            18,
+            15,
+            28
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures1-expansion-deriv-0026",
+          "lengths": [
+            15,
+            23,
+            10,
+            10
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0027",
+          "lengths": [
+            14,
+            14,
+            23,
+            14
+          ],
+          "ratio": 1.64
+        },
+        {
+          "id": "futures1-expansion-deriv-0028",
+          "lengths": [
+            14,
+            15,
+            10,
+            24
+          ],
+          "ratio": 1.6
+        },
+        {
+          "id": "futures1-expansion-deriv-0046",
+          "lengths": [
+            17,
+            26,
+            15,
+            14
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0047",
+          "lengths": [
+            15,
+            15,
+            24,
+            13
+          ],
+          "ratio": 1.6
+        },
+        {
+          "id": "futures1-expansion-deriv-0050",
+          "lengths": [
+            14,
+            27,
+            16,
+            12
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "futures1-expansion-deriv-0058",
+          "lengths": [
+            12,
+            21,
+            14,
+            13
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0059",
+          "lengths": [
+            16,
+            16,
+            26,
+            15
+          ],
+          "ratio": 1.63
+        },
+        {
+          "id": "futures1-expansion-deriv-0060",
+          "lengths": [
+            13,
+            14,
+            15,
+            27
+          ],
+          "ratio": 1.8
+        },
+        {
+          "id": "futures1-expansion-deriv-0062",
+          "lengths": [
+            13,
+            20,
+            11,
+            13
+          ],
+          "ratio": 1.54
+        },
+        {
+          "id": "futures1-expansion-deriv-0067",
+          "lengths": [
+            9,
+            13,
+            25,
+            15
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures1-expansion-deriv-0078",
+          "lengths": [
+            16,
+            29,
+            12,
+            14
+          ],
+          "ratio": 1.81
+        },
+        {
+          "id": "futures1-expansion-deriv-0086",
+          "lengths": [
+            17,
+            27,
+            17,
+            17
+          ],
+          "ratio": 1.59
+        },
+        {
+          "id": "futures1-expansion-deriv-0093",
+          "lengths": [
+            30,
+            18,
+            18,
+            18
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures1-expansion-deriv-0095",
+          "lengths": [
+            19,
+            17,
+            44,
+            19
+          ],
+          "ratio": 2.32
+        },
+        {
+          "id": "futures1-expansion-deriv-0096",
+          "lengths": [
+            16,
+            18,
+            15,
+            29
+          ],
+          "ratio": 1.61
+        },
+        {
+          "id": "futures1-expansion-deriv-0104",
+          "lengths": [
+            6,
+            6,
+            6,
+            9
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0108",
+          "lengths": [
+            18,
+            15,
+            16,
+            29
+          ],
+          "ratio": 1.61
+        },
+        {
+          "id": "futures1-expansion-deriv-0117",
+          "lengths": [
+            25,
+            15,
+            15,
+            14
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures1-expansion-deriv-0120",
+          "lengths": [
+            13,
+            15,
+            17,
+            30
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "futures1-expansion-deriv-0121",
+          "lengths": [
+            27,
+            16,
+            14,
+            18
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0130",
+          "lengths": [
+            17,
+            30,
+            15,
+            14
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "futures1-expansion-deriv-0136",
+          "lengths": [
+            20,
+            19,
+            15,
+            32
+          ],
+          "ratio": 1.6
+        },
+        {
+          "id": "futures1-expansion-deriv-0138",
+          "lengths": [
+            16,
+            31,
+            17,
+            19
+          ],
+          "ratio": 1.63
+        },
+        {
+          "id": "futures1-expansion-deriv-0140",
+          "lengths": [
+            19,
+            17,
+            17,
+            30
+          ],
+          "ratio": 1.58
+        },
+        {
+          "id": "futures1-expansion-deriv-0142",
+          "lengths": [
+            13,
+            28,
+            13,
+            16
+          ],
+          "ratio": 1.75
+        },
+        {
+          "id": "futures1-expansion-deriv-0146",
+          "lengths": [
+            15,
+            25,
+            16,
+            16
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures1-expansion-deriv-0147",
+          "lengths": [
+            15,
+            14,
+            26,
+            13
+          ],
+          "ratio": 1.73
+        },
+        {
+          "id": "futures1-expansion-deriv-0148",
+          "lengths": [
+            15,
+            18,
+            17,
+            29
+          ],
+          "ratio": 1.61
+        },
+        {
+          "id": "futures1-expansion-deriv-0152",
+          "lengths": [
+            17,
+            18,
+            16,
+            28
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures1-expansion-deriv-0155",
+          "lengths": [
+            16,
+            16,
+            30,
+            12
+          ],
+          "ratio": 1.88
+        },
+        {
+          "id": "futures1-expansion-deriv-0166",
+          "lengths": [
+            17,
+            26,
+            16,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0167",
+          "lengths": [
+            17,
+            16,
+            28,
+            17
+          ],
+          "ratio": 1.65
+        },
+        {
+          "id": "futures1-expansion-deriv-0169",
+          "lengths": [
+            27,
+            17,
+            16,
+            18
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0174",
+          "lengths": [
+            17,
+            26,
+            15,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0178",
+          "lengths": [
+            20,
+            30,
+            20,
+            19
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0182",
+          "lengths": [
+            16,
+            28,
+            16,
+            16
+          ],
+          "ratio": 1.75
+        },
+        {
+          "id": "futures1-expansion-deriv-0183",
+          "lengths": [
+            13,
+            20,
+            34,
+            19
+          ],
+          "ratio": 1.7
+        },
+        {
+          "id": "futures1-expansion-deriv-0189",
+          "lengths": [
+            29,
+            17,
+            12,
+            19
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures1-expansion-deriv-0194",
+          "lengths": [
+            19,
+            34,
+            18,
+            19
+          ],
+          "ratio": 1.79
+        },
+        {
+          "id": "futures1-expansion-deriv-0199",
+          "lengths": [
+            21,
+            19,
+            37,
+            19
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "futures1-expansion-deriv-0207",
+          "lengths": [
+            20,
+            14,
+            34,
+            19
+          ],
+          "ratio": 1.7
+        },
+        {
+          "id": "futures1-expansion-deriv-0251",
+          "lengths": [
+            18,
+            22,
+            33,
+            21
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures1-expansion-deriv-0263",
+          "lengths": [
+            19,
+            20,
+            33,
+            20
+          ],
+          "ratio": 1.65
+        },
+        {
+          "id": "futures1-expansion-deriv-0278",
+          "lengths": [
+            24,
+            36,
+            24,
+            23
+          ],
+          "ratio": 1.5
+        }
+      ]
+    },
+    "futures2": {
+      "added": 265,
+      "correctOptionUniquelyLongest": 205,
+      "correctOptionUniquelyShortest": 9,
+      "flags": [
+        {
+          "id": "futures2-expansion-reg-0008",
+          "lengths": [
+            14,
+            14,
+            26,
+            14
+          ],
+          "ratio": 1.86
+        },
+        {
+          "id": "futures2-expansion-reg-0010",
+          "lengths": [
+            14,
+            14,
+            15,
+            23
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures2-expansion-reg-0016",
+          "lengths": [
+            16,
+            17,
+            26,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures2-expansion-reg-0023",
+          "lengths": [
+            22,
+            14,
+            12,
+            14
+          ],
+          "ratio": 1.57
+        },
+        {
+          "id": "futures2-expansion-reg-0028",
+          "lengths": [
+            16,
+            16,
+            25,
+            15
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures2-expansion-reg-0029",
+          "lengths": [
+            15,
+            28,
+            11,
+            13
+          ],
+          "ratio": 1.87
+        },
+        {
+          "id": "futures2-expansion-reg-0031",
+          "lengths": [
+            23,
+            13,
+            14,
+            13
+          ],
+          "ratio": 1.64
+        },
+        {
+          "id": "futures2-expansion-reg-0044",
+          "lengths": [
+            16,
+            18,
+            29,
+            17
+          ],
+          "ratio": 1.61
+        },
+        {
+          "id": "futures2-expansion-reg-0045",
+          "lengths": [
+            10,
+            25,
+            14,
+            16
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures2-expansion-reg-0049",
+          "lengths": [
+            14,
+            24,
+            13,
+            13
+          ],
+          "ratio": 1.71
+        },
+        {
+          "id": "futures2-expansion-reg-0057",
+          "lengths": [
+            16,
+            24,
+            13,
+            13
+          ],
+          "ratio": 1.5
+        },
+        {
+          "id": "futures2-expansion-reg-0071",
+          "lengths": [
+            30,
+            15,
+            17,
+            17
+          ],
+          "ratio": 1.76
+        },
+        {
+          "id": "futures2-expansion-reg-0077",
+          "lengths": [
+            18,
+            30,
+            13,
+            18
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures2-expansion-reg-0081",
+          "lengths": [
+            14,
+            25,
+            12,
+            12
+          ],
+          "ratio": 1.79
+        },
+        {
+          "id": "futures2-expansion-reg-0085",
+          "lengths": [
+            13,
+            22,
+            13,
+            12
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "futures2-expansion-reg-0089",
+          "lengths": [
+            18,
+            30,
+            13,
+            17
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures2-expansion-reg-0090",
+          "lengths": [
+            15,
+            16,
+            14,
+            28
+          ],
+          "ratio": 1.75
+        },
+        {
+          "id": "futures2-expansion-reg-0093",
+          "lengths": [
+            19,
+            29,
+            19,
+            17
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures2-expansion-reg-0094",
+          "lengths": [
+            15,
+            15,
+            15,
+            25
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures2-expansion-reg-0106",
+          "lengths": [
+            18,
+            15,
+            16,
+            31
+          ],
+          "ratio": 1.72
+        },
+        {
+          "id": "futures2-expansion-reg-0107",
+          "lengths": [
+            25,
+            14,
+            16,
+            14
+          ],
+          "ratio": 1.56
+        },
+        {
+          "id": "futures2-expansion-reg-0109",
+          "lengths": [
+            15,
+            24,
+            13,
+            15
+          ],
+          "ratio": 1.6
+        },
+        {
+          "id": "futures2-expansion-reg-0113",
+          "lengths": [
+            16,
+            29,
+            13,
+            13
+          ],
+          "ratio": 1.81
+        },
+        {
+          "id": "futures2-expansion-reg-0114",
+          "lengths": [
+            16,
+            12,
+            15,
+            28
+          ],
+          "ratio": 1.75
+        },
+        {
+          "id": "futures2-expansion-reg-0115",
+          "lengths": [
+            27,
+            13,
+            14,
+            14
+          ],
+          "ratio": 1.93
+        },
+        {
+          "id": "futures2-expansion-reg-0128",
+          "lengths": [
+            14,
+            14,
+            27,
+            17
+          ],
+          "ratio": 1.59
+        },
+        {
+          "id": "futures2-expansion-reg-0130",
+          "lengths": [
+            16,
+            16,
+            17,
+            27
+          ],
+          "ratio": 1.59
+        },
+        {
+          "id": "futures2-expansion-reg-0136",
+          "lengths": [
+            13,
+            15,
+            32,
+            17
+          ],
+          "ratio": 1.88
+        },
+        {
+          "id": "futures2-expansion-reg-0137",
+          "lengths": [
+            14,
+            26,
+            17,
+            15
+          ],
+          "ratio": 1.53
+        },
+        {
+          "id": "futures2-expansion-reg-0138",
+          "lengths": [
+            14,
+            17,
+            15,
+            29
+          ],
+          "ratio": 1.71
+        },
+        {
+          "id": "futures2-expansion-reg-0139",
+          "lengths": [
+            27,
+            11,
+            13,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "futures2-expansion-reg-0141",
+          "lengths": [
+            15,
+            27,
+            14,
+            16
+          ],
+          "ratio": 1.69
+        },
+        {
+          "id": "futures2-expansion-reg-0143",
+          "lengths": [
+            30,
+            18,
+            15,
+            17
+          ],
+          "ratio": 1.67
+        },
+        {
+          "id": "futures2-expansion-reg-0145",
+          "lengths": [
+            20,
+            31,
+            19,
+            18
+          ],
+          "ratio": 1.55
+        },
+        {
+          "id": "futures2-expansion-reg-0169",
+          "lengths": [
+            21,
+            32,
+            17,
+            17
+          ],
+          "ratio": 1.52
+        },
+        {
+          "id": "futures2-expansion-reg-0243",
+          "lengths": [
+            28,
+            15,
+            18,
+            17
+          ],
+          "ratio": 1.56
+        }
+      ]
+    }
+  }
+}

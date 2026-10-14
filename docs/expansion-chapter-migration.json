@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-14",
+  "reason": "Finance contract/loan mechanisms belong to financing structure chapter1 rather than macro transmission chapter2; original question content unchanged.",
+  "independentVerification": "passed",
+  "changes": [
+    {
+      "id": "securities1-expansion-intermed-0084",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "04b3a3769f2d37ab906fb9dcbca9797b0624528d0f0eb1d9d7721033c0d60b5c",
+      "afterSha256": "665febc469858077404b4086ad48cc3f5df85866a5d7e1a3456d88a99e0f7431",
+      "contentWithoutClassificationSha256": "6cf88ad91b0f4c77d4ca41e430a65ed20f116fb3d0896960801ffcfaf60fc285"
+    },
+    {
+      "id": "securities1-expansion-intermed-0085",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "8fb89a766b6c98393af4d2ebba9079bc77b89481e125f7cb220635d8bc91ddc0",
+      "afterSha256": "7aecafc76b77ab6b1f110cd63d22bb977dbf854fa24c3b03bbfb1a86cf1992ed",
+      "contentWithoutClassificationSha256": "8a624d7f188078e44bbc69962f47de60ab1ff35910361f152a3edb6136d1e4fb"
+    },
+    {
+      "id": "securities1-expansion-intermed-0086",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "e591e6470a2f35e2a71acbcdfae422338c019a1edbf9053c1915d518c64851ab",
+      "afterSha256": "497bf9b987eda53c0249c6dfbf2888909769c70ce3746ed35e915f8822d064e6",
+      "contentWithoutClassificationSha256": "0c7d7e323093c0bc83e51d9633ffd6d5115dbf3f8015a1b1a1f5b759d8f48cdb"
+    },
+    {
+      "id": "securities1-expansion-intermed-0087",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "fef73a068251bc219323899307bce13a1fa43c6ea3acd16185c4cdd41f63f4a5",
+      "afterSha256": "91748f6f55576cf282144de59a932d5fbb0cefcce7dd16eb2e2f7d12695ccf4a",
+      "contentWithoutClassificationSha256": "98f1a3383f08580363fa271e0d09e80ae56417f99d0b920b4fa0185d5de485bc"
+    },
+    {
+      "id": "securities1-expansion-intermed-0088",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "e67c43e90d0ee2b91ec0d13fd510bda595dc7365c6b80b9c0c7fd6bcf5afb58e",
+      "afterSha256": "0ab69e0690cdff1a67abd016c2b0d5a65d1cbb21a1ee72c72f36728846c7b026",
+      "contentWithoutClassificationSha256": "6af0039c408f4ea8a08cfd2a862a48b4683eaf0ceaabdf6f6a0b9cec76311e07"
+    },
+    {
+      "id": "securities1-expansion-intermed-0089",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "2c9ae92350f213499c761ca002b37c6b83c476940cc7464281d1998920c3ccd7",
+      "afterSha256": "4938efcc830298b114d8ffcf3d8a6d34a55c1adeeb4333fa6a9ba2b9edc1e20e",
+      "contentWithoutClassificationSha256": "3a6382435ad7c122896b006e1d3ff561cd4a765c2818aec472ebe4d290b82f41"
+    },
+    {
+      "id": "securities1-expansion-intermed-0090",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "758422d161b8ab07dc2336b5ab87f6ace1ef7fcfbcb02055ff50303310373912",
+      "afterSha256": "686d724d30e7db6e027b43c1550c6c0191062b5416535959007dff4a5bff9bd7",
+      "contentWithoutClassificationSha256": "96f66574bbe38cf9eb7d1af7defaf33203c240c2344ddfc7b5e4e05bc3eef6af"
+    },
+    {
+      "id": "securities1-expansion-intermed-0091",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "24e0904596fdeb7e7c9c041a3f33093e0835321a0b4fbc2f2443c8aaff46250c",
+      "afterSha256": "4e8577bfc9357baa5bf109459bec9b6451c233864e149a567e3a148fe18bd9e6",
+      "contentWithoutClassificationSha256": "5a43d57f44f93affb280815d36a0da4e549bcf6538e6980bb545fafb4d43d34a"
+    },
+    {
+      "id": "securities1-expansion-intermed-0092",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "210350f47b101ad681518b4ccadec3047a6ef6c8ba401edc6114988f43dadbac",
+      "afterSha256": "13da45daa2d0632d6c138121144fd6f564fed858993d5b94eecc9571d8488ef9",
+      "contentWithoutClassificationSha256": "c0c48510e08b7e0acdf0f71bf703109721e5456fa1a395ba762b324feffe5337"
+    },
+    {
+      "id": "securities1-expansion-intermed-0093",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "28992c0554ac20b97fcefa64db2e36ebb6f02408c9167dcd6c0e02147686666c",
+      "afterSha256": "c6c8558199dbda19a648f36a7c7c55d8a089701c8539ff0eff9479632050f456",
+      "contentWithoutClassificationSha256": "6773b75fc3a1c99b752e29d244f1a80513a5b89e87a68700d2a77b1e91893e65"
+    },
+    {
+      "id": "securities1-expansion-intermed-0094",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "26b37beaf9ebd4160eea9dfd2ddf78182078af05b2fd583340f1e84197118c1b",
+      "afterSha256": "d68819f84f5f6bcd43a7132c158ef2c3da825cfdf87b18381f0ce7d6f6d0aa1f",
+      "contentWithoutClassificationSha256": "250ec4fd3d431ff5c15ef5c4bac8af161f7ff825a4ada02f8a6c0064c322aca1"
+    },
+    {
+      "id": "securities1-expansion-intermed-0095",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "7d58ef05f901cb87a9d2b9645c31792a4a3a62319276a891bfbc2be439c0c718",
+      "afterSha256": "10d4df5a8d71cb7be9372c02ef269ad5ecc551a0590e0757cc5dd552a7ca3d0e",
+      "contentWithoutClassificationSha256": "99ae0a5ff45e68168cb6673d966c9caea7e4b869635f0c261668fd5515046986"
+    },
+    {
+      "id": "securities1-expansion-intermed-0096",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "99487694a24f5c369ded8c18c8eeba242a9b4b742734579f30accb34e1012cde",
+      "afterSha256": "11fbb6a006757158630f7a3da722dcdb4848c490bf6ab6ddd0a377dced8bd24e",
+      "contentWithoutClassificationSha256": "1bb311afc725f522907d010973829e4caab5ef5fffc6ce12a396aa51b882e1db"
+    },
+    {
+      "id": "securities1-expansion-intermed-0097",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "9128e5127e8d7ef7df646d57e19608864d255b2e01740203205219f1f60ae493",
+      "afterSha256": "29159d94d76c951ff48a496e78cc7cfeb1209965cf168d1138fcd863a95602b0",
+      "contentWithoutClassificationSha256": "7c5be7b8fa63d29b7fb5e445fa6f4d0ac97892c7eec084603a17273b5d791825"
+    },
+    {
+      "id": "securities1-expansion-intermed-0098",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "dcfd2823d7ded5d5583a1afaa2cad86f7b149b5c20d0514e5a44a91207962c2c",
+      "afterSha256": "181e2a5974af22c9798b5b4081c0856241dbf4c8c6c042a1ed27acb85ebe835a",
+      "contentWithoutClassificationSha256": "6a8727e4fa80f92a3681211d558d72f34da0c38002fe1a010969c87ce997d681"
+    },
+    {
+      "id": "securities1-expansion-intermed-0099",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "3eccd6236538151c457125e5bbabac67148a9a28f6f950d42aceffa267d83a3d",
+      "afterSha256": "4465390190ca01f5ebbe07ccdad961a8592eebd4aa6ad5c367c0fd56b052e21c",
+      "contentWithoutClassificationSha256": "1627c83f44a00db12134546380929bc9e45b4b5f5eb00c53e8a00edd73e497bd"
+    },
+    {
+      "id": "securities1-expansion-intermed-0100",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "50f70c08b63b42089f40efb6804bc3b5fb54d4817c9955bafcb9b5509647d28e",
+      "afterSha256": "530a59b3e2a88b652fc257c6c43df0a9ddfea915e3c825fee119ae00ee0fc6e9",
+      "contentWithoutClassificationSha256": "ccdad317c64962a83189b4b459b038829d3506275d3e8242717dca2479fb24ca"
+    },
+    {
+      "id": "securities1-expansion-intermed-0101",
+      "oldFields": {
+        "chapter": 2,
+        "lessonId": "securities1-2",
+        "scope": "证券基础.2"
+      },
+      "newFields": {
+        "chapter": 1,
+        "lessonId": "securities1-1",
+        "scope": "证券基础.1"
+      },
+      "beforeSha256": "3961082652f6ec0f8ef4c729e7b7431e49238a308070accf69300436823f1938",
+      "afterSha256": "9c5e0aadc4426cf1fe809e56101d4971f784a386f318194faf8f44cee664f0f2",
+      "contentWithoutClassificationSha256": "be597af41bbc6358a1993b59561c6c52e84da6d5061c6410549ac3d52ca70445"
+    }
+  ],
+  "independentVerifiedAt": "2026-10-14T12:37:29.934Z",
+  "independentMethod": "Separate reviewer captured complete pre-change question objects before edit; all18 compared key-by-key to actual current objects, exact chapter/lessonId/scope-only changes verified; recorded old/new hashes, current accepted hashes and reversible old-object reconstruction independently checked. No new content acceptance or count increase."
+}

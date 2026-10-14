@@ -21,6 +21,7 @@ for(const s of Object.values(SUBJECTS)){
   await expect(page.locator('.source')).toContainText(q.referenceSection);
   await expect(page.locator('.source')).toContainText('本题核对 2026-10-14');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+  await page.screenshot({path:info.outputPath(`${s.id}-expansion-answer.png`),fullPage:true});
   await page.reload();
   const state=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)),s.practiceKey);
   expect(state.progress[q.id]).toEqual({attempts:1,correct:1,wrong:false});

@@ -47,3 +47,9 @@ test('expanded random-practice pool includes every old and new question with no 
   assert.ok(createExamEngine(s).validSession(session,s.QUESTIONS));
  }
 });
+
+test('release objective metrics preserve baseline and count explicit codes per subject',()=>{
+ const release=JSON.parse(readFileSync(new URL('../src/release.json',import.meta.url)));
+ assert.equal(release.baselineExplicitFundObjectives,31);
+ assert.equal(release.explicitFundObjectives,['fund1','fund2','fund3'].reduce((n,id)=>n+new Set(SUBJECTS[id].QUESTIONS.flatMap(q=>q.outlineCodes||[])).size,0));
+});

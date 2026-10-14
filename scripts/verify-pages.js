@@ -122,6 +122,32 @@ try {
       if(id==='fund2')await page.screenshot({path:`${output}/${device}-coverage.png`,fullPage:true});
       report.checks.push({device,subject:id,check:'exact objective mappings, no answer leak, cancel preservation and confirmed practice',mapped:summary.mapped,total:summary.total,passed:true});
     }
+    // Explicitly exercise newly added content; random draws alone may select old questions.
+    const expansionContext = await browser.newContext({viewport, isMobile:device==='mobile', hasTouch:device==='mobile'});
+    const expansionPage = await expansionContext.newPage();
+    expansionPage.on('pageerror', error=>errors.push(error.message));
+    for (const subject of Object.values(SUBJECTS)) {
+      const question=subject.QUESTIONS.filter(q=>q.editorialBatch==='2026-10-14-expansion').at(-1);
+      assert.ok(question, `Missing expansion for ${subject.id}`);
+      const url=new URL(base);url.searchParams.set('subject',subject.id);url.hash=`practice?question=${question.id}`;
+      await expansionPage.goto(url.href,{waitUntil:'networkidle'});
+      await expect(expansionPage.locator('.practice-match')).toContainText('匹配 1 题');
+      await expansionPage.getByRole('button',{name:'开始练习',exact:true}).click();
+      await expect(expansionPage.locator('#question-title')).toHaveText(question.stem);
+      await expect(expansionPage.locator('.option-rationales')).toHaveCount(0);
+      await expansionPage.getByRole('radio').nth(question.answer).click();
+      await expansionPage.getByRole('button',{name:'确认答案',exact:true}).click();
+      await expect(expansionPage.locator('#answer-feedback')).toContainText('回答正确');
+      await expansionPage.locator('.option-rationales summary').click();
+      await expect(expansionPage.locator('.option-rationales article')).toHaveCount(4);
+      for(const reason of question.rationales)await expect(expansionPage.locator('.option-rationales')).toContainText(reason);
+      await expect(expansionPage.locator('.source')).toContainText(question.referenceSection);
+      await expect(expansionPage.locator('.source')).toContainText('AI辅助');
+      assert.ok(await expansionPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await expansionPage.screenshot({path:`${output}/${device}-${subject.id}-expansion-answer.png`,fullPage:true});
+      report.checks.push({device,subject:subject.id,question:question.id,check:'published expansion answer, four rationales, source and AI attribution',passed:true});
+    }
+    await expansionContext.close();
     assert.deepEqual(errors, []);
     assert.ok(assets.size > 20, 'Expected the published module graph to load');
     for (const asset of assets) assert.equal(new URL(asset).searchParams.get('v'), assetVersion, `Stale asset: ${asset}`);
