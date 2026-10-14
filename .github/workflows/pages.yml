@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Require a fully accepted doubling release before deployment
+        run: node --input-type=module -e "import fs from 'node:fs'; import assert from 'node:assert/strict'; const r=JSON.parse(fs.readFileSync('src/release.json')); assert.equal(r.expansionStatus,'complete'); assert.ok(r.questionCount>=5784 && r.newExpansionQuestions>=2892);"
       - run: npm ci
       - run: npm test
       - run: npx playwright install --with-deps chromium

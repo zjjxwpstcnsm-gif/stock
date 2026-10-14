@@ -1,0 +1,5526 @@
+{
+  "batch": "2026-10-14-expansion",
+  "meaning": "Explicit mappings only; an unmapped objective is not proof of no relevant old questions. Mapping does not establish full coverage or mastery. Pending questions are not accepted evidence.",
+  "officialFundObjectives": {
+    "fund1": [
+      {
+        "code": "1.1.a",
+        "text": "掌握金融市场的概念及构成要素",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.1.b",
+        "text": "掌握金融市场的分类",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.1.c",
+        "text": "理解金融市场的功能",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.1.d",
+        "text": "理解金融市场的地位",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.a",
+        "text": "掌握资产管理的概念",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.b",
+        "text": "理解中国资产管理行业发展现状",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.c",
+        "text": "了解中国资产管理行业发展历程",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.d",
+        "text": "理解中国资产管理行业发展前景",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.a",
+        "text": "掌握基金的含义和分类",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.b",
+        "text": "理解基金的特点",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.c",
+        "text": "理解基金与其他金融品种的比较",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2.a",
+        "text": "掌握基金的运作环节和运作关系",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0001",
+          "fund1-expansion-gov-0002",
+          "fund1-expansion-gov-0003"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2.b",
+        "text": "理解基金市场的参与主体",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0014"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.a",
+        "text": "了解我国公募基金的发展历程",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.b",
+        "text": "了解我国私募资产管理计划的发展历程",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.c",
+        "text": "了解我国私募基金的发展历程",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.d",
+        "text": "理解我国公募基金的作用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.e",
+        "text": "理解我国私募基金的作用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.a",
+        "text": "掌握基金行业法律法规体系的层级和适用范围",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.b",
+        "text": "掌握基金行业法律法规体系的主要组成部分",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.a",
+        "text": "掌握基金监管的概念、目标和原则",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.b",
+        "text": "掌握中国证监会对基金行业的监管职责与措施",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0048",
+          "fund1-expansion-gov-0049",
+          "fund1-expansion-gov-0050"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.c",
+        "text": "理解中国人民银行、国家外汇管理局对基金行业的监管职责与措施",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.a",
+        "text": "掌握中国证券投资基金业协会的性质、组成及其对基金行业的自律管理",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0030",
+          "fund1-expansion-gov-0045",
+          "fund1-expansion-gov-0047"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.b",
+        "text": "理解中国证券业协会的性质、组成及其对基金行业的自律管理",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.c",
+        "text": "理解不同交易场所的性质及其对基金行业的自律管理",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.a",
+        "text": "理解公募基金管理人的准入条件",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0005",
+          "fund1-expansion-gov-0013"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.b",
+        "text": "理解公募基金管理人的退出情形与适用程序",
+        "page": 2,
+        "baselineQuestionIds": [
+          "fund1-coverage-001"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0011",
+          "fund1-expansion-gov-0012",
+          "fund1-expansion-gov-0133",
+          "fund1-expansion-gov-0134",
+          "fund1-expansion-gov-0135",
+          "fund1-expansion-gov-0136"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.c",
+        "text": "掌握公募基金管理人的法定职责和业务规范",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0004",
+          "fund1-expansion-gov-0056"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.d",
+        "text": "掌握公募基金管理人治理和经营的主要内容",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-004"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0006",
+          "fund1-expansion-gov-0130",
+          "fund1-expansion-gov-0131",
+          "fund1-expansion-gov-0132",
+          "fund1-expansion-gov-0137"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.e",
+        "text": "理解公募基金管理人的国际化业务",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0138"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.f",
+        "text": "掌握公募基金风险准备金制度和财务指标的主要内容",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-002"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0016"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.a",
+        "text": "理解私募基金管理人的登记、撤销与注销",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0291",
+          "fund1-expansion-gov-0292",
+          "fund1-expansion-gov-0297",
+          "fund1-expansion-gov-0298",
+          "fund1-expansion-gov-0299",
+          "fund1-expansion-gov-0306",
+          "fund1-expansion-gov-0309"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.b",
+        "text": "掌握私募基金管理人的法定职责及业务规范",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0293",
+          "fund1-expansion-gov-0294",
+          "fund1-expansion-gov-0307"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.c",
+        "text": "理解私募基金管理人治理的主要内容",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0295",
+          "fund1-expansion-gov-0296",
+          "fund1-expansion-gov-0310"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.a",
+        "text": "理解基金托管人市场准入的法规要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0007"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.b",
+        "text": "掌握基金托管人的法定职责与具体履职要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0008",
+          "fund1-expansion-gov-0009"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.c",
+        "text": "理解对基金托管人的监督管理以及基金托管人职责终止的相关内容",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-003"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.a",
+        "text": "了解基金服务机构市场准入的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0127",
+          "fund1-expansion-gov-0231",
+          "fund1-expansion-gov-0233",
+          "fund1-expansion-gov-0239",
+          "fund1-expansion-gov-0242",
+          "fund1-expansion-gov-0243",
+          "fund1-expansion-gov-0244",
+          "fund1-expansion-gov-0290"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.b",
+        "text": "理解基金服务机构的业务规范",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0035",
+          "fund1-expansion-gov-0036",
+          "fund1-expansion-gov-0037",
+          "fund1-expansion-gov-0038",
+          "fund1-expansion-gov-0039",
+          "fund1-expansion-gov-0040",
+          "fund1-expansion-gov-0041",
+          "fund1-expansion-gov-0042",
+          "fund1-expansion-gov-0043",
+          "fund1-expansion-gov-0044",
+          "fund1-expansion-gov-0128",
+          "fund1-expansion-gov-0229",
+          "fund1-expansion-gov-0232",
+          "fund1-expansion-gov-0234",
+          "fund1-expansion-gov-0237",
+          "fund1-expansion-gov-0238",
+          "fund1-expansion-gov-0240",
+          "fund1-expansion-gov-0241",
+          "fund1-expansion-gov-0246",
+          "fund1-expansion-gov-0247",
+          "fund1-expansion-gov-0273",
+          "fund1-expansion-gov-0274",
+          "fund1-expansion-gov-0275",
+          "fund1-expansion-gov-0276",
+          "fund1-expansion-gov-0277",
+          "fund1-expansion-gov-0278",
+          "fund1-expansion-gov-0279",
+          "fund1-expansion-gov-0280",
+          "fund1-expansion-gov-0281",
+          "fund1-expansion-gov-0282",
+          "fund1-expansion-gov-0283",
+          "fund1-expansion-gov-0284",
+          "fund1-expansion-gov-0285",
+          "fund1-expansion-gov-0286",
+          "fund1-expansion-gov-0287",
+          "fund1-expansion-gov-0288",
+          "fund1-expansion-gov-0289"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.5.a",
+        "text": "掌握基金从业人员的任职与离职管理内容",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0051",
+          "fund1-expansion-gov-0053",
+          "fund1-expansion-gov-0054",
+          "fund1-expansion-gov-0069",
+          "fund1-expansion-gov-0070",
+          "fund1-expansion-gov-0071",
+          "fund1-expansion-gov-0073"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.5.b",
+        "text": "掌握基金从业人员的执业规范",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0052"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.5.c",
+        "text": "掌握公募基金从业人员绩效考核与薪酬管理的相关内容",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-005"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0376",
+          "fund1-expansion-gov-0377",
+          "fund1-expansion-gov-0378",
+          "fund1-expansion-gov-0379",
+          "fund1-expansion-gov-0380",
+          "fund1-expansion-gov-0381",
+          "fund1-expansion-gov-0382",
+          "fund1-expansion-gov-0383",
+          "fund1-expansion-gov-0384",
+          "fund1-expansion-gov-0385",
+          "fund1-expansion-gov-0386",
+          "fund1-expansion-gov-0387",
+          "fund1-expansion-gov-0388",
+          "fund1-expansion-gov-0389",
+          "fund1-expansion-gov-0390",
+          "fund1-expansion-gov-0391"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.a",
+        "text": "理解基金廉洁从业管理的含义",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.b",
+        "text": "理解基金经营机构在廉洁从业管理中的具体职责",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.c",
+        "text": "掌握廉洁从业的主要要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.d",
+        "text": "理解基金经营机构的报告责任",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.e",
+        "text": "理解《中国共产党廉洁自律准则》的内涵及要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.6.f",
+        "text": "掌握贪污贿赂罪的相关罪名及其构成要件",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.a",
+        "text": "掌握公募基金产品的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0010",
+          "fund1-expansion-gov-0015",
+          "fund1-expansion-gov-0021",
+          "fund1-expansion-gov-0033",
+          "fund1-expansion-gov-0034",
+          "fund1-expansion-gov-0089",
+          "fund1-expansion-gov-0110",
+          "fund1-expansion-gov-0115",
+          "fund1-expansion-gov-0117",
+          "fund1-expansion-gov-0119"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.b",
+        "text": "掌握公募基金募集的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-006"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0017",
+          "fund1-expansion-gov-0018",
+          "fund1-expansion-gov-0088",
+          "fund1-expansion-gov-0091",
+          "fund1-expansion-gov-0092",
+          "fund1-expansion-gov-0093",
+          "fund1-expansion-gov-0094",
+          "fund1-expansion-gov-0096",
+          "fund1-expansion-gov-0101"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.c",
+        "text": "掌握公募基金份额交易、申购和赎回等的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-007"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0019",
+          "fund1-expansion-gov-0020",
+          "fund1-expansion-gov-0022",
+          "fund1-expansion-gov-0023",
+          "fund1-expansion-gov-0055",
+          "fund1-expansion-gov-0097",
+          "fund1-expansion-gov-0098",
+          "fund1-expansion-gov-0099",
+          "fund1-expansion-gov-0100",
+          "fund1-expansion-gov-0102",
+          "fund1-expansion-gov-0103",
+          "fund1-expansion-gov-0104",
+          "fund1-expansion-gov-0105",
+          "fund1-expansion-gov-0106",
+          "fund1-expansion-gov-0108",
+          "fund1-expansion-gov-0116",
+          "fund1-expansion-gov-0217",
+          "fund1-expansion-gov-0218",
+          "fund1-expansion-gov-0219"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.d",
+        "text": "掌握公募基金销售业务的一般规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0213",
+          "fund1-expansion-gov-0214",
+          "fund1-expansion-gov-0215",
+          "fund1-expansion-gov-0216",
+          "fund1-expansion-gov-0220",
+          "fund1-expansion-gov-0221",
+          "fund1-expansion-gov-0222",
+          "fund1-expansion-gov-0223",
+          "fund1-expansion-gov-0224",
+          "fund1-expansion-gov-0225",
+          "fund1-expansion-gov-0226",
+          "fund1-expansion-gov-0227",
+          "fund1-expansion-gov-0230",
+          "fund1-expansion-gov-0235",
+          "fund1-expansion-gov-0236",
+          "fund1-expansion-gov-0245"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.e",
+        "text": "掌握公募基金投资者适当性的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0190",
+          "fund1-expansion-gov-0248"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.f",
+        "text": "掌握公募基金宣传推介的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0029"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.g",
+        "text": "掌握公募基金投资与交易的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0024",
+          "fund1-expansion-gov-0025",
+          "fund1-expansion-gov-0026",
+          "fund1-expansion-gov-0090",
+          "fund1-expansion-gov-0109",
+          "fund1-expansion-gov-0111",
+          "fund1-expansion-gov-0112",
+          "fund1-expansion-gov-0113",
+          "fund1-expansion-gov-0114",
+          "fund1-expansion-gov-0249",
+          "fund1-expansion-gov-0250",
+          "fund1-expansion-gov-0251",
+          "fund1-expansion-gov-0252",
+          "fund1-expansion-gov-0253",
+          "fund1-expansion-gov-0254",
+          "fund1-expansion-gov-0255",
+          "fund1-expansion-gov-0256",
+          "fund1-expansion-gov-0257",
+          "fund1-expansion-gov-0258",
+          "fund1-expansion-gov-0259",
+          "fund1-expansion-gov-0260",
+          "fund1-expansion-gov-0261",
+          "fund1-expansion-gov-0262",
+          "fund1-expansion-gov-0263",
+          "fund1-expansion-gov-0264",
+          "fund1-expansion-gov-0265",
+          "fund1-expansion-gov-0266",
+          "fund1-expansion-gov-0267",
+          "fund1-expansion-gov-0268",
+          "fund1-expansion-gov-0269",
+          "fund1-expansion-gov-0270",
+          "fund1-expansion-gov-0271",
+          "fund1-expansion-gov-0272"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.h",
+        "text": "掌握公募基金信息披露的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0027",
+          "fund1-expansion-gov-0028",
+          "fund1-expansion-gov-0046",
+          "fund1-expansion-gov-0107",
+          "fund1-expansion-gov-0118",
+          "fund1-expansion-gov-0228"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.i",
+        "text": "掌握公募基金终止与清算的相关规定",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund1-coverage-008"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0031",
+          "fund1-expansion-gov-0032",
+          "fund1-expansion-gov-0095"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.a",
+        "text": "掌握私募资产管理计划募集的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0139",
+          "fund1-expansion-gov-0140",
+          "fund1-expansion-gov-0141",
+          "fund1-expansion-gov-0142",
+          "fund1-expansion-gov-0143",
+          "fund1-expansion-gov-0171",
+          "fund1-expansion-gov-0173"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.b",
+        "text": "理解私募资产管理计划备案的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0174"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.c",
+        "text": "掌握私募资产管理计划投资范围和限制的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0147",
+          "fund1-expansion-gov-0148",
+          "fund1-expansion-gov-0150",
+          "fund1-expansion-gov-0152",
+          "fund1-expansion-gov-0156",
+          "fund1-expansion-gov-0176",
+          "fund1-expansion-gov-0177"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.d",
+        "text": "掌握私募资产管理计划的运作要求、类别，以及分级私募资产管理计划的相关要求",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0144",
+          "fund1-expansion-gov-0153",
+          "fund1-expansion-gov-0154",
+          "fund1-expansion-gov-0158",
+          "fund1-expansion-gov-0163",
+          "fund1-expansion-gov-0164",
+          "fund1-expansion-gov-0165",
+          "fund1-expansion-gov-0166",
+          "fund1-expansion-gov-0167",
+          "fund1-expansion-gov-0168",
+          "fund1-expansion-gov-0169",
+          "fund1-expansion-gov-0170",
+          "fund1-expansion-gov-0172",
+          "fund1-expansion-gov-0175"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.e",
+        "text": "掌握私募资产管理计划风险管理和关联交易管理的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0145",
+          "fund1-expansion-gov-0146",
+          "fund1-expansion-gov-0149",
+          "fund1-expansion-gov-0151",
+          "fund1-expansion-gov-0155",
+          "fund1-expansion-gov-0159",
+          "fund1-expansion-gov-0160",
+          "fund1-expansion-gov-0161",
+          "fund1-expansion-gov-0162",
+          "fund1-expansion-gov-0181",
+          "fund1-expansion-gov-0182",
+          "fund1-expansion-gov-0183",
+          "fund1-expansion-gov-0184"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.f",
+        "text": "掌握私募资产管理计划变更、终止、清算和信息披露的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0157",
+          "fund1-expansion-gov-0178",
+          "fund1-expansion-gov-0179",
+          "fund1-expansion-gov-0180"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.a",
+        "text": "掌握私募基金募集的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.b",
+        "text": "理解私募基金备案的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0300",
+          "fund1-expansion-gov-0302",
+          "fund1-expansion-gov-0304",
+          "fund1-expansion-gov-0305"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.c",
+        "text": "掌握私募基金投资与交易的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0303"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.d",
+        "text": "掌握私募基金申赎与登记的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0301"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.e",
+        "text": "掌握私募基金估值与费用、信息披露与报送、终止与清算的相关规定",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0120",
+          "fund1-expansion-gov-0121",
+          "fund1-expansion-gov-0122",
+          "fund1-expansion-gov-0123",
+          "fund1-expansion-gov-0124",
+          "fund1-expansion-gov-0125",
+          "fund1-expansion-gov-0126",
+          "fund1-expansion-gov-0308"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.a",
+        "text": "理解反洗钱的总体要求",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.b",
+        "text": "掌握反洗钱工作的具体义务",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund1-coverage-010"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.a",
+        "text": "理解合规管理的概念和基本原则",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0086",
+          "fund1-expansion-gov-0087"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.b",
+        "text": "理解基金管理人的董事会、监事（会）或审计委员会、合规负责人、管理层与业务部门、合规管理部门各自的合规职责",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0058",
+          "fund1-expansion-gov-0059",
+          "fund1-expansion-gov-0060",
+          "fund1-expansion-gov-0064",
+          "fund1-expansion-gov-0085"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.c",
+        "text": "掌握基金管理人合规管理的考核机制和保障机制",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund1-coverage-009"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0061",
+          "fund1-expansion-gov-0065",
+          "fund1-expansion-gov-0072",
+          "fund1-expansion-gov-0074",
+          "fund1-expansion-gov-0075",
+          "fund1-expansion-gov-0076",
+          "fund1-expansion-gov-0077",
+          "fund1-expansion-gov-0078",
+          "fund1-expansion-gov-0079",
+          "fund1-expansion-gov-0080"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.d",
+        "text": "掌握基金管理人合规管理活动的主要内容",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0057",
+          "fund1-expansion-gov-0062",
+          "fund1-expansion-gov-0063",
+          "fund1-expansion-gov-0066",
+          "fund1-expansion-gov-0067",
+          "fund1-expansion-gov-0068",
+          "fund1-expansion-gov-0081",
+          "fund1-expansion-gov-0082",
+          "fund1-expansion-gov-0083",
+          "fund1-expansion-gov-0084"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.a",
+        "text": "理解风险和风险管理的概念，以及风险管理的目标和基本原则",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0325"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.b",
+        "text": "掌握风险管理体系、风险管理的主要环节",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0189",
+          "fund1-expansion-gov-0328",
+          "fund1-expansion-gov-0329",
+          "fund1-expansion-gov-0330",
+          "fund1-expansion-gov-0331",
+          "fund1-expansion-gov-0332"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.c",
+        "text": "掌握风险管理的组织架构、各组织的风险管理职责",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0326",
+          "fund1-expansion-gov-0327"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.d",
+        "text": "掌握风险的分类和各类风险的管理措施",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0129",
+          "fund1-expansion-gov-0333",
+          "fund1-expansion-gov-0334",
+          "fund1-expansion-gov-0335",
+          "fund1-expansion-gov-0336",
+          "fund1-expansion-gov-0337",
+          "fund1-expansion-gov-0338",
+          "fund1-expansion-gov-0339",
+          "fund1-expansion-gov-0340",
+          "fund1-expansion-gov-0341"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.a",
+        "text": "理解内部控制的概念、内部控制制度的三个层次",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0201"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.b",
+        "text": "理解内部控制的目标和原则",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0202",
+          "fund1-expansion-gov-0203"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.c",
+        "text": "掌握内部控制的基本要素",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0204",
+          "fund1-expansion-gov-0205"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.d",
+        "text": "掌握内部控制的主要内容",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0206",
+          "fund1-expansion-gov-0207",
+          "fund1-expansion-gov-0208",
+          "fund1-expansion-gov-0209",
+          "fund1-expansion-gov-0210",
+          "fund1-expansion-gov-0211",
+          "fund1-expansion-gov-0212"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.a",
+        "text": "了解道德及职业道德的概念",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.b",
+        "text": "理解基金职业道德的含义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0200"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.c",
+        "text": "理解基金职业道德的作用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.d",
+        "text": "掌握基金职业道德建设的内容",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0192",
+          "fund1-expansion-gov-0193",
+          "fund1-expansion-gov-0194",
+          "fund1-expansion-gov-0195",
+          "fund1-expansion-gov-0199"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.a",
+        "text": "掌握守法合规的含义和基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.a",
+        "text": "理解诚实守信的含义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.b",
+        "text": "掌握不得进行内幕交易和利用未公开信息交易的基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.c",
+        "text": "掌握不得操纵市场的基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.d",
+        "text": "掌握不得欺诈客户的基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.e",
+        "text": "掌握不得进行不正当竞争的基本要求，以及不正当竞争违法行为的法律责任",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.a",
+        "text": "理解专业审慎的含义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.b",
+        "text": "掌握专业审慎的基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0187",
+          "fund1-expansion-gov-0188"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.5.a",
+        "text": "掌握客户至上的含义和基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0186",
+          "fund1-expansion-gov-0344",
+          "fund1-expansion-gov-0345"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.6.a",
+        "text": "掌握忠诚尽责的含义和基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0185",
+          "fund1-expansion-gov-0191"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.7.a",
+        "text": "理解保守秘密的含义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.7.b",
+        "text": "掌握保守秘密的基本要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.a",
+        "text": "了解文化与行业文化的含义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.b",
+        "text": "掌握中国特色金融文化的具体内涵",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.a",
+        "text": "理解基金行业文化建设的重要意义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.a",
+        "text": "理解基金行业文化建设的具体实践",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0196",
+          "fund1-expansion-gov-0197",
+          "fund1-expansion-gov-0198",
+          "fund1-expansion-gov-0342",
+          "fund1-expansion-gov-0343",
+          "fund1-expansion-gov-0346",
+          "fund1-expansion-gov-0347",
+          "fund1-expansion-gov-0348",
+          "fund1-expansion-gov-0349",
+          "fund1-expansion-gov-0350",
+          "fund1-expansion-gov-0351",
+          "fund1-expansion-gov-0352",
+          "fund1-expansion-gov-0353",
+          "fund1-expansion-gov-0354"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.b",
+        "text": "理解《十八届中央政治局关于改进工作作风、密切联系群众的八项规定》及其实施细则的主要内容及工作要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.c",
+        "text": "理解《中国共产党纪律处分条例》的总体要求、适用范围及纪律处分措施",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0355",
+          "fund1-expansion-gov-0356",
+          "fund1-expansion-gov-0357",
+          "fund1-expansion-gov-0358",
+          "fund1-expansion-gov-0359",
+          "fund1-expansion-gov-0360",
+          "fund1-expansion-gov-0361",
+          "fund1-expansion-gov-0362",
+          "fund1-expansion-gov-0363",
+          "fund1-expansion-gov-0364",
+          "fund1-expansion-gov-0365"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.d",
+        "text": "理解中国共产党的问责工作总体要求、原则及问责情形",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0366",
+          "fund1-expansion-gov-0367",
+          "fund1-expansion-gov-0368",
+          "fund1-expansion-gov-0369",
+          "fund1-expansion-gov-0370",
+          "fund1-expansion-gov-0371",
+          "fund1-expansion-gov-0372",
+          "fund1-expansion-gov-0373",
+          "fund1-expansion-gov-0374",
+          "fund1-expansion-gov-0375"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.4.a",
+        "text": "理解国家社会信用诚信建设机制",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.4.b",
+        "text": "理解证券基金期货行业诚信监督管理体系的具体内容",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund1-expansion-gov-0311",
+          "fund1-expansion-gov-0312",
+          "fund1-expansion-gov-0313",
+          "fund1-expansion-gov-0314",
+          "fund1-expansion-gov-0315",
+          "fund1-expansion-gov-0316",
+          "fund1-expansion-gov-0317",
+          "fund1-expansion-gov-0318",
+          "fund1-expansion-gov-0319",
+          "fund1-expansion-gov-0320",
+          "fund1-expansion-gov-0321",
+          "fund1-expansion-gov-0322",
+          "fund1-expansion-gov-0323",
+          "fund1-expansion-gov-0324"
+        ],
+        "pendingNewQuestionIds": []
+      }
+    ],
+    "fund2": [
+      {
+        "code": "1.1.a",
+        "text": "掌握证券投资基金的定义和主要类别",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.1.b",
+        "text": "理解证券投资基金的运作环节、参与主体、监管机构和自律组织",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.1.c",
+        "text": "理解证券投资基金的特点，与其他金融工具的共性和区别",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.a",
+        "text": "了解证券投资基金的起源、发展历程、发展趋势与特点",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.3.a",
+        "text": "了解我国证券投资基金发展的六个阶段及其特点和标志产品",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.a",
+        "text": "了解基金分类对投资者、基金管理人、基金评价机构、监管部门的意义",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.b",
+        "text": "掌握基金的不同分类标准和主要分类",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2-7.a",
+        "text": "理解基金的基本类型及其特点",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.8-10.a",
+        "text": "理解特殊类型基金的概念及其特点",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.a",
+        "text": "掌握财务报表的定义、作用和基本构成",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0084",
+          "fund2-expansion-invest-0091"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.a",
+        "text": "理解财务报表分析的目的、主要内容和基本方法",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0001",
+          "fund2-expansion-invest-0002",
+          "fund2-expansion-invest-0003",
+          "fund2-expansion-invest-0004",
+          "fund2-expansion-invest-0019",
+          "fund2-expansion-invest-0085"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.b",
+        "text": "掌握反映经营情况的主要财务比率的计算和意义",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0005",
+          "fund2-expansion-invest-0006",
+          "fund2-expansion-invest-0007",
+          "fund2-expansion-invest-0008",
+          "fund2-expansion-invest-0009",
+          "fund2-expansion-invest-0010",
+          "fund2-expansion-invest-0011",
+          "fund2-expansion-invest-0012",
+          "fund2-expansion-invest-0013",
+          "fund2-expansion-invest-0014",
+          "fund2-expansion-invest-0082"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.c",
+        "text": "掌握杜邦分析法的基本思想、核心公式、应用及其主要局限性",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0015",
+          "fund2-expansion-invest-0016",
+          "fund2-expansion-invest-0017",
+          "fund2-expansion-invest-0018"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.d",
+        "text": "了解财务舞弊及其识别方法",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0020",
+          "fund2-expansion-invest-0021",
+          "fund2-expansion-invest-0080"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.a",
+        "text": "掌握货币的时间价值的概念、影响因素，以及现值（PV）和终值（FV）的概念、计算和应用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0022",
+          "fund2-expansion-invest-0023",
+          "fund2-expansion-invest-0024"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.b",
+        "text": "掌握名义利率和实际利率、单利和复利、即期利率和远期利率的概念和应用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.a",
+        "text": "理解随机变量的定义、分类和分布，方差和标准差，以及分位数和中位数的定义和应用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0025",
+          "fund2-expansion-invest-0026",
+          "fund2-expansion-invest-0027",
+          "fund2-expansion-invest-0028",
+          "fund2-expansion-invest-0030",
+          "fund2-expansion-invest-0137"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.b",
+        "text": "了解正态分布的含义、主要特征、经验法则，以及标准正态分布分位数的含义",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0029"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.a",
+        "text": "理解资本结构的定义、构成，以及债务资本和权益资本的类型、特点和差异",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0031",
+          "fund2-expansion-invest-0032"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.b",
+        "text": "了解最优资本结构的概念，以及MM理论和权衡理论对资本结构的基本观点",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund2-coverage-006"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.a",
+        "text": "掌握股票的定义及其基本特征，普通股和优先股的区别，权益类证券投资的收益来源和风险，以及影响公司发行在外股本的行为",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.b",
+        "text": "了解存托凭证的定义、基本运作机制和主要类型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.c",
+        "text": "理解可转换债券的定义、特征、基本要素和价值构成",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund2-coverage-007"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.a",
+        "text": "理解基本面分析的概念和分析方法，以及技术分析的概念和核心假设",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.b",
+        "text": "了解K线图、常用技术分析方法以及争议与局限性",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.a",
+        "text": "理解股票的价值及其与价格的关系",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0033",
+          "fund2-expansion-invest-0034"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.b",
+        "text": "理解绝对估值法的基本原理和常见形式",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0035",
+          "fund2-expansion-invest-0036",
+          "fund2-expansion-invest-0037",
+          "fund2-expansion-invest-0038"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.c",
+        "text": "掌握相对估值法的基本原理和常用模型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0039",
+          "fund2-expansion-invest-0040",
+          "fund2-expansion-invest-0041",
+          "fund2-expansion-invest-0042"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.a",
+        "text": "理解债券的基本概念和分类，债券市场的构成和功能，以及债券投资的主要收益来源和风险类型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.a",
+        "text": "了解中国债券市场发展的主要阶段、参与主体和角色、利率债和信用债的区别和常见品种",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.b",
+        "text": "了解中国债券市场三大子市场的构成、特点和区别",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.a",
+        "text": "理解不同类型债券的估值方法",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.b",
+        "text": "掌握债券的当期收益率和到期收益率的概念、计算方法及其相互关系",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.c",
+        "text": "掌握债券久期和凸性的概念和运用",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund2-coverage-010"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0043",
+          "fund2-expansion-invest-0044",
+          "fund2-expansion-invest-0045",
+          "fund2-expansion-invest-0046",
+          "fund2-expansion-invest-0411",
+          "fund2-expansion-invest-0412"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.d",
+        "text": "理解利率的期限结构和收益率曲线的基本类型和应用，以及信用利差的概念和特点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0047",
+          "fund2-expansion-invest-0048",
+          "fund2-expansion-invest-0049",
+          "fund2-expansion-invest-0409",
+          "fund2-expansion-invest-0410"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.a",
+        "text": "理解货币市场工具的定义、特点和常见品种",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0406",
+          "fund2-expansion-invest-0407",
+          "fund2-expansion-invest-0408"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.a",
+        "text": "理解衍生工具的定义、特征和分类",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0090"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.a",
+        "text": "理解远期合约的定义和特点，无套利原则和持有成本定价模型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0079",
+          "fund2-expansion-invest-0081"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.a",
+        "text": "掌握期货合约的定义、构成要素、交易制度和基本功能",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0083"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.a",
+        "text": "理解期权合约的定义、构成要素、分类、价值构成，看涨和看跌期权多空头的盈亏分布特征和影响期权价格的主要因素",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0086"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.b",
+        "text": "了解欧式期权的平价公式和期权定价基本原理",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.5.a",
+        "text": "理解互换合约的定义和基本功能，利率互换和货币互换的运作方式，以及股票收益互换的运作方式和应用场景",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund2-coverage-005"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0087",
+          "fund2-expansion-invest-0088",
+          "fund2-expansion-invest-0089"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.5.b",
+        "text": "理解远期、期货、期权和互换合约的区别",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.a",
+        "text": "理解另类投资的定义、主要类别、优势和局限性",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0092"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.a",
+        "text": "理解大宗商品的定义、特点、投资类型和投资方式",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0094",
+          "fund2-expansion-invest-0095"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.a",
+        "text": "理解不动产投资的定义和特点，房地产投资类型，基础设施投资的概念和类别",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0093",
+          "fund2-expansion-invest-0096",
+          "fund2-expansion-invest-0097",
+          "fund2-expansion-invest-0098"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.b",
+        "text": "了解房地产有限合伙和不动产投资信托的运作方式",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.a",
+        "text": "了解对冲基金的特点，以及对冲基金中基金（FoHF）的概念和作用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.b",
+        "text": "了解对冲基金的费用结构和我国私募证券投资基金的定位",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.c",
+        "text": "了解对冲基金主要的投资策略分类及其核心逻辑",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0099",
+          "fund2-expansion-invest-0100"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.a",
+        "text": "掌握业绩比较基准的概念、作用和分类",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0266",
+          "fund2-expansion-invest-0267",
+          "fund2-expansion-invest-0268"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.b",
+        "text": "理解证券指数的定义、分类方式、编制原则、编制方法、维护机制和国内外常见指数",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0101",
+          "fund2-expansion-invest-0102",
+          "fund2-expansion-invest-0103",
+          "fund2-expansion-invest-0104",
+          "fund2-expansion-invest-0105",
+          "fund2-expansion-invest-0106",
+          "fund2-expansion-invest-0271"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.c",
+        "text": "掌握业绩比较基准选择原则",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0107",
+          "fund2-expansion-invest-0108"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.a",
+        "text": "理解定制化投资管理流程和标准化投资管理流程的概念、步骤、特点和区别",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0433",
+          "fund2-expansion-invest-0434",
+          "fund2-expansion-invest-0435",
+          "fund2-expansion-invest-0436",
+          "fund2-expansion-invest-0437",
+          "fund2-expansion-invest-0438",
+          "fund2-expansion-invest-0439",
+          "fund2-expansion-invest-0440",
+          "fund2-expansion-invest-0441",
+          "fund2-expansion-invest-0442",
+          "fund2-expansion-invest-0443",
+          "fund2-expansion-invest-0444",
+          "fund2-expansion-invest-0445"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.a",
+        "text": "理解基金管理人内部投资管理相关部门的设置和投资交易流程",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0274"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.a",
+        "text": "了解现代投资组合理论与资本市场理论的形成和主要发展脉络",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.b",
+        "text": "掌握资产收益率的期望、方差、协方差、标准差、资产收益相关性等的概念、计算和应用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0050",
+          "fund2-expansion-invest-0051",
+          "fund2-expansion-invest-0052",
+          "fund2-expansion-invest-0455"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.c",
+        "text": "理解均值—方差模型的基本假设和核心思想，可行集、最小方差前沿、有效前沿、效用、无差异曲线的概念，投资者最优投资组合的确定逻辑",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0053",
+          "fund2-expansion-invest-0054",
+          "fund2-expansion-invest-0055",
+          "fund2-expansion-invest-0385",
+          "fund2-expansion-invest-0453",
+          "fund2-expansion-invest-0454"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.a",
+        "text": "理解资本市场理论的前提假设，资本配置线和资本市场线的含义、构成和公式，以及系统性风险和非系统性风险的概念和风险分散化原理",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.b",
+        "text": "掌握资本资产定价模型的基本原理、公式及其应用，以及证券市场线和资本市场线的区别",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0056",
+          "fund2-expansion-invest-0057",
+          "fund2-expansion-invest-0058"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.c",
+        "text": "了解套利定价理论的基本原理、假设及与资本资产定价模型的区别，以及多因子模型的基本概念",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0415",
+          "fund2-expansion-invest-0416",
+          "fund2-expansion-invest-0417",
+          "fund2-expansion-invest-0418",
+          "fund2-expansion-invest-0419",
+          "fund2-expansion-invest-0420",
+          "fund2-expansion-invest-0421",
+          "fund2-expansion-invest-0422",
+          "fund2-expansion-invest-0423",
+          "fund2-expansion-invest-0424"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.a",
+        "text": "理解市场有效性的定义，三种市场分类和特征，以及市场竞争与套利行为的作用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0425",
+          "fund2-expansion-invest-0426",
+          "fund2-expansion-invest-0427",
+          "fund2-expansion-invest-0428",
+          "fund2-expansion-invest-0429",
+          "fund2-expansion-invest-0430",
+          "fund2-expansion-invest-0431"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.b",
+        "text": "了解行为金融学的基本概念、研究方法及其与有效市场假说的差异",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0059",
+          "fund2-expansion-invest-0060",
+          "fund2-expansion-invest-0061",
+          "fund2-expansion-invest-0432",
+          "fund2-expansion-invest-0449",
+          "fund2-expansion-invest-0450",
+          "fund2-expansion-invest-0451"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.a",
+        "text": "理解被动投资和主动投资的概念和区别，以及指数跟踪的核心目标和复制方法",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0382"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.b",
+        "text": "掌握跟踪偏离度和跟踪误差的概念和区别，以及跟踪误差的来源、事前与事后管理",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0062",
+          "fund2-expansion-invest-0063",
+          "fund2-expansion-invest-0064"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.5.a",
+        "text": "理解主动投资的收益来源，主动收益和主动风险的概念，以及主动股票投资组合、主动债券投资组合管理的方式",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0191",
+          "fund2-expansion-invest-0192",
+          "fund2-expansion-invest-0193",
+          "fund2-expansion-invest-0194",
+          "fund2-expansion-invest-0195"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.a",
+        "text": "理解多元资产投资的定义、特点、管理流程、挑战，以及战略资产配置、战术资产配置和资产配置再平衡的概念和作用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0065",
+          "fund2-expansion-invest-0066",
+          "fund2-expansion-invest-0067",
+          "fund2-expansion-invest-0383",
+          "fund2-expansion-invest-0384",
+          "fund2-expansion-invest-0401",
+          "fund2-expansion-invest-0402",
+          "fund2-expansion-invest-0452"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.b",
+        "text": "了解股票、债券和另类资产在投资组合中的主要作用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0398"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.c",
+        "text": "理解常见的多元资产投资策略和产品类型",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0386",
+          "fund2-expansion-invest-0387",
+          "fund2-expansion-invest-0388",
+          "fund2-expansion-invest-0389",
+          "fund2-expansion-invest-0390",
+          "fund2-expansion-invest-0391",
+          "fund2-expansion-invest-0392",
+          "fund2-expansion-invest-0393",
+          "fund2-expansion-invest-0394",
+          "fund2-expansion-invest-0395",
+          "fund2-expansion-invest-0396",
+          "fund2-expansion-invest-0397",
+          "fund2-expansion-invest-0399",
+          "fund2-expansion-invest-0400",
+          "fund2-expansion-invest-0403",
+          "fund2-expansion-invest-0404",
+          "fund2-expansion-invest-0405",
+          "fund2-expansion-invest-0413",
+          "fund2-expansion-invest-0414"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.7.a",
+        "text": "理解可持续投资的概念和关键因素，ESG因素在股票和债券分析中的应用，以及常见的可持续投资策略",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0068",
+          "fund2-expansion-invest-0069"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.7.b",
+        "text": "了解可持续投资的发展历程与现状，ESG评级体系方法，ESG评级结果差异原因和中国ESG评级体系特点",
+        "page": 5,
+        "baselineQuestionIds": [
+          "fund2-coverage-008"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.1.a",
+        "text": "理解指令驱动、报价驱动和询价交易的概念和特点，指令驱动市场中的交易指令类型，以及做市商和经纪人的区别",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.1.b",
+        "text": "掌握保证金交易的基本概念，以及融资和融券交易的机制、风险和收益特点",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.2.a",
+        "text": "理解最佳执行的概念和重要性，交易成本的分类和构成，执行缺口的概念",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund2-coverage-004"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0112",
+          "fund2-expansion-invest-0113",
+          "fund2-expansion-invest-0114",
+          "fund2-expansion-invest-0115"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.2.b",
+        "text": "了解算法交易的概念及其在优化交易执行中的作用",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0109",
+          "fund2-expansion-invest-0110",
+          "fund2-expansion-invest-0111"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.3.a",
+        "text": "了解基金管理人投资与交易分离的原则，及内部交易指令执行流程",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "10.3.b",
+        "text": "了解投资交易过程中的风险类型和管理措施",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0116",
+          "fund2-expansion-invest-0117",
+          "fund2-expansion-invest-0118"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.1.a",
+        "text": "理解风险和风险管理的基本概念、流程，以及不同类型投资风险间的相互作用和传导机制",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0070",
+          "fund2-expansion-invest-0071",
+          "fund2-expansion-invest-0127"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.1.b",
+        "text": "理解市场风险、信用风险、流动性风险的概念、主要类型及其影响、管理措施",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0072",
+          "fund2-expansion-invest-0073"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.2.a",
+        "text": "掌握事前与事后风险测度的区别，以及β系数、波动率、跟踪误差的定义、计算、应用和局限性",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0074",
+          "fund2-expansion-invest-0075",
+          "fund2-expansion-invest-0257",
+          "fund2-expansion-invest-0258",
+          "fund2-expansion-invest-0259",
+          "fund2-expansion-invest-0260"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.2.b",
+        "text": "掌握主动比重、最大回撤、超额收益最大回撤、下行标准差的定义、计算、应用和局限性",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund2-coverage-001"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0149",
+          "fund2-expansion-invest-0150",
+          "fund2-expansion-invest-0457",
+          "fund2-expansion-invest-0458"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.2.c",
+        "text": "理解风险价值和预期损失的概念、应用和各自的优缺点",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund2-coverage-002"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0076",
+          "fund2-expansion-invest-0146",
+          "fund2-expansion-invest-0151",
+          "fund2-expansion-invest-0261",
+          "fund2-expansion-invest-0262",
+          "fund2-expansion-invest-0459"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.2.d",
+        "text": "了解压力测试的作用和主要情景选择方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0077",
+          "fund2-expansion-invest-0078",
+          "fund2-expansion-invest-0152"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.a",
+        "text": "了解基金风险管理事前、事中、事后三个环节的主要工作内容",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0270",
+          "fund2-expansion-invest-0275"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.b",
+        "text": "掌握股票基金的主要风险管理指标及其应用",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0276"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.c",
+        "text": "理解债券基金面临的主要风险类型及其管理要点",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0147",
+          "fund2-expansion-invest-0148"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.d",
+        "text": "了解混合基金的风险管理特点",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0446",
+          "fund2-expansion-invest-0447",
+          "fund2-expansion-invest-0448"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.e",
+        "text": "掌握货币市场基金的主要风险管理指标和相关监管要求",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0249",
+          "fund2-expansion-invest-0250",
+          "fund2-expansion-invest-0251",
+          "fund2-expansion-invest-0252",
+          "fund2-expansion-invest-0253",
+          "fund2-expansion-invest-0254",
+          "fund2-expansion-invest-0255",
+          "fund2-expansion-invest-0256"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "11.3.f",
+        "text": "理解指数基金与ETF、跨境投资基金的主要风险和管理方式",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0145",
+          "fund2-expansion-invest-0240",
+          "fund2-expansion-invest-0246"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.1.a",
+        "text": "理解基金业绩评价的定义、目的、意义和应考虑的因素",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0119",
+          "fund2-expansion-invest-0120"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.2.a",
+        "text": "掌握绝对收益中持有区间收益率、算术平均收益率、几何平均收益率、年化收益率的计算方法、应用和局限性",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0456"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.2.b",
+        "text": "掌握时间加权收益率、资金加权收益率的概念和运用，以及基金收益率计算中份额净值和复权份额净值的概念",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0121",
+          "fund2-expansion-invest-0122",
+          "fund2-expansion-invest-0123"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.2.c",
+        "text": "掌握相对收益的概念，算术法与几何法的计算和比较，以及捕获率的概念、计算、应用和局限性",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0124",
+          "fund2-expansion-invest-0125"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.2.d",
+        "text": "掌握主要的风险调整收益指标的概念、计算方法、应用和局限性",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.2.e",
+        "text": "了解证券选择能力和时机选择能力评价模型的概念和应用",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0196",
+          "fund2-expansion-invest-0197",
+          "fund2-expansion-invest-0198",
+          "fund2-expansion-invest-0199"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.3.a",
+        "text": "掌握基金业绩归因的目的以及绝对收益归因的基本方法",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0126",
+          "fund2-expansion-invest-0303"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.3.b",
+        "text": "理解Brinson模型的相对收益归因方法、Campisi债券组合归因模型的基本思想",
+        "page": 7,
+        "baselineQuestionIds": [
+          "fund2-coverage-003"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0128",
+          "fund2-expansion-invest-0129",
+          "fund2-expansion-invest-0296",
+          "fund2-expansion-invest-0297",
+          "fund2-expansion-invest-0298",
+          "fund2-expansion-invest-0299",
+          "fund2-expansion-invest-0300",
+          "fund2-expansion-invest-0301",
+          "fund2-expansion-invest-0302",
+          "fund2-expansion-invest-0304"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.4.a",
+        "text": "理解基金投资风格的形成、分析方法以及风格漂移的概念",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0130",
+          "fund2-expansion-invest-0131",
+          "fund2-expansion-invest-0278",
+          "fund2-expansion-invest-0305",
+          "fund2-expansion-invest-0306",
+          "fund2-expansion-invest-0307",
+          "fund2-expansion-invest-0308"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.5.a",
+        "text": "了解对基金管理人进行综合评价的重要性和主要评价维度",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0140",
+          "fund2-expansion-invest-0141",
+          "fund2-expansion-invest-0142"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.5.b",
+        "text": "了解基金管理人评价分析框架",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0200",
+          "fund2-expansion-invest-0201",
+          "fund2-expansion-invest-0202",
+          "fund2-expansion-invest-0263",
+          "fund2-expansion-invest-0264",
+          "fund2-expansion-invest-0265",
+          "fund2-expansion-invest-0277"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.6.a",
+        "text": "了解基金产品评价分析框架",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0143",
+          "fund2-expansion-invest-0144",
+          "fund2-expansion-invest-0282"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.7.a",
+        "text": "理解GIPS标准的定义、主要目标和核心特点",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0167",
+          "fund2-expansion-invest-0170",
+          "fund2-expansion-invest-0171",
+          "fund2-expansion-invest-0172",
+          "fund2-expansion-invest-0173"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.7.b",
+        "text": "了解GIPS对主要分析指标的规定",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0174",
+          "fund2-expansion-invest-0175",
+          "fund2-expansion-invest-0176",
+          "fund2-expansion-invest-0177",
+          "fund2-expansion-invest-0178",
+          "fund2-expansion-invest-0179",
+          "fund2-expansion-invest-0180",
+          "fund2-expansion-invest-0181",
+          "fund2-expansion-invest-0182",
+          "fund2-expansion-invest-0183",
+          "fund2-expansion-invest-0184",
+          "fund2-expansion-invest-0185",
+          "fund2-expansion-invest-0186",
+          "fund2-expansion-invest-0187",
+          "fund2-expansion-invest-0188",
+          "fund2-expansion-invest-0189",
+          "fund2-expansion-invest-0190"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "12.7.c",
+        "text": "了解GIPS合规鉴证的含义和作用，以及GIPS标准本土化应用的基本原则",
+        "page": 7,
+        "baselineQuestionIds": [
+          "fund2-coverage-009"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0168",
+          "fund2-expansion-invest-0169"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.1.a",
+        "text": "掌握公募基金的募集程序和各类基金的认购程序、认购方式，以及开放式基金认购费用和认购份额的计算",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.2.a",
+        "text": "了解封闭式基金的上市条件和交易规则",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.2.b",
+        "text": "掌握开放式基金申购与赎回的概念、原则及其费用结构，以及申购份额和赎回金额的计算",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.2.c",
+        "text": "理解开放式基金的转换、非交易过户及巨额赎回等特殊业务，以及特殊类型基金的上市交易与申赎",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0159",
+          "fund2-expansion-invest-0160"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.3.a",
+        "text": "了解私募资产管理计划的募集、成立、备案、参与、退出与转让",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.4.a",
+        "text": "了解私募证券投资基金的募集、备案、参与、退出与转让",
+        "page": 7,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "13.5.a",
+        "text": "理解份额登记的概念，登记机构的职责，以及份额登记流程和资金结算",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.1.a",
+        "text": "理解场内证券交易市场和结算机构",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.1.b",
+        "text": "掌握场内证券结算的原则、方式和费用项目等主要内容",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.2.a",
+        "text": "掌握银行间债券市场的组织体系和交易制度，以及各类品种的交易和结算方式",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.3.a",
+        "text": "了解金融期货、期权和商品期货的交易和结算规则",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.3.b",
+        "text": "掌握港股通市场投资的交易和结算规则",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0203",
+          "fund2-expansion-invest-0204",
+          "fund2-expansion-invest-0205",
+          "fund2-expansion-invest-0206",
+          "fund2-expansion-invest-0207",
+          "fund2-expansion-invest-0208",
+          "fund2-expansion-invest-0209",
+          "fund2-expansion-invest-0210",
+          "fund2-expansion-invest-0211",
+          "fund2-expansion-invest-0212",
+          "fund2-expansion-invest-0213",
+          "fund2-expansion-invest-0214",
+          "fund2-expansion-invest-0215",
+          "fund2-expansion-invest-0216",
+          "fund2-expansion-invest-0217",
+          "fund2-expansion-invest-0218",
+          "fund2-expansion-invest-0219",
+          "fund2-expansion-invest-0220",
+          "fund2-expansion-invest-0221",
+          "fund2-expansion-invest-0222",
+          "fund2-expansion-invest-0223",
+          "fund2-expansion-invest-0224",
+          "fund2-expansion-invest-0225",
+          "fund2-expansion-invest-0226"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.4.a",
+        "text": "了解海外主要交易市场",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.4.b",
+        "text": "了解世界主要证券交易所的股票结算规则",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0284",
+          "fund2-expansion-invest-0285",
+          "fund2-expansion-invest-0286",
+          "fund2-expansion-invest-0287",
+          "fund2-expansion-invest-0288",
+          "fund2-expansion-invest-0289",
+          "fund2-expansion-invest-0290",
+          "fund2-expansion-invest-0291",
+          "fund2-expansion-invest-0292",
+          "fund2-expansion-invest-0293",
+          "fund2-expansion-invest-0294",
+          "fund2-expansion-invest-0295"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.4.c",
+        "text": "了解QDII基金进行境外证券投资的交易与结算",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0237",
+          "fund2-expansion-invest-0238",
+          "fund2-expansion-invest-0239",
+          "fund2-expansion-invest-0241"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "14.4.d",
+        "text": "了解环球银行间金融通讯协会及其报文",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0227",
+          "fund2-expansion-invest-0228",
+          "fund2-expansion-invest-0229",
+          "fund2-expansion-invest-0230",
+          "fund2-expansion-invest-0231",
+          "fund2-expansion-invest-0232",
+          "fund2-expansion-invest-0233",
+          "fund2-expansion-invest-0234",
+          "fund2-expansion-invest-0235",
+          "fund2-expansion-invest-0236"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.1.a",
+        "text": "掌握基金资产估值的概念和应用、法律依据、重要性和需要考虑的因素",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.1.b",
+        "text": "掌握基金资产估值的责任主体、估值程序和基本原则",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.1.c",
+        "text": "理解不同投资品种的估值方法，计价错误的处理、责任承担、基金暂停估值的情形，以及侧袋机制",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0153",
+          "fund2-expansion-invest-0154",
+          "fund2-expansion-invest-0155",
+          "fund2-expansion-invest-0156",
+          "fund2-expansion-invest-0157",
+          "fund2-expansion-invest-0158"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.1.d",
+        "text": "了解QDII基金资产估值的特殊规定",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0242",
+          "fund2-expansion-invest-0243",
+          "fund2-expansion-invest-0244",
+          "fund2-expansion-invest-0245"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.2.a",
+        "text": "掌握基金费用的种类，基金管理费、托管费和销售服务费的计提标准和计提方式",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0161"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.2.b",
+        "text": "了解不列入基金费用的项目种类",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0162"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.3.a",
+        "text": "掌握基金会计核算的特点和主要内容",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0309",
+          "fund2-expansion-invest-0310",
+          "fund2-expansion-invest-0311",
+          "fund2-expansion-invest-0312",
+          "fund2-expansion-invest-0313",
+          "fund2-expansion-invest-0314",
+          "fund2-expansion-invest-0315",
+          "fund2-expansion-invest-0316",
+          "fund2-expansion-invest-0317",
+          "fund2-expansion-invest-0318",
+          "fund2-expansion-invest-0319",
+          "fund2-expansion-invest-0320",
+          "fund2-expansion-invest-0321",
+          "fund2-expansion-invest-0322",
+          "fund2-expansion-invest-0323",
+          "fund2-expansion-invest-0324",
+          "fund2-expansion-invest-0325",
+          "fund2-expansion-invest-0326",
+          "fund2-expansion-invest-0327",
+          "fund2-expansion-invest-0328",
+          "fund2-expansion-invest-0331",
+          "fund2-expansion-invest-0332",
+          "fund2-expansion-invest-0333",
+          "fund2-expansion-invest-0335",
+          "fund2-expansion-invest-0336",
+          "fund2-expansion-invest-0337",
+          "fund2-expansion-invest-0338",
+          "fund2-expansion-invest-0339",
+          "fund2-expansion-invest-0340",
+          "fund2-expansion-invest-0341",
+          "fund2-expansion-invest-0342",
+          "fund2-expansion-invest-0343",
+          "fund2-expansion-invest-0344",
+          "fund2-expansion-invest-0345",
+          "fund2-expansion-invest-0346",
+          "fund2-expansion-invest-0347",
+          "fund2-expansion-invest-0348",
+          "fund2-expansion-invest-0349",
+          "fund2-expansion-invest-0350",
+          "fund2-expansion-invest-0351",
+          "fund2-expansion-invest-0352",
+          "fund2-expansion-invest-0353",
+          "fund2-expansion-invest-0354",
+          "fund2-expansion-invest-0355",
+          "fund2-expansion-invest-0356",
+          "fund2-expansion-invest-0357",
+          "fund2-expansion-invest-0358",
+          "fund2-expansion-invest-0359",
+          "fund2-expansion-invest-0360",
+          "fund2-expansion-invest-0361"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "15.4.a",
+        "text": "理解基金财务报告分析的目的和主要内容",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0329",
+          "fund2-expansion-invest-0330",
+          "fund2-expansion-invest-0334"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "16.1.a",
+        "text": "掌握基金利润构成及相关的主要财务指标，基金利润分配对基金份额净值的影响，以及利润分配的不同方式",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0163"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "16.1.b",
+        "text": "掌握货币市场基金利润分配的特殊规定",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0247",
+          "fund2-expansion-invest-0248"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "16.1.c",
+        "text": "了解基础设施基金收益分配的特殊规定",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "16.2.a",
+        "text": "掌握基金投资活动和投资者投资基金涉及的相关税收项目",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0362",
+          "fund2-expansion-invest-0363",
+          "fund2-expansion-invest-0364",
+          "fund2-expansion-invest-0365",
+          "fund2-expansion-invest-0366",
+          "fund2-expansion-invest-0367",
+          "fund2-expansion-invest-0368",
+          "fund2-expansion-invest-0369",
+          "fund2-expansion-invest-0370",
+          "fund2-expansion-invest-0371",
+          "fund2-expansion-invest-0372",
+          "fund2-expansion-invest-0373",
+          "fund2-expansion-invest-0374",
+          "fund2-expansion-invest-0375",
+          "fund2-expansion-invest-0376",
+          "fund2-expansion-invest-0377",
+          "fund2-expansion-invest-0378",
+          "fund2-expansion-invest-0379",
+          "fund2-expansion-invest-0380",
+          "fund2-expansion-invest-0381"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.1.a",
+        "text": "理解基金信息披露的作用、原则、内容和禁止行为",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0279",
+          "fund2-expansion-invest-0281"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.1.b",
+        "text": "了解我国信息披露的制度体系",
+        "page": 8,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.2.a",
+        "text": "理解基金管理人和托管人的信息披露义务",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.2.b",
+        "text": "了解基金份额持有人的信息披露义务",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.3.a",
+        "text": "理解基金合同、托管协议、基金招募说明书和产品资料概要披露的主要内容",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0269",
+          "fund2-expansion-invest-0272"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.4.a",
+        "text": "理解普通基金净值公告和货币市场基金信息披露的特殊规定，以及基金定期报告和临时信息披露的相关规定",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0164",
+          "fund2-expansion-invest-0165",
+          "fund2-expansion-invest-0166",
+          "fund2-expansion-invest-0273",
+          "fund2-expansion-invest-0280",
+          "fund2-expansion-invest-0283"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.4.b",
+        "text": "了解基金上市公告书、澄清公告和清算报告的相关内容",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.5.a",
+        "text": "了解QDII基金、ETF基金和基础设施基金信息披露的特殊规定",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "17.6.a",
+        "text": "了解私募基金信息披露的特点和特殊事项",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.1.a",
+        "text": "理解个人投资者和机构投资者的分类，专业投资者和普通投资者的概念、划分标准和相互转化机制，以及合格投资者和不特定社会公众的概念和划分标准",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.1.b",
+        "text": "了解我国机构投资者的主要类别",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.1.c",
+        "text": "掌握投资目标和投资限制的概念和构成要素",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund2-expansion-invest-0132",
+          "fund2-expansion-invest-0133",
+          "fund2-expansion-invest-0134",
+          "fund2-expansion-invest-0135",
+          "fund2-expansion-invest-0136",
+          "fund2-expansion-invest-0138",
+          "fund2-expansion-invest-0139"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.1.d",
+        "text": "掌握普通投资者风险承受能力等级划分和评估逻辑，基金产品或者服务风险等级划分、方法和影响因素",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.1.e",
+        "text": "掌握投资者适当性匹配原则和注意事项",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.2.a",
+        "text": "理解基金管理人直销的概念和优缺点，基金销售机构的类型及其主要特点，基金销售机构发展趋势",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.2.b",
+        "text": "了解基金销售中的主要策略",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.2.c",
+        "text": "理解基金销售费用的类型及对销售策略的影响",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.2.d",
+        "text": "掌握基金销售业务在基金销售人员、宣传推介行为、投资者信息管理、销售费用等方面的规范要点",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.3.a",
+        "text": "了解基金投资者服务范围、特点和步骤",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.3.b",
+        "text": "理解基金投资者服务流程",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "18.3.c",
+        "text": "了解投资者保护和教育的内容和形式、投资者教育基地运行主体",
+        "page": 9,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      }
+    ],
+    "fund3": [
+      {
+        "code": "1.1.a",
+        "text": "理解股权投资基金的概念和特点",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.a",
+        "text": "理解股权投资基金的基本架构和运作流程",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.2.b",
+        "text": "理解股权投资基金运作中的关键要素",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.3.a",
+        "text": "理解股权投资基金当事人及其主要权利义务",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.3.b",
+        "text": "理解股权投资基金市场服务机构及其主要权利义务",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0059"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.3.c",
+        "text": "了解股权投资基金监管的概念、特征、目标、原则和监管机构",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.3.d",
+        "text": "了解股权投资基金行业自律的概念、主体、重要性",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.4.a",
+        "text": "了解国外股权投资基金发展历史",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.4.b",
+        "text": "了解我国股权投资基金发展历史",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.4.c",
+        "text": "了解我国股权投资基金发展现状和趋势",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "1.5.a",
+        "text": "理解股权投资基金对经济高质量发展的促进作用",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.a",
+        "text": "了解基金管理人的概念",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.b",
+        "text": "掌握基金管理人的基本经营要求",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0042",
+          "fund3-expansion-gov-0045",
+          "fund3-expansion-gov-0046",
+          "fund3-expansion-gov-0047",
+          "fund3-expansion-gov-0343"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.c",
+        "text": "掌握基金管理人股东、合伙人、实际控制人的合规要求",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0037",
+          "fund3-expansion-gov-0043",
+          "fund3-expansion-gov-0068"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.d",
+        "text": "掌握基金管理人从业人员的合规要求",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0044",
+          "fund3-expansion-gov-0069"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.1.e",
+        "text": "掌握基金管理人的职责",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0048",
+          "fund3-expansion-gov-0052",
+          "fund3-expansion-gov-0055",
+          "fund3-expansion-gov-0056",
+          "fund3-expansion-gov-0058",
+          "fund3-expansion-gov-0061"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2.a",
+        "text": "了解信义义务的概念",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2.b",
+        "text": "了解信义义务的重要性",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.2.c",
+        "text": "掌握基金管理人履行信义义务的核心要求",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0333"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.a",
+        "text": "了解基金管理人的专业要求",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.3.b",
+        "text": "了解基金管理人专业化的制度保障",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0320",
+          "fund3-expansion-gov-0344"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.4.a",
+        "text": "了解基金管理人内部治理的概念",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.4.b",
+        "text": "了解基金管理人内部治理的原则",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.4.c",
+        "text": "掌握基金管理人内部治理结构的分类、设置、常见形式",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "2.4.d",
+        "text": "了解基金管理人内部治理的决策机制、激励机制和监督机制",
+        "page": 2,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0033",
+          "fund3-expansion-gov-0034",
+          "fund3-expansion-gov-0036"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.a",
+        "text": "了解基金产品的基本要素",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.b",
+        "text": "理解基金组织形式、投资阶段、投资方式分类",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.1.c",
+        "text": "了解基金特殊主体分类和现行产品备案分类",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.a",
+        "text": "理解公司型基金的概念和特点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.b",
+        "text": "掌握合伙型基金的概念和特点",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund3-coverage-001"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0001",
+          "fund3-expansion-gov-0002",
+          "fund3-expansion-gov-0007",
+          "fund3-expansion-gov-0008",
+          "fund3-expansion-gov-0012",
+          "fund3-expansion-gov-0015",
+          "fund3-expansion-gov-0016",
+          "fund3-expansion-gov-0017",
+          "fund3-expansion-gov-0024",
+          "fund3-expansion-gov-0025",
+          "fund3-expansion-gov-0319"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.c",
+        "text": "了解契约型基金的概念和特点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.2.d",
+        "text": "理解不同基金组织形式的区别",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.a",
+        "text": "理解创业投资、创业投资基金的概念和运作特点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0064",
+          "fund3-expansion-gov-0065",
+          "fund3-expansion-gov-0066"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.b",
+        "text": "了解创业投资基金的鼓励和优惠政策",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0067"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.3.c",
+        "text": "理解并购投资、并购基金的概念和运作特点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.a",
+        "text": "了解股权投资母基金的概念",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.b",
+        "text": "理解股权投资母基金的业务",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0057"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.c",
+        "text": "了解股权投资母基金的作用",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.d",
+        "text": "理解股权投资母基金的投资风险、收益与成本",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.4.e",
+        "text": "理解S基金的概念、价值及优势、交易模式",
+        "page": 3,
+        "baselineQuestionIds": [
+          "fund3-coverage-003"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.5.a",
+        "text": "理解政府投资基金的概念",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0257"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.5.b",
+        "text": "了解政府投资基金的目标",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0258",
+          "fund3-expansion-gov-0269"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.5.c",
+        "text": "理解政府投资基金的运作原则与方式",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0259",
+          "fund3-expansion-gov-0260",
+          "fund3-expansion-gov-0261",
+          "fund3-expansion-gov-0262",
+          "fund3-expansion-gov-0263",
+          "fund3-expansion-gov-0264",
+          "fund3-expansion-gov-0265",
+          "fund3-expansion-gov-0266",
+          "fund3-expansion-gov-0267",
+          "fund3-expansion-gov-0268",
+          "fund3-expansion-gov-0270",
+          "fund3-expansion-gov-0271",
+          "fund3-expansion-gov-0272",
+          "fund3-expansion-gov-0273"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "3.5.d",
+        "text": "了解政府投资基金的绩效管理",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0274",
+          "fund3-expansion-gov-0275",
+          "fund3-expansion-gov-0276",
+          "fund3-expansion-gov-0277",
+          "fund3-expansion-gov-0278",
+          "fund3-expansion-gov-0279",
+          "fund3-expansion-gov-0280",
+          "fund3-expansion-gov-0281",
+          "fund3-expansion-gov-0282",
+          "fund3-expansion-gov-0283",
+          "fund3-expansion-gov-0284"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.1.a",
+        "text": "理解股权投资基金的募集与设立",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.a",
+        "text": "了解国外股权投资基金投资者的主要类型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.b",
+        "text": "理解中国股权投资基金投资者的主要类型",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.c",
+        "text": "了解建立合格投资者及投资者适当性制度的必要性",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.d",
+        "text": "掌握合格投资者的标准",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0317"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.e",
+        "text": "掌握投资者适当性的要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0358"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.2.f",
+        "text": "理解专业投资者和普通投资者的区别",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.a",
+        "text": "掌握基金募集的流程",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0356",
+          "fund3-expansion-gov-0357",
+          "fund3-expansion-gov-0362",
+          "fund3-expansion-gov-0363",
+          "fund3-expansion-gov-0364",
+          "fund3-expansion-gov-0365"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.b",
+        "text": "掌握基金募集资料的合规要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0051",
+          "fund3-expansion-gov-0339",
+          "fund3-expansion-gov-0359",
+          "fund3-expansion-gov-0361"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.c",
+        "text": "掌握基金募集方式的合规要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0049",
+          "fund3-expansion-gov-0050"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.d",
+        "text": "掌握基金设立的主要要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.e",
+        "text": "理解基金备案的基本要求",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0053"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.3.f",
+        "text": "掌握基金备案的合规要点",
+        "page": 3,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0334",
+          "fund3-expansion-gov-0335",
+          "fund3-expansion-gov-0340"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.a",
+        "text": "了解基金合同通用条款的主要内容",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0355"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.b",
+        "text": "理解基金合同通用条款中的投资者及其出资安排",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0004",
+          "fund3-expansion-gov-0005",
+          "fund3-expansion-gov-0019",
+          "fund3-expansion-gov-0070",
+          "fund3-expansion-gov-0071",
+          "fund3-expansion-gov-0316",
+          "fund3-expansion-gov-0330",
+          "fund3-expansion-gov-0331",
+          "fund3-expansion-gov-0332"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.c",
+        "text": "理解基金合同通用条款中的基金费用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0328",
+          "fund3-expansion-gov-0329",
+          "fund3-expansion-gov-0441"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.d",
+        "text": "理解基金合同通用条款中的投资事项",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0318",
+          "fund3-expansion-gov-0321",
+          "fund3-expansion-gov-0322",
+          "fund3-expansion-gov-0324",
+          "fund3-expansion-gov-0327",
+          "fund3-expansion-gov-0341"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.e",
+        "text": "理解基金合同通用条款中的基金内部组织机构",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0006"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "4.4.f",
+        "text": "理解不同组织形式下的基金合同",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0003",
+          "fund3-expansion-gov-0032",
+          "fund3-expansion-gov-0035",
+          "fund3-expansion-gov-0360"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.1.a",
+        "text": "理解股权投资的一般流程",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.a",
+        "text": "理解尽职调查的概念、涉及主体和作用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.b",
+        "text": "掌握尽职调查的主要内容：业务尽职调查、财务尽职调查、法律尽职调查",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0116",
+          "fund3-expansion-gov-0132",
+          "fund3-expansion-gov-0136",
+          "fund3-expansion-gov-0153",
+          "fund3-expansion-gov-0154",
+          "fund3-expansion-gov-0155",
+          "fund3-expansion-gov-0156",
+          "fund3-expansion-gov-0157",
+          "fund3-expansion-gov-0158",
+          "fund3-expansion-gov-0159",
+          "fund3-expansion-gov-0160",
+          "fund3-expansion-gov-0161",
+          "fund3-expansion-gov-0162",
+          "fund3-expansion-gov-0163",
+          "fund3-expansion-gov-0164",
+          "fund3-expansion-gov-0165",
+          "fund3-expansion-gov-0166",
+          "fund3-expansion-gov-0167",
+          "fund3-expansion-gov-0168",
+          "fund3-expansion-gov-0169",
+          "fund3-expansion-gov-0170",
+          "fund3-expansion-gov-0171",
+          "fund3-expansion-gov-0172",
+          "fund3-expansion-gov-0173",
+          "fund3-expansion-gov-0174",
+          "fund3-expansion-gov-0175",
+          "fund3-expansion-gov-0176",
+          "fund3-expansion-gov-0217",
+          "fund3-expansion-gov-0218",
+          "fund3-expansion-gov-0219",
+          "fund3-expansion-gov-0220",
+          "fund3-expansion-gov-0221",
+          "fund3-expansion-gov-0222",
+          "fund3-expansion-gov-0223",
+          "fund3-expansion-gov-0224",
+          "fund3-expansion-gov-0225",
+          "fund3-expansion-gov-0226",
+          "fund3-expansion-gov-0227",
+          "fund3-expansion-gov-0228",
+          "fund3-expansion-gov-0229",
+          "fund3-expansion-gov-0230",
+          "fund3-expansion-gov-0231",
+          "fund3-expansion-gov-0232",
+          "fund3-expansion-gov-0233",
+          "fund3-expansion-gov-0234",
+          "fund3-expansion-gov-0235",
+          "fund3-expansion-gov-0236",
+          "fund3-expansion-gov-0237",
+          "fund3-expansion-gov-0238",
+          "fund3-expansion-gov-0239",
+          "fund3-expansion-gov-0240",
+          "fund3-expansion-gov-0241",
+          "fund3-expansion-gov-0242",
+          "fund3-expansion-gov-0243",
+          "fund3-expansion-gov-0244",
+          "fund3-expansion-gov-0245",
+          "fund3-expansion-gov-0246",
+          "fund3-expansion-gov-0247",
+          "fund3-expansion-gov-0248",
+          "fund3-expansion-gov-0249",
+          "fund3-expansion-gov-0250",
+          "fund3-expansion-gov-0251",
+          "fund3-expansion-gov-0252",
+          "fund3-expansion-gov-0253",
+          "fund3-expansion-gov-0254",
+          "fund3-expansion-gov-0255",
+          "fund3-expansion-gov-0256"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.c",
+        "text": "理解尽职调查方法",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.2.d",
+        "text": "了解尽职调查报告的基本内容",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.a",
+        "text": "理解企业价值与股权价值的联系和区别",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund3-coverage-006"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.b",
+        "text": "掌握参考最近融资价格法和市场乘数法的计算方法",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0186"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.c",
+        "text": "掌握现金流折现法的计算方法及关键参数设置",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund3-coverage-006"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.d",
+        "text": "理解成本法的基本原理与适用场景",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0192",
+          "fund3-expansion-gov-0193"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.e",
+        "text": "理解风险资本估值法的原理与计算逻辑",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund3-coverage-004"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.3.f",
+        "text": "掌握各类估值方法在不同类型基金中的运用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0181",
+          "fund3-expansion-gov-0182",
+          "fund3-expansion-gov-0183",
+          "fund3-expansion-gov-0185",
+          "fund3-expansion-gov-0188",
+          "fund3-expansion-gov-0191"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.a",
+        "text": "掌握交易文件概述",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.b",
+        "text": "理解增资协议的主要条款",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0197",
+          "fund3-expansion-gov-0198",
+          "fund3-expansion-gov-0199",
+          "fund3-expansion-gov-0200"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.c",
+        "text": "掌握股东协议中的优先权条款：优先认购权、优先购买权、优先分红权、优先清算权",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0203",
+          "fund3-expansion-gov-0205",
+          "fund3-expansion-gov-0208",
+          "fund3-expansion-gov-0213",
+          "fund3-expansion-gov-0214"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.d",
+        "text": "掌握股东协议中的其他经济权益条款",
+        "page": 4,
+        "baselineQuestionIds": [
+          "fund3-coverage-005"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0215",
+          "fund3-expansion-gov-0216"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.e",
+        "text": "掌握股东协议中的公司治理条款",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0201",
+          "fund3-expansion-gov-0202",
+          "fund3-expansion-gov-0209",
+          "fund3-expansion-gov-0210"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.4.f",
+        "text": "掌握股东协议中的投资方退出条款",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0204",
+          "fund3-expansion-gov-0206",
+          "fund3-expansion-gov-0207",
+          "fund3-expansion-gov-0211",
+          "fund3-expansion-gov-0212"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.5.a",
+        "text": "掌握一般股权交易结构安排",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.5.b",
+        "text": "理解离岸结构",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "5.5.c",
+        "text": "理解股债结合的投资方式",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0323"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.a",
+        "text": "了解投后管理的概念和覆盖期间",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.b",
+        "text": "理解投后管理的主要工作内容",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.1.c",
+        "text": "了解投后管理对于基金管理人的作用",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.a",
+        "text": "了解投后管理的主要模式和人员需求",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0400",
+          "fund3-expansion-gov-0416"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.b",
+        "text": "掌握投后管理的决策机制",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0072",
+          "fund3-expansion-gov-0083",
+          "fund3-expansion-gov-0084",
+          "fund3-expansion-gov-0118",
+          "fund3-expansion-gov-0120",
+          "fund3-expansion-gov-0121",
+          "fund3-expansion-gov-0133",
+          "fund3-expansion-gov-0135",
+          "fund3-expansion-gov-0137",
+          "fund3-expansion-gov-0138",
+          "fund3-expansion-gov-0143",
+          "fund3-expansion-gov-0147",
+          "fund3-expansion-gov-0399"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.c",
+        "text": "了解参与投后管理的部门及其主要职责",
+        "page": 4,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0397"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.d",
+        "text": "了解投后管理的制度体系和考核激励机制",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.2.e",
+        "text": "理解投后管理过程中的主要风险点",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0075",
+          "fund3-expansion-gov-0117",
+          "fund3-expansion-gov-0119",
+          "fund3-expansion-gov-0122",
+          "fund3-expansion-gov-0124",
+          "fund3-expansion-gov-0125",
+          "fund3-expansion-gov-0126",
+          "fund3-expansion-gov-0127",
+          "fund3-expansion-gov-0128",
+          "fund3-expansion-gov-0129",
+          "fund3-expansion-gov-0130",
+          "fund3-expansion-gov-0134",
+          "fund3-expansion-gov-0144",
+          "fund3-expansion-gov-0145",
+          "fund3-expansion-gov-0146",
+          "fund3-expansion-gov-0419",
+          "fund3-expansion-gov-0422",
+          "fund3-expansion-gov-0425",
+          "fund3-expansion-gov-0428"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.a",
+        "text": "理解不同基金产品的投后管理策略",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0410",
+          "fund3-expansion-gov-0417"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.3.b",
+        "text": "了解投后管理中对投资项目的分类管理",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0394"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.a",
+        "text": "理解投后管理中获取信息的主要方式",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0076",
+          "fund3-expansion-gov-0077",
+          "fund3-expansion-gov-0078",
+          "fund3-expansion-gov-0079",
+          "fund3-expansion-gov-0123",
+          "fund3-expansion-gov-0131",
+          "fund3-expansion-gov-0401",
+          "fund3-expansion-gov-0403",
+          "fund3-expansion-gov-0404",
+          "fund3-expansion-gov-0406"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.b",
+        "text": "理解投后管理中获取信息的主要内容",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0396",
+          "fund3-expansion-gov-0402",
+          "fund3-expansion-gov-0405",
+          "fund3-expansion-gov-0418",
+          "fund3-expansion-gov-0420",
+          "fund3-expansion-gov-0427"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.c",
+        "text": "了解项目风险监测运行机制",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0395",
+          "fund3-expansion-gov-0398"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.d",
+        "text": "了解投后管理中增值服务的主要内容",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0407",
+          "fund3-expansion-gov-0408",
+          "fund3-expansion-gov-0409",
+          "fund3-expansion-gov-0411",
+          "fund3-expansion-gov-0412",
+          "fund3-expansion-gov-0413",
+          "fund3-expansion-gov-0414",
+          "fund3-expansion-gov-0415",
+          "fund3-expansion-gov-0421",
+          "fund3-expansion-gov-0423",
+          "fund3-expansion-gov-0424",
+          "fund3-expansion-gov-0426"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "6.4.e",
+        "text": "理解并购项目投后管理的特点和主要关注点",
+        "page": 5,
+        "baselineQuestionIds": [
+          "fund3-coverage-007"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0139",
+          "fund3-expansion-gov-0140",
+          "fund3-expansion-gov-0141",
+          "fund3-expansion-gov-0142"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.a",
+        "text": "了解项目退出的概念",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.b",
+        "text": "了解项目退出的意义",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.1.c",
+        "text": "掌握不同项目退出方式的区别",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.a",
+        "text": "了解境内外上市的主要市场",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.b",
+        "text": "掌握境内上市的要点",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.c",
+        "text": "理解境外上市的要点",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.2.d",
+        "text": "理解上市后股份转让退出的交易机制和合规要求",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.a",
+        "text": "了解挂牌转让退出的基本做法",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.b",
+        "text": "理解全国股转系统挂牌的基本要求与流程",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.3.c",
+        "text": "了解全国股转系统挂牌后的退出方式",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.a",
+        "text": "理解第三方转让退出的基本内容与流程",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0086",
+          "fund3-expansion-gov-0087",
+          "fund3-expansion-gov-0088"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.4.b",
+        "text": "理解回购退出的基本内容与流程",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0113",
+          "fund3-expansion-gov-0114",
+          "fund3-expansion-gov-0115"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.5.a",
+        "text": "了解企业清算的类型",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "7.5.b",
+        "text": "理解清算退出的流程",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0148",
+          "fund3-expansion-gov-0149",
+          "fund3-expansion-gov-0150",
+          "fund3-expansion-gov-0151",
+          "fund3-expansion-gov-0152"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.a",
+        "text": "了解基金治理的概念",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.1.b",
+        "text": "了解基金治理的内涵和体系",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.a",
+        "text": "掌握利益一致原则的内容及应用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0432",
+          "fund3-expansion-gov-0433"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.b",
+        "text": "掌握公平对待投资者原则的内容及应用",
+        "page": 5,
+        "baselineQuestionIds": [
+          "fund3-coverage-002"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0439"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.c",
+        "text": "掌握专业审慎原则的内容及应用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0429",
+          "fund3-expansion-gov-0430",
+          "fund3-expansion-gov-0431",
+          "fund3-expansion-gov-0434",
+          "fund3-expansion-gov-0435",
+          "fund3-expansion-gov-0437",
+          "fund3-expansion-gov-0438",
+          "fund3-expansion-gov-0440",
+          "fund3-expansion-gov-0442"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.d",
+        "text": "掌握信息透明原则的内容及应用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0443"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.2.e",
+        "text": "了解利益相关者参与原则的内容及应用",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0436"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.a",
+        "text": "了解基金内部治理的概念",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.b",
+        "text": "了解不同组织类型基金内部治理结构的差异",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0009",
+          "fund3-expansion-gov-0081",
+          "fund3-expansion-gov-0082"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "8.3.c",
+        "text": "了解基金内部治理的决策机制、激励机制和约束机制",
+        "page": 5,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0010",
+          "fund3-expansion-gov-0011",
+          "fund3-expansion-gov-0018",
+          "fund3-expansion-gov-0023",
+          "fund3-expansion-gov-0041",
+          "fund3-expansion-gov-0073",
+          "fund3-expansion-gov-0074",
+          "fund3-expansion-gov-0080",
+          "fund3-expansion-gov-0085",
+          "fund3-expansion-gov-0342"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.a",
+        "text": "理解不同组织形式基金的设立登记",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0031"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.b",
+        "text": "理解不同组织形式基金的变更登记",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0089"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.1.c",
+        "text": "理解不同组织形式基金的清算登记",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0029"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.a",
+        "text": "理解基金托管的含义、作用及展业原则",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.b",
+        "text": "掌握我国股权投资基金的托管要求",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund3-coverage-008"
+        ],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0054",
+          "fund3-expansion-gov-0325"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.c",
+        "text": "理解股权投资基金托管人的主要职责",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0106",
+          "fund3-expansion-gov-0326"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.2.d",
+        "text": "了解基金托管报告的主要内容",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.a",
+        "text": "理解基金涉及的各类账户及其功能划分",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.b",
+        "text": "了解基金核算的基本概念",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.c",
+        "text": "掌握基金估值的原则及方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0177",
+          "fund3-expansion-gov-0178",
+          "fund3-expansion-gov-0179",
+          "fund3-expansion-gov-0180",
+          "fund3-expansion-gov-0184",
+          "fund3-expansion-gov-0187",
+          "fund3-expansion-gov-0189",
+          "fund3-expansion-gov-0190",
+          "fund3-expansion-gov-0194",
+          "fund3-expansion-gov-0195",
+          "fund3-expansion-gov-0196"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.d",
+        "text": "理解基金财务报告的主要内容与核心原则",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0100"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.e",
+        "text": "掌握内部收益率的计算方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.f",
+        "text": "掌握已分配倍数的计算方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.3.g",
+        "text": "掌握剩余价值倍数和总收益倍数的计算方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.a",
+        "text": "了解基金业务中涉及的主要税种、纳税主体划分及应税收入的基本概念",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0308"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.b",
+        "text": "了解基金自身及投资者适用的增值税和所得税相关纳税规则及计算方法",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0286",
+          "fund3-expansion-gov-0287",
+          "fund3-expansion-gov-0288",
+          "fund3-expansion-gov-0292",
+          "fund3-expansion-gov-0293",
+          "fund3-expansion-gov-0294",
+          "fund3-expansion-gov-0295",
+          "fund3-expansion-gov-0296",
+          "fund3-expansion-gov-0311"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.c",
+        "text": "了解创业投资税收优惠政策的主要内容",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0285",
+          "fund3-expansion-gov-0289",
+          "fund3-expansion-gov-0290",
+          "fund3-expansion-gov-0291",
+          "fund3-expansion-gov-0297",
+          "fund3-expansion-gov-0298",
+          "fund3-expansion-gov-0299",
+          "fund3-expansion-gov-0300",
+          "fund3-expansion-gov-0301",
+          "fund3-expansion-gov-0302",
+          "fund3-expansion-gov-0303",
+          "fund3-expansion-gov-0304",
+          "fund3-expansion-gov-0305",
+          "fund3-expansion-gov-0306",
+          "fund3-expansion-gov-0307"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.4.d",
+        "text": "了解管理人层面涉及的增值税与所得税相关纳税规则",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0309",
+          "fund3-expansion-gov-0310",
+          "fund3-expansion-gov-0312",
+          "fund3-expansion-gov-0313",
+          "fund3-expansion-gov-0314",
+          "fund3-expansion-gov-0315"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.5.a",
+        "text": "掌握基金收益分配的基本概念",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.5.b",
+        "text": "掌握两种主要的收益分配方式",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund3-coverage-009"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.5.c",
+        "text": "理解基金资本账户的构成以及收入、费用和亏损的账面分摊原则",
+        "page": 6,
+        "baselineQuestionIds": [
+          "fund3-coverage-010"
+        ],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.a",
+        "text": "了解投资者退出的含义",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0020",
+          "fund3-expansion-gov-0021",
+          "fund3-expansion-gov-0022",
+          "fund3-expansion-gov-0038",
+          "fund3-expansion-gov-0039",
+          "fund3-expansion-gov-0040"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.b",
+        "text": "了解投资者退出与基金退出的比较",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.c",
+        "text": "了解份额转让交易",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0013",
+          "fund3-expansion-gov-0014"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.d",
+        "text": "了解实物分配股票试点与未上市股权分配",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0337"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.6.e",
+        "text": "掌握基金清算的含义、主要原因及主要程序",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0026",
+          "fund3-expansion-gov-0027",
+          "fund3-expansion-gov-0028",
+          "fund3-expansion-gov-0030",
+          "fund3-expansion-gov-0063",
+          "fund3-expansion-gov-0107",
+          "fund3-expansion-gov-0336",
+          "fund3-expansion-gov-0338",
+          "fund3-expansion-gov-0351",
+          "fund3-expansion-gov-0353"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.7.a",
+        "text": "理解基金信息披露的基本要求",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0090",
+          "fund3-expansion-gov-0091",
+          "fund3-expansion-gov-0092",
+          "fund3-expansion-gov-0093",
+          "fund3-expansion-gov-0094",
+          "fund3-expansion-gov-0095",
+          "fund3-expansion-gov-0096",
+          "fund3-expansion-gov-0097",
+          "fund3-expansion-gov-0098",
+          "fund3-expansion-gov-0099",
+          "fund3-expansion-gov-0101",
+          "fund3-expansion-gov-0102",
+          "fund3-expansion-gov-0103",
+          "fund3-expansion-gov-0104",
+          "fund3-expansion-gov-0105",
+          "fund3-expansion-gov-0108",
+          "fund3-expansion-gov-0109",
+          "fund3-expansion-gov-0110",
+          "fund3-expansion-gov-0111",
+          "fund3-expansion-gov-0112"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.7.b",
+        "text": "理解基金信息报送的基本要求",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0060",
+          "fund3-expansion-gov-0062",
+          "fund3-expansion-gov-0345",
+          "fund3-expansion-gov-0346",
+          "fund3-expansion-gov-0347",
+          "fund3-expansion-gov-0354"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.8.a",
+        "text": "理解基金争议解决的主要方式",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0366",
+          "fund3-expansion-gov-0367",
+          "fund3-expansion-gov-0368",
+          "fund3-expansion-gov-0369",
+          "fund3-expansion-gov-0370",
+          "fund3-expansion-gov-0371",
+          "fund3-expansion-gov-0372",
+          "fund3-expansion-gov-0373",
+          "fund3-expansion-gov-0374",
+          "fund3-expansion-gov-0375",
+          "fund3-expansion-gov-0376",
+          "fund3-expansion-gov-0377",
+          "fund3-expansion-gov-0378",
+          "fund3-expansion-gov-0379",
+          "fund3-expansion-gov-0380",
+          "fund3-expansion-gov-0381",
+          "fund3-expansion-gov-0382",
+          "fund3-expansion-gov-0383",
+          "fund3-expansion-gov-0384",
+          "fund3-expansion-gov-0385",
+          "fund3-expansion-gov-0386",
+          "fund3-expansion-gov-0387",
+          "fund3-expansion-gov-0388",
+          "fund3-expansion-gov-0389",
+          "fund3-expansion-gov-0390",
+          "fund3-expansion-gov-0391",
+          "fund3-expansion-gov-0392",
+          "fund3-expansion-gov-0393"
+        ],
+        "pendingNewQuestionIds": []
+      },
+      {
+        "code": "9.8.b",
+        "text": "理解基金纠纷的主要争议点",
+        "page": 6,
+        "baselineQuestionIds": [],
+        "acceptedNewQuestionIds": [
+          "fund3-expansion-gov-0348",
+          "fund3-expansion-gov-0349",
+          "fund3-expansion-gov-0350",
+          "fund3-expansion-gov-0352"
+        ],
+        "pendingNewQuestionIds": []
+      }
+    ]
+  },
+  "allSubjectPracticeChapters": {
+    "options": [
+      {
+        "chapter": 1,
+        "title": "期权基础知识",
+        "baseline": 169,
+        "acceptedNew": 40,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "备兑开仓与保险策略",
+        "baseline": 131,
+        "acceptedNew": 11,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "买入开仓策略",
+        "baseline": 194,
+        "acceptedNew": 68,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "卖出开仓策略",
+        "baseline": 144,
+        "acceptedNew": 26,
+        "pendingNew": 0
+      }
+    ],
+    "fund1": [
+      {
+        "chapter": 1,
+        "title": "基金与金融市场",
+        "baseline": 20,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "法规与治理",
+        "baseline": 26,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "职业道德与文化",
+        "baseline": 24,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "销售与运作",
+        "baseline": 21,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "净值与费用入门",
+        "baseline": 105,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "大纲第1章 · 金融市场与资产管理",
+        "baseline": 13,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "大纲第2章 · 基金概述与发展脉络",
+        "baseline": 13,
+        "acceptedNew": 4,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "大纲第3章 · 法律法规与监管、自律体系",
+        "baseline": 16,
+        "acceptedNew": 6,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 9,
+        "title": "大纲第4章 · 参与主体、从业人员与廉洁要求",
+        "baseline": 26,
+        "acceptedNew": 102,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 10,
+        "title": "大纲第5章 · 基金活动的法规要求",
+        "baseline": 30,
+        "acceptedNew": 159,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 11,
+        "title": "大纲第6章 · 合规、风险管理与内部控制",
+        "baseline": 17,
+        "acceptedNew": 58,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 12,
+        "title": "大纲第7章 · 职业道德与行为情景",
+        "baseline": 19,
+        "acceptedNew": 13,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 13,
+        "title": "大纲第8章 · 行业文化、诚信与纪法",
+        "baseline": 12,
+        "acceptedNew": 49,
+        "pendingNew": 0
+      }
+    ],
+    "fund2": [
+      {
+        "chapter": 1,
+        "title": "投资工具与财务",
+        "baseline": 20,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "组合、风险与运营",
+        "baseline": 20,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "估值与财务计算",
+        "baseline": 32,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "收益与风险计算",
+        "baseline": 32,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "基金交易计算",
+        "baseline": 80,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "大纲第1章 · 证券投资基金概述",
+        "baseline": 8,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "大纲第2章 · 基金类型与特殊产品",
+        "baseline": 10,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "大纲第3章 · 财务、时间价值与统计基础",
+        "baseline": 13,
+        "acceptedNew": 36,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 9,
+        "title": "大纲第4章 · 权益投资与股票估值",
+        "baseline": 16,
+        "acceptedNew": 12,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 10,
+        "title": "大纲第5章 · 固定收益投资与期限结构",
+        "baseline": 21,
+        "acceptedNew": 14,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 11,
+        "title": "大纲第6章 · 衍生工具与套期保值",
+        "baseline": 12,
+        "acceptedNew": 8,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 12,
+        "title": "大纲第7章 · 另类投资",
+        "baseline": 9,
+        "acceptedNew": 9,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 13,
+        "title": "大纲第8章 · 投资管理流程与业绩基准",
+        "baseline": 9,
+        "acceptedNew": 26,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 14,
+        "title": "大纲第9章 · 投资组合、市场理论与ESG",
+        "baseline": 17,
+        "acceptedNew": 76,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 15,
+        "title": "大纲第10章 · 交易机制与最佳执行",
+        "baseline": 11,
+        "acceptedNew": 10,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 16,
+        "title": "大纲第11章 · 风险测度与分类管理",
+        "baseline": 13,
+        "acceptedNew": 43,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 17,
+        "title": "大纲第12章 · 业绩评价、归因与GIPS",
+        "baseline": 23,
+        "acceptedNew": 68,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 18,
+        "title": "大纲第13章 · 募集、申赎与份额登记",
+        "baseline": 9,
+        "acceptedNew": 2,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 19,
+        "title": "大纲第14章 · 证券交易、清算与交收",
+        "baseline": 9,
+        "acceptedNew": 50,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 20,
+        "title": "大纲第15章 · 估值、费用与会计核算",
+        "baseline": 11,
+        "acceptedNew": 65,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 21,
+        "title": "大纲第16章 · 利润分配与税收",
+        "baseline": 11,
+        "acceptedNew": 23,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 22,
+        "title": "大纲第17章 · 基金信息披露",
+        "baseline": 9,
+        "acceptedNew": 10,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 23,
+        "title": "大纲第18章 · 销售、适当性与投资者服务",
+        "baseline": 10,
+        "acceptedNew": 7,
+        "pendingNew": 0
+      }
+    ],
+    "fund3": [
+      {
+        "chapter": 1,
+        "title": "股权基金与募集",
+        "baseline": 21,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "投资与投后管理",
+        "baseline": 21,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "退出、治理与运营",
+        "baseline": 20,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "估值与出资计算",
+        "baseline": 65,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "业绩与分配计算",
+        "baseline": 66,
+        "acceptedNew": 0,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "大纲第1章 · 股权投资基金概述",
+        "baseline": 11,
+        "acceptedNew": 1,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "大纲第2章 · 股权基金管理人",
+        "baseline": 12,
+        "acceptedNew": 22,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "大纲第3章 · 股权基金产品与组织形式",
+        "baseline": 14,
+        "acceptedNew": 44,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 9,
+        "title": "大纲第4章 · 募集、合格投资者与基金合同",
+        "baseline": 17,
+        "acceptedNew": 42,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 10,
+        "title": "大纲第5章 · 尽调、估值、条款与交易结构",
+        "baseline": 28,
+        "acceptedNew": 97,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 11,
+        "title": "大纲第6章 · 投后管理与增值服务",
+        "baseline": 14,
+        "acceptedNew": 72,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 12,
+        "title": "大纲第7章 · 项目退出与回收",
+        "baseline": 12,
+        "acceptedNew": 11,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 13,
+        "title": "大纲第8章 · 股权基金治理",
+        "baseline": 14,
+        "acceptedNew": 27,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 14,
+        "title": "大纲第9章 · 运营、税收、分配与清算",
+        "baseline": 32,
+        "acceptedNew": 127,
+        "pendingNew": 0
+      }
+    ],
+    "securities1": [
+      {
+        "chapter": 1,
+        "title": "金融市场与融资结构",
+        "baseline": 27,
+        "acceptedNew": 55,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "金融体系与宏观传导",
+        "baseline": 27,
+        "acceptedNew": 83,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "证券市场主体与投资者保护",
+        "baseline": 25,
+        "acceptedNew": 26,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "股票、发行与交易",
+        "baseline": 33,
+        "acceptedNew": 56,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "债券、利率与估值",
+        "baseline": 54,
+        "acceptedNew": 62,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "基金、资产证券化与金融产品",
+        "baseline": 25,
+        "acceptedNew": 39,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "衍生工具与风险转移",
+        "baseline": 85,
+        "acceptedNew": 6,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "收益、组合与风险管理",
+        "baseline": 37,
+        "acceptedNew": 16,
+        "pendingNew": 0
+      }
+    ],
+    "securities2": [
+      {
+        "chapter": 1,
+        "title": "法律层次与证券发行",
+        "baseline": 35,
+        "acceptedNew": 38,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "公司、合伙与组织治理",
+        "baseline": 27,
+        "acceptedNew": 49,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "证券公司治理与内部控制",
+        "baseline": 34,
+        "acceptedNew": 50,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "经纪、销售与适当性",
+        "baseline": 39,
+        "acceptedNew": 69,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "承销、保荐与投资咨询",
+        "baseline": 32,
+        "acceptedNew": 93,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "资管、融资融券与专项业务",
+        "baseline": 26,
+        "acceptedNew": 67,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "禁止交易行为与法律责任",
+        "baseline": 35,
+        "acceptedNew": 78,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "反洗钱、廉洁与行业文化",
+        "baseline": 28,
+        "acceptedNew": 36,
+        "pendingNew": 0
+      }
+    ],
+    "futures1": [
+      {
+        "chapter": 1,
+        "title": "期货、衍生品与市场功能",
+        "baseline": 24,
+        "acceptedNew": 6,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "组织结构、合约与开户",
+        "baseline": 37,
+        "acceptedNew": 42,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "保证金、结算与风险控制",
+        "baseline": 50,
+        "acceptedNew": 11,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "套期保值、基差与数量",
+        "baseline": 43,
+        "acceptedNew": 23,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "套利与价差交易",
+        "baseline": 28,
+        "acceptedNew": 19,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "期权与策略损益",
+        "baseline": 38,
+        "acceptedNew": 14,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "金融期货与持有成本",
+        "baseline": 60,
+        "acceptedNew": 62,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "定价分析与交易风险",
+        "baseline": 25,
+        "acceptedNew": 65,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 9,
+        "title": "场外衍生品与综合风控",
+        "baseline": 27,
+        "acceptedNew": 55,
+        "pendingNew": 0
+      }
+    ],
+    "futures2": [
+      {
+        "chapter": 1,
+        "title": "期货与衍生品法律框架",
+        "baseline": 35,
+        "acceptedNew": 16,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 2,
+        "title": "期货公司治理与业务许可",
+        "baseline": 35,
+        "acceptedNew": 72,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 3,
+        "title": "经纪合同、委托与客户保护",
+        "baseline": 33,
+        "acceptedNew": 41,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 4,
+        "title": "保证金安全、结算与交割",
+        "baseline": 41,
+        "acceptedNew": 55,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 5,
+        "title": "适当性、销售与专业投资者",
+        "baseline": 29,
+        "acceptedNew": 1,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 6,
+        "title": "投资咨询、资产管理与风险管理",
+        "baseline": 27,
+        "acceptedNew": 27,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 7,
+        "title": "内幕交易、操纵与从业操守",
+        "baseline": 28,
+        "acceptedNew": 16,
+        "pendingNew": 0
+      },
+      {
+        "chapter": 8,
+        "title": "反洗钱、纠纷与合规复盘",
+        "baseline": 31,
+        "acceptedNew": 106,
+        "pendingNew": 0
+      }
+    ]
+  }
+}

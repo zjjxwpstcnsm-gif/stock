@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {EXPANSION_QUESTIONS} from '../src/expansion-questions.js';
 import {SUBJECTS} from '../src/subjects.js';
 import {PRECISION_QUESTIONS,PRECISION_BATCH} from '../src/precision-questions.js';
 const all=Object.values(PRECISION_QUESTIONS).flat();
@@ -61,14 +62,14 @@ test('all 44 new calculations are independently recomputed and match the display
   assert.ok(Math.abs(Number(match[0])-actual)<=.005001,`${q.id}: ${q.options[q.answer]} vs ${actual}`);
  }
 });
-test('full bank contains 2892 questions with 64 source-based items retained and compatible versions',()=>{
+test('expanded bank preserves 2892 prior questions with 64 source-based items retained and compatible versions',()=>{
  const sizes={options:638,fund1:342,fund2:405,fund3:347,securities1:313,securities2:256,futures1:332,futures2:259};
  let total=0,recall=0,sample=0;
  for(const [id,s] of Object.entries(SUBJECTS)){
-  assert.equal(s.QUESTIONS.length,sizes[id]);assert.equal(new Set(s.QUESTIONS.map(q=>q.id)).size,s.QUESTIONS.length);
+  assert.equal(s.QUESTIONS.length,sizes[id]+EXPANSION_QUESTIONS[id].length);assert.equal(new Set(s.QUESTIONS.map(q=>q.id)).size,s.QUESTIONS.length);
   assert.ok(s.COMPATIBLE_BANK_VERSIONS.includes(`${id}-2026-10-13.1`));assert.ok(s.COMPATIBLE_BANK_VERSIONS.includes(s.BANK_VERSION));
   for(const q of s.QUESTIONS){assert.ok(s.SOURCES[q.source],q.id);if(q.sourceKind==='recall')recall++;if(q.sourceKind==='sample')sample++;}
   total+=s.QUESTIONS.length;
  }
- assert.equal(total,2892);assert.equal(recall,54);assert.equal(sample,10);
+ assert.equal(total,2892+Object.values(EXPANSION_QUESTIONS).flat().length);assert.equal(recall,54);assert.equal(sample,10);
 });

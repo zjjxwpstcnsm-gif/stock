@@ -1,0 +1,45 @@
+{
+  "commit": "ac664a71942fe9e6a7d26f1f18ee57dd75204922",
+  "subjects": {
+    "options": {
+      "count": 638,
+      "recordHash": "d80ca73598ad01d5e4a02ac24381beea93088ed180fbbc77287093cf42969e9b",
+      "fullHash": "86e3ba3af601e35e0af1487c48acbdc3345b4214361ee4c098d2a17697263304"
+    },
+    "fund1": {
+      "count": 342,
+      "recordHash": "a78a65c32092f509f1e637cf629f37c5cde7ae9edbc5371c572051e3267c4198",
+      "fullHash": "b9b95ff9b0a1a8e229532bf19544653e0909ba9098728d5c14bae9ba3d84ad85"
+    },
+    "fund2": {
+      "count": 405,
+      "recordHash": "5bb54916575b5a26992ce34b1e67b8803852e1aa50b311408c22add9b249d8de",
+      "fullHash": "469698d29288132b1954a44b7751a45f4a80a733514392f8afed657a30f0e48d"
+    },
+    "fund3": {
+      "count": 347,
+      "recordHash": "508f1bd9ccbce90a41e77b8736d690a874bb5e74e6349620e321eabdad1e431c",
+      "fullHash": "86399936ecb29bb541d2ad758b66b3717ca63c58b8dc629a1027baa438867489"
+    },
+    "securities1": {
+      "count": 313,
+      "recordHash": "c0abab7f7ffcf9618e4e85c4a6d2b76650a2731269effc77dab8c0d2db18d32c",
+      "fullHash": "97e09222885d604ee390cd4817f8fb7ff174845b43f52f0a9a73cdc8734be8f8"
+    },
+    "securities2": {
+      "count": 256,
+      "recordHash": "409066a3840a2cbf74af1d61fc1682306b7181ce420196883bb18469aa7a3d3c",
+      "fullHash": "b9b8ab4c6cc338ff5233ddc6d860692ed1d50dadfb87b91c060049773bed1a8f"
+    },
+    "futures1": {
+      "count": 332,
+      "recordHash": "899c2685df2462a7ce94ee384e6864c9a44ce96464ceae247b989a7cfea22ba7",
+      "fullHash": "529027b264e29ace005c02382968d827322755d55b9050432d6bfeb99e021a29"
+    },
+    "futures2": {
+      "count": 259,
+      "recordHash": "563b9bbb8046bedc9f1317ea54314ae97db35945c6454a76b796d8c87cd62889",
+      "fullHash": "b61640138f750c3eef274f78ffb6867ae1bd483febab303a2bac6c843bef9412"
+    }
+  }
+}

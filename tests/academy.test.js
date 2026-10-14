@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { EXPANSION_QUESTIONS } from '../src/expansion-questions.js';
 import { SUBJECTS } from '../src/subjects.js';
 import { QUESTIONS } from '../src/questions.js';
 import { FUND_QUESTIONS } from '../src/fund-questions.js';
@@ -9,7 +10,7 @@ import { collectBackup, validateBackup, mergeRecords, importBackup } from '../sr
 
 test('eight banks have consistent chapters, answer formats, lesson links and per-item provenance',()=>{
   assert.equal(Object.keys(SUBJECTS).length,8);
-  assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.QUESTIONS.length,0),2892);
+  assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.QUESTIONS.length,0),2892+Object.values(EXPANSION_QUESTIONS).flat().length);
   assert.equal(Object.values(SUBJECTS).reduce((n,s)=>n+s.LESSONS.length,0),95);
   let recalled=0,samples=0;
   for(const s of Object.values(SUBJECTS)) {
