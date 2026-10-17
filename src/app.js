@@ -11,7 +11,7 @@ import { TYPE_NAMES } from './academy-data.js';
 import { CONTENT_DATE } from './academy-sources.js';
 import { CASEBOOK_DATE, DIFFICULTIES } from './content-quality.js';
 import { reviewWorkbench, matchesLearningFilter, reviewQueue, optionRationales, ruleNoticeView, qualitySummary } from './review-workbench.js';
-import { validateBackup, importBackup, downloadBackup } from './learning-records.js';
+import { validateBackup, importBackup, downloadBackup, downloadRecoveryCopies, listRecoveryCopyKeys, restoreClosedSessionIds } from './learning-records.js';
 import { createExamEngine, remainingSeconds, shuffle, updateProgress, isCorrect, questionType, paperSize, sessionProfile } from './engine.js';
 const { BANK_VERSION, CHAPTERS, PROFILES, SOURCES, QUESTIONS } = SUBJECT;
 const { makePaper, makeSession, grade, validSession } = createExamEngine(SUBJECT);
@@ -36,6 +36,9 @@ function resetLearningFilters() { practiceStatus='all';practiceDifficulty='all';
 function resetPractice() { resetLearningFilters();practiceChapter=0;practiceCount=10;practiceSource='all';practiceYear=0;practiceType='all';practiceQuery='';practiceQuestion=null; }
 let searchQuery = '', searchScope = 'current', searchType = 'all', searchLimit = 20;
 let recordStatus = '';
+let recoveryKeys = listRecoveryCopyKeys();
+let sessionNotice = '';
+let deferredSummaryRefresh = false;
 const hasAnswer = (answer,index) => Array.isArray(answer) ? answer.includes(index) : answer === index;
 function hashView() {
   if (syncCourseHash()) return 'course';
@@ -77,12 +80,14 @@ function load() {
       const p = data.progress?.[q.id];
       if (p && Number.isInteger(p.attempts) && p.attempts > 0 && Number.isInteger(p.correct) && p.correct >= 0 && p.correct <= p.attempts && typeof p.wrong === 'boolean') progress[q.id] = p;
     }
-    const active = validSession(data.active, QUESTIONS) ? data.active : null;
-    if (data.active && !active) storageWarning = '旧的未完成答卷无法恢复，已保留有效练习记录。请重新组卷。';
     const history = (Array.isArray(data.history) ? data.history : []).filter(s => validSession(s, QUESTIONS) && Number.isFinite(s.endedAt)).slice(0, 50);
+    const closedSessionIds = restoreClosedSessionIds(data.closedSessionIds);
+    const completed = new Set([...closedSessionIds, ...history.map(s => s.id)]);
+    const active = validSession(data.active, QUESTIONS) && !completed.has(data.active.id) ? data.active : null;
+    if (data.active && !active && !completed.has(data.active.id)) storageWarning = '旧的未完成答卷无法恢复，已保留有效练习记录。请重新组卷。';
     const saved = [...new Set(Array.isArray(data.saved)?data.saved:[])].filter(id=>qmap.has(id));
-    const suspended = validSession(data.suspended, QUESTIONS) ? data.suspended : null;
-    return { active, suspended, progress, history, saved };
+    const suspended = validSession(data.suspended, QUESTIONS) && !completed.has(data.suspended.id) && data.suspended.id !== active?.id ? data.suspended : null;
+    return { active, suspended, progress, history, saved, ...(closedSessionIds.length ? {closedSessionIds} : {}) };
   } catch {
     storageWarning = '当前无法读取本地记录。你仍可练习，但请勿依赖刷新恢复。';
     return empty;
@@ -100,6 +105,7 @@ function sourceLink(q) {
 const filteredPractice = (chapter=practiceChapter) => QUESTIONS.filter(q=>matchesLearningFilter(q,state,practiceStatus,practiceDifficulty,practiceBatch) && (!chapter || q.chapter===chapter) && (practiceSource==='all' || (q.sourceKind||'original')===practiceSource) && (!practiceYear || q.year===practiceYear) && (practiceType==='all' || questionType(q)===practiceType) && (!practiceQuestion || q.id===practiceQuestion) && (!practiceQuery || `${q.stem} ${q.topic} ${q.options.join(' ')}`.toLowerCase().includes(practiceQuery.toLowerCase())));
 
 function render() {
+  deferredSummaryRefresh = false;
   if (view === 'drill') { ensureRandomSession(); view = 'quiz'; }
   const focused = document.activeElement?.id;
   const current = view === 'quiz' ? (state.active?.drill ? 'drill' : 'home') : view === 'result' ? 'history' : view;
@@ -118,8 +124,9 @@ function render() {
       <div class="sidebar-bottom">每一道题，都多懂一点。<a href="https://github.com/zjjxwpstcnsm-gif/stock" target="_blank" rel="noopener noreferrer">GitHub 开源项目 ${icon('chevron')}</a></div>
     </aside>
     <div class="workspace">
-      <header class="topbar"><div class="breadcrumb-trail"><span class="breadcrumb">学习空间</span><span class="separator">/</span><strong>${SUBJECT.short}</strong></div><form id="topbar-search" class="topbar-search"><label class="sr-only" for="global-search">搜索理论、题目与考点</label><input type="search" id="global-search" name="query" maxlength="100" placeholder="搜索理论、题目与考点"><button type="submit" aria-label="搜索">⌕</button></form><span class="version">内容核对 ${CONTENT_DATE}</span></header>
+      <header class="topbar"><div class="breadcrumb-trail"><span class="breadcrumb">学习空间</span><span class="separator">/</span><strong>${SUBJECT.short}</strong></div><form id="topbar-search" class="topbar-search"><label class="sr-only" for="global-search">搜索理论、题目与考点</label><input type="search" id="global-search" name="query" maxlength="100" placeholder="搜索理论、题目与考点"><button type="submit" aria-label="搜索">⌕</button></form><span class="version" title="各题的依据与核对日期见答案解析">题库 ${esc(BANK_VERSION.replace(`${SUBJECT.id}-`,''))}</span></header>
       ${storageWarning ? `<div role="status" class="warning">${esc(storageWarning)}</div>` : ''}
+      <div id="session-notice" class="session-notice" role="status" ${sessionNotice ? '' : 'hidden'}><span>${esc(sessionNotice)}</span>${btn('查看学习记录', 'nav', 'data-view="history"', 'text-button')}</div>
       <main id="main" tabindex="-1">${view === 'review' ? reviewWorkbench(SUBJECT,state,savedLimit) : view === 'course' ? courseView() : view === 'quiz' ? quizView() : view === 'practice' ? practiceView() : view === 'wrong' ? wrongView() : view === 'history' ? historyView() : view === 'coverage' ? fundCoverage(SUBJECT,coverageChapter,{query:coverageQuery,status:coverageStatus,progress:state.progress}) : view === 'resources' ? resourcesView(SUBJECT,recallYear)+qualitySummary(SUBJECT)+ruleNoticeView(SUBJECT) : view === 'catalog' ? catalogView() : view === 'search' ? searchView(searchQuery,searchScope,SUBJECT,searchType,searchLimit) : view === 'guide' ? guideView()+ruleNoticeView(SUBJECT) : view === 'result' ? resultView() : homeView()}</main>
       <footer>独立学习项目 · 原创训练与来源题分列 · 模拟成绩仅用于学习<span>记录仅保存在当前浏览器</span></footer>
     </div>
@@ -134,6 +141,9 @@ function render() {
       - (answerGrid.clientHeight - currentCell.offsetHeight) / 2;
   }
   document.querySelector('#confirm-dialog').addEventListener('cancel', () => { modalAction = null; });
+  document.querySelector('#confirm-dialog').addEventListener('close', () => {
+    if (deferredSummaryRefresh && view !== 'quiz' && !document.querySelector('dialog[open]')) render();
+  });
 }
 
 function heading(eyebrow, title, desc, action = '') { return `<div class="page-heading"><div><span class="eyebrow">${eyebrow}</span><h1>${title}</h1><p>${desc}</p></div>${action}</div>`; }
@@ -168,7 +178,7 @@ function wrongView() {
 function historyView() {
   const exam = state.history.filter(s => s.mode === 'exam');
   const passed = exam.filter(s => grade(s, QUESTIONS).passed).length;
-  return `${heading('YOUR LEARNING RECORD', '学习记录', '回看最近 50 次已完成的模拟和练习。记录仅保存在本机。')}<div class="backup-tools panel"><div><strong>把学习进度带到下一台设备</strong><p>导出全部科目记录，导入时合并进度与收藏，并保留本机未完成答卷。</p></div>${btn('导出学习记录','export-records','','secondary')}<label class="secondary import-label" for="import-records">导入记录<input id="import-records" type="file" accept="application/json,.json" class="sr-only"></label><p class="record-status" role="status">${esc(recordStatus)}</p></div><div class="stats-row"><div><span>完成模拟</span><strong>${exam.length}<small> 次</small></strong></div><div><span>模拟达标</span><strong>${passed}<small> 次</small></strong></div><div><span>当前错题</span><strong>${wrongIds().length}<small> 题</small></strong></div></div>${state.history.length ? `<section class="panel history-list">${state.history.map(s => {const g = grade(s, QUESTIONS); return `<div class="history-row"><div class="history-icon">${icon(s.mode === 'exam' ? 'exam' : 'book')}</div><div class="history-name"><strong>${esc(s.title)}</strong><span>${date(s.endedAt)} · ${g.total} 题${s.auto ? ' · 到时交卷' : ''}</span></div><div class="history-score"><strong>${g.score}</strong><span>${s.mode === 'exam' ? '分' : '% 正确'}</span></div><span class="status ${g.passed === true ? 'success' : g.passed === false ? 'fail' : ''}">${g.passed === null ? '练习完成' : g.passed ? '模拟达标' : '尚未达标'}</span>${btn('查看解析', 'open-result', `data-id="${esc(s.id)}"`, 'secondary small')}</div>`;}).join('')}</section>` : '<div class="empty-state"><h2>还没有已完成的记录</h2><p>提交模拟卷或结束一组练习后，可以在这里查看。</p></div>'}`;
+  return `${heading('YOUR LEARNING RECORD', '学习记录', '回看最近 50 次已完成的模拟和练习。记录仅保存在本机。')}<div class="backup-tools panel"><div><strong>把学习进度带到下一台设备</strong><p>导出全部科目记录，导入时合并进度与收藏，并保留本机未完成答卷。</p></div>${btn('导出学习记录','export-records','','secondary')}<label class="secondary import-label" for="import-records">导入记录<input id="import-records" type="file" accept="application/json,.json" class="sr-only"></label>${recoveryKeys.length?btn('导出原记录副本','export-recovery','','text-button'):''}<p class="record-status" role="status">${esc(recordStatus)}</p></div><div class="stats-row"><div><span>完成模拟</span><strong>${exam.length}<small> 次</small></strong></div><div><span>模拟达标</span><strong>${passed}<small> 次</small></strong></div><div><span>当前错题</span><strong>${wrongIds().length}<small> 题</small></strong></div></div>${state.history.length ? `<section class="panel history-list">${state.history.map(s => {const g = grade(s, QUESTIONS); return `<div class="history-row"><div class="history-icon">${icon(s.mode === 'exam' ? 'exam' : 'book')}</div><div class="history-name"><strong>${esc(s.title)}</strong><span>${date(s.endedAt)} · ${g.total} 题${s.auto ? ' · 到时交卷' : ''}</span></div><div class="history-score"><strong>${g.score}</strong><span>${s.mode === 'exam' ? '分' : '% 正确'}</span></div><span class="status ${g.passed === true ? 'success' : g.passed === false ? 'fail' : ''}">${g.passed === null ? '练习完成' : g.passed ? '模拟达标' : '尚未达标'}</span>${btn('查看解析', 'open-result', `data-id="${esc(s.id)}"`, 'secondary small')}</div>`;}).join('')}</section>` : '<div class="empty-state"><h2>还没有已完成的记录</h2><p>提交模拟卷或结束一组练习后，可以在这里查看。</p></div>'}`;
 }
 
 function quizView() {
@@ -264,6 +274,12 @@ function continueDrill(s) {
   const next=makeDrillSession(advanceDrill(s,right),s.title);
   startSession(next);
 }
+function archiveSession(completed) {
+  state.history = [completed, ...state.history.filter(previous => previous.id !== completed.id).map(previous => {
+    const {drill, ...record} = previous;
+    return record;
+  })].slice(0, 50);
+}
 function finish(auto = false) {
   const s = state.active;
   if (!s) return;
@@ -277,7 +293,7 @@ function finish(auto = false) {
     completed.marked = s.marked.filter(id => completed.ids.includes(id));
     completed.index = 0;
   } else state.progress = updateProgress(state.progress, grade(s, QUESTIONS).rows);
-  state.history = [completed, ...state.history.map(previous=>{const {drill,...record}=previous;return record;})].slice(0, 50);
+  archiveSession(completed);
   state.active = null;
   result = completed;
   reviewFilter = 'all';
@@ -286,6 +302,27 @@ function finish(auto = false) {
 }
 function formatTime(seconds) { return `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`; }
 function tick() {
+  const parked = state.suspended;
+  if (parked?.mode === 'exam' && remainingSeconds(parked) <= 0) {
+    // Expiry belongs to the answer sheet, including one parked behind a drill.
+    // Keep the live question, focus, open explanations and confirmation intact.
+    state.suspended = null;
+    if (parked.id !== state.active?.id && !state.history.some(s => s.id === parked.id)) {
+      state.progress = updateProgress(state.progress, grade(parked, QUESTIONS).rows);
+      archiveSession({...parked, endedAt:Date.now(), auto:true});
+      sessionNotice = `暂存的${parked.title}已到时自动交卷，结果已存入学习记录。`;
+    }
+    save();
+    if (view !== 'quiz' && !document.querySelector('dialog[open]')) render();
+    else {
+      if (view !== 'quiz') deferredSummaryRefresh = true;
+      const notice = document.getElementById('session-notice');
+      if (notice) {
+        notice.hidden = !sessionNotice;
+        notice.querySelector('span').textContent = sessionNotice;
+      }
+    }
+  }
   if (state.active?.mode !== 'exam') return;
   const seconds = remainingSeconds(state.active);
   if (seconds <= 0) { modalAction = null; finish(true); return; }
@@ -325,7 +362,15 @@ app.addEventListener('click', e => {
     catch {recordStatus='导出失败：本机记录可能损坏或无法访问。';}
     render();
   }
-  else if (action === 'resume-suspended') { [state.active,state.suspended]=[state.suspended,state.active]; save(); navigate('quiz'); tick(); }
+  else if(action==='export-recovery') {
+    try { downloadRecoveryCopies(recoveryKeys);recordStatus='已导出导入前的原记录副本；它用于恢复排查，不能作为普通学习备份直接导入。'; }
+    catch (error) { recordStatus=error.message || '原记录副本暂时无法导出。'; }
+    render();
+  }
+  else if (action === 'resume-suspended') {
+    if (state.suspended) { [state.active,state.suspended]=[state.suspended,state.active]; save(); }
+    if (state.active) { navigate('quiz'); tick(); } else render();
+  }
   else if (action === 'resume') navigate('quiz');
   else if (action === 'start-exam') { const profile = target.dataset.profile; startSession(makeSession(makePaper(QUESTIONS, profile), 'exam', profile)); }
   else if (action === 'recall-practice') { resetLearningFilters();practiceChapter=0;practiceSource=target.dataset.source||'recall';practiceYear=Number(target.dataset.year)||0;practiceCount=0;practiceType='all';practiceQuestion=null;practiceQuery='';navigate('practice'); }
@@ -388,8 +433,15 @@ async function readBackup(file) {
     const incoming=validateBackup(JSON.parse(await file.text()));
     const subjectCount=Object.keys(incoming).length,questionCount=Object.values(incoming).reduce((sum,s)=>sum+Object.keys(s.practice.progress).length,0);
     dialog('合并学习记录',`这份备份包含 ${subjectCount} 个科目、${questionCount} 道已练题目。将合并收藏、阅读进度与历史记录，同一道题保留作答次数较多的记录，本机正在作答的答卷优先保留。`,()=>{
-      try {importBackup(incoming);state=load();refreshCourseProgress();recordStatus='已合并学习记录。';render();tick();}
-      catch {recordStatus='无法保存导入记录，请检查浏览器可用空间。';render();}
+      try {
+        const imported=importBackup(incoming);
+        state=load();refreshCourseProgress();recoveryKeys=listRecoveryCopyKeys();
+        recordStatus=imported.recoveredSubjects.length
+          ? `已合并学习记录。${imported.recoveredSubjects.length} 个科目的旧记录存在局部损坏；有效进度已保留，导入前原记录可另行导出。`
+          : '已合并学习记录。';
+        render();tick();
+      }
+      catch (error) {recoveryKeys=listRecoveryCopyKeys();recordStatus=error.name==='QuotaExceededError'?'浏览器空间不足，导入未完成。请保留原备份文件后重试。':error.message||'无法保存导入记录，请检查浏览器可用空间。';render();}
     },'合并保存');
   } catch(error) {recordStatus=error instanceof SyntaxError?'文件不是有效JSON，请选择导出的学习记录。':error.message;render();}
 }

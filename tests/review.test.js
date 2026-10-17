@@ -1,6 +1,8 @@
 import {EXPANSION_QUESTIONS} from '../src/expansion-questions.js';
+import {COVERAGE_POLISH_QUESTIONS} from '../src/coverage-polish-questions.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import { SUBJECTS } from '../src/subjects.js';
 import { CASEBOOK_QUESTIONS } from '../src/casebook-questions.js';
 import { CASEBOOK_DATE, bankQuality, ruleStatus, POLICY_NOTICES } from '../src/content-quality.js';
@@ -60,14 +62,15 @@ test('all 27 new numeric audit cases are recomputed and agree with the displayed
 });
 
 test('all eight subjects preserve the old bank version and report honest source counts',()=>{
+ const release=JSON.parse(readFileSync(new URL('../src/release.json',import.meta.url),'utf8'));
  let originals=0,recalls=0,samples=0;
  for(const s of Object.values(SUBJECTS)){
-  const m=bankQuality(s.QUESTIONS);assert.equal(m.casebook,20);assert.equal(m.detailed,48+(s.isFund?10:['securities2','futures2'].includes(s.id)?12:0)+EXPANSION_QUESTIONS[s.id].length);
+  const m=bankQuality(s.QUESTIONS);assert.equal(m.casebook,20);assert.equal(m.detailed,48+(s.isFund?10:['securities2','futures2'].includes(s.id)?12:0)+EXPANSION_QUESTIONS[s.id].length+(COVERAGE_POLISH_QUESTIONS[s.id]||[]).length);
   assert.equal(m.total,m.original+m.recall+m.sample);originals+=m.original;recalls+=m.recall;samples+=m.sample;
   assert.ok(s.COMPATIBLE_BANK_VERSIONS.some(v=>v.includes('2026-10-03')));
-  assert.ok(s.BANK_VERSION.includes('2026-10-14'));
+  assert.equal(s.BANK_VERSION,`${s.id}-${release.version}`);assert.ok(s.COMPATIBLE_BANK_VERSIONS.includes(`${s.id}-2026-10-14.2`));
  }
- assert.equal(originals,2828+Object.values(EXPANSION_QUESTIONS).flat().length);assert.equal(recalls,54);assert.equal(samples,10);
+ assert.equal(originals,2828+Object.values(EXPANSION_QUESTIONS).flat().length+Object.values(COVERAGE_POLISH_QUESTIONS).flat().length);assert.equal(recalls,54);assert.equal(samples,10);
 });
 
 test('learning filters compose source-independent saved, unseen, wrong, difficulty and batch state',()=>{

@@ -37,7 +37,11 @@ export const courseProgress = () => ({...progress,done:[...progress.done]});
 export function refreshCourseProgress() { progress=loadProgress(); }
 export function syncCourseHash() {
   const match = /^#course\/([a-z0-9-]+)$/.exec(location.hash);
-  if (match && validId(match[1])) selected = match[1];
+  if (match && validId(match[1])) {
+    selected = match[1];
+    // Direct links and browser back/forward are reading visits too.
+    if (progress.last !== selected) { progress.last = selected; saveProgress(); }
+  }
   return location.hash === '#course' || !!match;
 }
 const num = i => String(i + 1).padStart(2, '0');

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { chromium, expect } from '@playwright/test';
 import { SUBJECTS } from '../src/subjects.js';
 import { coverageIndex, coverageSummary } from '../src/coverage-views.js';
+import { COVERAGE_POLISH_BATCH, COVERAGE_POLISH_QUESTIONS } from '../src/coverage-polish-questions.js';
 
 const base = new URL(process.env.PAGES_URL || 'https://zjjxwpstcnsm-gif.github.io/stock/');
 assert.equal(base.protocol, 'https:');
@@ -148,6 +149,37 @@ try {
       report.checks.push({device,subject:subject.id,question:question.id,check:'published expansion answer, four rationales, source and AI attribution',passed:true});
     }
     await expansionContext.close();
+    const polishContext = await browser.newContext({viewport, isMobile:device==='mobile', hasTouch:device==='mobile'});
+    const polishPage = await polishContext.newPage();
+    polishPage.on('pageerror', error=>errors.push(error.message));
+    for (const id of ['fund1','fund2','fund3']) {
+      const subject=SUBJECTS[id], questions=COVERAGE_POLISH_QUESTIONS[id];
+      const question=questions.find(q=>q.polishCalculation) || questions[0];
+      assert.equal(questions.length,12);
+      const url=new URL(base);url.searchParams.set('subject',id);
+      await polishPage.goto(url.href,{waitUntil:'networkidle'});
+      const shortcut=polishPage.locator(`.content-update [data-batch="${COVERAGE_POLISH_BATCH}"]`);
+      await expect(shortcut).toContainText('12 题');
+      await shortcut.click();
+      await expect(polishPage.locator('.practice-match')).toContainText('匹配 12 题');
+      url.hash=`practice?question=${question.id}`;
+      await polishPage.goto(url.href,{waitUntil:'networkidle'});
+      await polishPage.getByRole('button',{name:'开始练习',exact:true}).click();
+      await expect(polishPage.locator('#question-title')).toHaveText(question.stem);
+      await expect(polishPage.locator('#main')).not.toContainText(question.explanation);
+      await polishPage.getByRole('radio').nth(question.answer).click();
+      await polishPage.getByRole('button',{name:'确认答案',exact:true}).click();
+      await expect(polishPage.locator('#answer-feedback')).toContainText(question.explanation);
+      await polishPage.locator('.option-rationales summary').click();
+      await expect(polishPage.locator('.option-rationales article')).toHaveCount(4);
+      for(const reason of question.rationales)await expect(polishPage.locator('.option-rationales')).toContainText(reason);
+      await expect(polishPage.locator('.source')).toContainText(question.referenceSection);
+      await expect(polishPage.locator('.source a').first()).toHaveAttribute('href',subject.SOURCES[question.source].url);
+      assert.ok(await polishPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await polishPage.screenshot({path:`${output}/${device}-${id}-coverage-polish.png`,fullPage:true});
+      report.checks.push({device,subject:id,question:question.id,check:'published October 17 batch shortcut, original case, four rationales and primary source',passed:true});
+    }
+    await polishContext.close();
     assert.deepEqual(errors, []);
     assert.ok(assets.size > 20, 'Expected the published module graph to load');
     for (const asset of assets) assert.equal(new URL(asset).searchParams.get('v'), assetVersion, `Stale asset: ${asset}`);

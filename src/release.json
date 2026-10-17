@@ -1,6 +1,6 @@
 {
-  "version": "2026-10-14.2",
-  "questionCount": 5784,
+  "version": "2026-10-17.1",
+  "questionCount": 5820,
   "newPrecisionQuestions": 96,
   "numericAuditCases": 44,
   "features": [
@@ -16,7 +16,11 @@
     "explicit-objective-coverage",
     "objective-focused-practice",
     "dated-rule-version-checks",
-    "numeric-walkthroughs"
+    "numeric-walkthroughs",
+    "recoverable-local-record-merge",
+    "completed-session-import-protection",
+    "suspended-exam-expiry",
+    "reading-resume-and-direct-review"
   ],
   "newWorkshopQuestions": 64,
   "newWorkshopNumericAuditCases": 38,
@@ -27,7 +31,9 @@
   "newRuleReviewQuestions": 24,
   "reviewedCalculationVariants": 480,
   "correctedExistingQuestions": 7,
-  "explicitFundObjectives": 239,
+  "explicitFundObjectives": 275,
+  "newCoveragePolishQuestions": 36,
+  "coveragePolishObjectives": 36,
   "newExpansionQuestions": 2892,
   "expansionTarget": 5784,
   "expansionStatus": "complete",
