@@ -1,0 +1,22 @@
+/* Chapter coverage stays separate from the currently filtered practice pool. */
+.practice-progress-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px}
+.practice-progress-heading h3{font-size:1rem}
+.practice-progress-heading>span,.practice-progress-note{font-size:.76rem;color:var(--muted);line-height:1.8}
+.practice-progress-note{margin-top:7px}
+.chapter-picker .progress-chapter{min-width:0;gap:6px 14px}
+.progress-chapter>strong,.progress-chapter .chapter-description{min-width:0;overflow-wrap:anywhere}
+.progress-chapter .chapter-matched{font-size:.75rem;white-space:nowrap;color:var(--muted)}
+.progress-chapter .chapter-progress-meta,.progress-chapter .chapter-progress-detail{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:6px 12px;flex-wrap:wrap}
+.progress-chapter .chapter-progress-meta{margin-top:8px}
+.progress-chapter .chapter-progress-meta>span{font-size:.78rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.progress-chapter .chapter-progress-meta>.chapter-progress-state{font-size:.73rem;color:var(--muted)}
+.progress-chapter .chapter-progress-track{grid-column:1/-1;display:block;height:5px;overflow:hidden;border-radius:8px;background:var(--line)}
+.progress-chapter .chapter-progress-track>i{display:block;height:100%;border-radius:inherit;background:var(--blue)}
+.progress-chapter .chapter-progress-detail>span{font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress-chapter .chapter-progress-detail>.chapter-progress-wrong{color:#9b5038}
+.progress-chapter.is-complete .chapter-progress-track>i{background:var(--green)}
+.progress-chapter.is-complete .chapter-progress-state{color:var(--green)}
+@media(max-width:600px){
+  .chapter-picker .progress-chapter{padding:15px 14px;grid-template-columns:minmax(0,1fr)}
+  .progress-chapter .chapter-matched{grid-column:1;grid-row:auto;justify-self:start}
+}
