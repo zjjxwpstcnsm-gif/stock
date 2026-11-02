@@ -93,7 +93,7 @@ test('expanded bank counts, long question navigation and sourced review work', a
   await page.goto('/');
   await expect(page.locator('.desk-progress > div:first-child')).toContainText(`/ ${QUESTIONS.length} 题`);
   await page.getByRole('button',{name:'专项练习',exact:true}).click();
-  await expect(page.locator('.chapter-option b')).toHaveText([`${QUESTIONS.length} 题`,...Object.keys(CHAPTERS).map(ch=>`${QUESTIONS.filter(q=>q.chapter===Number(ch)).length} 题`)]);
+  await expect(page.locator('.chapter-option .chapter-matched')).toHaveText([`匹配 ${QUESTIONS.length} 题`,...Object.keys(CHAPTERS).map(ch=>`匹配 ${QUESTIONS.filter(q=>q.chapter===Number(ch)).length} 题`)]);
   await page.selectOption('#practice-count','0');
   await page.getByRole('button',{name:'开始练习',exact:true}).click();
   await expect(page.locator('.answer-cell')).toHaveCount(QUESTIONS.length);
